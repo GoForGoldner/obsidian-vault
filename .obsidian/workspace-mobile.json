@@ -20,23 +20,8 @@
               "icon": "lucide-file",
               "title": "http-requests"
             }
-          },
-          {
-            "id": "9253d4e9ea93eb35",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "concepts/data-structures/hash-table.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "hash-table"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -127,7 +112,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "concepts/data-structures/hash-table.md",
+            "file": "concepts/web-dev/http-requests.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -203,8 +188,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "72bf3e995babaad1",
+  "active": "0b5cbd16d8d2ddd3",
   "lastOpenFiles": [
+    "concepts/data-structures/hash-table.md",
     "concepts/web-dev/http-requests.md",
     "concepts/vs/process-vs-thread.md",
     "concepts/data-structures/stack-and-heap.md",
@@ -230,7 +216,6 @@
     "concepts/vs/microservices-vs-monolith.md",
     "concepts/vs/horizontal-vs-vertical-scaling.md",
     "concepts/vs/bfs-vs.dfs.md",
-    "concepts/data-structures/bst(binary-search-tree).md",
     "concepts/system-design/database",
     "concepts/web-dev/auth",
     "concepts/web-dev/database",
