@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "copilot/memory/Recent Conversations.md",
+                "file": "concepts/algorithms/dfs.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Recent Conversations"
+              "title": "dfs"
             }
           }
         ],
@@ -238,8 +238,9 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "83896f53b0c62534",
+  "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "concepts/data-structures/hash-table.md",
     "copilot/memory/Recent Conversations.md",
     "copilot/system-prompts/Custom Prompt for Learning.md",
     "copilot/copilot-conversations/L4_vs_L7_Load_Balancing@20260602_135325.md",
@@ -269,7 +270,6 @@
     "copilot/copilot-custom-prompts/Generate table of contents.md",
     "copilot/copilot-custom-prompts/Make longer.md",
     "copilot/copilot-custom-prompts/Make shorter.md",
-    "copilot/copilot-custom-prompts/Explain like I am 5.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "concepts/system-design/database",
