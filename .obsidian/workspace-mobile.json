@@ -20,6 +20,16 @@
               "icon": "lucide-file",
               "title": "http-requests"
             }
+          },
+          {
+            "id": "a32c6930b34d7ce6",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
           }
         ]
       }
@@ -190,8 +200,8 @@
   },
   "active": "0b5cbd16d8d2ddd3",
   "lastOpenFiles": [
-    "concepts/data-structures/hash-table.md",
     "concepts/web-dev/http-requests.md",
+    "concepts/data-structures/hash-table.md",
     "concepts/vs/process-vs-thread.md",
     "concepts/data-structures/stack-and-heap.md",
     "concepts/system-design/database/nosql.md",
