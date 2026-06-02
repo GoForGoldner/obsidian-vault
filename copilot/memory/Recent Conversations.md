@@ -9,3 +9,7 @@
 ## Creating Custom Instructions for Auto-Capturing Concepts and Anki Cards
 **Time:** 2026-06-02 11:04
 **Summary:** The user wanted a custom instruction file so the AI assistant would silently auto-detect learned programming concepts, save notes in the appropriate Obsidian concepts subfolder, and generate Anki cards—while excluding trivial framework semantics. After clarifying questions and an API key error that initially prevented file saving, the file [[copilot-custom-prompts/Custom Instructions for Auto-Capturing Concepts and Anki Cards]] was successfully created with trigger behavior, folder placement rules, note format following claude-card-prompt, and card generation limits.
+
+## L7 vs L4 Load Balancing Explanation Request
+**Time:** 2026-06-02 13:46
+**Summary:** The user asked when to use Layer 7 versus Layer 4 load balancing. The AI explained that the vault note [[load-balancing]] did not cover this distinction and that it was unable to use external research or Google to answer the question. No answer was provided.

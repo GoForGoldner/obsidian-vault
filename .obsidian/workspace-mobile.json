@@ -38,7 +38,7 @@
               "type": "markdown",
               "state": {
                 "file": "copilot/copilot-system-prompts/Custom Prompt for Learning.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -224,12 +224,16 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "83896f53b0c62534",
+  "active": "968a9d8b5d817332",
   "lastOpenFiles": [
+    "concepts/patterns/command-pattern.md",
+    "copilot/copilot-conversations/L4_Versus_L7_Load_Balancing@20260602_134652.md",
+    "copilot/copilot-conversations/L7_vs_L4_Load_Balancing@20260602_133330.md",
+    "concepts/patterns/event-sourcing-pattern.md",
+    "copilot/copilot-system-prompts/Custom Prompt for Learning.md",
     "copilot/system-prompts/Custom Prompt for Learning.md",
     "copilot/system-prompts",
     "copilot/copilot-custom-prompts/Emojify.md",
-    "copilot/copilot-system-prompts/Custom Prompt for Learning.md",
     "copilot/copilot-custom-prompts/Simplify.md",
     "copilot/copilot-system-prompts",
     "copilot/copilot-conversations/Stealth_Learning_Instruction_File@20260602_104014.md",
@@ -254,10 +258,6 @@
     "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
     "copilot/copilot-custom-prompts",
     "copilot",
-    "concepts/data-structures/hash-table.md",
-    "concepts/vs/process-vs-thread.md",
-    "concepts/data-structures/stack-and-heap.md",
-    "concepts/system-design/database/nosql.md",
     "concepts/system-design/database",
     "concepts/web-dev/auth",
     "concepts/web-dev/database",
