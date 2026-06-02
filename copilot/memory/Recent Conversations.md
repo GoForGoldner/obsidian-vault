@@ -13,3 +13,7 @@
 ## L7 vs L4 Load Balancing Explanation Request
 **Time:** 2026-06-02 13:46
 **Summary:** The user asked when to use Layer 7 versus Layer 4 load balancing. The AI explained that the vault note [[load-balancing]] did not cover this distinction and that it was unable to use external research or Google to answer the question. No answer was provided.
+
+## Creating Custom Instruction File for Auto-Capturing Concepts and Anki Cards
+**Time:** 2026-06-02 13:53
+**Summary:** The user wanted a custom instruction file for Copilot to silently detect when they learn a programming concept, auto-save notes to the appropriate subfolder, and generate up to 3 Anki cards per chat without asking permission. The assistant asked clarifying questions, updated the existing claude-card-prompt, and after resolving API key issues, successfully created the instruction file in the copilot-custom-prompts folder.

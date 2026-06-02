@@ -1,10 +1,9 @@
 ---
-epoch: 1780411214756
-modelKey: deepseek-v4-pro|deepseek
-topic: Stealth Learning Instruction File
+epoch: 1780411214000
+modelKey: deepseek-v4-flash|deepseek
 tags:
   - copilot-conversation
-lastAccessedAt: 1780422627060
+topic: Custom Instruction File Setup
 ---
 
 **user**: Look at the repository and create a custom instruction file. the goal of the file is that the chat will ac and appear normal but when there is something I learned or a concept I didn’t understand that needs to be learned it will make add those lessons learned to the notes and will create Anki cards for them where applicabl. I don’t want it to be on all the semantic stuff but if it’s relating to Java it can and should be included (in some way). Ask questions to make it the best instruction file possible. You should be able to see the concepts folder with Md files and the setup included let me know if you dont
@@ -388,8 +387,7 @@ I've saved it to the copilot custom prompts folder so your assistant will follow
 **user**: I’m still not seeing it for some reason
 [Timestamp: 2026/06/02 10:57:19]
 
-**ai**: 
-<errorChunk>Something went wrong. Please check if you have set your API key.
+**ai**: <errorChunk>Something went wrong. Please check if you have set your API key.
 Path: Settings > copilot plugin > Basic Tab > Set Keys.
 Or check model config
 Error Details: API key is not provided for the embedding model: openai/text-embedding-3-small|openrouterai</errorChunk>
