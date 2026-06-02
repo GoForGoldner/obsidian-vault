@@ -1,0 +1,245 @@
+{
+  "main": {
+    "id": "786f27edb72434da",
+    "type": "split",
+    "children": [
+      {
+        "id": "ae89fb55f4029fc8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0b5cbd16d8d2ddd3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "concepts/web-dev/http-requests.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "http-requests"
+            }
+          },
+          {
+            "id": "9253d4e9ea93eb35",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "concepts/data-structures/hash-table.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "hash-table"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "66bdefc8199fb89a",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "18889ca4397e4ecc",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false
+          },
+          "icon": "lucide-folder-closed",
+          "title": "Files"
+        }
+      },
+      {
+        "id": "a0e99516554b56e6",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Search"
+        }
+      },
+      {
+        "id": "4fe06642a4f11de4",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Tags"
+        }
+      },
+      {
+        "id": "e6ded65ed3bf6c50",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-archive",
+          "title": "All properties"
+        }
+      },
+      {
+        "id": "81ecfd559aed51c4",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "Bookmarks"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "2eed37fb1a634651",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "8455b22f24a32b78",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "concepts/data-structures/hash-table.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": true,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Backlinks"
+        }
+      },
+      {
+        "id": "bf1c43d6afa9b8a8",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Outgoing links"
+        }
+      },
+      {
+        "id": "9883554ec273b84e",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Outline"
+        }
+      },
+      {
+        "id": "773efe218ecb2064",
+        "type": "leaf",
+        "state": {
+          "type": "calendar",
+          "state": {},
+          "icon": "calendar-with-checkmark",
+          "title": "Calendar"
+        }
+      },
+      {
+        "id": "72bf3e995babaad1",
+        "type": "leaf",
+        "state": {
+          "type": "git-view",
+          "state": {},
+          "icon": "git-pull-request",
+          "title": "Source Control"
+        }
+      }
+    ],
+    "currentTab": 4
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "templater-obsidian:Templater": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "72bf3e995babaad1",
+  "lastOpenFiles": [
+    "concepts/web-dev/http-requests.md",
+    "concepts/vs/process-vs-thread.md",
+    "concepts/data-structures/stack-and-heap.md",
+    "concepts/system-design/database/nosql.md",
+    "concepts/system-design/eventual-consistency.md",
+    "concepts/oop/solid-principles/dependency-inversion.md",
+    "misc/claude-card-prompt.md",
+    "concepts/patterns/builder-pattern.md",
+    "concepts/threads/thread.md",
+    "concepts/threads/race-conditions.md",
+    "concepts/threads/process.md",
+    "concepts/system-design/cap-theorem.md",
+    "concepts/system-design/message-queue.md",
+    "concepts/system-design/load-balancing.md",
+    "concepts/threads/locking-stradegies.md",
+    "concepts/system-design/docker.md",
+    "concepts/algorithms/dfs.md",
+    "concepts/algorithms/bfs.md",
+    "concepts/web-dev/backend-architecture.md",
+    "templates/builder-pattern.md",
+    "concepts/patterns/chain-of-responsibility-pattern.md",
+    "concepts/patterns/bridge-pattern.md",
+    "concepts/vs/microservices-vs-monolith.md",
+    "concepts/vs/horizontal-vs-vertical-scaling.md",
+    "concepts/vs/bfs-vs.dfs.md",
+    "concepts/data-structures/bst(binary-search-tree).md",
+    "concepts/system-design/database",
+    "concepts/web-dev/auth",
+    "concepts/web-dev/database",
+    "concepts/oop/solid-principles",
+    "concepts/anki-cards.css",
+    "concepts/system-design",
+    "concepts/threads",
+    "concepts/web-dev",
+    "concepts/oop",
+    "concepts/algorithms"
+  ]
+}

@@ -1,0 +1,150 @@
+/* ── Anki Cards — matches Anki template styling ─────────────────────────── */
+
+:root {
+  --anki-bg:            #ffffff;
+  --anki-surface:       #f6f4ff;
+  --anki-border:        rgba(0,0,0,0.08);
+  --anki-border-bright: rgba(139,92,246,0.25);
+  --anki-accent:        #7c3aed;
+  --anki-accent-2:      #6d28d9;
+  --anki-text:          #1a1a1a;
+  --anki-text-dim:      #888888;
+  --anki-gold:          #d97706;
+  --anki-success:       #059669;
+  --anki-answer-bg:     #fafafa;
+  --anki-code-bg:       #f0f0f0;
+  --anki-code-fg:       #6d28d9;
+  --anki-code-border:   rgba(0,0,0,0.1);
+}
+
+/* ── Container ───────────────────────────────────────────────────────────── */
+.anki-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 16px 0;
+}
+
+/* ── Individual card ─────────────────────────────────────────────────────── */
+.anki-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* ── Question section ────────────────────────────────────────────────────── */
+.anki-card-front {
+  background: var(--anki-surface);
+  border: 1px solid var(--anki-border-bright);
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Purple top gradient line */
+.anki-card-front::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent);
+}
+
+.anki-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+}
+
+.anki-label-q {
+  color: var(--anki-accent-2);
+  opacity: 0.8;
+}
+
+.anki-label-a {
+  color: var(--anki-success);
+}
+
+.anki-front-text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #1a1a1a !important;
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* ── Answer section ──────────────────────────────────────────────────────── */
+.anki-card-back {
+  background: var(--anki-answer-bg);
+  border: 1px solid var(--anki-border);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  padding: 20px 22px;
+  position: relative;
+}
+
+/* Green top gradient line */
+.anki-card-back::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(5,150,105,0.4), transparent);
+}
+
+.anki-back-text,
+.anki-back-text * {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #1a1a1a !important;
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  white-space: pre-wrap;
+}
+
+/* Inline code */
+.anki-front-text code,
+.anki-back-text code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12.5px;
+  color: var(--anki-code-fg) !important;
+  background: var(--anki-code-bg);
+  border: 1px solid var(--anki-code-border);
+  border-radius: 5px;
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+
+/* Code blocks */
+.anki-back-text pre {
+  background: var(--anki-code-bg);
+  border: 1px solid var(--anki-code-border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  color: var(--anki-code-fg) !important;
+  white-space: pre;
+  line-height: 1.6;
+}
+
+/* Lists */
+.anki-back-text ul,
+.anki-back-text ol {
+  padding-left: 20px;
+  margin-top: 6px;
+}
+
+.anki-back-text li {
+  margin-bottom: 6px;
+}
+
+.anki-back-text li::marker {
+  color: var(--anki-accent);
+}

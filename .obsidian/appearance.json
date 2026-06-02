@@ -1,0 +1,8 @@
+{
+  "enabledCssSnippets": [
+    "anki-cards"
+  ],
+  "cssTheme": "Border",
+  "baseFontSizeAction": true,
+  "baseFontSize": 16
+}

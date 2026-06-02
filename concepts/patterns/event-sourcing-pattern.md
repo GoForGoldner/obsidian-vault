@@ -1,0 +1,96 @@
+---
+tags: [design-pattern, architectural]
+category: patterns
+related: [command-pattern, message-queue]
+---
+
+## Description
+A pattern that stores all changes to application state as a sequence of events instead of just storing the current state. You can rebuild state by replaying events.
+
+## Benefits
+- Full audit trail of everything that happened
+- Can rebuild state to any point in time
+- Supports undo and temporal queries
+
+## Downsides
+- Storage grows over time (every event is kept)
+- Querying current state requires replaying events (or maintaining projections)
+- More complex than CRUD
+
+
+## Examples
+```java
+// Instead of storing current state:
+// account.balance = 150
+
+// Store events:
+List<Event> events = List.of(
+    new Deposited(100),   // balance: 100
+    new Deposited(100),   // balance: 200
+    new Withdrew(50)      // balance: 150
+);
+
+// Rebuild state by replaying
+int balance = 0;
+for (Event e : events) {
+    balance = e.apply(balance);
+}
+// balance = 150
+
+// Undo last event? Remove it and replay.
+// Audit? Read the event log.
+// Time travel? Replay up to any point.
+```
+
+## Related Topics
+- [[command-pattern|Command Pattern]]
+- [[message-queue|Message Queue]]
+- [[event-sourcing-pattern|CQRS]]
+- [[event-sourcing-pattern|Audit Log]]
+
+## Cards
+
+```anki
+START
+Basic
+What is Event Sourcing?
+Back: Store every state change as an immutable event instead of just current state. Rebuild state by replaying events. Gives you full audit trail, undo/replay, and time-travel. Downside: storage overhead and query complexity (need read projections / CQRS).
+<!--ID: 1773439958618-->
+END
+```
+
+```dataviewjs
+function renderCards() {
+  const rendered = this.container.closest('.markdown-rendered');
+  if (!rendered) return;
+  const block = rendered.querySelector('code.language-anki');
+  if (!block) return;
+  const raw = block.innerText;
+  const cards = [...raw.matchAll(/START\r?\nBasic\r?\n([\s\S]*?)(?=\r?\nEND)/g)];
+  if (!cards.length) return;
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const wrap = dv.el('div', '', {cls: 'anki-cards-container'});
+  block.closest('pre').replaceWith(wrap);
+  cards.forEach(m => {
+    const content = m[1];
+    const bi = content.indexOf('\nBack:');
+    if (bi === -1) return;
+    const front = esc(content.slice(0, bi).trim());
+    const back = esc(content.slice(bi + 6).replace(/\n<!--ID:.*?-->/g, '').trim());
+    wrap.innerHTML += '<div class="anki-card">'
+      + '<div class="anki-card-front">'
+      + '<span class="anki-label anki-label-q">QUESTION</span>'
+      + '<div class="anki-front-text">' + front + '</div>'
+      + '</div>'
+      + '<div class="anki-card-back">'
+      + '<span class="anki-label anki-label-a">* ANSWER</span>'
+      + '<div class="anki-back-text">' + back + '</div>'
+      + '</div>'
+      + '</div>';
+  });
+}
+
+renderCards.call(this);
+setTimeout(() => renderCards.call(this), 100);
+setTimeout(() => renderCards.call(this), 500);
+```
