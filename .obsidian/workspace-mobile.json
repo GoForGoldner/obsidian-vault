@@ -51,7 +51,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "partition-key-vs-clustering-key.md",
+                "file": "concepts/vs/partition-key-vs-clustering-key.md",
                 "mode": "source",
                 "source": false
               },
@@ -238,10 +238,10 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "c7b0305953f1b8f5",
+  "active": "18889ca4397e4ecc",
   "lastOpenFiles": [
     "partition-key-vs-primary-key-clarified.md",
-    "partition-key-vs-clustering-key.md",
+    "concepts/vs/partition-key-vs-clustering-key.md",
     "concepts/algorithms/dfs.md",
     "copilot/copilot-conversations/Partition_Key_vs_Cluster_Key@20260602_162213.md",
     "concepts/data-structures/hash-table.md",
