@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/algorithms/dfs.md",
-                "mode": "preview",
+                "file": "partition-key-vs-clustering-key.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "dfs"
+              "title": "partition-key-vs-clustering-key"
             }
           }
         ],
@@ -240,6 +240,10 @@
   },
   "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "partition-key-vs-primary-key-clarified.md",
+    "partition-key-vs-clustering-key.md",
+    "concepts/algorithms/dfs.md",
+    "copilot/copilot-conversations/Partition_Key_vs_Cluster_Key@20260602_162213.md",
     "concepts/data-structures/hash-table.md",
     "copilot/memory/Recent Conversations.md",
     "copilot/system-prompts/Custom Prompt for Learning.md",
@@ -266,10 +270,6 @@
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet.md",
     "copilot/copilot-custom-prompts/Remove URLs.md",
-    "copilot/copilot-custom-prompts/Generate glossary.md",
-    "copilot/copilot-custom-prompts/Generate table of contents.md",
-    "copilot/copilot-custom-prompts/Make longer.md",
-    "copilot/copilot-custom-prompts/Make shorter.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "concepts/system-design/database",
