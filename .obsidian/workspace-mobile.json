@@ -238,8 +238,9 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "18889ca4397e4ecc",
+  "active": "83896f53b0c62534",
   "lastOpenFiles": [
+    "copilot/copilot-conversations/Sorted_Set_headSet_Method@20260603_171530.md",
     "partition-key-vs-primary-key-clarified.md",
     "concepts/vs/partition-key-vs-clustering-key.md",
     "concepts/algorithms/dfs.md",
@@ -269,7 +270,6 @@
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet.md",
-    "copilot/copilot-custom-prompts/Remove URLs.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "concepts/system-design/database",
