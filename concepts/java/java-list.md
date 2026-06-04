@@ -5,24 +5,71 @@ related: [collections-framework, java-iterators, java-queue-deque]
 ---
 
 ## Description
-A `List` is an ordered collection with stable positional access, so it is the right abstraction when index matters as much as membership. `ArrayList` stores elements in a resizable array, which makes reads fast and cache-friendly; `LinkedList` stores nodes, which only helps when you truly spend most of your time inserting or removing at the ends. In practice, `ArrayList` is the default choice and `LinkedList` is a niche deque-shaped tool rather than a general-purpose list.
+A `List` is the Java collections type you choose when order and position matter. It preserves encounter order, allows duplicates, and supports indexed read/write operations such as `get(i)`, `set(i, e)`, `add(i, e)`, and `remove(i)`. In real programs, `ArrayList` is the default because it gives O(1) positional reads and excellent cache locality. `LinkedList` only becomes interesting when you truly need deque-style operations at the ends, and even then `ArrayDeque` is usually the better non-list choice. The biggest practical list mistakes are confusing `remove(index)` with `remove(object)`, forgetting that `subList()` is a live view, and mutating the list unsafely during iteration.
 
 ## Examples
-| Method | Why you use it | Main gotcha |
-| --- | --- | --- |
-| `get(index)` | Read by position | Fast on `ArrayList`, linear on `LinkedList` |
-| `set(index, e)` | Replace existing element | Does not change size |
-| `add(index, e)` | Insert at a position | Shifts later elements |
-| `remove(index)` | Remove by position | On `List<Integer>`, can be confused with `remove(Object)` |
-| `subList(from, to)` | Work on a window of the list | Returns a live view, not a copy |
-| `indexOf(o)` | Find first matching element | Uses `equals`, returns `-1` if missing |
-| `sort(cmp)` | Reorder in place | Mutates the list |
-| `replaceAll(op)` | Bulk transform elements | Mutates each element positionally |
+### Core `List` method reference
+| Signature | Returns | What it does | Common note |
+| --- | --- | --- | --- |
+| `E get(int index)` | `E` | Reads element at `index` | O(1) on `ArrayList`, O(n) on `LinkedList` |
+| `E set(int index, E element)` | `E` | Replaces existing element | Returns old value |
+| `void add(int index, E element)` | `void` | Inserts before `index` | Shifts later elements right |
+| `boolean add(E element)` | `boolean` | Appends to end | Usually amortized O(1) on `ArrayList` |
+| `E remove(int index)` | `E` | Removes by position | Returns removed element |
+| `boolean remove(Object o)` | `boolean` | Removes first equal element | Overload trap with `List<Integer>` |
+| `int indexOf(Object o)` | `int` | Finds first matching element | Returns `-1` if absent |
+| `int lastIndexOf(Object o)` | `int` | Finds last matching element | Also uses `equals()` |
+| `List<E> subList(int fromIndex, int toIndex)` | `List<E>` | Returns range view `[from, to)` | Backed by original list |
+| `void sort(Comparator<? super E> c)` | `void` | Sorts in place | Mutates original list |
+| `void replaceAll(UnaryOperator<E> op)` | `void` | Replaces each element in place | Mutates original list |
+| `ListIterator<E> listIterator()` | `ListIterator<E>` | Bidirectional iterator | Supports `add`, `set`, `previous` |
 
+### `ArrayList` vs `LinkedList`
 ```java
-List<String> names = new ArrayList<>(List.of("Ada", "Linus", "Grace"));
-names.add(1, "Ken");          // [Ada, Ken, Linus, Grace]
-names.subList(1, 3).clear();   // [Ada, Grace] because subList is a live view
+List<String> array = new ArrayList<>();
+array.add("A");
+array.add("B");
+String first = array.get(0);        // fast indexed access
+array.add(1, "X");                 // shifts later elements
+
+List<String> linked = new LinkedList<>();
+linked.add("A");
+linked.add("B");
+linked.add(0, "X");                // legal, but indexed traversal is still O(n)
+String head = linked.get(0);         // works, but slower in general than ArrayList
+```
+
+### `subList`, `sort`, and `replaceAll`
+```java
+List<String> names = new ArrayList<>(List.of("grace", "ada", "linus", "ken"));
+List<String> middle = names.subList(1, 3);   // [ada, linus], live view
+middle.clear();                              // names is now [grace, ken]
+
+names.addAll(List.of("barbara", "alan"));
+names.sort(Comparator.naturalOrder());
+names.replaceAll(String::toUpperCase);
+// names is now [ALAN, BARBARA, GRACE, KEN]
+```
+
+### `remove(int)` vs `remove(Object)` on `List<Integer>`
+```java
+List<Integer> nums = new ArrayList<>(List.of(10, 20, 30, 20));
+Integer removedByIndex = nums.remove(1);           // removes element at index 1 => 20
+boolean removedByValue = nums.remove(Integer.valueOf(20));
+// removes the first Integer equal to 20
+```
+
+### `ListIterator` bidirectional editing
+```java
+List<String> letters = new ArrayList<>(List.of("A", "C"));
+ListIterator<String> it = letters.listIterator();
+
+it.next();                 // returns "A"
+it.add("B");             // inserts before element that next() would now return
+it.next();                 // returns "C"
+it.set("D");             // replaces last returned element
+String previous = it.previous(); // returns "D"
+// letters is now [A, B, D]
 ```
 
 ## Related Topics
@@ -36,25 +83,61 @@ names.subList(1, 3).clear();   // [Ada, Grace] because subList is a live view
 START
 Basic
 When should you use `LinkedList` over `ArrayList`?
-Back: Almost never. `ArrayList` gives O(1) random access and much better cache locality. `LinkedList` mainly helps when you frequently insert or remove at BOTH ends because it also implements `Deque`. For stack or queue usage, prefer `ArrayDeque` over `LinkedList` anyway.
+Back: Almost never.<br>`ArrayList` gives O(1) random access and far better cache locality.<br>`LinkedList` mainly helps when you truly need frequent insertion/removal at both ends and want a `Deque`, but even then `ArrayDeque` is usually better.
 END
 
 START
 Basic
 What's the gotcha with `remove()` on a `List<Integer>`?
-Back: `remove(2)` calls `remove(int index)`, not `remove(Object)`. To remove the Integer value `2`, call `remove(Integer.valueOf(2))`. The overload ambiguity comes from autoboxing, and the two overloads even return different types: removed element vs `boolean`.
+Back: `remove(2)` calls `remove(int index)`, not `remove(Object)`.<br>To remove the Integer value `2`, call `remove(Integer.valueOf(2))`.<br>The overloads even return different types: `E` for index removal and `boolean` for object removal.
 END
 
 START
 Basic
 Why is `Iterator.remove()` safe during iteration but `Collection.remove()` is not?
-Back: Calling `Collection.remove()` inside a for-each loop causes `ConcurrentModificationException` because the iterator sees an unexpected structural change. `Iterator.remove()` is safe because it updates the collection through the iterator's own state, removing the last element returned by `next()`.
+Back: A for-each loop uses an iterator internally, so calling `list.remove(...)` directly causes a structural modification the iterator did not expect and can throw `ConcurrentModificationException`.<br>`Iterator.remove()` is safe because it removes through the iterator's own state.
 END
 
 START
 Basic
-What's the `subList()` trap on a `List`?
-Back: `subList()` returns a live view backed by the original list, not an independent copy. Changes to the sublist affect the original list and vice versa. Use `new ArrayList<>(list.subList(...))` when you need an isolated slice.
+What's the `subList()` trap?
+Back: `subList(from, to)` returns a live view backed by the original list, not a copy.<br>Mutating the sublist changes the original list, and structural changes to the original list can invalidate the view.<br>Use `new ArrayList<>(list.subList(...))` when you need an independent slice.
+END
+
+START
+Basic
+What does `List.sort(Comparator)` do and how do you use it?
+Back: It sorts the list in place and returns `void`.<br>Examples: `list.sort(Comparator.naturalOrder())` and `list.sort(Comparator.comparing(Person::getAge))`.<br>Because it mutates, make a copy first if you need to preserve the old order.
+END
+
+START
+Basic
+What does `List.replaceAll(UnaryOperator)` do?
+Back: It replaces every element in the list in place by applying the operator to each element.<br>Example: `names.replaceAll(String::toUpperCase);`.<br>Unlike `stream().map(...)`, it mutates the original list instead of producing a new result list.
+END
+
+START
+Basic
+What does `List.of()` vs `new ArrayList<>(List.of())` give you?
+Back: `List.of(...)` creates an immutable list, so `add`, `remove`, and `set` throw `UnsupportedOperationException`.<br>`new ArrayList<>(List.of(...))` creates a mutable copy you can edit normally.
+END
+
+START
+Basic
+What is the complexity of `get(index)` in `ArrayList` vs `LinkedList`?
+Back: `ArrayList.get(index)` is O(1) because it uses array indexing.<br>`LinkedList.get(index)` is O(n) because it must walk node-by-node from one end.<br>This is a major reason `ArrayList` is the default list choice.
+END
+
+START
+Basic
+What is the complexity of `add/remove` at the HEAD in `ArrayList` vs `LinkedList`?
+Back: At index 0, `ArrayList` is O(n) because elements must shift, while `LinkedList` is O(1) for pointer updates.<br>But `LinkedList` still often loses in practice because of object overhead and poor cache locality.
+END
+
+START
+Basic
+What does `List.indexOf(Object)` return if the element isn't found?
+Back: It returns `-1`.<br>The comparison uses `equals()`.<br>`lastIndexOf(Object)` works the same way but searches for the last matching occurrence.
 END
 ```
 

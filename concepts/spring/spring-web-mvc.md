@@ -5,60 +5,123 @@ related: [spring-core, spring-security, spring-boot-autoconfiguration]
 ---
 
 ## Description
-Spring MVC maps HTTP requests onto controller methods so your code can focus on resources, validation, and response shapes instead of servlet plumbing. The important distinctions are about what part of the request each annotation reads from, whether a controller is returning views or serialized data, and where error-handling logic should live so controllers stay thin.
+Spring Web MVC maps URLs, query parameters, headers, cookies, and request bodies onto controller method parameters. The core annotations answer two questions: what part of the HTTP request are you reading, and what should Spring write back to the response? For APIs, the most common flow is `@RestController` + request mapping annotations + validation + centralized exception handling with `@RestControllerAdvice`. For server-rendered forms, `@Controller`, `@ModelAttribute`, and `@SessionAttributes` are the key pieces.
 
 ## Examples
 ```java
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:3000")
 class UserController {
-    @GetMapping("/{id}")
-    UserDto getUser(@PathVariable Long id) {
-        return service.findById(id);
+    private final UserService userService;
+
+    UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
-    List<UserDto> search(@RequestParam(defaultValue = "0") int page,
+    List<UserDto> search(@RequestParam String q,
+                         @RequestParam(defaultValue = "0") int page,
                          @RequestParam(defaultValue = "20") int size,
-                         @RequestHeader("X-Tenant") String tenant) {
-        return service.search(page, size, tenant);
+                         @RequestParam(required = false) String sort,
+                         @RequestHeader("X-Tenant") String tenant,
+                         @CookieValue(value = "locale", defaultValue = "en") String locale) {
+        return userService.search(q, page, size, sort, tenant, locale);
+    }
+
+    @GetMapping("/{id}")
+    UserDto getById(@PathVariable Long id) {
+        return userService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     UserDto create(@Valid @RequestBody CreateUserRequest request) {
-        return service.create(request);
+        return userService.create(request);
+    }
+
+    @PutMapping("/{id}")
+    UserDto replace(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
+        return userService.replace(id, request);
     }
 
     @PatchMapping("/{id}")
-    UserDto patch(@PathVariable Long id,
-                  @RequestBody UpdateUserRequest request,
-                  @CookieValue(name = "locale", required = false) String locale) {
-        return service.update(id, request, locale);
+    UserDto patch(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
+        return userService.patch(id, updates);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void delete(@PathVariable Long id) {
+        userService.delete(id);
     }
 }
 ```
 
 ```java
-@RestControllerAdvice
-class GlobalApiExceptionHandler {
-    @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    Map<String, String> handleNotFound(UserNotFoundException ex) {
-        return Map.of("error", ex.getMessage());
+@Controller
+@RequestMapping("/signup")
+@SessionAttributes("signupForm")
+class SignupController {
+    @ModelAttribute("signupForm")
+    SignupForm signupForm() {
+        return new SignupForm();
+    }
+
+    @GetMapping
+    String showForm() {
+        return "signup/form";
+    }
+
+    @PostMapping
+    String submit(@Valid @ModelAttribute("signupForm") SignupForm form,
+                  BindingResult bindingResult,
+                  SessionStatus sessionStatus) {
+        if (bindingResult.hasErrors()) {
+            return "signup/form";
+        }
+        sessionStatus.setComplete();
+        return "redirect:/signup/success";
     }
 }
 ```
 
-| Annotation | Pulls data from | Best for |
+```java
+@ResponseStatus(HttpStatus.NOT_FOUND)
+class UserNotFoundException extends RuntimeException {
+    UserNotFoundException(Long id) {
+        super("User %d not found".formatted(id));
+    }
+}
+
+@RestControllerAdvice
+class GlobalApiExceptionHandler {
+    @ExceptionHandler(UserNotFoundException.class)
+    ErrorResponse handleNotFound(UserNotFoundException ex) {
+        return new ErrorResponse("USER_NOT_FOUND", ex.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    ErrorResponse handleValidation(MethodArgumentNotValidException ex) {
+        return new ErrorResponse("VALIDATION_FAILED", ex.getBindingResult().toString());
+    }
+}
+```
+
+| Annotation | Real syntax | Reads from / does |
 | --- | --- | --- |
-| `@PathVariable` | URL path | Resource identity like `/users/{id}` |
-| `@RequestParam` | Query string/form fields | Filtering, sorting, pagination |
-| `@RequestBody` | HTTP body | Create/update payloads |
-| `@ModelAttribute` | Bound form/query params into an object | MVC forms and simple binding |
-| `@RequestHeader` / `@CookieValue` | Headers / cookies | Metadata like tenant, locale, auth-adjacent hints |
-| `@Valid` / `@Validated` | Bean validation trigger | Input validation at the edge |
-| `@ControllerAdvice` / `@RestControllerAdvice` | Cross-controller exception handling | Reusable API error policy |
+| `@RestController` / `@Controller` | `@RestController class UserController {}` | JSON/XML response body vs MVC view rendering |
+| `@RequestMapping`, `@GetMapping`, `@PostMapping`, `@PutMapping`, `@PatchMapping`, `@DeleteMapping` | `@GetMapping("/{id}")` | Map HTTP path + method |
+| `@PathVariable` | `get(@PathVariable Long id)` | Bind URI template variable |
+| `@RequestParam` | `search(@RequestParam(defaultValue = "0") int page)` | Bind query string or form param |
+| `@RequestBody` | `create(@RequestBody CreateUserRequest request)` | Deserialize HTTP body |
+| `@RequestHeader` / `@CookieValue` | `@RequestHeader("X-Tenant") String tenant` | Read headers or cookies |
+| `@ModelAttribute` / `@SessionAttributes` | `@ModelAttribute("signupForm") SignupForm form` | Bind form fields and optionally store model attribute in session |
+| `@Valid` / `@Validated` | `@Valid @RequestBody CreateUserRequest request` | Trigger bean validation |
+| `@ResponseStatus` | `@ResponseStatus(HttpStatus.CREATED)` | Force HTTP status on method or exception |
+| `@ExceptionHandler` / `@RestControllerAdvice` | `@ExceptionHandler(UserNotFoundException.class)` | Global exception-to-response mapping |
+| `@CrossOrigin` | `@CrossOrigin(origins = "http://localhost:3000")` | Enable CORS for browser clients |
 
 ## Related Topics
 - [[spring-core]]
@@ -71,19 +134,61 @@ class GlobalApiExceptionHandler {
 START
 Basic
 What's the difference between `@Controller` and `@RestController`?
-Back: `@Controller` is for MVC handlers that usually return view names for template rendering. `@RestController` is `@Controller` + `@ResponseBody`, so return values are written directly to the HTTP response as JSON or XML. Use `@RestController` for APIs and `@Controller` for server-rendered pages.
+Back: `@Controller` is for MVC handlers that usually return a view name like `"signup/form"`.<br>`@RestController` is `@Controller` + `@ResponseBody`, so return values such as `UserDto` are written directly to the HTTP response as JSON.<br>Use `@RestController` for APIs and `@Controller` for server-rendered pages.
 END
 
 START
 Basic
 How do `@PathVariable`, `@RequestParam`, and `@RequestBody` differ?
-Back: `@PathVariable` reads from the URL path and usually identifies the resource, `@RequestParam` reads query/form values and is best for filters or pagination, and `@RequestBody` deserializes the whole body into an object. If you mix them up, your endpoint shape usually becomes a design smell.
+Back: `@PathVariable Long id` reads from the URL path like `/users/{id}`.<br>`@RequestParam(defaultValue = "0") int page` reads query string or form values like `?page=0`.<br>`@RequestBody CreateUserRequest request` deserializes the HTTP body into a Java object.
 END
 
 START
 Basic
 How do you implement global exception handling in Spring?
-Back: Put `@ExceptionHandler` methods inside a `@RestControllerAdvice` (or `@ControllerAdvice`) class. That centralizes error-to-response mapping for all controllers, keeps controllers free of repetitive try/catch blocks, and gives your API one consistent error format.
+Back: Put `@ExceptionHandler` methods in a `@RestControllerAdvice` class, for example `@ExceptionHandler(UserNotFoundException.class) ErrorResponse handleNotFound(...) { ... }`.<br>This centralizes error handling for all controllers and keeps controller methods free of repeated `try/catch` logic.
+END
+
+START
+Basic
+`@RequestParam`: how do you handle optional parameters with defaults?
+Back: Example: `@GetMapping("/search") List<Item> search(@RequestParam String q, @RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort)`.<br>`required = false` means Spring passes `null` when the parameter is absent.<br>`defaultValue` provides a fallback string that Spring converts to the target type.
+END
+
+START
+Basic
+`@Valid` vs `@Validated`: what's the difference?
+Back: `@Valid @RequestBody CreateUserRequest request` triggers bean validation using Jakarta/Bean Validation annotations like `@NotBlank`.<br>`@Validated(OnCreate.class)` is Spring's variant and supports validation groups.<br>Use `@Valid` for simple request validation; use `@Validated` when you need group-based rules.
+END
+
+START
+Basic
+`@ResponseStatus`: how do you set HTTP status on a method or exception?
+Back: On a handler method: `@PostMapping @ResponseStatus(HttpStatus.CREATED) UserDto create(...)`.<br>On an exception class: `@ResponseStatus(HttpStatus.NOT_FOUND) class ResourceNotFoundException extends RuntimeException {}`.<br>The exception annotation is applied whenever that exception is thrown and not handled with a different status.
+END
+
+START
+Basic
+`@ModelAttribute`: what does it do?
+Back: At parameter level it binds request parameters or form fields into an object: `submit(@ModelAttribute UserForm form)`.<br>At method level it creates or adds an object to the model before handlers run: `@ModelAttribute("signupForm") SignupForm signupForm() { return new SignupForm(); }`.<br>It is central to MVC form handling.
+END
+
+START
+Basic
+`@CrossOrigin`: how do you enable CORS?
+Back: Add it to a controller or method, e.g. `@RestController @CrossOrigin(origins = "http://localhost:3000") class UserController {}` or `@CrossOrigin @GetMapping("/users")`.<br>That tells Spring to send the CORS response headers for matching requests.<br>For app-wide rules, configure `WebMvcConfigurer#addCorsMappings`.
+END
+
+START
+Basic
+`@CookieValue` and `@RequestHeader`: how do you read them?
+Back: Example: `@GetMapping void get(@RequestHeader("Authorization") String auth, @CookieValue(value = "sessionId", defaultValue = "") String sessionId)`.<br>Both annotations support `required = false` and `defaultValue`.<br>Use them for metadata that belongs in headers/cookies rather than the request body.
+END
+
+START
+Basic
+What's the full `@RestControllerAdvice` pattern for API error handling?
+Back: Create a class annotated `@RestControllerAdvice`, add methods like `@ExceptionHandler(UserNotFoundException.class)` and optionally `@ResponseStatus(HttpStatus.NOT_FOUND)`, and return a consistent error DTO such as `new ErrorResponse("USER_NOT_FOUND", ex.getMessage())`.<br>Spring routes matching exceptions from any controller to those handlers globally.
 END
 ```
 

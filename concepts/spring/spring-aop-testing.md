@@ -5,20 +5,48 @@ related: [spring-core, spring-security, spring-data-jpa]
 ---
 
 ## Description
-AOP exists to isolate cross-cutting concerns like logging, metrics, security, and transactions from business logic. Testing annotations solve a similar problem from the other side: load only the part of the application you need so tests stay fast and focused. The concept to remember is scope control—pointcuts control where advice applies, and test slices control how much of the application context you pay to start.
+Spring AOP lets you intercept matched method executions with advice so you can move cross-cutting concerns like logging, metrics, retries, and tracing out of business code. The important annotations define where advice applies (`@Pointcut`) and what kind of interception you want (`@Before`, `@After`, `@AfterReturning`, `@AfterThrowing`, `@Around`). Spring testing annotations solve a related scoping problem: load only the slice of the application you need, override collaborators cleanly, and control state with properties, SQL scripts, rollback, and context resets.
 
 ## Examples
 ```java
 @Aspect
 @Component
-class TimingAspect {
+class LoggingAspect {
     @Pointcut("execution(* com.example.service..*(..))")
-    void serviceMethods() {}
+    void anyServiceMethod() {}
 
-    @Around("serviceMethods()")
-    Object measure(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Pointcut("@annotation(com.example.Loggable)")
+    void loggableMethod() {}
+
+    @Pointcut("within(com.example.repository..*)")
+    void repositoryPackage() {}
+
+    @Before("anyServiceMethod()")
+    void beforeCall(JoinPoint joinPoint) {
+        log.info("calling {}", joinPoint.getSignature());
+    }
+
+    @After("repositoryPackage()")
+    void afterRepositoryCall(JoinPoint joinPoint) {
+        log.info("finished {}", joinPoint.getSignature());
+    }
+
+    @AfterReturning(pointcut = "anyServiceMethod()", returning = "result")
+    void afterSuccess(JoinPoint joinPoint, Object result) {
+        log.info("{} returned {}", joinPoint.getSignature(), result);
+    }
+
+    @AfterThrowing(pointcut = "anyServiceMethod()", throwing = "ex")
+    void afterFailure(JoinPoint joinPoint, Throwable ex) {
+        log.error("{} failed", joinPoint.getSignature(), ex);
+    }
+
+    @Around("anyServiceMethod() && !loggableMethod()")
+    Object measureAndRetry(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.nanoTime();
         try {
+            return joinPoint.proceed();
+        } catch (TransientApiException ex) {
             return joinPoint.proceed();
         } finally {
             long elapsed = System.nanoTime() - start;
@@ -34,33 +62,54 @@ class AopConfig {}
 
 ```java
 @SpringBootTest
-class FullApplicationTest {}
+@TestPropertySource(properties = {"app.cache.enabled=false", "app.timeout=100"})
+@ActiveProfiles("test")
+class FullApplicationTest {
+    @SpyBean NotificationService notificationService;
+
+    @MockBean ExternalBillingClient externalBillingClient;
+}
 
 @WebMvcTest(UserController.class)
+@ExtendWith(SpringExtension.class)
 class UserControllerTest {
     @MockBean UserService userService;
 }
 
 @DataJpaTest
+@Sql("/test-data.sql")
+@Rollback
 class UserRepositoryTest {}
+
+@ContextConfiguration(classes = {UserService.class, StubConfig.class})
+@ExtendWith(SpringExtension.class)
+class UserServiceSliceTest {}
 
 @TestConfiguration
 class StubConfig {
-    @Bean Clock testClock() {
-        return Clock.systemUTC();
+    @Bean
+    Clock testClock() {
+        return Clock.fixed(Instant.parse("2024-01-01T00:00:00Z"), ZoneOffset.UTC);
     }
 }
+
+@SpringBootTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+class ContextResettingTest {}
 ```
 
-| Test annotation | Why you'd choose it |
-| --- | --- |
-| `@SpringBootTest` | Full integration test with the whole application context |
-| `@WebMvcTest` | Web layer only; controller-focused tests |
-| `@DataJpaTest` | Repository/JPA slice with transactional rollback |
-| `@MockBean` | Replace a bean entirely with a Mockito mock |
-| `@SpyBean` | Wrap the real bean and override only selected behavior |
-| `@TestConfiguration` / `@TestPropertySource` / `@ActiveProfiles` | Test-only beans and environment shaping |
-| `@DirtiesContext` / `@Sql` / `@Rollback` | Reset or seed state when isolation matters |
+| Annotation | Real syntax | Purpose |
+| --- | --- | --- |
+| `@Aspect` / `@EnableAspectJAutoProxy` | `@Aspect @Component class LoggingAspect {}` | Register Spring AOP advice |
+| `@Pointcut` | `@Pointcut("execution(* com.example.service..*(..))")` | Name reusable pointcut expressions |
+| `@Before`, `@After`, `@AfterReturning`, `@AfterThrowing`, `@Around` | `@Around("anyServiceMethod()")` | Choose interception timing |
+| `execution`, `within`, `@annotation` | `within(com.example.repository..*)` | Common pointcut designators |
+| `@SpringBootTest` | `@SpringBootTest` | Full application integration test |
+| `@WebMvcTest`, `@DataJpaTest` | `@WebMvcTest(UserController.class)` | Slice tests for specific layers |
+| `@MockBean` / `@SpyBean` | `@MockBean UserService userService;` | Replace or spy on Spring beans in tests |
+| `@TestConfiguration`, `@TestPropertySource`, `@ActiveProfiles` | `@TestPropertySource(properties = "app.timeout=100")` | Test-only beans and environment shaping |
+| `@DirtiesContext`, `@Sql`, `@Rollback` | `@Sql("/test-data.sql")` | Reset or seed database/application state |
+| `@ExtendWith(SpringExtension.class)` / `@ContextConfiguration` | `@ContextConfiguration(classes = StubConfig.class)` | Plain Spring test context without full Boot auto-config |
 
 ## Related Topics
 - [[spring-core]]
@@ -73,25 +122,61 @@ class StubConfig {
 START
 Basic
 What are the Spring Boot test slices and when do you use each?
-Back: Use `@SpringBootTest` for full integration tests, `@WebMvcTest` when you only care about request/response behavior in the web layer, and `@DataJpaTest` when you want repository and mapping behavior without the whole app. Prefer slices when possible because they start faster and fail more locally.
+Back: Use `@SpringBootTest` for full integration tests, `@WebMvcTest(UserController.class)` for controller/request-response tests, and `@DataJpaTest` for repository/JPA mapping tests.<br>Slices start less of the application context, so they are faster and isolate failures better.
 END
 
 START
 Basic
 What's the difference between `@MockBean` and `@SpyBean`?
-Back: `@MockBean` replaces the bean with a Mockito mock, so nothing real runs unless you stub it. `@SpyBean` wraps the real bean, so real behavior still executes unless you override part of it. Mock when isolating; spy when you want mostly real behavior with a small seam.
+Back: `@MockBean ExternalBillingClient client;` replaces the bean with a Mockito mock, so no real logic runs unless you stub it.<br>`@SpyBean NotificationService notificationService;` wraps the real bean and lets real behavior run unless you override part of it.<br>Mock when isolating; spy when you want mostly real behavior with a small seam.
 END
 
 START
 Basic
 How does `@Around` advice work in Spring AOP?
-Back: `@Around` wraps the target method. Your advice runs before and after the real call, and you must call `joinPoint.proceed()` if you want the target method to execute. Because it controls the whole invocation, it's the most powerful advice type for timing, retries, exception handling, or short-circuiting.
+Back: `@Around("anyServiceMethod()") Object measure(ProceedingJoinPoint pjp) throws Throwable { return pjp.proceed(); }` wraps the target call.<br>You control whether and when the target method runs by calling `proceed()`.<br>That makes `@Around` the most powerful advice for timing, retries, exception handling, or short-circuiting.
 END
 
 START
 Basic
 When is AOP a good fit, and when is it a smell?
-Back: AOP is a good fit for technical concerns that apply consistently across many methods, like logging, metrics, transactions, or security checks. It's a smell when it hides core business logic or makes behavior hard to trace. If understanding a use case requires mentally reconstructing advice chains, the aspect is probably doing too much.
+Back: AOP is a good fit for technical cross-cutting concerns like logging, metrics, tracing, retries, security, or transactions.<br>It becomes a smell when it hides core business rules or makes execution hard to follow.<br>If understanding a use case requires mentally reconstructing several advice chains, the aspect is probably doing too much.
+END
+
+START
+Basic
+`@Pointcut` expression syntax: what are the common patterns?
+Back: `execution(* com.example.service.*.*(..))` matches method executions by signature.<br>`@annotation(com.example.Loggable)` matches methods with a specific annotation.<br>`within(com.example.service..*)` matches all methods inside a package tree.<br>Combine expressions with `&&`, `||`, and `!`.
+END
+
+START
+Basic
+`@Before`, `@After`, `@AfterReturning`, `@AfterThrowing`: how do they differ?
+Back: `@Before` runs before the method.<br>`@After` runs after completion like a `finally` block.<br>`@AfterReturning` runs only when the method succeeds and can access the return value.<br>`@AfterThrowing` runs only when the method throws and can access the exception.<br>`@Around` wraps the whole invocation.
+END
+
+START
+Basic
+`@TestPropertySource`: how do you override properties for tests?
+Back: Use inline overrides like `@TestPropertySource(properties = {"app.cache.enabled=false", "app.timeout=100"})` or load a file with `@TestPropertySource(locations = "classpath:test.properties")`.<br>These test values override normal application properties for that test context.
+END
+
+START
+Basic
+`@Sql`: how do you seed test data?
+Back: `@Sql("/test-data.sql")` runs the SQL script before the test method by default.<br>You can also clean up after the test with `@Sql(scripts = "/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)`.<br>This is especially useful in `@DataJpaTest` scenarios.
+END
+
+START
+Basic
+`@DirtiesContext`: when do you use it?
+Back: `@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)` tells Spring to rebuild the application context after each test method.<br>Use it when a test mutates shared state like caches, bean singletons, or embedded infrastructure in a way rollback cannot undo.<br>It is expensive, so avoid it unless isolation truly requires it.
+END
+
+START
+Basic
+How do `@ExtendWith(SpringExtension.class)` and `@ContextConfiguration` fit into Spring tests?
+Back: `@ExtendWith(SpringExtension.class)` integrates JUnit 5 with the Spring TestContext framework.<br>`@ContextConfiguration(classes = {UserService.class, StubConfig.class})` loads a small hand-picked Spring context without a full Boot application.<br>Use them for focused Spring tests when `@SpringBootTest` would be too heavy.
 END
 ```
 

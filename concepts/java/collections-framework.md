@@ -5,32 +5,103 @@ related: [java-list, java-set-and-map, java-queue-deque, java-iterators]
 ---
 
 ## Description
-The Java Collections Framework has two root hierarchies that look similar but are intentionally separate. `Iterable -> Collection -> List/Set/Queue` models groups of elements you traverse directly, while `Map -> SortedMap -> NavigableMap` models key-value associations. Knowing where the split happens explains why `Map` has familiar methods like `size()` and `clear()` but still cannot be used anywhere a `Collection` is expected.
+The Java Collections Framework is really two coordinated but separate API families. One family starts at `Iterable` and models groups of elements you traverse directly: `Collection`, then `List`, `Set`, and `Queue`/`Deque`. The other family starts at `Map` and models key-value associations: `Map`, then `SortedMap`, then `NavigableMap`. That split is why `Map` has familiar methods like `size()`, `isEmpty()`, and `clear()` but still cannot be passed anywhere a `Collection<?>` is expected. In practice, you choose an interface first (`List`, `Set`, `Queue`, `Deque`, `Map`) and then an implementation (`ArrayList`, `HashSet`, `TreeMap`, `ArrayDeque`, and so on) based on ordering, uniqueness, lookup complexity, and whether you need range/nearest-element operations.
 
 ## Examples
+### Full hierarchy snapshot
 ```text
 Iterable
 └── Collection
     ├── List
+    │   ├── ArrayList
+    │   └── LinkedList
     ├── Set
+    │   ├── HashSet
+    │   ├── LinkedHashSet
     │   └── SortedSet
     │       └── NavigableSet
+    │           └── TreeSet
     └── Queue
+        ├── PriorityQueue
         └── Deque
+            ├── ArrayDeque
+            └── LinkedList
 
 Map
+├── HashMap
+├── LinkedHashMap
 └── SortedMap
     └── NavigableMap
+        └── TreeMap
 ```
 
-Key mental model:
+### Which implementation implements which interface?
+| Implementation | Main interface(s) you program against | Ordering behavior | Typical use |
+| --- | --- | --- | --- |
+| `ArrayList<E>` | `List<E>` | Insertion order, indexed | Default resizable list |
+| `LinkedList<E>` | `List<E>`, `Deque<E>` | Insertion order | Rare; end insert/remove plus deque API |
+| `HashSet<E>` | `Set<E>` | No iteration order guarantee | Fast uniqueness check |
+| `TreeSet<E>` | `NavigableSet<E>` | Sorted by natural order or `Comparator` | Ordered set + range queries |
+| `HashMap<K,V>` | `Map<K,V>` | No iteration order guarantee | Default key-value lookup |
+| `TreeMap<K,V>` | `NavigableMap<K,V>` | Keys kept sorted | Ordered map + nearest/range queries |
+| `ArrayDeque<E>` | `Deque<E>` | Front/back order | Best default stack/queue/deque |
+| `PriorityQueue<E>` | `Queue<E>` | Heap priority, not insertion order | Always remove smallest/highest-priority next |
 
-| Interface | Core idea | Distinguishing question |
+### Common `Collection` methods you use in practice
+| Signature | Returns | What it does |
 | --- | --- | --- |
-| `List` | Ordered, indexed elements | "Do I care about position?" |
-| `Set` | Unique elements | "Do I care about duplicates?" |
-| `Queue` / `Deque` | Processing order | "Do I consume from one or both ends?" |
-| `Map` | Key-value lookup | "Am I finding values by key rather than storing standalone elements?" |
+| `boolean add(E e)` | `boolean` | Inserts one element |
+| `boolean remove(Object o)` | `boolean` | Removes one matching element |
+| `boolean contains(Object o)` | `boolean` | Checks membership |
+| `int size()` | `int` | Returns element count |
+| `boolean isEmpty()` | `boolean` | `true` when size is 0 |
+| `void clear()` | `void` | Removes all elements |
+| `Stream<E> stream()` | `Stream<E>` | Creates a sequential stream |
+| `boolean removeIf(Predicate<? super E> filter)` | `boolean` | Removes all matching elements |
+| `void forEach(Consumer<? super E> action)` | `void` | Applies an action to each element |
+
+```java
+Collection<String> words = new ArrayList<>(List.of("java", "collections", "", "map"));
+words.add("set");
+words.remove("");
+boolean hasMap = words.contains("map");
+int count = words.size();
+boolean empty = words.isEmpty();
+words.removeIf(String::isBlank);
+words.forEach(System.out::println);
+List<String> upper = words.stream().map(String::toUpperCase).toList();
+```
+
+### Common `Map` methods you use in practice
+| Signature | Returns | What it does |
+| --- | --- | --- |
+| `V put(K key, V value)` | `V` | Associates key with value, returns old value |
+| `V get(Object key)` | `V` | Looks up value or returns `null` |
+| `boolean containsKey(Object key)` | `boolean` | Checks key presence |
+| `boolean containsValue(Object value)` | `boolean` | Checks value presence |
+| `Set<K> keySet()` | `Set<K>` | Live view of keys |
+| `Collection<V> values()` | `Collection<V>` | Live view of values |
+| `Set<Map.Entry<K,V>> entrySet()` | `Set<Map.Entry<K,V>>` | Live view of entries |
+| `V getOrDefault(Object key, V defaultValue)` | `V` | Reads with fallback, no insertion |
+| `V putIfAbsent(K key, V value)` | `V` | Inserts only if missing |
+| `V computeIfAbsent(K key, Function<? super K,? extends V> mappingFn)` | `V` | Lazily creates a value for a missing key |
+| `V merge(K key, V value, BiFunction<? super V,? super V,? extends V> remappingFn)` | `V` | Combines old and new value |
+| `void forEach(BiConsumer<? super K,? super V> action)` | `void` | Visits key/value pairs |
+
+```java
+Map<String, Integer> counts = new HashMap<>();
+counts.put("java", 1);
+counts.putIfAbsent("collections", 0);
+counts.merge("java", 1, Integer::sum);            // java -> 2
+int missing = counts.getOrDefault("queue", 0);    // 0, map unchanged
+
+Map<String, List<String>> graph = new HashMap<>();
+graph.computeIfAbsent("A", k -> new ArrayList<>()).add("B");
+graph.computeIfAbsent("A", k -> new ArrayList<>()).add("C");
+
+graph.forEach((node, neighbors) ->
+    System.out.println(node + " -> " + neighbors));
+```
 
 ## Related Topics
 - [[java-list]]
@@ -44,25 +115,55 @@ Key mental model:
 START
 Basic
 What are the two separate root hierarchies in Java Collections?
-Back: `Iterable -> Collection -> {List, Set, Queue}` is one hierarchy. `Map -> {SortedMap -> NavigableMap}` is a completely separate hierarchy. `Map` does NOT extend `Collection`, so you cannot pass a `Map` anywhere a `Collection` is expected.
+Back: `Iterable -> Collection -> {List, Set, Queue}` is one hierarchy, while `Map -> SortedMap -> NavigableMap` is a separate hierarchy.<br>`Map` does NOT extend `Collection`, so a `Map<K,V>` cannot be passed where a `Collection<?>` is required.
 END
 
 START
 Basic
-What's the difference between `Collection.contains(o)`, `Map.containsKey(k)`, and `Map.containsValue(v)`?
-Back: `contains()` checks element presence in a `Collection`. `containsKey()` checks key presence in a `Map`. `containsValue()` checks value presence and is typically an O(n) scan. `Map` has its own `size()`, `isEmpty()`, and `clear()` — they are not inherited from `Collection`.
+What 3 live views does `Map` provide?
+Back: `keySet()`, `values()`, and `entrySet()`.<br>They are live views backed by the original map, so removing from the view removes from the map, and map updates appear in the view.
 END
 
 START
 Basic
-What 3 live views does `Map` provide for iteration?
-Back: `keySet()` returns `Set<K>`, `values()` returns `Collection<V>`, and `entrySet()` returns `Set<Map.Entry<K,V>>`. All three are LIVE views, so modifying the view modifies the underlying map. `entrySet()` is the most efficient way to iterate both keys and values together.
+What's the difference between `SortedSet`/`SortedMap` and `NavigableSet`/`NavigableMap`?
+Back: `Sorted*` gives ordered traversal plus range views like `headSet`, `tailSet`, `subSet`, `headMap`, and `tailMap`.<br>`Navigable*` adds nearest-element queries such as `floor`, `ceiling`, `lower`, and `higher`.
 END
 
 START
 Basic
-When do `SortedSet`/`SortedMap` become `NavigableSet`/`NavigableMap`?
-Back: Use `Sorted*` when you only need ordered traversal. Use `Navigable*` when you need nearest-match queries like "greatest <= x" or "smallest > x" via methods such as `floor`, `ceiling`, `lower`, and `higher`. That distinction matters in scheduling, range lookups, and boundary-search problems.
+What does `Map.computeIfAbsent(key, mappingFn)` do and when do you use it?
+Back: If `key` is absent, Java computes a value with `mappingFn`, inserts it, and returns it; if the key already exists, it just returns the existing value.<br>Common pattern: `map.computeIfAbsent(node, k -> new ArrayList<>()).add(neighbor);` when building adjacency lists or groups.
+END
+
+START
+Basic
+What does `Map.merge(key, value, remappingFn)` do?
+Back: If `key` is absent, Java inserts `value`.<br>If `key` is present, Java replaces the old value with `remappingFn(oldValue, value)`; for counting, use `map.merge(word, 1, Integer::sum);`.
+END
+
+START
+Basic
+What does `Map.getOrDefault(key, defaultValue)` do?
+Back: It returns the mapped value if the key exists, otherwise it returns `defaultValue`.<br>It does NOT insert anything, so unlike `computeIfAbsent`, the map is unchanged.
+END
+
+START
+Basic
+What does `Collection.removeIf(predicate)` do?
+Back: It removes every element for which the predicate returns `true` and returns whether anything was removed.<br>Example: `list.removeIf(s -> s.isEmpty());`.<br>This is safe and concise compared with mutating a collection directly inside a for-each loop.
+END
+
+START
+Basic
+What 3 Java 8 default methods were added to `Collection`?
+Back: `stream()`, `parallelStream()`, and `removeIf(Predicate)` were added to `Collection`.<br>Also, `Iterable` gained `forEach(Consumer)` and `spliterator()`.
+END
+
+START
+Basic
+Does `Map` extend `Collection`? What are the implications?
+Back: No.<br>`Map` defines its own `size()`, `isEmpty()`, and `clear()` methods, but it is not a collection of elements in the API type system.<br>To work with a map as a collection-like view, use `entrySet()`, `keySet()`, or `values()`.
 END
 ```
 

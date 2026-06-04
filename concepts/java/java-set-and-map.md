@@ -5,19 +5,57 @@ related: [collections-framework, java-list, java-queue-deque]
 ---
 
 ## Description
-`Set` and `Map` solve membership and lookup problems in parallel tiers: hash-based for fast average lookup, linked-hash for predictable insertion-order iteration, and tree-based for sorted traversal plus range operations. That gives a practical decision ladder: use hash by default, linked-hash when iteration order matters, and tree when sorted order or nearest/range queries are part of the problem. The important conceptual split is that `Set` stores unique values directly, while `Map` stores unique keys that lead to values.
+`Set` and `Map` solve two closely related problems: uniqueness and lookup. A `Set<E>` stores unique elements directly, while a `Map<K,V>` stores unique keys that lead to values. Both come in three practical families: hash-based (`HashSet`, `HashMap`) for fastest average lookup, linked-hash (`LinkedHashSet`, `LinkedHashMap`) when iteration order should be predictable, and tree-based (`TreeSet`, `TreeMap`) when elements or keys must stay sorted and support range or nearest-match queries. In day-to-day Java, the choice usually follows a simple ladder: hash by default, linked-hash if order matters, tree if sorting or `floor`/`ceiling`/subrange operations matter.
 
 ## Examples
-| Family | Set variant | Map variant | Avg lookup/update | Ordering guarantee | Best when |
-| --- | --- | --- | --- | --- | --- |
-| Hash | `HashSet` | `HashMap` | O(1) | None | You want the default fastest average lookup |
-| Linked hash | `LinkedHashSet` | `LinkedHashMap` | O(1) | Insertion order | You need stable traversal order |
-| Tree | `TreeSet` | `TreeMap` | O(log n) | Sorted order | You need sorting, ranges, or nearest-match queries |
+### Hash vs linked-hash vs tree
+| Family | Set implementation | Map implementation | Average lookup/update | Iteration order | Null support | Best use |
+| --- | --- | --- | --- | --- | --- | --- |
+| Hash | `HashSet<E>` | `HashMap<K,V>` | O(1) average | None guaranteed | `HashMap` allows one `null` key; `HashSet` allows one `null` element | Default membership and lookup |
+| Linked hash | `LinkedHashSet<E>` | `LinkedHashMap<K,V>` | O(1) average | Insertion order, or access order for `LinkedHashMap` | Same null behavior as hash variants | Predictable iteration or LRU behavior |
+| Tree | `TreeSet<E>` | `TreeMap<K,V>` | O(log n) | Sorted order | No `null` keys/elements when comparison is required | Ordered traversal, ranges, nearest lookups |
 
+### `TreeSet` / `NavigableSet` nearest and range methods
 ```java
-NavigableSet<Integer> slots = new TreeSet<>(List.of(10, 20, 30, 40));
-int nextAtOrAfter25 = slots.ceiling(25); // 30
-int before25 = slots.lower(25);          // 20
+NavigableSet<Integer> scores = new TreeSet<>(List.of(10, 20, 30, 40, 50));
+
+Integer floor = scores.floor(25);      // 20  (greatest <= 25)
+Integer ceiling = scores.ceiling(25);  // 30  (smallest >= 25)
+Integer lower = scores.lower(30);      // 20  (greatest < 30)
+Integer higher = scores.higher(30);    // 40  (smallest > 30)
+
+NavigableSet<Integer> head = scores.headSet(30, true);   // [10, 20, 30]
+NavigableSet<Integer> tail = scores.tailSet(30, false);  // [40, 50]
+NavigableSet<Integer> mid = scores.subSet(20, true, 40, false); // [20, 30]
+```
+
+### `HashMap` usage patterns you actually write
+```java
+Map<String, Integer> counts = new HashMap<>();
+counts.putIfAbsent("java", 0);
+counts.merge("java", 1, Integer::sum);
+counts.merge("java", 1, Integer::sum);   // java -> 2
+
+Map<String, List<String>> groups = new HashMap<>();
+groups.computeIfAbsent("backend", k -> new ArrayList<>()).add("Ada");
+groups.computeIfAbsent("backend", k -> new ArrayList<>()).add("Linus");
+groups.computeIfAbsent("frontend", k -> new ArrayList<>()).add("Grace");
+```
+
+### `LinkedHashMap` as a tiny LRU cache
+```java
+Map<Integer, String> lru = new LinkedHashMap<>(3, 0.75f, true) {
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, String> eldest) {
+        return size() > 3;
+    }
+};
+
+lru.put(1, "A");
+lru.put(2, "B");
+lru.put(3, "C");
+lru.get(1);              // key 1 becomes most recently used
+lru.put(4, "D");        // evicts key 2
 ```
 
 ## Related Topics
@@ -31,25 +69,61 @@ int before25 = slots.lower(25);          // 20
 START
 Basic
 When do you choose `HashMap` vs `TreeMap` vs `LinkedHashMap`?
-Back: `HashMap` is the default when you want O(1) average lookup and no ordering. `TreeMap` is for O(log n) operations when you need sorted key traversal or range queries like `headMap`, `tailMap`, and `subMap`. `LinkedHashMap` keeps O(1) behavior while preserving insertion order, which is useful for stable iteration and LRU-style caches.
+Back: Use `HashMap` by default for O(1) average lookup when order does not matter.<br>Use `TreeMap` for O(log n) sorted keys plus range and nearest-key methods.<br>Use `LinkedHashMap` when you want hash-map speed with predictable iteration order or LRU-style behavior.
 END
 
 START
 Basic
-What are `NavigableSet`'s four nearest-element methods and when do you need them?
-Back: `ceiling(e)` = smallest element >= `e`, `floor(e)` = largest <= `e`, `higher(e)` = smallest > `e`, and `lower(e)` = largest < `e`. Use them when problems ask for the nearest boundary, predecessor, or successor — common in scheduling, intervals, and ordered lookup problems that a `HashSet` cannot solve.
+What are `NavigableSet`'s four nearest-element methods?
+Back: `ceiling(e)` = smallest element `>= e`, `floor(e)` = largest element `<= e`, `higher(e)` = smallest element `> e`, and `lower(e)` = largest element `< e`.<br>These are why you choose `TreeSet`/`NavigableSet` for boundary-search problems.
 END
 
 START
 Basic
 Can `HashMap` and `TreeMap` have null keys?
-Back: `HashMap` allows exactly one `null` key. `TreeMap` does not, because it must compare keys for ordering and `null` would trigger `NullPointerException`. Both can store `null` values.
+Back: `HashMap` can store one `null` key.<br>`TreeMap` cannot, because it must compare keys to maintain sorted order and `null` cannot be ordered by the normal comparison rules.<br>Both maps can store `null` values.
 END
 
 START
 Basic
-Why do `HashSet` and `HashMap` behave correctly only when `equals()` and `hashCode()` agree?
-Back: Hash-based collections first bucket by `hashCode()` and then confirm equality with `equals()`. If equal objects produce different hashes, lookups and duplicate detection break. The rule is: if two objects are equal, they must return the same hash code.
+Why do `HashSet` and `HashMap` require `equals()` and `hashCode()` agreement?
+Back: Hash-based collections first narrow candidates by `hashCode()` and then confirm equality with `equals()`.<br>If two equal objects return different hash codes, lookups and duplicate detection fail.<br>Rule: if `a.equals(b)`, then `a.hashCode() == b.hashCode()` must also be true.
+END
+
+START
+Basic
+What's the difference between `SortedSet.headSet(e)` and `NavigableSet.headSet(e, inclusive)`?
+Back: `SortedSet.headSet(toElement)` returns elements strictly less than `toElement`.<br>`NavigableSet.headSet(e, true)` can include the boundary element, while `headSet(e, false)` excludes it.<br>The same inclusive/exclusive upgrade exists for `tailSet` and `subSet`.
+END
+
+START
+Basic
+How do you use `HashMap.computeIfAbsent()` to build a graph adjacency list?
+Back: Write `map.computeIfAbsent(node, k -> new ArrayList<>()).add(neighbor);`.<br>If `node` is missing, Java creates and stores a new list first; if it already exists, Java reuses the existing list.<br>This replaces a verbose contains/get/put pattern.
+END
+
+START
+Basic
+How does `LinkedHashMap` support LRU cache behavior?
+Back: Construct it with `new LinkedHashMap<>(capacity, 0.75f, true)` so reads update access order, then override `removeEldestEntry(Map.Entry<K,V> eldest)` to return `true` when size exceeds capacity.<br>The least-recently-used entry stays at the front and gets evicted first.
+END
+
+START
+Basic
+What does `HashSet` use internally?
+Back: `HashSet` is backed by a `HashMap` internally.<br>Each set element is stored as a key in the map with a dummy value.<br>That is why `HashSet` has hash-map-like complexity and the same `equals()`/`hashCode()` requirements.
+END
+
+START
+Basic
+What is the `SortedSet.subSet(from, to)` method?
+Back: It returns a live view of elements from `from` inclusive to `to` exclusive.<br>`NavigableSet` adds `subSet(from, fromInclusive, to, toInclusive)` so you can control both boundaries explicitly.<br>Because it is a view, changes reflect in the original set.
+END
+
+START
+Basic
+How do you iterate a `Map`'s entries and what's the most efficient way?
+Back: Use `for (Map.Entry<K,V> e : map.entrySet()) { K k = e.getKey(); V v = e.getValue(); }` or `map.forEach((k, v) -> ...);`.<br>`entrySet()` is the most efficient explicit loop because it avoids iterating keys and then calling `get(key)` for every entry.
 END
 ```
 
