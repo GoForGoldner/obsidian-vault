@@ -17,3 +17,11 @@
 ## Creating Custom Instruction File for Auto-Capturing Concepts and Anki Cards
 **Time:** 2026-06-02 13:53
 **Summary:** The user wanted a custom instruction file for Copilot to silently detect when they learn a programming concept, auto-save notes to the appropriate subfolder, and generate up to 3 Anki cards per chat without asking permission. The assistant asked clarifying questions, updated the existing claude-card-prompt, and after resolving API key issues, successfully created the instruction file in the copilot-custom-prompts folder.
+
+## Java Collection Methods: HeadSet, Merge, ConcurrentHashMap
+**Time:** 2026-06-04 08:09
+**Summary:** The user asked about SortedSet's headSet and related view methods, Map's merge (with compute family), and ConcurrentHashMap's thread-safe implementation and interfaces. The AI explained each with step-by-step behavior, examples, and key differences, noting that ConcurrentHashMap implements ConcurrentMap and Map but not SortedMap.
+
+## Java List replaceAll vs map
+**Time:** 2026-06-04 08:22
+**Summary:** The conversation explains that `List.replaceAll` applies a `UnaryOperator` in-place (mutates the list, same type) while `Stream.map` returns a new stream allowing type changes. It also clarifies that `SortedMap.firstKey()` returns the smallest key without removing it. Key conclusion: `replaceAll` is for in-place mutation, not a general map.
