@@ -36,8 +36,8 @@ void leak() { cache.add(new byte[1024 * 1024]); }
 ```anki
 START
 Basic
-What goes on the stack vs the heap?
-Back: Stack: local variables, function call frames (auto-freed on return). Heap: dynamically allocated objects (GC-freed or manual). Stack overflow = too much recursion. Memory leak = unreachable heap objects still referenced.
+What causes a stack overflow and a memory leak?
+Back: Stack overflow: too many nested function calls (deep/infinite recursion) exhaust the fixed-size stack. Memory leak: heap objects that are still referenced (static lists, event handlers, closures) but never used again - GC can't free them because they're technically reachable.
 <!--ID: 1773439958482-->
 END
 ```

@@ -43,8 +43,8 @@ END
 
 START
 Basic
-When do you use BFS over DFS?
-Back: BFS for shortest path in unweighted graphs or when the answer is close to the root. DFS for exhaustive search and backtracking.
+What is the critical gotcha in BFS that causes bugs if forgotten?
+Back: Mark nodes visited when ENQUEUING, not when processing. If you mark on processing, you'll add the same node multiple times to the queue, wasting time and potentially causing incorrect results in level-order tracking.
 <!--ID: 1773439958400-->
 END
 ```

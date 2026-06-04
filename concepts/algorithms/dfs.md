@@ -53,8 +53,8 @@ END
 
 START
 Basic
-When do you use DFS over BFS?
-Back: DFS for exhaustive search, backtracking, cycle detection, topological sort. BFS for shortest path in unweighted graphs.
+What are the key use cases for DFS beyond simple traversal?
+Back: Cycle detection (back edge to visited node), Topological sort (reverse post-order for DAGs), Connected components (run DFS from each unvisited node), Path finding with constraints (backtracking).
 <!--ID: 1773439958423-->
 END
 ```

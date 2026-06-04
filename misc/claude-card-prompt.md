@@ -61,6 +61,10 @@ END
 
 **One card = one retrieval cue.** If the answer takes more than 30 seconds to recall, split the card.
 
+**Concept over facts.** Cards should test understanding, not just recall. Ask "why" and "when" more than "what is." If a card feels like a dictionary definition, rewrite it as a scenario or distinction.
+
+**No duplicate cards across notes.** Before writing a distinction card (X vs Y), check if a dedicated "vs" note already exists. If it does, don't repeat the comparison — instead make the card in the current note test a different angle (gotchas, use cases, implementation details). Each card in the vault should test a unique retrieval cue.
+
 **Card types to use (mix these):**
 
 Recognition card — the most important type:
@@ -107,6 +111,7 @@ Back: [plain English definition — no jargon]
 
 - Use scenario-based fronts (You see X, what do you do?) for pattern recognition
 - Use direct question fronts (What is X? When do you use X?) for concepts and distinctions
+- Prefer "when/why" questions over "what is" questions — they test deeper understanding
 - Never start the front with the answer
 - The front should be specific enough that there's only one right answer
 
