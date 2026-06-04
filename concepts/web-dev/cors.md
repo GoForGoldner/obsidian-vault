@@ -39,8 +39,8 @@ public List<User> getUsers() { ... }
 ```anki
 START
 Basic
-What is CORS and how do you fix CORS errors?
-Back: Cross-Origin Resource Sharing - browser blocks requests to a different domain. Prevents malicious sites using your cookies. Fix on the server: add `Access-Control-Allow-Origin` header. Browser sends a preflight OPTIONS request to check first.
+What is CORS and why does the browser block cross-origin requests?
+Back: Same-Origin Policy prevents a malicious site from using your authenticated cookies to call your bank's API. CORS relaxes it selectively — server sends Access-Control-Allow-Origin header to whitelist trusted origins. Browser sends a preflight OPTIONS request first to check. Fix CORS errors on the server, not the client.
 <!--ID: 1773439959054-->
 END
 ```

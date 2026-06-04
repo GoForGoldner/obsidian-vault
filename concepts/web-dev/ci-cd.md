@@ -45,8 +45,8 @@ jobs:
 ```anki
 START
 Basic
-What's the difference between CI, Continuous Delivery, and Continuous Deployment?
-Back: CI: auto build + test on every push. Delivery: code always ready to deploy (manual approval). Deployment: auto-deploys to production after tests pass. Pipeline: push -> build -> test -> artifact -> staging -> production.
+Why does CI/CD matter and what breaks without it?
+Back: CI catches broken code before it reaches production by auto-building and testing every push. CD auto-deploys after tests pass. Without CI: "works on my machine" bugs, integration hell at merge time, manual deploy errors. Flaky tests are the #1 CI killer — they erode trust and slow the pipeline.
 <!--ID: 1773439959132-->
 END
 ```

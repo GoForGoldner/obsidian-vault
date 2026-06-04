@@ -37,8 +37,8 @@ WHERE o.total > 100;
 ```anki
 START
 Basic
-What does ACID mean and when do you denormalize?
-Back: Atomicity (all or nothing), Consistency (data stays valid), Isolation (transactions don't interfere), Durability (survives crashes). Denormalize when read performance > write consistency - duplicate data to avoid expensive joins. Common in read-heavy/analytics systems.
+When do you denormalize a database, and what's the cost?
+Back: Denormalize when read performance matters more than write consistency — duplicate data to avoid expensive joins. Common in read-heavy systems, analytics, and caching layers. Cost: data can get out of sync (update anomalies), more storage, harder writes. ACID guarantees (Atomicity, Consistency, Isolation, Durability) protect against partial failures in transactions.
 <!--ID: 1773439958527-->
 END
 ```

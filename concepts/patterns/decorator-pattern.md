@@ -54,8 +54,8 @@ order.description(); // "Coffee + Sugar + Milk"
 ```anki
 START
 Basic
-You see: need to add optional behaviors to objects at runtime without subclassing. What pattern?
-Back: Decorator - wrap the object in another with the same interface. Stack decorators to combine behaviors. Dynamic (runtime) vs inheritance (compile-time). Example: middleware pipelines.
+You see: need to add optional behaviors to objects at runtime without subclassing. What pattern, and how does it differ from Chain of Responsibility?
+Back: Decorator - wrap the object in another with the same interface. Stack decorators to combine behaviors. Decorator wraps and enhances a single object (each layer adds to it). Chain of Responsibility passes a request until ONE handler processes it (each can stop or forward). Decorators always delegate; handlers can short-circuit.
 <!--ID: 1773439958607-->
 END
 ```

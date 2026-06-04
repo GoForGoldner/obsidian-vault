@@ -51,8 +51,8 @@ VM: runs its own full OS, heavier, more isolated, starts in minutes
 ```anki
 START
 Basic
-What is Docker and how is it different from a VM?
-Back: Packages your app + dependencies into a container. Containers share the host OS kernel - lightweight, start in seconds. VMs run their own full OS - heavier, more isolated. Image = blueprint. Container = running instance. Docker Compose = multi-container orchestration.
+Why do Docker containers start faster than VMs, and what's the tradeoff?
+Back: Containers share the host OS kernel — no need to boot a full OS. VMs run their own kernel = stronger isolation but minutes to start. Docker's tradeoff: weaker isolation (kernel exploit in one container can affect host). Image = immutable blueprint (layers cached for fast builds). Container = running instance.
 <!--ID: 1773439958542-->
 END
 ```

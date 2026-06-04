@@ -57,8 +57,8 @@ bus.notify("ORDER_PLACED");  // EmailService gets called
 ```anki
 START
 Basic
-You see: one object changes and multiple others need to react. What pattern?
-Back: Observer - subject maintains a list of observers and notifies all on state change. Direct coupling (subject knows observers). Pub/Sub adds a broker in between for full decoupling. Gotcha: memory leaks if observers don't unsubscribe.
+What's the difference between Observer and Pub/Sub?
+Back: Observer: subject directly notifies its list of observers (tight coupling — subject knows its observers). Pub/Sub: adds a message broker in between — publisher and subscriber don't know about each other (full decoupling, better for distributed systems). Gotcha for both: memory leaks if observers/subscribers don't unsubscribe.
 <!--ID: 1773439958663-->
 END
 ```

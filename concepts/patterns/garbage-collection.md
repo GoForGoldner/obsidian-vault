@@ -46,7 +46,7 @@ void leakyMethod() {
 START
 Basic
 What is garbage collection and can you still get memory leaks with it?
-Back: Runtime automatically frees heap objects no longer referenced. Main strategies: Mark-and-Sweep and Reference Counting. Yes, you can still leak - if you accidentally keep references (event handlers, static collections, closures), GC thinks the object is still in use.
+Back: Runtime automatically frees heap objects no longer reachable. Mark-and-Sweep: pause, mark all reachable objects from roots, sweep unmarked. Yes, you can still leak — if objects are technically reachable but unused (static collections, unclosed event handlers, closures capturing references). GC can't read your intent, only your references.
 <!--ID: 1773439958623-->
 END
 ```

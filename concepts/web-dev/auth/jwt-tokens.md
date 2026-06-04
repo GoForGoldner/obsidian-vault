@@ -6,6 +6,9 @@ tags:
 category:
 related: []
 ---
+## Description
+A signed token (Header.Payload.Signature) used for stateless authentication. The server signs it with a secret key; the client sends it in the Authorization: Bearer header on every request. The server verifies the signature without a database lookup, making it ideal for distributed/stateless APIs.
+
 ## Examples
 ```java
 // 1. Login → server returns JWT
@@ -44,8 +47,8 @@ String user = claims.getSubject(); // trusted if signature checks out
 ```anki
 START
 Basic
-What is JWT and when do you use it over sessions?
-Back: Signed token (Header + Payload + Signature) sent in Authorization: Bearer header. Server verifies signature without DB lookup. Use JWT for stateless/distributed APIs. Sessions when you need instant revocation. JWT gotcha: can't invalidate before expiry - use short expiry + refresh tokens.
+Why can't you revoke a JWT before it expires, and how do you work around it?
+Back: JWTs are stateless — the server doesn't track issued tokens. Once signed, it's valid until expiry. Workarounds: short expiry (15 min) + refresh tokens, or a server-side blocklist (but this re-introduces state). If you need instant revocation (e.g., user banned), sessions are simpler.
 <!--ID: 1773439959009-->
 END
 ```

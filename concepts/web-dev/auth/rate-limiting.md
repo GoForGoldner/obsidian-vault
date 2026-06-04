@@ -49,8 +49,8 @@ if (!rateLimiter.allowRequest(ip)) {
 ```anki
 START
 Basic
-What is rate limiting?
-Back: Limit requests per client per time window. Prevents abuse, brute force, DDoS. Strategies: Fixed Window, Sliding Window, Token Bucket (smoothest). Return 429 Too Many Requests with a Retry-After header.
+Why is rate limiting important for APIs beyond DDoS protection?
+Back: Prevents brute-force login attacks, stops runaway scripts from overwhelming your system, enforces fair usage across clients, and protects downstream services from cascading overload. Strategies: Fixed Window (simple, edge-case burst at boundary), Sliding Window (smoother), Token Bucket (allows controlled bursts). Return 429 + Retry-After header.
 <!--ID: 1773439959021-->
 END
 ```

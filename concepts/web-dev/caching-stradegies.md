@@ -49,8 +49,8 @@ void updateUser(User u) {
 ```anki
 START
 Basic
-What are the main caching strategies?
-Back: Cache-Aside (check cache -> miss -> load from DB -> store in cache), Write-Through (write to both cache + DB), Write-Behind (write cache, async DB). Biggest problem: cache invalidation - knowing when cached data is stale. TTL auto-expires entries.
+Why is cache invalidation considered the hardest problem, and how does TTL help?
+Back: You must decide WHEN cached data is stale — too early wastes cache hits, too late serves wrong data. No perfect signal for "data changed." TTL (Time-To-Live) auto-expires entries after N seconds — a pragmatic compromise. For stronger consistency, invalidate on write (delete cache key when DB updates). Cache-Aside is most common: check cache → miss → load from DB → store in cache.
 <!--ID: 1773439959045-->
 END
 ```

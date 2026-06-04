@@ -36,8 +36,8 @@ void createOrder_savesToDatabase() {
 ```anki
 START
 Basic
-What are the three levels of testing?
-Back: Unit (single function, isolated, fast), Integration (components working together, DB/API), E2E (full system from user's perspective, slow). Testing pyramid: many unit, fewer integration, fewest E2E. Catch bugs at the lowest level possible.
+What's the difference between unit, integration, and E2E tests — and why is the testing pyramid shaped that way?
+Back: Unit: single function, isolated, milliseconds. Integration: components together (DB, APIs). E2E: full system from user perspective, slow and brittle. Pyramid shape (many unit → few E2E) because lower tests are faster, cheaper, and pinpoint failures. E2E tests catch real bugs but are expensive to maintain.
 <!--ID: 1773439959138-->
 END
 ```

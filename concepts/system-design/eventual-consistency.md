@@ -44,8 +44,8 @@ NOT OK for: bank balances, inventory counts, seat bookings
 ```anki
 START
 Basic
-What is eventual consistency and when is it acceptable?
-Back: All nodes will eventually have the same data, but not instantly - reads might be stale temporarily. Acceptable for social feeds, analytics, catalogs. NOT for bank balances, inventory, bookings. The tradeoff for availability in distributed systems (CAP).
+When is eventual consistency acceptable and when is it dangerous?
+Back: Acceptable when stale reads are harmless: social feeds, analytics, product catalogs, DNS. Dangerous when stale reads cause real-world problems: bank balances (double-spend), inventory (oversell), seat bookings (double-book). The tradeoff for availability in CAP — you get always-on at the cost of temporarily inconsistent reads.
 <!--ID: 1773439958549-->
 END
 ```

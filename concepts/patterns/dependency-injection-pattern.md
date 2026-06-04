@@ -54,8 +54,8 @@ class UserService {
 ```anki
 START
 Basic
-What is Dependency Injection?
-Back: Pass dependencies in from outside (usually via constructor interfaces) instead of creating them internally. Enables swapping implementations and injecting mocks for testing. IoC containers automate the wiring.
+What's the difference between Dependency Injection (DI) and Dependency Inversion Principle (DIP)?
+Back: DIP is the principle: "depend on abstractions, not concretions." DI is the technique that implements it: pass dependencies in via constructor instead of creating them internally. You can follow DIP without a DI framework (just pass interfaces manually). IoC containers automate the wiring.
 <!--ID: 1773439958613-->
 END
 ```

@@ -56,8 +56,8 @@ void handleOrder(OrderEvent event) {
 ```anki
 START
 Basic
-What is a message queue and when do you use one?
-Back: Broker between sender and receiver that stores messages. Enables async processing, load smoothing, retry on failure, loose coupling. Queue = one consumer per message. Pub/Sub = all subscribers get it. Overkill for simple request/response. Consumers must be idempotent (may process same message twice).
+When do you use a message queue vs a synchronous API call between services?
+Back: Queue when: response isn't needed immediately, you want retry on failure, traffic is spiky (load smoothing), or multiple consumers need the same event. Sync API when: you need an immediate response. Key rule: consumers must be idempotent — network issues can cause duplicate delivery.
 <!--ID: 1773439958560-->
 END
 ```

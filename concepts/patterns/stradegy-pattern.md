@@ -53,8 +53,8 @@ checkout.checkout(cart, new PayPalPayment());
 ```anki
 START
 Basic
-You see: multiple algorithms for the same task, need to swap between them. What pattern?
-Back: Strategy - encapsulate each algorithm in its own class behind a common interface. Caller picks which to use. Adding new algorithms = new class, no touching existing code (Open/Closed Principle).
+You see: multiple algorithms for the same task, need to swap between them at runtime. What pattern, and how is it different from State?
+Back: Strategy - encapsulate each algorithm behind a common interface. Caller picks which to use. Adding new algorithms = new class, no touching existing code (Open/Closed Principle). Key difference: Strategy = caller selects the behavior externally. State = object switches behavior internally based on its own state transitions.
 <!--ID: 1773439958724-->
 END
 ```
