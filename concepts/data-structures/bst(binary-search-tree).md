@@ -57,8 +57,8 @@ END
 
 START
 Basic
-What are the four tree traversal orders?
-Back: Inorder (L-Root-R -> sorted output), Preorder (Root-L-R -> copy tree), Postorder (L-R-Root -> delete tree), Level-order (BFS).
+When do you use each tree traversal order?
+Back: Inorder (L-Root-R): get sorted output from BST. Preorder (Root-L-R): serialize/copy a tree (root first). Postorder (L-R-Root): delete a tree (children before parent). Level-order (BFS): find shortest path or process by depth.
 <!--ID: 1773439958453-->
 END
 ```

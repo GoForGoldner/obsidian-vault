@@ -50,7 +50,7 @@ for (int num : new NumberCollection()) {
 START
 Basic
 What is the Iterator pattern?
-Back: Traverse a collection's elements sequentially without exposing how it's stored internally. Interface: HasNext() and Next(). In C#, `yield return` generates the iterator state machine for you.
+Back: Traverse a collection's elements sequentially without exposing how it's stored internally. Interface: hasNext() and next(). Enables for-each loops over any data structure. Multiple iterators can independently traverse the same collection simultaneously.
 <!--ID: 1773439958629-->
 END
 ```

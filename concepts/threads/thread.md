@@ -38,8 +38,8 @@ pool.submit(() -> processRequest());
 ```anki
 START
 Basic
-What is a thread?
-Back: A lightweight unit of execution within a process. Threads share memory with their parent process - fast communication but prone to race conditions. Context switching between threads is cheaper than between processes.
+Why use a thread pool instead of creating threads on demand?
+Back: Thread creation is expensive (OS resources). A pool pre-creates N threads and reuses them via a work queue. Benefits: bounded resource usage, no creation overhead per task, backpressure when queue fills up. In Java: Executors.newFixedThreadPool(10). Size it to match: CPU cores for CPU-bound, higher for I/O-bound work.
 <!--ID: 1773439958811-->
 END
 ```

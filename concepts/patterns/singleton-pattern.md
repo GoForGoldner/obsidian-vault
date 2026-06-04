@@ -55,7 +55,7 @@ class DatabasePool {
 START
 Basic
 What is the Singleton pattern and when do you use it?
-Back: One instance globally, private constructor, static access. Lazy-constructed on first call. Use for expensive shared resources (DB connection pools, loggers). Gotcha in multithreaded code: use locking or Lazy<T> to prevent double creation.
+Back: One instance globally, private constructor, static access. Lazy-constructed on first call. Use for expensive shared resources (DB connection pools, loggers). Gotcha in multithreaded code: use synchronized or eager initialization to prevent double creation. Downsides: hidden dependencies, hard to test.
 <!--ID: 1773439958697-->
 END
 ```

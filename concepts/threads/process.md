@@ -30,8 +30,8 @@ int exitCode = process.waitFor();
 ```anki
 START
 Basic
-What is a process?
-Back: An independent program in execution with its own memory space. Processes are isolated - one crashing doesn't affect others. Communicate via IPC (pipes, sockets, shared memory). Heavier than threads.
+How do processes communicate with each other (IPC)?
+Back: Pipes (parent-child, one-way stream), Sockets (network or local, bidirectional), Shared Memory (fastest, but needs synchronization), Message Queues (async, decoupled). Each process has isolated memory, so IPC is the only way to share data between them.
 <!--ID: 1773439958781-->
 END
 ```

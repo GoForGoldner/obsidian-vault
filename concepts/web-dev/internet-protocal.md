@@ -32,8 +32,8 @@ IPv6: 2001:0db8::1     (128-bit, basically unlimited)
 ```anki
 START
 Basic
-What does IP (Internet Protocol) do?
-Back: Addresses and routes packets between devices. IPv4: 32-bit (running out). IPv6: 128-bit (unlimited). IP alone is unreliable - no delivery guarantee, no ordering. TCP adds reliability on top; UDP trades reliability for speed.
+What happens when you type a URL in the browser, at the network layer?
+Back: DNS resolves domain → IP address. Your machine wraps data in packets. IP routes packets through routers to that address. TCP reassembles them in order at the destination. IP is connectionless and unreliable alone — TCP/UDP sit on top to add reliability or speed.
 <!--ID: 1773439959125-->
 END
 ```

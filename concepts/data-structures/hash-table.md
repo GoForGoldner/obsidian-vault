@@ -34,8 +34,8 @@ END
 
 START
 Basic
-What is a hash collision and how is it resolved?
-Back: Two keys hash to the same index. Chaining (linked list at each bucket) or Open Addressing (probe to next empty slot).
+What is a hash collision and why does load factor matter?
+Back: Two keys hash to the same index. Resolved by Chaining (linked list at each bucket) or Open Addressing (probe to next empty slot). Load factor = entries / buckets. When it exceeds ~0.75, resize the table — otherwise collisions spike and O(1) degrades toward O(n).
 <!--ID: 1773439958471-->
 END
 ```

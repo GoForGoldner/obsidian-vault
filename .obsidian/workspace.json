@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "ba9a1622fa325347",
+        "id": "2263871161d0d225",
         "type": "tabs",
         "children": [
           {
-            "id": "124ce1e64b931071",
+            "id": "175fa59ad92b69da",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -188,11 +188,14 @@
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
       "templater-obsidian:Templater": false,
-      "obsidian-to-anki-plugin:Obsidian_to_Anki - Scan Vault": false
+      "obsidian-to-anki-plugin:Obsidian_to_Anki - Scan Vault": false,
+      "obsidian-git:Open Git source control": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "124ce1e64b931071",
+  "active": "175fa59ad92b69da",
   "lastOpenFiles": [
+    "system-design/twitter.md",
     "templates/builder-pattern.md",
     "concepts/system-design/eventual-consistency.md",
     "concepts/system-design/cap-theorem.md",
@@ -228,7 +231,6 @@
     "system-design/search-autocomplete.md",
     "system-design/payment-system.md",
     "system-design/slack.md",
-    "system-design/zoom.md",
-    "concepts/system-design/system-design-interview-questions.md"
+    "system-design/zoom.md"
   ]
 }

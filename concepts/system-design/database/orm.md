@@ -52,7 +52,7 @@ for (Order o : orders) o.getItems();          // N queries! (lazy loading)
 START
 Basic
 What is an ORM and what's the main gotcha?
-Back: Object-Relational Mapping - maps classes to tables, generates SQL from code. Main gotcha: N+1 query problem (loading a list then lazy-loading each item's children = 1 + N queries). Fix with eager loading (.Include()). Use raw SQL for complex/performance-critical queries.
+Back: Object-Relational Mapping - maps classes to tables, generates SQL from code. Main gotcha: N+1 query problem (loading a list then lazy-loading each item's children = 1 + N queries). Fix with eager loading (JOIN FETCH in JPA, .include() in Rails). Use raw SQL for complex/performance-critical queries.
 <!--ID: 1773439958535-->
 END
 ```

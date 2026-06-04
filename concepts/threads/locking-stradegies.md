@@ -50,8 +50,8 @@ sem.release();
 ```anki
 START
 Basic
-What are the main locking strategies?
-Back: Mutex (one thread at a time), Semaphore (N threads - like a connection pool), Read-Write Lock (multiple readers OR one writer). Optimistic locking: don't lock, check for changes before writing - good when conflicts are rare.
+When do you use each locking strategy?
+Back: Mutex: exclusive access to a critical section (one writer). Read-Write Lock: many concurrent readers OR one exclusive writer (read-heavy workloads). Semaphore: limit to N concurrent accessors (connection pools). Optimistic locking: no lock upfront, check version before commit (low-contention scenarios like web forms).
 <!--ID: 1773439958767-->
 END
 ```

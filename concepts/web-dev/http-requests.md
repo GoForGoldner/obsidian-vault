@@ -41,8 +41,8 @@ Common status codes:
 ```anki
 START
 Basic
-What do the HTTP status code ranges mean?
-Back: 1xx Info, 2xx Success, 3xx Redirect, 4xx Client Error, 5xx Server Error. Key ones: 200 OK, 201 Created, 204 No Content, 301 Moved, 400 Bad Request, 401 Unauthenticated, 403 Forbidden, 404 Not Found, 429 Rate Limited, 500 Server Error.
+What's the conceptual difference between 4xx and 5xx errors, and what do 401 vs 403 mean?
+Back: 4xx = client's fault (bad input, missing auth). 5xx = server's fault (crash, timeout). 401 Unauthorized = not authenticated (who are you?). 403 Forbidden = authenticated but no permission (you can't do that). Common gotcha: 401 is really "unauthenticated" despite the name.
 <!--ID: 1773439959100-->
 END
 ```
