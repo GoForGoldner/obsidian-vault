@@ -40,16 +40,6 @@ NOT OK for: bank balances, inventory counts, seat bookings
 - [[cap-theorem|Distributed Systems]]
 
 ## Cards
-
-```anki
-START
-Basic
-When is eventual consistency acceptable and when is it dangerous?
-Back: Acceptable when stale reads are harmless: social feeds, analytics, product catalogs, DNS. Dangerous when stale reads cause real-world problems: bank balances (double-spend), inventory (oversell), seat bookings (double-book). The tradeoff for availability in CAP — you get always-on at the cost of temporarily inconsistent reads.
-<!--ID: 1773439958549-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

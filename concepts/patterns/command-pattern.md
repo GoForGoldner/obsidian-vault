@@ -49,16 +49,6 @@ history.pop().undo();
 - [[event-sourcing-pattern|CQRS]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: need to queue operations, support undo/redo, or log every action. What pattern?
-Back: Command - encapsulate each operation as an object with Execute() and Undo(). Store in a stack for undo, replay for event sourcing.
-<!--ID: 1773439958601-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

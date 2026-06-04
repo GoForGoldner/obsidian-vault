@@ -52,16 +52,6 @@ new OrderService(new NullLogger());
 - Default Implementations
 
 ## Cards
-
-```anki
-START
-Basic
-You see: null checks scattered everywhere before calling methods. What pattern?
-Back: Null Object - create a class implementing the same interface that does nothing. Use it instead of null. Eliminates all null guards via polymorphism. Don't use when null signals a real error.
-<!--ID: 1773439958648-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

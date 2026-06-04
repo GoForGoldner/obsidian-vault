@@ -30,16 +30,6 @@ BCrypt.checkpw("wrongpass", hash);   // false
 - [[encryption-vs-hashing|RSA]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use encryption vs hashing?
-Back: Encryption is reversible (need data back - messages, files). Hashing is one-way (never need original - passwords, integrity checks). Passwords must be hashed with slow+salted algorithms (bcrypt/argon2), never encrypted.
-<!--ID: 1773439958865-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

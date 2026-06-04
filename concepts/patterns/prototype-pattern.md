@@ -46,16 +46,6 @@ enemy2.health = 50;  // customize the clone
 - Shallow vs Deep Copy
 
 ## Cards
-
-```anki
-START
-Basic
-You see: need to create many similar objects, construction is expensive. What pattern?
-Back: Prototype - clone an existing object and modify what's different. Gotcha: shallow vs deep copy - shallow clone shares reference types; you need deep copy for truly independent objects.
-<!--ID: 1773439958681-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

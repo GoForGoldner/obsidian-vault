@@ -36,23 +36,6 @@ return false;
 - Fast and Slow Pointers
 
 ## Cards
-
-```anki
-START
-Basic
-You see: sorted array, need to find a pair that satisfies a condition. What technique?
-Back: Two Pointers - one at start, one at end, move inward based on comparison. O(n) instead of O(n^2). Requires sorted input.
-<!--ID: 1773439958430-->
-END
-
-START
-Basic
-You see: linked list, need to detect a cycle. What technique?
-Back: Fast and slow pointers (Floyd's). Slow moves 1 step, fast moves 2. If they meet, there's a cycle.
-<!--ID: 1773439958437-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

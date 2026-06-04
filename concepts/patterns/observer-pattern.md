@@ -53,16 +53,6 @@ bus.notify("ORDER_PLACED");  // EmailService gets called
 - [[observer-pattern|Event-Driven Architecture]]
 
 ## Cards
-
-```anki
-START
-Basic
-What's the difference between Observer and Pub/Sub?
-Back: Observer: subject directly notifies its list of observers (tight coupling — subject knows its observers). Pub/Sub: adds a message broker in between — publisher and subscriber don't know about each other (full decoupling, better for distributed systems). Gotcha for both: memory leaks if observers/subscribers don't unsubscribe.
-<!--ID: 1773439958663-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

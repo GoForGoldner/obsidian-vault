@@ -46,16 +46,6 @@ sem.release();
 - [[locking-stradegies|Read-Write Lock]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use each locking strategy?
-Back: Mutex: exclusive access to a critical section (one writer). Read-Write Lock: many concurrent readers OR one exclusive writer (read-heavy workloads). Semaphore: limit to N concurrent accessors (connection pools). Optimistic locking: no lock upfront, check version before commit (low-contention scenarios like web forms).
-<!--ID: 1773439958767-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

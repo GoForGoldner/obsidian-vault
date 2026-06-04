@@ -31,16 +31,6 @@ db.users.findOne({ _id: 1 })
 - [[eventual-consistency|Eventual Consistency]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use SQL vs NoSQL?
-Back: SQL for structured data with relationships, complex queries, ACID transactions. NoSQL for flexible schemas, horizontal scaling, high-speed reads. SQL = consistency + relationships. NoSQL = flexibility + scale.
-<!--ID: 1773439958939-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

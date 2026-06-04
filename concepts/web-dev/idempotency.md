@@ -32,16 +32,6 @@ Order create(@RequestHeader("Idempotency-Key") String key, @RequestBody OrderReq
 - [[idempotency|Retry Logic]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is idempotency and why does it matter?
-Back: Same request multiple times = same result. GET, PUT, DELETE are idempotent. POST is not. Matters because networks are unreliable and clients retry. Fix POST with an idempotency key (client UUID in header, server deduplicates).
-<!--ID: 1773439959118-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

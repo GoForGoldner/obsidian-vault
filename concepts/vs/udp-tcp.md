@@ -27,16 +27,6 @@ UDP (fast, no guarantees):
 - [[udp-tcp|WebSockets]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use TCP vs UDP?
-Back: TCP for reliable, ordered delivery (web pages, files, APIs). UDP for speed over reliability (live video, gaming, VoIP, DNS). UDP is faster because no handshake, no acks, no retransmission.
-<!--ID: 1773439958985-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

@@ -50,16 +50,6 @@ new Circle(new RasterRenderer()).draw();
 - [[dependency-injection-pattern|Dependency Injection]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: class hierarchy exploding because you have two dimensions of variation. What pattern?
-Back: Bridge - separate abstraction from implementation via composition. M + N classes instead of M x N. They vary independently.
-<!--ID: 1773439958581-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

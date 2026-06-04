@@ -47,16 +47,6 @@ VM: runs its own full OS, heavier, more isolated, starts in minutes
 - [[docker|Virtual Machines]]
 
 ## Cards
-
-```anki
-START
-Basic
-Why do Docker containers start faster than VMs, and what's the tradeoff?
-Back: Containers share the host OS kernel — no need to boot a full OS. VMs run their own kernel = stronger isolation but minutes to start. Docker's tradeoff: weaker isolation (kernel exploit in one container can affect host). Image = immutable blueprint (layers cached for fast builds). Container = running instance.
-<!--ID: 1773439958542-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

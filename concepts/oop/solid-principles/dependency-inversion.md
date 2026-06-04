@@ -37,16 +37,6 @@ class MongoDatabase implements Database { ... }
 - [[dependency-inversion|Loose Coupling]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is the Dependency Inversion Principle?
-Back: High-level modules shouldn't depend on low-level modules - both depend on abstractions (interfaces). Makes it easy to swap implementations and test with mocks. Injection is the technique that implements this principle.
-<!--ID: 1773439958490-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

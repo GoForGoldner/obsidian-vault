@@ -25,16 +25,6 @@ Horizontal (scale out):
 - Stateless Architecture
 
 ## Cards
-
-```anki
-START
-Basic
-When do you scale vertically vs horizontally?
-Back: Vertical (bigger machine) for quick wins, simple architectures. Horizontal (more machines) when you hit hardware limits or need fault tolerance. Horizontal is harder (load balancing, stateless design) but has no ceiling and built-in redundancy.
-<!--ID: 1773439958883-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

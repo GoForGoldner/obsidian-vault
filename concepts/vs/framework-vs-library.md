@@ -26,16 +26,6 @@ public class UserController {
 - [[framework-vs-library|MVC]]
 
 ## Cards
-
-```anki
-START
-Basic
-What's the difference between a framework and a library?
-Back: Inversion of Control. A library is code YOU call. A framework calls YOUR code - you plug into its structure. React = library (you call it). Next.js = framework (it calls you).
-<!--ID: 1773439958875-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

@@ -42,23 +42,6 @@ void dfs(int node, Set<Integer> visited, Map<Integer, List<Integer>> graph) {
 - [[dfs|Graph]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: graph traversal, need to explore all paths or do backtracking. What algorithm?
-Back: DFS - use a stack (or recursion), go deep before going wide. O(V + E) time. Must track visited nodes to avoid infinite loops.
-<!--ID: 1773439958416-->
-END
-
-START
-Basic
-What are the key use cases for DFS beyond simple traversal?
-Back: Cycle detection (back edge to visited node), Topological sort (reverse post-order for DAGs), Connected components (run DFS from each unvisited node), Path finding with constraints (backtracking).
-<!--ID: 1773439958423-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

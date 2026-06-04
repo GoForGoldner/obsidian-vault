@@ -27,16 +27,6 @@ Microservices:
 - [[eventual-consistency|Eventual Consistency]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use monolith vs microservices?
-Back: Start monolith - simpler to build, deploy, debug. Move to microservices when you hit scaling bottlenecks or need independent deployment. Microservices cost: network complexity, distributed tracing, eventual consistency. Benefit: scale individual services independently.
-<!--ID: 1773439958898-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

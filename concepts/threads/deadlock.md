@@ -35,16 +35,6 @@ new Thread(() -> {
 - Lock Ordering
 
 ## Cards
-
-```anki
-START
-Basic
-What is a deadlock and what are the four conditions required for one?
-Back: Two+ threads each holding a resource the other needs, both waiting forever. Requires ALL four Coffman conditions: (1) mutual exclusion, (2) hold and wait, (3) no preemption, (4) circular wait. Break ANY one to prevent deadlocks — easiest is lock ordering (always acquire locks in the same global order).
-<!--ID: 1773439958753-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

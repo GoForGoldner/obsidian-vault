@@ -41,16 +41,6 @@ Thread
 Concurrency
 
 ## Cards
-
-```anki
-START
-Basic
-What is a race condition and what are the main solutions?
-Back: Two+ threads read-modify-write shared state concurrently, causing inconsistent results. Solutions: Atomicity (AtomicInteger - CAS operations), Locks/Mutex (one thread in critical section), Immutability (read-only shared state). The counter going from 5→6 instead of 5→7 is the classic example.
-<!--ID: 1773439958798-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

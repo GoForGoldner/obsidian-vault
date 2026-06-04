@@ -51,16 +51,6 @@ class CodeGenerator implements ASTVisitor { ... } // another operation, no node 
 - [[visitor-pattern|Abstract Syntax Tree]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: stable class hierarchy but you keep adding new operations across all types. What pattern?
-Back: Visitor - define a visitor with a Visit method per type. New operations = new visitors, no class changes. Tradeoff: easy to add operations, hard to add new types. Uses double dispatch.
-<!--ID: 1773439958739-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

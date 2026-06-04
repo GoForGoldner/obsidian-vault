@@ -31,16 +31,6 @@ public List<Order> getOrders(HttpSession session) {
 - [[load-balancing|Load Balancing]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you prefer stateless vs stateful?
-Back: Stateless for horizontal scaling - any server handles any request (REST + JWT). Stateful when you need persistent connections (WebSockets) or server-side state (sessions). Stateless scales easily because no session affinity needed.
-<!--ID: 1773439958959-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

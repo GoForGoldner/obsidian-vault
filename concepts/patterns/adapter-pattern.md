@@ -46,16 +46,6 @@ class SlackLoggerAdapter implements Logger {
 - [[adapter-pattern|Wrapper]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: two classes need to work together but have incompatible interfaces. What pattern?
-Back: Adapter - wrap one class to translate its interface to what the other expects. Common when integrating third-party libraries or legacy code.
-<!--ID: 1773439958572-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

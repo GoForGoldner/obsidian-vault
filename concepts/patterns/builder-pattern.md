@@ -46,16 +46,6 @@ public static class Builder {
 - [[builder-pattern|Fluent Interface]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: object has many optional parameters and the constructor is getting out of control. What pattern?
-Back: Builder - construct step by step with a fluent interface. Each setter returns the builder for chaining, call .build() at the end. Beats telescoping constructors.
-<!--ID: 1773439958596-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

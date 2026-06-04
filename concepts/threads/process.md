@@ -26,16 +26,6 @@ int exitCode = process.waitFor();
 - [[process|Fork]]
 
 ## Cards
-
-```anki
-START
-Basic
-How do processes communicate with each other (IPC)?
-Back: Pipes (parent-child, one-way stream), Sockets (network or local, bidirectional), Shared Memory (fastest, but needs synchronization), Message Queues (async, decoupled). Each process has isolated memory, so IPC is the only way to share data between them.
-<!--ID: 1773439958781-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

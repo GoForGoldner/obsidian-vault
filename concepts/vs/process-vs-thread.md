@@ -29,16 +29,6 @@ new Thread(() -> {
 - [[sync-vs-async|Concurrency]]
 
 ## Cards
-
-```anki
-START
-Basic
-What's the key difference between a process and a thread?
-Back: Process: own memory, isolated, heavier, safer (one crashing doesn't kill others). Thread: shared memory, lightweight, faster communication, but needs synchronization to avoid race conditions. Thread context switches are cheaper.
-<!--ID: 1773439958997-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

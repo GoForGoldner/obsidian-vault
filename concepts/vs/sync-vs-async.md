@@ -30,16 +30,6 @@ List<Order> orders = ordersF.get();
 - [[sync-vs-async|Non-blocking I/O]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use async vs sync?
-Back: Async for I/O-bound work (API calls, DB queries) - frees the thread while waiting. Sync for fast CPU-bound work or simple sequential logic. async/await doesn't create threads - it releases the current thread and a pool thread picks up the continuation.
-<!--ID: 1773439958971-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

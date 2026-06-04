@@ -39,16 +39,6 @@ INSERT INTO users (email) VALUES ('bob@mail.com');  -- O(log n) instead of O(1)
 - [[database-indexes|Database Performance]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is a database index and what's the tradeoff?
-Back: Data structure (usually B-Tree) that speeds up reads from O(n) to O(log n). Tradeoff: slower writes (must update index too), extra storage. Don't index columns with heavy writes and few reads, or low cardinality (booleans).
-<!--ID: 1773439959065-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

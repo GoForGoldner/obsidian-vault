@@ -11,10 +11,14 @@
             "id": "175fa59ad92b69da",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "concepts/algorithms/monotonic-stack.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "monotonic-stack"
             }
           }
         ]
@@ -170,13 +174,23 @@
               "icon": "lucide-ghost",
               "title": "calendar"
             }
+          },
+          {
+            "id": "c0ad36d521c23b6f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -195,42 +209,42 @@
   },
   "active": "175fa59ad92b69da",
   "lastOpenFiles": [
-    "system-design/twitter.md",
-    "templates/builder-pattern.md",
-    "concepts/system-design/eventual-consistency.md",
-    "concepts/system-design/cap-theorem.md",
-    "system-design/airbnb.md",
+    "concepts/algorithms/dijkstra.md",
+    "concepts/algorithms/dfs.md",
+    "concepts/algorithms/binary-search.md",
+    "concepts/algorithms/bfs.md",
+    "concepts/algorithms/backtracking.md",
+    "concepts/spring/spring-aop-testing.md",
+    "concepts/java/collections-framework.md",
+    "concepts/java/java-iterators.md",
+    "concepts/java/java-queue-deque.md",
+    "concepts/java/java-set-and-map.md",
+    "concepts/spring/spring-boot-autoconfiguration.md",
+    "concepts/spring/spring-core.md",
+    "concepts/java/java-list.md",
+    "concepts/algorithms/bipartite-check.md",
+    "concepts/spring/spring-web-mvc.md",
+    "concepts/spring/spring-security.md",
+    "concepts/spring/spring-data-jpa.md",
+    "concepts/spring",
+    "concepts/java",
+    "concepts/algorithms/dynamic-programming.md",
+    "concepts/algorithms/sorting-algorithms.md",
+    "concepts/algorithms/cyclic-sort.md",
+    "concepts/algorithms/line-sweep.md",
+    "concepts/algorithms/two-heaps.md",
+    "concepts/algorithms/trie.md",
+    "concepts/algorithms/heap-priority-queue.md",
+    "concepts/algorithms/prefix-sum.md",
+    "concepts/algorithms/monotonic-stack.md",
     "airbnb-design-1.png",
     "concepts/system-design/system-design-interview-questions.md.tmp.11033.1776218603569",
-    "system-design/index.md",
     "system-design/index.md.tmp.11033.1776218602280",
-    "system-design/sports-scoreboard.md",
     "system-design/sports-scoreboard.md.tmp.11033.1776218591957",
-    "system-design/job-scheduler.md",
     "system-design/job-scheduler.md.tmp.11033.1776218585013",
-    "system-design/amazon.md",
     "system-design/amazon.md.tmp.11033.1776218577965",
-    "system-design/doordash.md",
     "system-design/doordash.md.tmp.11033.1776218571875",
-    "system-design/hotel-reservation.md",
     "system-design/hotel-reservation.md.tmp.11033.1776218564768",
-    "system-design/leaderboard.md",
-    "system-design/leaderboard.md.tmp.11033.1776218557866",
-    "system-design/cdn.md",
-    "system-design/cdn.md.tmp.11033.1776218550203",
-    "system-design/kafka.md",
-    "system-design/kafka.md.tmp.11033.1776218543297",
-    "system-design/web-crawler.md",
-    "system-design/google-maps.md",
-    "system-design/stock-exchange.md",
-    "system-design/linkedin.md",
-    "system-design/reddit.md",
-    "system-design/spotify.md",
-    "system-design/facebook-news-feed.md",
-    "system-design/yelp.md",
-    "system-design/search-autocomplete.md",
-    "system-design/payment-system.md",
-    "system-design/slack.md",
-    "system-design/zoom.md"
+    "system-design/leaderboard.md.tmp.11033.1776218557866"
   ]
 }

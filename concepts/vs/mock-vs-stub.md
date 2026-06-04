@@ -26,16 +26,6 @@ verify(mock, times(1)).sendConfirmation(order.getEmail());
 - [[mock-vs-stub|Test Doubles]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use a mock vs a stub?
-Back: Stub: fake data to test the result (state verification). Mock: verify the right methods were called (behavior verification). Both are types of test doubles.
-<!--ID: 1773439958911-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

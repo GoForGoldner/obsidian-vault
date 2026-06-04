@@ -41,16 +41,6 @@ Health checks: LB pings /health every 10s
 - [[load-balancing|Nginx]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is load balancing and when would you pick Least Connections over Round Robin?
-Back: Distributing requests across servers. Round Robin when servers are identical and requests are uniform. Least Connections when request processing times vary widely (long-running vs quick requests) — prevents one server from getting overloaded. IP Hash for session affinity. Health checks auto-remove failed servers.
-<!--ID: 1773439958554-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

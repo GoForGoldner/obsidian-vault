@@ -32,16 +32,6 @@ void leak() { cache.add(new byte[1024 * 1024]); }
 - [[stack-and-heap|Value vs Reference Types]]
 
 ## Cards
-
-```anki
-START
-Basic
-What causes a stack overflow and a memory leak?
-Back: Stack overflow: too many nested function calls (deep/infinite recursion) exhaust the fixed-size stack. Memory leak: heap objects that are still referenced (static lists, event handlers, closures) but never used again - GC can't free them because they're technically reachable.
-<!--ID: 1773439958482-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

@@ -48,16 +48,6 @@ class VendingMachine {
 - [[command-pattern|Command Pattern]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: object behavior changes based on internal state, lots of if/else checking state. What pattern?
-Back: State - extract each state into its own class, object delegates to the current one. Adding new states doesn't touch existing code. Use State when transitions are internal; Strategy when the caller picks the behavior.
-<!--ID: 1773439958711-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

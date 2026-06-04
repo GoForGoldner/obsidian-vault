@@ -43,16 +43,6 @@ String user = claims.getSubject(); // trusted if signature checks out
 - Middleware / Auth pipelines
 
 ## Cards
-
-```anki
-START
-Basic
-Why can't you revoke a JWT before it expires, and how do you work around it?
-Back: JWTs are stateless — the server doesn't track issued tokens. Once signed, it's valid until expiry. Workarounds: short expiry (15 min) + refresh tokens, or a server-side blocklist (but this re-introduces state). If you need instant revocation (e.g., user banned), sessions are simpler.
-<!--ID: 1773439959009-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

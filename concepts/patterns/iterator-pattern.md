@@ -45,16 +45,6 @@ for (int num : new NumberCollection()) {
 - [[iterator-pattern|LINQ]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is the Iterator pattern?
-Back: Traverse a collection's elements sequentially without exposing how it's stored internally. Interface: hasNext() and next(). Enables for-each loops over any data structure. Multiple iterators can independently traverse the same collection simultaneously.
-<!--ID: 1773439958629-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

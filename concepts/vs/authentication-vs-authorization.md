@@ -28,16 +28,6 @@ public List<User> getAllUsers() { ... }
 - [[chain-of-responsibility-pattern|Middleware]]
 
 ## Cards
-
-```anki
-START
-Basic
-What's the difference between authentication and authorization?
-Back: Authentication = who are you? (identity/credentials). Authorization = what can you do? (permissions/roles). Auth-N first, then Auth-Z.
-<!--ID: 1773439958825-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

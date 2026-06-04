@@ -32,16 +32,6 @@ query {
 - [[rest-vs-graphql|API Design]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use REST vs GraphQL?
-Back: REST for simple CRUD, HTTP caching matters, simpler implementation. GraphQL when clients need flexible queries and you want to avoid over/under-fetching. GraphQL downside: no built-in caching, potential N+1 queries, more complex server.
-<!--ID: 1773439958925-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

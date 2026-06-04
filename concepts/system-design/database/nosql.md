@@ -28,16 +28,6 @@ No joins means no need for all data on one machine
 - [[horizontal-vs-vertical-scaling|Database Sharding]]
 
 ## Cards
-
-```anki
-START
-Basic
-How do NoSQL databases scale and what do they sacrifice?
-Back: Horizontal scaling via sharding (partition data across nodes). Sacrifice strong consistency and joins for flexible schemas and scale. Polyglot persistence: use different DB types for different parts of your system.
-<!--ID: 1773439958506-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

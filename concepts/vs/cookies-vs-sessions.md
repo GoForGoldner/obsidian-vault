@@ -26,16 +26,6 @@ session.setAttribute("user", authenticatedUser); // stored on server
 - [[cors|CORS]]
 
 ## Cards
-
-```anki
-START
-Basic
-What's the difference between cookies and sessions?
-Back: Cookies = client-side storage sent with every request (visible, stealable). Sessions = server-side storage, client only has a session ID cookie. Session data is hidden but hard to scale (needs sticky sessions or shared store like Redis).
-<!--ID: 1773439958851-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

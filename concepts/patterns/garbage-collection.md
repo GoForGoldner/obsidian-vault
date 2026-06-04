@@ -41,16 +41,6 @@ void leakyMethod() {
 - [[garbage-collection|Dispose Pattern]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is garbage collection and can you still get memory leaks with it?
-Back: Runtime automatically frees heap objects no longer reachable. Mark-and-Sweep: pause, mark all reachable objects from roots, sweep unmarked. Yes, you can still leak — if objects are technically reachable but unused (static collections, unclosed event handlers, closures capturing references). GC can't read your intent, only your references.
-<!--ID: 1773439958623-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

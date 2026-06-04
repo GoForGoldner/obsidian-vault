@@ -48,16 +48,6 @@ class User {
 - [[mediator-pattern|MediatR Library]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: many objects communicating directly, creating a tangled web of dependencies. What pattern?
-Back: Mediator - route all communication through a central hub. Objects only know the mediator, not each other. Turns N-to-N into N-to-1. Downside: mediator can become a god object.
-<!--ID: 1773439958639-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

@@ -46,23 +46,6 @@ void inorder(TreeNode root) {
 - [[bst(binary-search-tree)|Binary Heap]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is a BST and what's the key property?
-Back: Binary tree where left < root < right for every node. O(log n) search/insert/delete when balanced. O(n) when unbalanced - fix with self-balancing trees (AVL, Red-Black).
-<!--ID: 1773439958445-->
-END
-
-START
-Basic
-When do you use each tree traversal order?
-Back: Inorder (L-Root-R): get sorted output from BST. Preorder (Root-L-R): serialize/copy a tree (root first). Postorder (L-R-Root): delete a tree (children before parent). Level-order (BFS): find shortest path or process by depth.
-<!--ID: 1773439958453-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

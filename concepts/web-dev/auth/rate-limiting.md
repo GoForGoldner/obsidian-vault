@@ -45,16 +45,6 @@ if (!rateLimiter.allowRequest(ip)) {
 - [[caching-stradegies|Redis]]
 
 ## Cards
-
-```anki
-START
-Basic
-Why is rate limiting important for APIs beyond DDoS protection?
-Back: Prevents brute-force login attacks, stops runaway scripts from overwhelming your system, enforces fair usage across clients, and protects downstream services from cascading overload. Strategies: Fixed Window (simple, edge-case burst at boundary), Sliding Window (smoother), Token Bucket (allows controlled bursts). Return 429 + Retry-After header.
-<!--ID: 1773439959021-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

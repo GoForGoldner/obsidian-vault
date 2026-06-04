@@ -44,16 +44,6 @@ SELECT * FROM orders WHERE user_id = 5 ORDER BY created_at DESC;
 - [[database-indexes|Hash Index]]
 
 ## Cards
-
-```anki
-START
-Basic
-What are the common index types and what's the leftmost prefix rule?
-Back: B-Tree (range + equality, default), Hash (equality only), Composite (multi-column). Leftmost prefix: index on (A, B, C) works for queries on A, (A,B), or (A,B,C) - but NOT B or C alone. A covering index contains all columns a query needs - fastest possible read.
-<!--ID: 1773439958515-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

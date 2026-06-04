@@ -61,12 +61,6 @@ public class QueryBuilder {
     }
 }
 END
-START
-Basic
-When does a Builder need a Director class?
-Back: When the construction sequence needs to vary or be reused. Director encodes the steps, Builder encodes how each step executes.
-<!--ID: 1773093630583-->
-END
 ```
 
 ```dataviewjs

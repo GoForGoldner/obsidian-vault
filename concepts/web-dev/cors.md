@@ -35,16 +35,6 @@ public List<User> getUsers() { ... }
 - [[cors|Same-Origin Policy]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is CORS and why does the browser block cross-origin requests?
-Back: Same-Origin Policy prevents a malicious site from using your authenticated cookies to call your bank's API. CORS relaxes it selectively — server sends Access-Control-Allow-Origin header to whitelist trusted origins. Browser sends a preflight OPTIONS request first to check. Fix CORS errors on the server, not the client.
-<!--ID: 1773439959054-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

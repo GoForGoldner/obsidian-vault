@@ -49,16 +49,6 @@ for (Event e : events) {
 - [[event-sourcing-pattern|Audit Log]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is Event Sourcing?
-Back: Store every state change as an immutable event instead of just current state. Rebuild state by replaying events. Gives you full audit trail, undo/replay, and time-travel. Downside: storage overhead and query complexity (need read projections / CQRS).
-<!--ID: 1773439958618-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

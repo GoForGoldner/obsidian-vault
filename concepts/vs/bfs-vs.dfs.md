@@ -27,16 +27,6 @@ Stack<Integer> stack = new Stack<>();
 - Shortest Path
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use BFS vs DFS?
-Back: BFS (queue): shortest path in unweighted graphs, answer is close to root. Uses more memory. DFS (stack/recursion): exhaustive search, backtracking, cycle detection, topological sort. Uses less memory.
-<!--ID: 1773439958838-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

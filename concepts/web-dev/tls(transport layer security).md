@@ -29,16 +29,6 @@ With TLS: encrypted, tamper-proof, server identity verified
 - [[tls(transport layer security)|Public Key Cryptography]]
 
 ## Cards
-
-```anki
-START
-Basic
-Why does TLS need both asymmetric and symmetric encryption?
-Back: Asymmetric (public/private key) is used during the handshake to securely exchange keys — it's slow but solves the key distribution problem. Symmetric (shared session key) encrypts all subsequent traffic — it's fast. TLS handshake: verify server identity via CA certificate chain → derive shared key → encrypted channel.
-<!--ID: 1773439959146-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

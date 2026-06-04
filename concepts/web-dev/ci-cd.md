@@ -41,16 +41,6 @@ jobs:
 - [[ci-cd|Infrastructure as Code]]
 
 ## Cards
-
-```anki
-START
-Basic
-Why does CI/CD matter and what breaks without it?
-Back: CI catches broken code before it reaches production by auto-building and testing every push. CD auto-deploys after tests pass. Without CI: "works on my machine" bugs, integration hell at merge time, manual deploy errors. Flaky tests are the #1 CI killer — they erode trust and slow the pipeline.
-<!--ID: 1773439959132-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

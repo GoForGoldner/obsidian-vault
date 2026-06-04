@@ -32,23 +32,6 @@ while (!queue.isEmpty()) {
 - Dijkstra
 
 ## Cards
-
-```anki
-START
-Basic
-You see: unweighted graph, need shortest path. What algorithm?
-Back: BFS - explore level by level with a queue. First time you reach the target is the shortest path. O(V + E) time. Mark visited when enqueuing, not when processing.
-<!--ID: 1773439958387-->
-END
-
-START
-Basic
-What is the critical gotcha in BFS that causes bugs if forgotten?
-Back: Mark nodes visited when ENQUEUING, not when processing. If you mark on processing, you'll add the same node multiple times to the queue, wasting time and potentially causing incorrect results in level-order tracking.
-<!--ID: 1773439958400-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

@@ -42,16 +42,6 @@ interface OrderRepository extends JpaRepository<Order, Long> {}
 - [[backend-architecture|Clean Architecture]]
 
 ## Cards
-
-```anki
-START
-Basic
-What are the main layers in a typical backend?
-Back: Controller (HTTP handling) -> Service (business logic) -> Repository (data access). Each layer only depends on the one below it. Keeps business logic testable without a web server or database.
-<!--ID: 1773439959034-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

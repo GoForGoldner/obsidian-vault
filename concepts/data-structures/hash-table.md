@@ -23,23 +23,6 @@ map.remove("bob");        // O(1) delete
 - [[hash-table|Hash Set]]
 
 ## Cards
-
-```anki
-START
-Basic
-What is a hash table and when do you use it over a BST?
-Back: Maps keys to values via a hash function. O(1) average lookup. Use over BST when you need fast access and don't care about ordering. BST when you need sorted data.
-<!--ID: 1773439958463-->
-END
-
-START
-Basic
-What is a hash collision and why does load factor matter?
-Back: Two keys hash to the same index. Resolved by Chaining (linked list at each bucket) or Open Addressing (probe to next empty slot). Load factor = entries / buckets. When it exceeds ~0.75, resize the table — otherwise collisions spike and O(1) degrades toward O(n).
-<!--ID: 1773439958471-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

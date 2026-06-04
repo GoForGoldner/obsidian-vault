@@ -54,16 +54,6 @@ class UserService {
 - [[mock-vs-stub|Mock vs Stub]]
 
 ## Cards
-
-```anki
-START
-Basic
-You see: business logic tightly coupled to database queries scattered through services. What pattern and why?
-Back: Repository - abstract data access behind an interface (findById, findAll, save, delete). Services call the repository, not the DB directly. Why it matters: swap real repo for in-memory mock in tests, switch databases without touching business logic, and enforce a single place for query optimization.
-<!--ID: 1773439958689-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

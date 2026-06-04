@@ -37,16 +37,6 @@ Common status codes:
 - [[rate-limiting|Rate Limiting]]
 
 ## Cards
-
-```anki
-START
-Basic
-What's the conceptual difference between 4xx and 5xx errors, and what do 401 vs 403 mean?
-Back: 4xx = client's fault (bad input, missing auth). 5xx = server's fault (crash, timeout). 401 Unauthorized = not authenticated (who are you?). 403 Forbidden = authenticated but no permission (you can't do that). Common gotcha: 401 is really "unauthenticated" despite the name.
-<!--ID: 1773439959100-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

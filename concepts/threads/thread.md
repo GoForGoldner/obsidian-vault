@@ -34,16 +34,6 @@ pool.submit(() -> processRequest());
 - [[locking-stradegies|Mutex]]
 
 ## Cards
-
-```anki
-START
-Basic
-Why use a thread pool instead of creating threads on demand?
-Back: Thread creation is expensive (OS resources). A pool pre-creates N threads and reuses them via a work queue. Benefits: bounded resource usage, no creation overhead per task, backpressure when queue fills up. In Java: Executors.newFixedThreadPool(10). Size it to match: CPU cores for CPU-bound, higher for I/O-bound work.
-<!--ID: 1773439958811-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

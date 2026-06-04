@@ -30,16 +30,6 @@ GET session:abc123
 - [[database-indexes|Database Indexes]]
 
 ## Cards
-
-```anki
-START
-Basic
-What are the four types of NoSQL databases?
-Back: Document (MongoDB - flexible JSON docs), Key-Value (Redis - fast cache), Column (Cassandra - analytics at scale), Graph (Neo4j - relationship queries). Each optimized for specific access patterns, not general-purpose like SQL.
-<!--ID: 1773439959072-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

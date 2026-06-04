@@ -55,15 +55,6 @@ chain.handle(request);
 - [[mediator-pattern|Mediator Pattern]]
 
 ## Cards
-```anki
-START
-Basic
-You see: a request needs to pass through multiple handlers in sequence. What pattern?
-Back: Chain of Responsibility - link handlers in a chain, each can process or forward the request. Real-world example: HTTP middleware pipelines (logging -> auth -> CORS -> handler).
-<!--ID: 1773439958589-->
-END
-```
-
 ```dataviewjs
 const cards = [
   {

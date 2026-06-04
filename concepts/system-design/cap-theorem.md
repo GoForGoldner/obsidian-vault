@@ -30,16 +30,6 @@ AP (Availability + Partition Tolerance):
 - [[cap-theorem|Distributed Systems]]
 
 ## Cards
-
-```anki
-START
-Basic
-What does the CAP theorem say?
-Back: Distributed systems can guarantee at most 2 of: Consistency, Availability, Partition Tolerance. Partitions are inevitable, so it's really C vs A. CP (banking - reject requests to stay consistent) or AP (social feeds - always respond, allow stale reads).
-<!--ID: 1773439958498-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

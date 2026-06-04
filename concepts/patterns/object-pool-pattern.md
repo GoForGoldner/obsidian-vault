@@ -46,16 +46,6 @@ class ConnectionPool {
 - Resource Management
 
 ## Cards
-
-```anki
-START
-Basic
-You see: creating and destroying objects repeatedly is slow, objects are reusable. What pattern?
-Back: Object Pool - pre-create a pool, borrow and return instead of create/destroy. Examples: DB connection pools, thread pools. Gotcha: reset object state before returning to pool.
-<!--ID: 1773439958655-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

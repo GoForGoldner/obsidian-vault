@@ -33,16 +33,6 @@ WHERE o.total > 100;
 - [[sql|Joins]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you denormalize a database, and what's the cost?
-Back: Denormalize when read performance matters more than write consistency — duplicate data to avoid expensive joins. Common in read-heavy systems, analytics, and caching layers. Cost: data can get out of sync (update anomalies), more storage, harder writes. ACID guarantees (Atomicity, Consistency, Isolation, Durability) protect against partial failures in transactions.
-<!--ID: 1773439958527-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

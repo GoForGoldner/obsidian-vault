@@ -45,16 +45,6 @@ StockResponse resp = inventoryStub.checkStock(
 - [[gRPC|Streaming]]
 
 ## Cards
-
-```anki
-START
-Basic
-When do you use gRPC over REST?
-Back: gRPC for high-performance service-to-service calls (microservices). Binary protobuf serialization is faster/smaller than JSON, supports streaming, uses HTTP/2. Downsides: not browser-friendly, harder to debug (binary), less tooling.
-<!--ID: 1773439959085-->
-END
-```
-
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');
