@@ -46,18 +46,21 @@ START
 Basic
 You see: need to find the median of a stream of numbers efficiently. What technique?
 Back: Two Heaps. Max-heap (left half, top = largest small element) + min-heap (right half, top = smallest large element). Keep balanced: left.size() == right.size() ± 1. Median = left.peek() (odd) or average of both peeks (even).
+<!--ID: 1780580932952-->
 END
 
 START
 Basic
 What are the three invariants you must maintain in the Two Heaps pattern?
 Back: 1) Every element in left ≤ every element in right. 2) left.size() == right.size() OR left.size() == right.size() + 1. 3) After adding, if left.peek() > right.peek(), move it over. These ensure the median is always accessible in O(1).
+<!--ID: 1780580932954-->
 END
 
 START
 Basic
 Why is the left heap usually implemented as a max-heap?
 Back: The median for the smaller half must be the largest element on that side, so a max-heap makes it available at `peek()`. That lets you compare and rebalance in O(log n) while reading the odd-length median in O(1).
+<!--ID: 1780580932956-->
 END
 ```
 

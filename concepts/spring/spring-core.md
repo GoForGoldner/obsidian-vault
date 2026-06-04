@@ -217,72 +217,84 @@ START
 Basic
 What's the difference between `@Component`, `@Service`, `@Repository`, and `@Controller`?
 Back: All are `@Component` specializations, so component scanning registers them as beans.<br>`@Component class GenericHelper {}` is generic.<br>`@Service class BillingService {}` marks business logic.<br>`@Repository class InvoiceRepository {}` marks persistence code and enables exception translation.<br>`@Controller class InvoicePageController {}` handles MVC requests/views.
+<!--ID: 1780580933109-->
 END
 
 START
 Basic
 What's the difference between `@Autowired` field injection vs constructor injection, and which should you prefer?
 Back: Prefer constructor injection: `class CheckoutService { private final OrderRepository repo; CheckoutService(OrderRepository repo) { this.repo = repo; } }`.<br>Field injection hides dependencies: `@Autowired private OrderRepository repo;`.<br>Constructor injection supports `final` fields, easier tests, and clearer required dependencies. `@Autowired` is optional on a single constructor.
+<!--ID: 1780580933111-->
 END
 
 START
 Basic
 How do you resolve ambiguity when multiple beans of the same type exist?
 Back: Mark one bean as default with `@Primary`: `@Bean @Primary PaymentClient stripeClient() { ... }`.<br>Pick a specific bean with `@Qualifier`: `CheckoutService(@Qualifier("paypalClient") PaymentClient client) { ... }`.<br>`@Qualifier` beats `@Primary`. Use `@Profile("prod")` if the choice depends on environment.
+<!--ID: 1780580933114-->
 END
 
 START
 Basic
 What is the bean lifecycle order in Spring?
 Back: Instantiate bean or call `@Bean` method → inject dependencies and `@Value` properties → run `@PostConstruct` → bean is ready → on shutdown run `@PreDestroy` for singleton beans → destroy bean.<br>Put init that needs injected collaborators in `@PostConstruct`; put cleanup like closing clients in `@PreDestroy`.
+<!--ID: 1780580933116-->
 END
 
 START
 Basic
 `@Value` syntax: how do you inject a property with a default value?
 Back: Use `@Value("${app.timeout:5000}") private int timeout;`.<br>The `:5000` part is the fallback if `app.timeout` is missing.<br>You can also inject SpEL, e.g. `@Value("#{systemProperties['user.home']}") private String home;`.
+<!--ID: 1780580933118-->
 END
 
 START
 Basic
 `@Scope`: what are the available scopes and how do you declare prototype?
 Back: Declare prototype with `@Component @Scope("prototype") class PrototypeBean {}` or `@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)`.<br>Common scopes are `singleton` (default), `prototype`, `request`, `session`, and `application`.<br>Prototype means Spring returns a new instance on each lookup/injection resolution.
+<!--ID: 1780580933120-->
 END
 
 START
 Basic
 `@Lazy`: what does it do and when would you use it?
 Back: `@Component @Lazy class ExpensiveService {}` delays bean creation until first requested.<br>You can also lazy-inject a dependency: `@Autowired @Lazy private ExpensiveService service;`.<br>Use it for expensive startup work or to break certain circular dependency situations.
+<!--ID: 1780580933121-->
 END
 
 START
 Basic
 `@EventListener`: how do you publish and listen to application events?
 Back: Publish with `applicationEventPublisher.publishEvent(new OrderCreatedEvent(order));`.<br>Listen with `@EventListener public void handle(OrderCreatedEvent e) { ... }`.<br>The listener method parameter type decides which event it receives, and `@Order(1)` controls listener ordering.
+<!--ID: 1780580933123-->
 END
 
 START
 Basic
 `@PostConstruct` vs constructor: when do you use each?
 Back: The constructor runs when the bean is instantiated: `CheckoutService(PaymentClient client) { this.client = client; }`.<br>`@PostConstruct void init() { client.warmUp(); }` runs after dependency injection is complete.<br>Use `@PostConstruct` when init logic depends on injected collaborators; with constructor injection, simple setup often belongs in the constructor.
+<!--ID: 1780580933124-->
 END
 
 START
 Basic
 `@PropertySource`: how do you load custom properties?
 Back: Put it on a configuration class: `@Configuration @PropertySource("classpath:custom.properties") class AppConfig {}`.<br>Then read values with `@Value("${custom.key}")` or `environment.getProperty("custom.key")`.<br>It adds an extra properties file into Spring's `Environment`.
+<!--ID: 1780580933127-->
 END
 
 START
 Basic
 `@Lookup`: how do you inject a prototype bean into a singleton?
 Back: Use an abstract lookup method: `@Component abstract class MySingleton { @Lookup protected abstract PrototypeBean getPrototype(); }`.<br>Spring overrides that method at runtime and returns a fresh prototype each call.<br>This solves the singleton-needs-new-prototype-instance problem.
+<!--ID: 1780580933129-->
 END
 
 START
 Basic
 How do `@Profile`, `@Import`, and `@DependsOn` change bean wiring?
 Back: `@Profile("dev") @Bean Clock devClock()` activates only in the `dev` profile.<br>`@Import({MessagingConfig.class, MetricsConfig.class})` pulls in other `@Configuration` classes.<br>`@DependsOn("startupLogger")` forces one bean to initialize after another when startup order matters.
+<!--ID: 1780580933131-->
 END
 ```
 

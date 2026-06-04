@@ -45,12 +45,14 @@ START
 Basic
 What's the difference between standard binary search, lower bound, and upper bound?
 Back: Standard binary search finds an exact match and returns `-1` if missing (`left <= right`, then move `mid ± 1`). Lower bound returns the first index where `arr[i] >= target` (`left < right`, `right = mid`). Upper bound returns the first index where `arr[i] > target`. Count occurrences with `upperBound - lowerBound`.
+<!--ID: 1780580932914-->
 END
 
 START
 Basic
 What's the gotcha with `mid = (left + right) / 2` in binary search?
 Back: Integer overflow when `left + right` exceeds `Integer.MAX_VALUE`. Use `mid = left + (right - left) / 2` instead.
+<!--ID: 1780580932917-->
 END
 ```
 

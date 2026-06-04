@@ -46,12 +46,14 @@ START
 Basic
 You see: weighted graph, non-negative edges, shortest path from one source. What algorithm?
 Back: Dijkstra. Use a min-heap of `(cost, node)` pairs and always process the cheapest next state. The key stale-entry guard is `if (d > dist[u]) continue;`.
+<!--ID: 1780580932925-->
 END
 
 START
 Basic
 When do you use Dijkstra vs BFS vs Bellman-Ford?
 Back: BFS for unweighted graphs. Dijkstra for weighted graphs with non-negative edges. Bellman-Ford when negative edges are allowed, assuming no negative cycle. Dijkstra can give wrong answers if negative edges exist.
+<!--ID: 1780580932926-->
 END
 ```
 

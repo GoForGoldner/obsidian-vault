@@ -23,12 +23,14 @@ START
 Basic
 In Cassandra, what's the difference between a partition key and a clustering key?
 Back: Partition key decides WHICH NODE stores the row (distribution). Clustering key decides the SORT ORDER of rows within that partition (ordering). In PRIMARY KEY ((user_id), order_time): user_id = partition key, order_time = clustering key.
+<!--ID: 1780580932991-->
 END
 
 START
 Basic
 If the primary key is PRIMARY KEY ((a, b), c, d), how many clustering columns are there?
 Back: Two: c and d. The partition key is the composite (a, b) — anything inside the extra parentheses. Everything after is clustering.
+<!--ID: 1780580932993-->
 END
 ```
 

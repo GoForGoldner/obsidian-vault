@@ -70,18 +70,21 @@ START
 Basic
 When do you choose merge sort vs quick sort vs bucket sort?
 Back: Merge sort: need stability or guaranteed O(n log n), willing to pay O(n) space. Quick sort: in-place preferred, average O(n log n), randomize pivot to avoid O(n²). Bucket sort: data uniformly distributed in known range, O(n) average.
+<!--ID: 1780580932971-->
 END
 
 START
 Basic
 What is Quick Select and when do you use it?
 Back: Find the kth smallest element in O(n) average. Same partition as quick sort, but only recurse into ONE side (the side containing k). After partitioning, pivot is at its final sorted position — if that's k, you're done.
+<!--ID: 1780580932972-->
 END
 
 START
 Basic
 What's the difference between Lomuto and Hoare partitioning in quicksort?
 Back: Lomuto: pivot at end, one pointer from left, simpler. Hoare: pivot at middle, two pointers from both ends, fewer swaps on average. Lomuto recurses on (low, p-1) and (p+1, high). Hoare recurses on (low, p) and (p+1, high).
+<!--ID: 1780580932974-->
 END
 ```
 

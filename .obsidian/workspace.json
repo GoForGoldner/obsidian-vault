@@ -207,8 +207,10 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "175fa59ad92b69da",
+  "active": "c0ad36d521c23b6f",
   "lastOpenFiles": [
+    "copilot/copilot-conversations/Java_List_replaceAll_Example@20260604_081027.md",
+    "copilot/copilot-conversations/Iterative_vs_ListIterator@20260604_082243.md",
     "concepts/algorithms/dijkstra.md",
     "concepts/algorithms/dfs.md",
     "concepts/algorithms/binary-search.md",
@@ -235,8 +237,6 @@
     "concepts/algorithms/two-heaps.md",
     "concepts/algorithms/trie.md",
     "concepts/algorithms/heap-priority-queue.md",
-    "concepts/algorithms/prefix-sum.md",
-    "concepts/algorithms/monotonic-stack.md",
     "airbnb-design-1.png",
     "concepts/system-design/system-design-interview-questions.md.tmp.11033.1776218603569",
     "system-design/index.md.tmp.11033.1776218602280",

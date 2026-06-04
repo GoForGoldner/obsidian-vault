@@ -44,12 +44,14 @@ START
 Basic
 You see: DAG, need to process nodes in dependency order. What algorithm?
 Back: Topological Sort. Kahn's algorithm starts with all in-degree `0` nodes, removes their outgoing edges, and repeats. If `result.size() != n`, the graph contains a cycle. Common uses: build systems, course scheduling, and task dependencies.
+<!--ID: 1780580932928-->
 END
 
 START
 Basic
 How does Kahn's algorithm detect a cycle?
 Back: If the final ordering has fewer than `n` nodes, some vertices never reached in-degree `0`, which means a cycle blocked them. Every valid topological ordering of a DAG must contain all `n` nodes.
+<!--ID: 1780580932930-->
 END
 ```
 

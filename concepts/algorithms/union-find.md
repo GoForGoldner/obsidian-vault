@@ -50,12 +50,14 @@ START
 Basic
 You see: need to dynamically check if two elements are connected, or merge groups. What data structure?
 Back: Union-Find. It combines `find()` with path compression and `union()` by rank, giving nearly O(1) amortized operations. A component counter can be decremented on each successful union.
+<!--ID: 1780580932922-->
 END
 
 START
 Basic
 What do path compression and union by rank do in Union-Find?
 Back: Path compression rewires nodes directly to the root during `find()`, flattening the tree. Union by rank attaches the shorter tree under the taller one. Together they make operations nearly O(1) amortized, more precisely inverse Ackermann.
+<!--ID: 1780580932923-->
 END
 ```
 

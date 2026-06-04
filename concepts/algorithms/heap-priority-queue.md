@@ -49,18 +49,21 @@ START
 Basic
 Why do you use a MAX-heap to find the top K smallest elements?
 Back: The max-heap's root is the largest of the K items. When a new element is smaller than the root, swap it in (remove root, add new). This keeps only the K smallest. O(n log k) vs O(n log n) for sorting.
+<!--ID: 1780580932938-->
 END
 
 START
 Basic
 What are the heap index formulas for an array-based heap?
 Back: Parent: (i-1)/2. Left child: 2i+1. Right child: 2i+2. Sift up after insert (bubble toward root). Sift down after poll (bubble toward leaves). Both O(log n).
+<!--ID: 1780580932942-->
 END
 
 START
 Basic
 What is Java's `PriorityQueue` by default, and when is that useful?
 Back: Java's `PriorityQueue` is a min-heap by default, so `peek()` returns the smallest element. Use it when you repeatedly need the current minimum, such as Dijkstra, merging sorted lists, or keeping the next best candidate.
+<!--ID: 1780580932944-->
 END
 ```
 

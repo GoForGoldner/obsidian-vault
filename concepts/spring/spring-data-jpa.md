@@ -205,72 +205,84 @@ START
 Basic
 What's the difference between `@OneToMany` and `@ManyToOne`, and which side owns the relationship?
 Back: `@ManyToOne` is usually the owning side because it holds the foreign key column, e.g. `@ManyToOne @JoinColumn(name = "user_id") private User user;`.<br>`@OneToMany(mappedBy = "user") private List<Order> orders;` is normally the inverse side.<br>Changes to the owning side are what actually update the relationship in the database.
+<!--ID: 1780580933133-->
 END
 
 START
 Basic
 What does `@Transactional` do and where should you put it?
 Back: `@Transactional` wraps a method in a database transaction so multiple reads/writes succeed or fail together.<br>Put it on service-layer methods such as `@Transactional public void activateUser(Long id) { ... }`, not controllers.<br>Use `readOnly = true` for read paths and configure `propagation`/`isolation` only when needed.
+<!--ID: 1780580933134-->
 END
 
 START
 Basic
 How does `@Version` enable optimistic locking?
 Back: Add a version column with `@Version private Long version;`.<br>JPA includes the version in the update `where` clause, so if another transaction already changed the row, your update affects 0 rows and an optimistic locking exception is thrown.<br>This prevents silent lost updates without holding a DB lock for the whole transaction.
+<!--ID: 1780580933136-->
 END
 
 START
 Basic
 When do you use `@Query` vs derived query methods in Spring Data?
 Back: Use derived names for simple queries like `findByStatusAndNameContainingOrderByNameAsc(...)`.<br>Use `@Query("select u from User u left join fetch u.roles where u.id = :id")` when joins, fetches, projections, or complexity make the method name ugly.<br>Add `@Modifying` for update/delete JPQL.
+<!--ID: 1780580933138-->
 END
 
 START
 Basic
 `@Entity` + `@Table`: what annotations do you need to map a class to a table?
 Back: A minimal mapping looks like `@Entity @Table(name = "users") class User { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id; @Column(nullable = false, length = 100) String name; }`.<br>`@Entity` makes the class JPA-managed, `@Table` customizes the table name, and `@Column` customizes column details.
+<!--ID: 1780580933140-->
 END
 
 START
 Basic
 `@GeneratedValue`: what are the 4 strategies?
 Back: `GenerationType.IDENTITY` uses DB auto-increment.<br>`GenerationType.SEQUENCE` uses a database sequence and is usually best for Hibernate batching.<br>`GenerationType.TABLE` simulates a sequence with a table.<br>`GenerationType.AUTO` lets the provider choose.<br>`IDENTITY` is simple but can reduce batch insert efficiency.
+<!--ID: 1780580933142-->
 END
 
 START
 Basic
 `@Enumerated`: how do you persist enums?
 Back: Use `@Enumerated(EnumType.STRING) private UserStatus status;` so the enum name is stored as text.<br>`EnumType.ORDINAL` stores the integer position, which is fragile because reordering enum constants corrupts meaning.<br>Use `STRING` almost always.
+<!--ID: 1780580933144-->
 END
 
 START
 Basic
 `@Embedded` / `@Embeddable`: how do you use value objects?
 Back: Define the value object with `@Embeddable class Address { String street; String city; }` and embed it with `@Entity class User { @Embedded Address address; }`.<br>The address fields are stored in the same table as `User`, not a separate table.<br>This is a clean way to group related columns.
+<!--ID: 1780580933146-->
 END
 
 START
 Basic
 `@ManyToMany` with `@JoinTable`: how do you map it?
 Back: Example: `@ManyToMany @JoinTable(name = "student_courses", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id")) Set<Course> courses;`.<br>The side declaring `@JoinTable` owns the mapping and writes the join table rows.
+<!--ID: 1780580933148-->
 END
 
 START
 Basic
 `@Inheritance`: what are the 3 JPA strategies?
 Back: `SINGLE_TABLE` stores the whole hierarchy in one table and usually uses `@DiscriminatorColumn`.<br>`JOINED` uses one table per class and joins when reading.<br>`TABLE_PER_CLASS` gives each concrete class its own full table.<br>`SINGLE_TABLE` is often fastest and simplest for small hierarchies.
+<!--ID: 1780580933151-->
 END
 
 START
 Basic
 Derived query methods: what naming conventions does Spring Data support?
 Back: Common prefixes are `findBy`, `countBy`, `existsBy`, and `deleteBy`.<br>You can chain operators like `And`, `Or`, `Between`, `LessThan`, `GreaterThan`, `Containing`, `In`, and `OrderBy`.<br>Example: `List<User> findByAgeGreaterThanAndNameContainingOrderByNameAsc(int age, String name);`.
+<!--ID: 1780580933153-->
 END
 
 START
 Basic
 `@Lock`: how do you use pessimistic locking?
 Back: Use `@Lock(LockModeType.PESSIMISTIC_WRITE) @Query("select u from User u where u.id = :id") Optional<User> findForUpdate(@Param("id") Long id);`.<br>The database row stays locked until the surrounding transaction commits or rolls back.<br>Use it for high-contention updates when optimistic retries are too expensive.
+<!--ID: 1780580933155-->
 END
 ```
 

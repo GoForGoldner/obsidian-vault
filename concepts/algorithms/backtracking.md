@@ -37,12 +37,14 @@ START
 Basic
 You see: generate all subsets/permutations/combinations. What technique?
 Back: Backtracking. Choose-Explore-Unchoose. Key differences: subsets record at every node (`i = start`), permutations record at leaves only (`i = 0`, `used[]`), combinations record at target size (`i = start`).
+<!--ID: 1780580932918-->
 END
 
 START
 Basic
 What's the key difference between generating subsets vs permutations in backtracking?
 Back: Subsets loop from `start` index, enforcing order and avoiding revisits, and record at every recursive call. Permutations loop from `0` every time with a `used[]` array and only record when `current.size() == n`. Changing `i = start` to `i = 0` turns subsets into permutations.
+<!--ID: 1780580932920-->
 END
 ```
 

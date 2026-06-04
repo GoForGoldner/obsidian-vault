@@ -49,12 +49,14 @@ START
 Basic
 You see: need to check if a graph can be split into two groups with no edges within a group. What algorithm?
 Back: Bipartite Check. BFS/DFS with 2-coloring: assign color 0 to start, alternate for neighbors. If a neighbor already has the same color → not bipartite (odd cycle found). Must check all components for disconnected graphs.
+<!--ID: 1780580932981-->
 END
 
 START
 Basic
 What graph property is equivalent to being bipartite?
 Back: A graph is bipartite if and only if it has no odd-length cycle. During BFS or DFS coloring, a conflict where adjacent nodes need the same color is exactly evidence of an odd cycle.
+<!--ID: 1780580932982-->
 END
 ```
 

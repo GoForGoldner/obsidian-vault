@@ -36,12 +36,14 @@ START
 Basic
 You see: need to find the next greater (or smaller) element for each position in an array. What technique?
 Back: Monotonic Stack. Use a decreasing stack for next greater and an increasing stack for next smaller. Each element is pushed and popped at most once, so the runtime is O(n). Store indices rather than raw values.
+<!--ID: 1780580932932-->
 END
 
 START
 Basic
 How do you choose the stack type and iteration direction for monotonic stack problems?
 Back: Next greater or smaller: iterate left to right. Previous greater or smaller: iterate right to left. Decreasing stack (pop when incoming > top) finds greater elements. Increasing stack (pop when incoming < top) finds smaller elements.
+<!--ID: 1780580932933-->
 END
 ```
 

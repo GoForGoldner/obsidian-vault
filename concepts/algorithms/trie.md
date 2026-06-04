@@ -65,18 +65,21 @@ START
 Basic
 You see: need efficient prefix matching, autocomplete, or word dictionary operations. What data structure?
 Back: Trie (prefix tree). Each node has children[26] for a-z and an isEnd flag. Insert/search/startsWith all O(L). Use over HashSet when you need prefix queries — HashSet can't do startsWith efficiently.
+<!--ID: 1780580932947-->
 END
 
 START
 Basic
 When should you use a Trie vs a HashSet for string lookups?
 Back: HashSet for exact match only (O(1)). Trie when you need prefix operations (startsWith, count words with prefix, autocomplete). Trie also supports ordered traversal and wildcard matching. Trie uses more memory but enables prefix queries.
+<!--ID: 1780580932948-->
 END
 
 START
 Basic
 What does the `isEnd` flag represent in a trie node?
 Back: It marks that the path from the root to this node forms a complete stored word. Without `isEnd`, you could detect prefixes but not distinguish a full word like `app` from a longer word like `apple`.
+<!--ID: 1780580932950-->
 END
 ```
 

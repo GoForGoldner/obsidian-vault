@@ -135,60 +135,70 @@ START
 Basic
 What's the difference between `@Controller` and `@RestController`?
 Back: `@Controller` is for MVC handlers that usually return a view name like `"signup/form"`.<br>`@RestController` is `@Controller` + `@ResponseBody`, so return values such as `UserDto` are written directly to the HTTP response as JSON.<br>Use `@RestController` for APIs and `@Controller` for server-rendered pages.
+<!--ID: 1780580933175-->
 END
 
 START
 Basic
 How do `@PathVariable`, `@RequestParam`, and `@RequestBody` differ?
 Back: `@PathVariable Long id` reads from the URL path like `/users/{id}`.<br>`@RequestParam(defaultValue = "0") int page` reads query string or form values like `?page=0`.<br>`@RequestBody CreateUserRequest request` deserializes the HTTP body into a Java object.
+<!--ID: 1780580933177-->
 END
 
 START
 Basic
 How do you implement global exception handling in Spring?
 Back: Put `@ExceptionHandler` methods in a `@RestControllerAdvice` class, for example `@ExceptionHandler(UserNotFoundException.class) ErrorResponse handleNotFound(...) { ... }`.<br>This centralizes error handling for all controllers and keeps controller methods free of repeated `try/catch` logic.
+<!--ID: 1780580933178-->
 END
 
 START
 Basic
 `@RequestParam`: how do you handle optional parameters with defaults?
 Back: Example: `@GetMapping("/search") List<Item> search(@RequestParam String q, @RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort)`.<br>`required = false` means Spring passes `null` when the parameter is absent.<br>`defaultValue` provides a fallback string that Spring converts to the target type.
+<!--ID: 1780580933180-->
 END
 
 START
 Basic
 `@Valid` vs `@Validated`: what's the difference?
 Back: `@Valid @RequestBody CreateUserRequest request` triggers bean validation using Jakarta/Bean Validation annotations like `@NotBlank`.<br>`@Validated(OnCreate.class)` is Spring's variant and supports validation groups.<br>Use `@Valid` for simple request validation; use `@Validated` when you need group-based rules.
+<!--ID: 1780580933181-->
 END
 
 START
 Basic
 `@ResponseStatus`: how do you set HTTP status on a method or exception?
 Back: On a handler method: `@PostMapping @ResponseStatus(HttpStatus.CREATED) UserDto create(...)`.<br>On an exception class: `@ResponseStatus(HttpStatus.NOT_FOUND) class ResourceNotFoundException extends RuntimeException {}`.<br>The exception annotation is applied whenever that exception is thrown and not handled with a different status.
+<!--ID: 1780580933183-->
 END
 
 START
 Basic
 `@ModelAttribute`: what does it do?
 Back: At parameter level it binds request parameters or form fields into an object: `submit(@ModelAttribute UserForm form)`.<br>At method level it creates or adds an object to the model before handlers run: `@ModelAttribute("signupForm") SignupForm signupForm() { return new SignupForm(); }`.<br>It is central to MVC form handling.
+<!--ID: 1780580933184-->
 END
 
 START
 Basic
 `@CrossOrigin`: how do you enable CORS?
 Back: Add it to a controller or method, e.g. `@RestController @CrossOrigin(origins = "http://localhost:3000") class UserController {}` or `@CrossOrigin @GetMapping("/users")`.<br>That tells Spring to send the CORS response headers for matching requests.<br>For app-wide rules, configure `WebMvcConfigurer#addCorsMappings`.
+<!--ID: 1780580933186-->
 END
 
 START
 Basic
 `@CookieValue` and `@RequestHeader`: how do you read them?
 Back: Example: `@GetMapping void get(@RequestHeader("Authorization") String auth, @CookieValue(value = "sessionId", defaultValue = "") String sessionId)`.<br>Both annotations support `required = false` and `defaultValue`.<br>Use them for metadata that belongs in headers/cookies rather than the request body.
+<!--ID: 1780580933188-->
 END
 
 START
 Basic
 What's the full `@RestControllerAdvice` pattern for API error handling?
 Back: Create a class annotated `@RestControllerAdvice`, add methods like `@ExceptionHandler(UserNotFoundException.class)` and optionally `@ResponseStatus(HttpStatus.NOT_FOUND)`, and return a consistent error DTO such as `new ErrorResponse("USER_NOT_FOUND", ex.getMessage())`.<br>Spring routes matching exceptions from any controller to those handlers globally.
+<!--ID: 1780580933189-->
 END
 ```
 

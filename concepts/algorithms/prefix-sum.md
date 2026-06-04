@@ -34,12 +34,14 @@ START
 Basic
 You see: multiple range sum queries on a static array. What technique?
 Back: Prefix Sum. Build `prefix[i]` as the sum of `arr[0..i-1]` in O(n), then answer `rangeSum(l, r) = prefix[r + 1] - prefix[l]` in O(1). Using `arr.length + 1` avoids boundary special cases.
+<!--ID: 1780580932935-->
 END
 
 START
 Basic
 How does 2D prefix sum work for submatrix queries?
 Back: Build `prefix[i][j]` as the sum of the rectangle above and left using inclusion-exclusion. Then query `(r1,c1)` to `(r2,c2)` with `prefix[r2 + 1][c2 + 1] - prefix[r1][c2 + 1] - prefix[r2 + 1][c1] + prefix[r1][c1]`. Build is O(mn), each query is O(1).
+<!--ID: 1780580932937-->
 END
 ```
 

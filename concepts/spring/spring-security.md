@@ -129,60 +129,70 @@ START
 Basic
 What's the difference between `@PreAuthorize`, `@Secured`, and `@RolesAllowed`?
 Back: `@PreAuthorize("hasRole('ADMIN') or #userId == authentication.principal.id")` is the most flexible because it uses SpEL and can inspect roles, authorities, method parameters, and beans.<br>`@Secured("ROLE_ADMIN")` and `@RolesAllowed("ADMIN")` are simpler role-only checks.<br>Use `@PreAuthorize` when the rule is more than just "has role X".
+<!--ID: 1780580933157-->
 END
 
 START
 Basic
 How do you access the currently authenticated user in a controller method?
 Back: Use `@AuthenticationPrincipal` on a method parameter, e.g. `one(@AuthenticationPrincipal CustomUserDetails user)`.<br>You can also inject the broader context with `@CurrentSecurityContext(expression = "authentication") Authentication auth`.<br>This is cleaner than manually calling `SecurityContextHolder`.
+<!--ID: 1780580933159-->
 END
 
 START
 Basic
 How do you test secured endpoints without a real login?
 Back: `@WithMockUser(username = "admin", roles = {"ADMIN"})` creates a fake authenticated user for the test.<br>`@WithUserDetails("alice")` loads a real user through your `UserDetailsService`.<br>Both let you test authorization without performing the full login flow.
+<!--ID: 1780580933161-->
 END
 
 START
 Basic
 `@PreAuthorize` with SpEL: what expressions can you use?
 Back: Common examples are `@PreAuthorize("hasRole('ADMIN')")`, `@PreAuthorize("hasAuthority('user:write')")`, and `@PreAuthorize("#userId == authentication.principal.id")`.<br>You can reference method parameters with `#paramName`, the current auth object with `authentication`, and beans with `@beanName`.
+<!--ID: 1780580933163-->
 END
 
 START
 Basic
 `@PostAuthorize`: when do you use it instead of `@PreAuthorize`?
 Back: Use it when you must load the object before checking authorization, e.g. `@PostAuthorize("returnObject.ownerUsername == authentication.name")`.<br>The check runs after the method and can inspect `returnObject`.<br>`@PreAuthorize` is more common because it can block work earlier.
+<!--ID: 1780580933166-->
 END
 
 START
 Basic
 `@PreFilter` and `@PostFilter`: how do they work?
 Back: `@PreFilter("filterObject.ownerUsername == authentication.name") void process(List<DocumentDto> docs)` removes non-matching input elements before the method runs.<br>`@PostFilter("filterObject.ownerUsername == authentication.name")` filters the returned collection after the method completes.<br>`filterObject` refers to each collection element.
+<!--ID: 1780580933167-->
 END
 
 START
 Basic
 `SecurityFilterChain`: how do you configure URL-based security?
 Back: Build rules with `http.authorizeHttpRequests(auth -> auth.requestMatchers("/public/**").permitAll().requestMatchers("/api/admin/**").hasRole("ADMIN").anyRequest().authenticated())`.<br>Put more specific matchers before broader ones.<br>`anyRequest()` is the catch-all fallback.
+<!--ID: 1780580933169-->
 END
 
 START
 Basic
 `@EnableMethodSecurity`: what does it enable?
 Back: It activates method-level annotations like `@PreAuthorize`, `@PostAuthorize`, `@PreFilter`, and `@PostFilter` on Spring beans.<br>Without `@EnableMethodSecurity` on a `@Configuration` class, those annotations are ignored.<br>It replaces the older `@EnableGlobalMethodSecurity` style in modern Spring Security.
+<!--ID: 1780580933171-->
 END
 
 START
 Basic
 `@WithMockUser`: how do you customize the mock user?
 Back: Example: `@WithMockUser(username = "admin", roles = {"ADMIN", "USER"}, password = "secret")`.<br>`roles` automatically adds the `ROLE_` prefix.<br>If you need exact authorities without the prefix, use `authorities = {"document:read", "document:write"}` instead.
+<!--ID: 1780580933172-->
 END
 
 START
 Basic
 What do `@PermitAll` and `@DenyAll` do?
 Back: `@PermitAll` allows any caller to invoke the method, even unauthenticated users, e.g. `@PermitAll public String health() { return "ok"; }`.<br>`@DenyAll` blocks every caller.<br>Use them when you want the method-level rule to be explicit rather than inherited from broader config.
+<!--ID: 1780580933174-->
 END
 ```
 

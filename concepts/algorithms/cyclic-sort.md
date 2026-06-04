@@ -47,18 +47,21 @@ START
 Basic
 You see: array of n numbers in range [1,n], need to find missing or duplicate numbers in O(n) time, O(1) space. What technique?
 Back: Cyclic Sort. Swap each value to its correct index (value v goes to index v-1). After placing, scan for mismatches — they ARE the answer. Each element swapped at most once → O(n).
+<!--ID: 1780580932964-->
 END
 
 START
 Basic
 What's the key insight that makes cyclic sort work for 'first missing positive'?
 Back: Only values in [1, n] matter — ignore negatives, zeros, and values > n. After placing valid values at their correct indices, the first index where nums[i] != i+1 is the answer. Everything else is noise.
+<!--ID: 1780580932966-->
 END
 
 START
 Basic
 Why does cyclic sort stay O(n) even though it uses swaps inside a loop?
 Back: Each successful swap places at least one value into its correct position, so elements do not keep bouncing around forever. That bounds the total number of swaps across the whole array to O(n), not O(n^2).
+<!--ID: 1780580932969-->
 END
 ```
 
