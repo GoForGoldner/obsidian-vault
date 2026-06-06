@@ -39,36 +39,42 @@ START
 Basic
 When two rules set the same property, what three things does the cascade compare, in priority order?
 Back: (1) Importance — `!important` and origin (author/user/user-agent), (2) Specificity, (3) Source order (the later rule wins). It only falls to the next tiebreaker when the previous one ties.
+<!--ID: 1780758285382-->
 END
 
 START
 Basic
 Which kinds of properties inherit from parent to child by default, and which don't?
 Back: Mostly text/typography properties inherit — `color`, `font-family`, `font-size`, `line-height`, `text-align`, `visibility`. Box/layout properties do **not** — `margin`, `padding`, `border`, `width`, `background`, `display`.
+<!--ID: 1780758285386-->
 END
 
 START
 Basic
 A child element isn't picking up the parent's `color`, but you want it to. Write the declaration that forces inheritance.
 Back: `color: inherit;` — explicitly takes the computed value of the parent's `color`.
+<!--ID: 1780758285391-->
 END
 
 START
 Basic
 What does the `unset` keyword do, and how does it differ from `initial`?
 Back: `unset` = behave as `inherit` if the property *naturally inherits*, otherwise as `initial`. `initial` always resets to the CSS-spec default regardless of inheritance.
+<!--ID: 1780758285395-->
 END
 
 START
 Basic
 What is a cascade layer (`@layer`) and where does it sit in the cascade?
 Back: `@layer` groups rules into ordered layers; earlier-declared layers lose to later ones *regardless of specificity*. Layers are compared after importance/origin but before normal specificity — a clean way to tame override wars without `!important`.
+<!--ID: 1780758285400-->
 END
 
 START
 Basic
 Why is leaning on `!important` to win a conflict considered a code smell?
 Back: It bypasses specificity and source order, so the only way to beat it later is *another* `!important` — escalating an arms race. Prefer raising specificity, fixing source order, or using `@layer`.
+<!--ID: 1780758285404-->
 END
 ```
 

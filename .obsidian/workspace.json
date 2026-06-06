@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/algorithms/monotonic-stack.md",
+                "file": "concepts/web-dev/css/css-functions.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "monotonic-stack"
+              "title": "css-functions"
             }
           }
         ]
@@ -190,7 +190,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -207,44 +207,44 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "c0ad36d521c23b6f",
+  "active": "175fa59ad92b69da",
   "lastOpenFiles": [
-    "copilot/copilot-conversations/Java_List_replaceAll_Example@20260604_081027.md",
-    "copilot/copilot-conversations/Iterative_vs_ListIterator@20260604_082243.md",
-    "concepts/algorithms/dijkstra.md",
-    "concepts/algorithms/dfs.md",
-    "concepts/algorithms/binary-search.md",
-    "concepts/algorithms/bfs.md",
-    "concepts/algorithms/backtracking.md",
+    "concepts/web-dev/css/css-display.md",
+    "concepts/web-dev/css/box-model.md",
     "concepts/spring/spring-aop-testing.md",
-    "concepts/java/collections-framework.md",
-    "concepts/java/java-iterators.md",
-    "concepts/java/java-queue-deque.md",
-    "concepts/java/java-set-and-map.md",
-    "concepts/spring/spring-boot-autoconfiguration.md",
-    "concepts/spring/spring-core.md",
-    "concepts/java/java-list.md",
-    "concepts/algorithms/bipartite-check.md",
-    "concepts/spring/spring-web-mvc.md",
-    "concepts/spring/spring-security.md",
-    "concepts/spring/spring-data-jpa.md",
-    "concepts/spring",
-    "concepts/java",
-    "concepts/algorithms/dynamic-programming.md",
-    "concepts/algorithms/sorting-algorithms.md",
-    "concepts/algorithms/cyclic-sort.md",
-    "concepts/algorithms/line-sweep.md",
-    "concepts/algorithms/two-heaps.md",
-    "concepts/algorithms/trie.md",
-    "concepts/algorithms/heap-priority-queue.md",
-    "airbnb-design-1.png",
-    "concepts/system-design/system-design-interview-questions.md.tmp.11033.1776218603569",
-    "system-design/index.md.tmp.11033.1776218602280",
-    "system-design/sports-scoreboard.md.tmp.11033.1776218591957",
-    "system-design/job-scheduler.md.tmp.11033.1776218585013",
-    "system-design/amazon.md.tmp.11033.1776218577965",
-    "system-design/doordash.md.tmp.11033.1776218571875",
-    "system-design/hotel-reservation.md.tmp.11033.1776218564768",
-    "system-design/leaderboard.md.tmp.11033.1776218557866"
+    "concepts/web-dev/css/filters-effects.md",
+    "concepts/web-dev/css/filters-effects.md.tmp.1995.15ed67675df6",
+    "concepts/vs/display-none-vs-visibility-hidden.md",
+    "concepts/vs/display-none-vs-visibility-hidden.md.tmp.1995.f6c93c33abd8",
+    "concepts/web-dev/css/floats-clearfix.md",
+    "concepts/web-dev/css/floats-clearfix.md.tmp.1995.814e010d46cf",
+    "concepts/web-dev/css/modern-selectors-nesting.md",
+    "concepts/web-dev/css/modern-selectors-nesting.md.tmp.1995.b835a63b9b52",
+    "concepts/web-dev/css/container-queries.md",
+    "concepts/web-dev/css/container-queries.md.tmp.1995.36ee4f5dbd51",
+    "concepts/web-dev/css/images-media.md",
+    "concepts/web-dev/css/images-media.md.tmp.1995.f634b55fd5c5",
+    "concepts/web-dev/css/pseudo-classes-elements.md",
+    "concepts/web-dev/css/pseudo-classes-elements.md.tmp.1995.57c55e57bc8f",
+    "concepts/web-dev/css/stacking-context.md",
+    "concepts/web-dev/css/stacking-context.md.tmp.1995.c9f34ac2cadd",
+    "concepts/web-dev/css/overflow-scrolling.md",
+    "concepts/web-dev/css/overflow-scrolling.md.tmp.1995.fbac96e4cb64",
+    "concepts/web-dev/css/css-functions.md",
+    "concepts/web-dev/css/css-functions.md.tmp.1995.a1dcd34e483a",
+    "concepts/web-dev/css/css-transforms.md",
+    "concepts/web-dev/css/css-custom-properties.md",
+    "concepts/web-dev/css/css-colors.md",
+    "concepts/web-dev/css/cascade-inheritance.md",
+    "concepts/web-dev/css/css-transitions-animations.md",
+    "concepts/web-dev/css/css-backgrounds-borders.md",
+    "concepts/web-dev/css/text-typography.md",
+    "concepts/vs/flexbox-vs-grid.md",
+    "concepts/web-dev/css/responsive-design.md",
+    "concepts/web-dev/css/centering.md",
+    "concepts/web-dev/css/css-units.md",
+    "concepts/web-dev/css/css-selectors-specificity.md",
+    "concepts/web-dev/css/css-positioning.md",
+    "airbnb-design-1.png"
   ]
 }

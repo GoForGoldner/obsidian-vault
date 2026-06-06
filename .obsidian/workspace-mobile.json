@@ -240,6 +240,7 @@
   },
   "active": "83896f53b0c62534",
   "lastOpenFiles": [
+    "copilot/copilot-conversations/JPA_SINGLE_TABLE_vs_JOINED@20260606_114640.md",
     "copilot/copilot-conversations/NAT_Networking_Basics@20260606_100049.md",
     "copilot/copilot-conversations/SpringBoot_ConfigurationProperties_Example@20260606_095410.md",
     "copilot/copilot-conversations/Navigable_Set_Subset_Confusion@20260605_070917.md",
@@ -268,7 +269,6 @@
     "/concepts/algorithms/line-sweep.md",
     "/concepts/algorithms/heap-priority-queue.md",
     "/concepts/algorithms/dynamic-programming.md",
-    "/concepts/algorithms/dijkstra.md",
     "/concepts/algorithms",
     "/concepts",
     "concepts/spring",
