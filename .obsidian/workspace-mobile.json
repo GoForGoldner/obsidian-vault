@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/java/collections-framework.md",
+                "file": "concepts/spring/spring-security.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "collections-framework"
+              "title": "spring-security"
             }
           }
         ],
@@ -238,8 +238,13 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "83896f53b0c62534",
+  "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "concepts/spring/spring-data-jpa.md",
+    "concepts/spring/spring-web-mvc.md",
+    "concepts/spring/spring-security.md",
+    "concepts/java/collections-framework.md",
+    "copilot/copilot-conversations/PreAuthorize_vs_PostAuthorize_Use_Cases@20260606_150141.md",
     "copilot/copilot-conversations/JPA_SINGLE_TABLE_vs_JOINED@20260606_114640.md",
     "copilot/copilot-conversations/NAT_Networking_Basics@20260606_100049.md",
     "copilot/copilot-conversations/SpringBoot_ConfigurationProperties_Example@20260606_095410.md",
@@ -264,11 +269,6 @@
     "/concepts/algorithms/trie.md",
     "/concepts/algorithms/topological-sort.md",
     "/concepts/algorithms/sorting-algorithms.md",
-    "/concepts/algorithms/prefix-sum.md",
-    "/concepts/algorithms/monotonic-stack.md",
-    "/concepts/algorithms/line-sweep.md",
-    "/concepts/algorithms/heap-priority-queue.md",
-    "/concepts/algorithms/dynamic-programming.md",
     "/concepts/algorithms",
     "/concepts",
     "concepts/spring",

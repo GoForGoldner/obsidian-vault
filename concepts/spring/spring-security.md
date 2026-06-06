@@ -105,17 +105,17 @@ class DocumentControllerTest {
 }
 ```
 
-| Annotation | Real syntax | Purpose |
-| --- | --- | --- |
-| `@EnableWebSecurity` | `@EnableWebSecurity class SecurityConfig {}` | Enable/customize web security |
-| `@EnableMethodSecurity` | `@EnableMethodSecurity` | Activate method security annotations |
-| `@PreAuthorize` / `@PostAuthorize` | `@PreAuthorize("hasRole('ADMIN')")` | SpEL authorization before/after method |
-| `@Secured` / `@RolesAllowed` | `@Secured("ROLE_ADMIN")`, `@RolesAllowed("ADMIN")` | Simpler role checks |
-| `@PreFilter` / `@PostFilter` | `@PostFilter("filterObject.ownerUsername == authentication.name")` | Filter collection args/results |
-| `@AuthenticationPrincipal` | `reports(@AuthenticationPrincipal CustomUserDetails user)` | Inject current principal |
-| `@CurrentSecurityContext` | `@CurrentSecurityContext(expression = "authentication")` | Inject current security context data |
-| `@WithMockUser` / `@WithUserDetails` | `@WithMockUser(roles = "ADMIN")` | Fake authenticated user in tests |
-| `@PermitAll` / `@DenyAll` | `@PermitAll public String ping()` | Explicit allow-all / deny-all |
+| Annotation                           | Real syntax                                                        | Purpose                                |
+| ------------------------------------ | ------------------------------------------------------------------ | -------------------------------------- |
+| `@EnableWebSecurity`                 | `@EnableWebSecurity class SecurityConfig {}`                       | Enable/customize web security          |
+| `@EnableMethodSecurity`              | `@EnableMethodSecurity`                                            | Activate method security annotations   |
+| `@PreAuthorize` / `@PostAuthorize`   | `@PreAuthorize("hasRole('ADMIN')")`                                | SpEL authorization before/after method |
+| `@Secured` / `@RolesAllowed`         | `@Secured("ROLE_ADMIN")`, `@RolesAllowed("ADMIN")`                 | Simpler role checks                    |
+| `@PreFilter` / `@PostFilter`         | `@PostFilter("filterObject.ownerUsername == authentication.name")` | Filter collection args/results         |
+| `@AuthenticationPrincipal`           | `reports(@Au of thenticationPrincipal CustomUserDetails user)`     | Inject current principal               |
+| `@CurrentSecurityContext`            | `@CurrentSecurityContext(expression = "authentication")`           | Inject current security context data   |
+| `@WithMockUser` / `@WithUserDetails` | `@WithMockUser(roles = "ADMIN")`                                   | Fake authenticated user in tests       |
+| `@PermitAll` / `@DenyAll`            | `@PermitAll public String ping()`                                  | Explicit allow-all / deny-all          |
 
 ## Related Topics
 - [[spring-web-mvc]]
