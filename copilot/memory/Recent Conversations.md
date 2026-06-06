@@ -25,3 +25,7 @@
 ## Java List replaceAll vs map
 **Time:** 2026-06-04 08:22
 **Summary:** The conversation explains that `List.replaceAll` applies a `UnaryOperator` in-place (mutates the list, same type) while `Stream.map` returns a new stream allowing type changes. It also clarifies that `SortedMap.firstKey()` returns the smallest key without removing it. Key conclusion: `replaceAll` is for in-place mutation, not a general map.
+
+## Spring Boot @ConfigurationProperties Binding and POJO
+**Time:** 2026-06-06 10:00
+**Summary:** A user asked for an example of @ConfigurationProperties in Spring Boot, and the assistant provided a detailed example with a POJO, YAML configuration, and injection steps. The conversation then covered what a POJO is and confirmed that only configuration values matching the class fields are bound by default, with unknown properties silently ignored.

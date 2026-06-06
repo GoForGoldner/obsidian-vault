@@ -240,6 +240,8 @@
   },
   "active": "83896f53b0c62534",
   "lastOpenFiles": [
+    "copilot/copilot-conversations/NAT_Networking_Basics@20260606_100049.md",
+    "copilot/copilot-conversations/SpringBoot_ConfigurationProperties_Example@20260606_095410.md",
     "copilot/copilot-conversations/Navigable_Set_Subset_Confusion@20260605_070917.md",
     "/concepts/vs/partition-key-vs-clustering-key.md",
     "/concepts/vs",
@@ -267,8 +269,6 @@
     "/concepts/algorithms/heap-priority-queue.md",
     "/concepts/algorithms/dynamic-programming.md",
     "/concepts/algorithms/dijkstra.md",
-    "/concepts/algorithms/cyclic-sort.md",
-    "/concepts/algorithms/bipartite-check.md",
     "/concepts/algorithms",
     "/concepts",
     "concepts/spring",
