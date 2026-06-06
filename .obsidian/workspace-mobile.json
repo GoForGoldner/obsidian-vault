@@ -238,8 +238,9 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "c7b0305953f1b8f5",
+  "active": "83896f53b0c62534",
   "lastOpenFiles": [
+    "copilot/copilot-conversations/Navigable_Set_Subset_Confusion@20260605_070917.md",
     "/concepts/vs/partition-key-vs-clustering-key.md",
     "/concepts/vs",
     "/concepts/spring/spring-web-mvc.md",
@@ -268,7 +269,6 @@
     "/concepts/algorithms/dijkstra.md",
     "/concepts/algorithms/cyclic-sort.md",
     "/concepts/algorithms/bipartite-check.md",
-    "/concepts/algorithms/binary-search.md",
     "/concepts/algorithms",
     "/concepts",
     "concepts/spring",
