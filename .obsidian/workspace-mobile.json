@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/spring/spring-security.md",
+                "file": "concepts/spring/spring-data-jpa.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "spring-security"
+              "title": "spring-data-jpa"
             }
           }
         ],
@@ -240,9 +240,9 @@
   },
   "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "concepts/spring/spring-security.md",
     "concepts/spring/spring-data-jpa.md",
     "concepts/spring/spring-web-mvc.md",
-    "concepts/spring/spring-security.md",
     "concepts/java/collections-framework.md",
     "copilot/copilot-conversations/PreAuthorize_vs_PostAuthorize_Use_Cases@20260606_150141.md",
     "copilot/copilot-conversations/JPA_SINGLE_TABLE_vs_JOINED@20260606_114640.md",
