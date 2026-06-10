@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/spring/spring-data-jpa.md",
+                "file": "concepts/web-dev/css/css-grid.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "spring-data-jpa"
+              "title": "css-grid"
             }
           }
         ],
@@ -238,12 +238,12 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "83896f53b0c62534",
+  "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "concepts/spring/spring-data-jpa.md",
     "copilot/copilot-conversations/PropertySource_Concept_Clarification@20260608_180546.md",
     "copilot/copilot-conversations/Double_Dispatch_vs_Dynamic_Dispatch@20260608_175132.md",
     "concepts/spring/spring-security.md",
-    "concepts/spring/spring-data-jpa.md",
     "concepts/spring/spring-web-mvc.md",
     "concepts/java/collections-framework.md",
     "copilot/copilot-conversations/PreAuthorize_vs_PostAuthorize_Use_Cases@20260606_150141.md",
