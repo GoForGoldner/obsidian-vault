@@ -29,3 +29,7 @@
 ## Spring Boot @ConfigurationProperties Binding and POJO
 **Time:** 2026-06-06 10:00
 **Summary:** A user asked for an example of @ConfigurationProperties in Spring Boot, and the assistant provided a detailed example with a POJO, YAML configuration, and injection steps. The conversation then covered what a POJO is and confirmed that only configuration values matching the class fields are bound by default, with unknown properties silently ignored.
+
+## EventListener Publisher: Spring's ApplicationEventPublisher
+**Time:** 2026-06-14 12:44
+**Summary:** The user asked about the EventListener pattern, focusing on the publishing side. The assistant explained that Spring provides the `ApplicationEventPublisher` interface, which is implemented by the `ApplicationContext`, so developers only need to inject and use it. The conversation confirmed that no custom implementation is required.

@@ -240,6 +240,8 @@
   },
   "active": "83896f53b0c62534",
   "lastOpenFiles": [
+    "copilot/copilot-conversations/LinkedHashMap_LRU_Cache@20260614_124453.md",
+    "copilot/copilot-conversations/EventListener_Event_Publishing_Explained@20260614_123631.md",
     "copilot/copilot-conversations/CQRS_Confusion_Explanation@20260610_075333.md",
     "concepts/spring/spring-data-jpa.md",
     "copilot/copilot-conversations/PropertySource_Concept_Clarification@20260608_180546.md",
@@ -267,8 +269,6 @@
     "/concepts/java/java-iterators.md",
     "/concepts/java/collections-framework.md",
     "/concepts/java",
-    "/concepts/algorithms/union-find.md",
-    "/concepts/algorithms/two-heaps.md",
     "/concepts/algorithms",
     "/concepts",
     "concepts/spring",
