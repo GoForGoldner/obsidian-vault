@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/web-dev/css/css-grid.md",
+                "file": "spring-data-query-methods.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "css-grid"
+              "title": "spring-data-query-methods"
             }
           }
         ],
@@ -240,6 +240,9 @@
   },
   "active": "83896f53b0c62534",
   "lastOpenFiles": [
+    "concepts/web-dev/css/css-grid.md",
+    "spring-data-query-methods.md",
+    "copilot/copilot-conversations/Spring_Boot_Query_Method_Naming@20260616_081256.md",
     "copilot/copilot-conversations/LinkedHashMap_LRU_Cache@20260614_124453.md",
     "copilot/copilot-conversations/EventListener_Event_Publishing_Explained@20260614_123631.md",
     "copilot/copilot-conversations/CQRS_Confusion_Explanation@20260610_075333.md",
@@ -265,9 +268,6 @@
     "/concepts/spring",
     "/concepts/java/java-set-and-map.md",
     "/concepts/java/java-queue-deque.md",
-    "/concepts/java/java-list.md",
-    "/concepts/java/java-iterators.md",
-    "/concepts/java/collections-framework.md",
     "/concepts/java",
     "/concepts/algorithms",
     "/concepts",
