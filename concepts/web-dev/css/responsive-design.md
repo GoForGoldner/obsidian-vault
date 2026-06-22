@@ -53,13 +53,6 @@ END
 
 START
 Basic
-Your responsive media queries are ignored on real phones — the page just renders zoomed-out. What's almost always missing?
-Back: The viewport meta tag: `<meta name="viewport" content="width=device-width, initial-scale=1">`. Without it mobile browsers assume a ~980px desktop width.
-<!--ID: 1780758285257-->
-END
-
-START
-Basic
 What's a way to get a responsive multi-column grid that needs ZERO media queries?
 Back: `grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));` — the grid reflows the column count on its own as width changes.
 <!--ID: 1780758285263-->

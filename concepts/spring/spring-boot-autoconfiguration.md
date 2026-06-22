@@ -220,9 +220,9 @@ END
 
 START
 Basic
-How do the main `@Conditional*` annotations differ in practice?
-Back: `@ConditionalOnClass(JavaMailSender.class)` checks the classpath.<br>`@ConditionalOnBean(DataSource.class)` requires another bean to exist.<br>`@ConditionalOnMissingClass("com.example.LegacyClient")` activates only when a class is absent.<br>`@ConditionalOnWebApplication` and `@ConditionalOnNotWebApplication` switch config based on app type.
-<!--ID: 1780580933106-->
+With `@ConfigurationProperties`, what happens to unknown config keys, and how does relaxed binding map names?
+Back: Unknown keys are silently ignored by default; set `ignoreUnknownFields = false` to fail fast instead.<br>Relaxed binding maps kebab/underscore/caps to camelCase, e.g. `app.max-pool-size` binds to `maxPoolSize`.<br>Missing keys keep field defaults; enforce required ones with `@Validated` + `@NotNull`.
+<!--ID: 1782144297796-->
 END
 ```
 

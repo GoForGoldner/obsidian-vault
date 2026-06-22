@@ -188,6 +188,13 @@ How do `@ExtendWith(SpringExtension.class)` and `@ContextConfiguration` fit into
 Back: `@ExtendWith(SpringExtension.class)` integrates JUnit 5 with the Spring TestContext framework.<br>`@ContextConfiguration(classes = {UserService.class, StubConfig.class})` loads a small hand-picked Spring context without a full Boot application.<br>Use them for focused Spring tests when `@SpringBootTest` would be too heavy.
 <!--ID: 1780580933206-->
 END
+
+START
+Basic
+Why might a Spring AOP aspect not fire when a bean calls its own advised method?
+Back: Self-invocation bypasses the Spring proxy, so the advice never runs — Spring AOP only intercepts calls that go THROUGH the proxy.<br>Fix it by injecting the bean into itself and calling via the proxy, or by moving the advised method onto another bean.
+<!--ID: 1782144297793-->
+END
 ```
 
 ```dataviewjs

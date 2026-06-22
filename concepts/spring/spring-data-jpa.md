@@ -1,7 +1,7 @@
 ---
 tags: [spring, jpa, database]
 category: spring
-related: [spring-core, spring-aop-testing, spring-web-mvc]
+related: [spring-core, spring-aop-testing, spring-web-mvc, spring-data-query-methods, jpql-hql]
 ---
 
 ## Description
@@ -197,6 +197,8 @@ class UserService {
 - [[spring-core]]
 - [[spring-aop-testing]]
 - [[spring-web-mvc]]
+- [[spring-data-query-methods]]
+- [[jpql-hql]]
 
 ## Cards
 
@@ -283,6 +285,20 @@ Basic
 `@Lock`: how do you use pessimistic locking?
 Back: Use `@Lock(LockModeType.PESSIMISTIC_WRITE) @Query("select u from User u where u.id = :id") Optional<User> findForUpdate(@Param("id") Long id);`.<br>The database row stays locked until the surrounding transaction commits or rolls back.<br>Use it for high-contention updates when optimistic retries are too expensive.
 <!--ID: 1780580933155-->
+END
+
+START
+Basic
+When would you choose JPA `JOINED` inheritance over `SINGLE_TABLE`?
+Back: Choose `JOINED` when normalization / data integrity matters or the hierarchy is complex — each class gets its own table with no nullable subclass columns, at the cost of joins on read.<br>Choose `SINGLE_TABLE` for shallow hierarchies with mostly shared columns and read-critical paths, accepting nullable subclass columns.
+<!--ID: 1782144297872-->
+END
+
+START
+Basic
+Why is JPA `TABLE_PER_CLASS` inheritance usually avoided?
+Back: Each concrete class gets its own full table (including inherited columns), so polymorphic queries across the hierarchy become `UNION`s over every table — slow — and the schema is duplicated.<br>Use it only when you rarely query across the hierarchy and the types are truly disjoint.
+<!--ID: 1782144297876-->
 END
 ```
 

@@ -53,13 +53,6 @@ END
 
 START
 Basic
-What does the `1fr` unit actually measure in a grid track?
-Back: One fraction of the container's *remaining free space* (after fixed-size tracks and gaps are subtracted). `1fr 1fr` = two equal shares; `2fr 1fr` = a 2:1 split.
-<!--ID: 1780758285016-->
-END
-
-START
-Basic
 Write the CSS for a responsive gallery: as many columns as fit at a minimum of 200px each, each stretching to fill, wrapping otherwise.
 Back: `grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));`
 <!--ID: 1780758285024-->

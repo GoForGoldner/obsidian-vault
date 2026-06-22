@@ -296,6 +296,27 @@ How do `@Profile`, `@Import`, and `@DependsOn` change bean wiring?
 Back: `@Profile("dev") @Bean Clock devClock()` activates only in the `dev` profile.<br>`@Import({MessagingConfig.class, MetricsConfig.class})` pulls in other `@Configuration` classes.<br>`@DependsOn("startupLogger")` forces one bean to initialize after another when startup order matters.
 <!--ID: 1780580933131-->
 END
+
+START
+Basic
+When publishing Spring application events, do you implement `ApplicationEventPublisher` yourself?
+Back: No. It's a Spring interface implemented by the `ApplicationContext` — you just inject it and call `publishEvent(...)`.<br>Spring provides the implementation and delegates to an `ApplicationEventMulticaster`.
+<!--ID: 1782144297828-->
+END
+
+START
+Basic
+By default, on which thread do Spring `@EventListener` handlers run?
+Back: Synchronously on the publisher's thread — `publishEvent` blocks until all matching listeners finish, and a listener that throws can stop later ones.<br>Add `@Async` (with `@EnableAsync`) to dispatch a listener on a separate thread.
+<!--ID: 1782144297832-->
+END
+
+START
+Basic
+In Spring Boot, do you need to register a `PropertySource` yourself to read `application.properties`?
+Back: No — Boot auto-registers default property sources in the `Environment`, resolved by precedence (command-line args > system properties > OS env vars > `application.properties`/yml ...).<br>You only add `@PropertySource` for a NON-default location.
+<!--ID: 1782144297835-->
+END
 ```
 
 ```dataviewjs

@@ -37,13 +37,6 @@ p { color: green; }   /* green wins — same specificity, comes later */
 ```anki
 START
 Basic
-When two rules set the same property, what three things does the cascade compare, in priority order?
-Back: (1) Importance — `!important` and origin (author/user/user-agent), (2) Specificity, (3) Source order (the later rule wins). It only falls to the next tiebreaker when the previous one ties.
-<!--ID: 1780758285382-->
-END
-
-START
-Basic
 Which kinds of properties inherit from parent to child by default, and which don't?
 Back: Mostly text/typography properties inherit — `color`, `font-family`, `font-size`, `line-height`, `text-align`, `visibility`. Box/layout properties do **not** — `margin`, `padding`, `border`, `width`, `background`, `display`.
 <!--ID: 1780758285386-->

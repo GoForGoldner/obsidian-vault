@@ -194,6 +194,13 @@ What do `@PermitAll` and `@DenyAll` do?
 Back: `@PermitAll` allows any caller to invoke the method, even unauthenticated users, e.g. `@PermitAll public String health() { return "ok"; }`.<br>`@DenyAll` blocks every caller.<br>Use them when you want the method-level rule to be explicit rather than inherited from broader config.
 <!--ID: 1780580933174-->
 END
+
+START
+Basic
+What goes wrong if you put `@PostAuthorize` on a void or null-returning method?
+Back: `returnObject` is null, so a SpEL check like `returnObject.owner == authentication.name` fails/throws at evaluation.<br>Only use `@PostAuthorize` on methods that return a non-null value you actually need to inspect.
+<!--ID: 1782144297869-->
+END
 ```
 
 ```dataviewjs

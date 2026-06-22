@@ -33,13 +33,6 @@ related: [css-display, flexbox, css-positioning]
 ```anki
 START
 Basic
-What is the one use case where `float` is still the right tool today?
-Back: Wrapping inline text around an image (or pull-quote) within a paragraph — `float: left/right`. For page/component layout, use Flexbox or Grid instead.
-<!--ID: 1780758285725-->
-END
-
-START
-Basic
 A container with only floated children collapses to zero height. Why, and what's the modern one-line fix?
 Back: Floated elements are removed from normal flow, so they don't contribute to the parent's height. Fix: `display: flow-root;` on the parent — it establishes a BFC that contains the floats. (Legacy fix was the `::after { clear: both }` clearfix.)
 <!--ID: 1780758285731-->

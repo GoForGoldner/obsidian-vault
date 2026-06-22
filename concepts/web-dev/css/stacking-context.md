@@ -52,13 +52,6 @@ END
 
 START
 Basic
-You add `opacity: 0.99` or a `transform` to a card and suddenly its dropdown gets clipped behind other content. What happened?
-Back: That property created a new stacking context on the card, trapping its descendants' z-index inside it — they can no longer layer above elements outside the card. Remove the property or restructure the z-index hierarchy.
-<!--ID: 1780758285592-->
-END
-
-START
-Basic
 Within a single stacking context, what's the paint order from back to front?
 Back: (1) the context root's background/border, (2) negative z-index children, (3) non-positioned block boxes, (4) non-positioned floats, (5) inline content, (6) positioned children by z-index (then source order for ties).
 <!--ID: 1780758285599-->

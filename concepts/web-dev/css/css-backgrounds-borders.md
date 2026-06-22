@@ -45,13 +45,6 @@ END
 
 START
 Basic
-Write the CSS for a card with a dark background, a 1px subtle border, 14px rounded corners, and a soft drop shadow.
-Back: `background: #1e1e1e; border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; box-shadow: 0 4px 24px rgba(0,0,0,0.4);`
-<!--ID: 1780758285320-->
-END
-
-START
-Basic
 What does each value mean in `box-shadow: 0 4px 24px rgba(0,0,0,0.4)`?
 Back: x-offset (0), y-offset (4px down), blur radius (24px), color. An optional 4th length is spread, and a leading `inset` keyword turns it into an inner shadow.
 <!--ID: 1780758285327-->

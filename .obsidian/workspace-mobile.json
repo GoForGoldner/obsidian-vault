@@ -49,14 +49,10 @@
             "id": "c7b0305953f1b8f5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "spring-data-query-methods.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "spring-data-query-methods"
+              "title": "New tab"
             }
           }
         ],
@@ -240,6 +236,7 @@
   },
   "active": "83896f53b0c62534",
   "lastOpenFiles": [
+    "copilot/copilot-conversations/Creating_Pointcuts_File@20260616_195547.md",
     "concepts/web-dev/css/css-grid.md",
     "spring-data-query-methods.md",
     "copilot/copilot-conversations/Spring_Boot_Query_Method_Naming@20260616_081256.md",
@@ -267,7 +264,6 @@
     "/concepts/spring/spring-aop-testing.md",
     "/concepts/spring",
     "/concepts/java/java-set-and-map.md",
-    "/concepts/java/java-queue-deque.md",
     "/concepts/java",
     "/concepts/algorithms",
     "/concepts",

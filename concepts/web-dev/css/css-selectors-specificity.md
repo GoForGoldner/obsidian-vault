@@ -36,20 +36,6 @@ p::first-line { }   /* generated/targeted sub-part */
 ```anki
 START
 Basic
-List the specificity tiers from strongest to weakest, including the escape hatch that beats them all.
-Back: `!important` > inline `style=""` > `#id` > `.class` / `[attr]` / `:pseudo-class` > element / `::pseudo-element`. Universal `*` adds nothing.
-<!--ID: 1780758285147-->
-END
-
-START
-Basic
-Compute the specificity of the selector `#nav .item a`.
-Back: `(0,1,1,1)` → 1 id, 1 class, 1 element. It beats `.item a` `(0,0,1,1)` because the id column outranks the class column.
-<!--ID: 1780758285154-->
-END
-
-START
-Basic
 Two rules target the same element with identical specificity. Which one applies?
 Back: The one that appears **later** in the source order (the cascade's last tiebreaker).
 <!--ID: 1780758285158-->

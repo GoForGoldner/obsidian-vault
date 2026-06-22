@@ -32,6 +32,27 @@ If the primary key is PRIMARY KEY ((a, b), c, d), how many clustering columns ar
 Back: Two: c and d. The partition key is the composite (a, b) — anything inside the extra parentheses. Everything after is clustering.
 <!--ID: 1780580932993-->
 END
+
+START
+Basic
+You want all user names stored in ONE partition AND sorted alphabetically. Why can't `name` be both the partition key and the clustering key?
+Back: If `name` is the partition key, each name hashes to its own partition (one row each), so they're scattered across nodes, not together.<br>Use a constant/bucket column as the partition key and `name` as the clustering key to get a single sorted partition.
+<!--ID: 1782144297932-->
+END
+
+START
+Basic
+In Cassandra, how does the partition key relate to the primary key?
+Back: The primary key is composite — partition key + clustering columns — so the partition key is a SUBSET of the primary key.<br>They're equal only when there are no clustering columns, e.g. `PRIMARY KEY ((id))`.
+<!--ID: 1782144297935-->
+END
+
+START
+Basic
+With `PRIMARY KEY ((user_id), year, month, day)`, why does `WHERE user_id=? AND month=6` fail but `... AND year=2025` work?
+Back: Composite clustering columns obey the leftmost-prefix rule (like a B-tree index): you must restrict them left-to-right.<br>You can't skip `year` to filter `month`; `year` (right after the partition key) is a valid prefix.
+<!--ID: 1782144297938-->
+END
 ```
 
 ```dataviewjs

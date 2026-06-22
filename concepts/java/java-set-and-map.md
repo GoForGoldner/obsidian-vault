@@ -40,6 +40,15 @@ Map<String, List<String>> groups = new HashMap<>();
 groups.computeIfAbsent("backend", k -> new ArrayList<>()).add("Ada");
 groups.computeIfAbsent("backend", k -> new ArrayList<>()).add("Linus");
 groups.computeIfAbsent("frontend", k -> new ArrayList<>()).add("Grace");
+
+// Lazy cache pattern: computeIfAbsent computes-and-stores only on a miss.
+// If the mapping function returns null, NO entry is stored and null is returned,
+// so the next lookup re-computes -- exactly how a lazy "search PATH once" cache behaves.
+Map<String, Path> cache = new HashMap<>();
+Path hit = cache.computeIfAbsent("cmd", this::searchPath); // searchPath may return null
+// hit == null and "cmd" is NOT cached -> a later call searches again
+// DANGER: the mapping function must NOT modify the same map during computation
+// (no put/remove inside it) -> ConcurrentModificationException / corrupted map.
 ```
 
 ### `LinkedHashMap` as a tiny LRU cache
@@ -110,13 +119,6 @@ END
 
 START
 Basic
-How does `LinkedHashMap` support LRU cache behavior?
-Back: Construct it with `new LinkedHashMap<>(capacity, 0.75f, true)` so reads update access order, then override `removeEldestEntry(Map.Entry<K,V> eldest)` to return `true` when size exceeds capacity.<br>The least-recently-used entry stays at the front and gets evicted first.
-<!--ID: 1780580933042-->
-END
-
-START
-Basic
 What does `HashSet` use internally?
 Back: `HashSet` is backed by a `HashMap` internally.<br>Each set element is stored as a key in the map with a dummy value.<br>That is why `HashSet` has hash-map-like complexity and the same `equals()`/`hashCode()` requirements.
 <!--ID: 1780580933044-->
@@ -134,6 +136,62 @@ Basic
 How do you iterate a `Map`'s entries and what's the most efficient way?
 Back: Use `for (Map.Entry<K,V> e : map.entrySet()) { K k = e.getKey(); V v = e.getValue(); }` or `map.forEach((k, v) -> ...);`.<br>`entrySet()` is the most efficient explicit loop because it avoids iterating keys and then calling `get(key)` for every entry.
 <!--ID: 1780580933049-->
+END
+
+START
+Basic
+In `map.computeIfAbsent(k, fn)`, what happens if `fn` returns `null`, and what must `fn` never do?
+Back: If `fn` returns `null`, **no entry is stored** and `null` is returned — so the next lookup re-computes (ideal for a lazy cache where a "miss" should retry).<br>`fn` must **not modify the same map** during computation (no `put`/`remove`/`peek`-with-`put` inside it) — risks `ConcurrentModificationException` or a corrupted map.<br>Let `computeIfAbsent` do the storing; just return the value.
+<!--ID: 1781990693217-->
+END
+
+START
+Basic
+What does `SortedMap.firstKey()` return, and what if the map is empty?
+Back: The smallest key by the map's ordering (or comparator), without removing it.<br>It throws `NoSuchElementException` if the map is empty.<br>It's the map analogue of `SortedSet.first()`.
+<!--ID: 1782144297771-->
+END
+
+START
+Basic
+When is `LinkedHashMap.removeEldestEntry` called, and do you call it yourself?
+Back: It's a protected callback that `LinkedHashMap` invokes AUTOMATICALLY after every `put`/`putAll` — you never call it.<br>The default returns `false` (never evict). Override it to return `true` on a condition (e.g. `size() > capacity`) to auto-evict the eldest entry — the basis of an LRU cache.
+<!--ID: 1782144297775-->
+END
+
+START
+Basic
+What makes a `LinkedHashMap` behave as an LRU cache instead of insertion-ordered?
+Back: The third constructor argument: `new LinkedHashMap<>(capacity, 0.75f, true)`.<br>With `accessOrder = true`, every `get`/`put` moves that entry to the end, so the least-recently-used entry sits at the front and is evicted first (paired with an overridden `removeEldestEntry`).
+<!--ID: 1782144297777-->
+END
+
+START
+Basic
+What does the load factor (e.g. `0.75f`) control in a `HashMap`/`LinkedHashMap`?
+Back: It's the fullness threshold for resizing: the table doubles capacity and rehashes when `size > capacity × loadFactor`.<br>A lower factor wastes memory but reduces collisions; a higher factor saves memory but slows lookups. `0.75` is the default time/space trade-off.
+<!--ID: 1782144297780-->
+END
+
+START
+Basic
+Why can't a `LinkedHashMap` implement an LFU cache?
+Back: `accessOrder` tracks RECENCY (least-recently-used), not frequency.<br>LFU must evict the least-FREQUENTLY-used item, which needs frequency counters — typically a `Map<K,Integer>` of counts plus frequency buckets and a `minFreq` pointer.
+<!--ID: 1782144297783-->
+END
+
+START
+Basic
+In `map.merge(key, value, remappingFn)`, when does the function run and what does returning null do?
+Back: If the key is absent (or mapped to null), the given value is inserted and the function is NOT called.<br>If the key is present, the function runs with `(oldValue, newValue)`: a non-null result replaces the value, a null result removes the key.<br>Ideal for aggregations: `map.merge(word, 1, Integer::sum)`.
+<!--ID: 1782144297786-->
+END
+
+START
+Basic
+What happens if you add an element outside the range of a `headSet`/`subSet`/`tailSet` view?
+Back: It throws `IllegalArgumentException` — the view enforces its bounds.<br>These are live views backed by the original sorted set, so in-range changes reflect both ways, but out-of-range insertions are rejected.
+<!--ID: 1782144297790-->
 END
 ```
 

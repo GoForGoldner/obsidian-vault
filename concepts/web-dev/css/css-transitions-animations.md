@@ -67,13 +67,6 @@ END
 
 START
 Basic
-What do the values mean in the shorthand `animation: spin 1s linear infinite;`?
-Back: name (`spin`), duration (`1s`), timing function (`linear`), iteration count (`infinite`). Optional extras: delay, direction (`alternate`), fill-mode.
-<!--ID: 1780758285372-->
-END
-
-START
-Basic
 Your hover transition snaps instantly with no animation even though `:hover` changes the property. What's the usual mistake?
 Back: The `transition` is declared only inside `:hover` (or missing). It must be on the element's resting/base state so the browser knows how to interpolate *both* into and out of the hover.
 <!--ID: 1780758285377-->

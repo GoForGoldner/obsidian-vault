@@ -51,6 +51,30 @@ class CodeGenerator implements ASTVisitor { ... } // another operation, no node 
 - [[visitor-pattern|Abstract Syntax Tree]]
 
 ## Cards
+
+```anki
+START
+Basic
+What's the difference between dynamic dispatch and double dispatch?
+Back: Dynamic dispatch is a built-in language feature that resolves an overridden method at runtime on the receiver's type (single dispatch).<br>Double dispatch is a manual technique (e.g. the Visitor pattern) that selects behavior based on TWO runtime types — receiver and argument — by chaining two dynamic dispatches.
+<!--ID: 1782144297922-->
+END
+
+START
+Basic
+In the Visitor pattern, why isn't `element.accept(visitor)` enough — why also overloaded `visit()` methods?
+Back: `accept()` gives only the first runtime dispatch, on the element's concrete type.<br>The overloaded `visit(ConcreteElement)` gives the second dispatch, on the visitor's type. Without the `visit` overloads the visitor couldn't vary behavior per element type without `instanceof` checks.
+<!--ID: 1782144297925-->
+END
+
+START
+Basic
+When is the Visitor pattern the right choice, and when does it hurt?
+Back: Good when the type hierarchy is STABLE but you keep adding new operations — each operation is one new visitor, no element changes.<br>It hurts when element types change often: adding a new element type forces a new `visit` method in every visitor.
+<!--ID: 1782144297928-->
+END
+```
+
 ```dataviewjs
 function renderCards() {
   const rendered = this.container.closest('.markdown-rendered');

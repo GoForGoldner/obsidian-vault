@@ -149,6 +149,13 @@ What does `List.indexOf(Object)` return if the element isn't found?
 Back: It returns `-1`.<br>The comparison uses `equals()`.<br>`lastIndexOf(Object)` works the same way but searches for the last matching occurrence.
 <!--ID: 1780580933030-->
 END
+
+START
+Basic
+Why can `List.replaceAll` not change the element type the way `Stream.map` can?
+Back: `replaceAll` takes a `UnaryOperator<E>` whose input and output are the SAME type `E`, and it mutates the list in place (returns void).<br>`Stream.map` takes a `Function<T,R>`, so it can change the type (e.g. `String` to `Integer`) and returns a new stream without touching the original.
+<!--ID: 1782144297766-->
+END
 ```
 
 ```dataviewjs
