@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [observer-pattern, command-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that centralizes communication between objects into one mediator class. Instead of objects talking directly to each other (N-to-N), they all talk through the mediator (N-to-1-to-N).

@@ -3,6 +3,7 @@ tags: [typescript, web-dev, dom, types]
 category: web-dev
 related: [type-assertions-and-satisfies, basic-types-annotations, document-and-selectors, dom-events, components-and-props]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 The DOM lib types (`lib.dom.d.ts`) ship with TS. The key gotcha: `document.querySelector(selector)` returns `Element | null` — you must handle the null (the element might not exist) and you only get the generic `Element`, which lacks specifics like `.value` or `.checked`. Use the **generic form** `querySelector<HTMLInputElement>(...)` (or a CSS-tag selector TS recognizes, e.g. `querySelector("input")`) to get a narrower element type, or assert with `as HTMLInputElement` when you know better. Know the hierarchy: `Element` (any element) -> `HTMLElement` (HTML elements, has `.style`, `.dataset`) -> specific types like `HTMLInputElement`. Events are typed too: `addEventListener("click", e => ...)` infers `e: MouseEvent`; with a standalone handler, annotate it yourself.
@@ -45,35 +46,35 @@ button.addEventListener("click", (e: MouseEvent) => {
 ```anki
 START
 Basic
-What does `document.querySelector(".btn")` return in TypeScript, and what must you do?
+Typing the DOM: What does `document.querySelector(".btn")` return in TypeScript, and what must you do?
 Back: `Element | null`. You must handle the `null` (optional chaining `?.` or an `if` guard) — TS won't let you use it directly because the element may not exist.
 <!--ID: 1782407009661-->
 END
 
 START
 Basic
-You need `.value` off a queried element but only see `Element`. Two ways to get the right type?
+Typing the DOM: You need `.value` off a queried element but only see `Element`. Two ways to get the right type?
 Back: (1) Generic form: `querySelector<HTMLInputElement>("#x")`. (2) Assert: `querySelector("#x") as HTMLInputElement`. `.value` lives on `HTMLInputElement`, not the generic `Element`.
 <!--ID: 1782407009664-->
 END
 
 START
 Basic
-Difference between `Element` and `HTMLElement` in the DOM types?
+Typing the DOM: Difference between `Element` and `HTMLElement` in the DOM types?
 Back: `Element` is any element (incl. SVG/XML); `HTMLElement` is the HTML-specific subtype that adds members like `.style`, `.dataset`, `.click()`. Specific tags (`HTMLInputElement`) extend `HTMLElement`.
 <!--ID: 1782407009667-->
 END
 
 START
 Basic
-In `el.addEventListener("click", e => {...})`, what type is `e` and why?
+Typing the DOM: In `el.addEventListener("click", e => {...})`, what type is `e` and why?
 Back: `MouseEvent` — TS maps the event-name string literal `"click"` to its event type via overloads on `addEventListener`. (`"keydown"` -> `KeyboardEvent`, etc.)
 <!--ID: 1782407009670-->
 END
 
 START
 Basic
-Why does `getElementById("x")` often need an `as` cast in TS?
+Typing the DOM: Why does `getElementById("x")` often need an `as` cast in TS?
 Back: It returns `HTMLElement | null` (not the specific element type). After null-checking you still cast (e.g. `as HTMLInputElement`) to access input-specific members, since there's no generic form like querySelector has.
 <!--ID: 1782407009674-->
 END

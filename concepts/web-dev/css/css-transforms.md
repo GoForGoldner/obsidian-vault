@@ -3,6 +3,7 @@ tags: [css, web-dev, animation, layout]
 category: web-dev
 related: [css-transitions-animations, centering, stacking-context]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 `transform` repositions/reshapes an element without disturbing layout — surrounding boxes stay put as if it never moved. Functions: `translate(x, y)` (move), `scale()` (resize), `rotate()` (spin), `skew()`. They compose in one declaration and apply **right to left**. `transform-origin` sets the pivot (default center `50% 50%`). Transforms are GPU-composited (cheap to animate) and create a new stacking context. Adding `perspective` and `rotateX/Y` unlocks 3D.
@@ -36,35 +37,35 @@ related: [css-transitions-animations, centering, stacking-context]
 ```anki
 START
 Basic
-What makes `transform` cheaper to animate than changing `top`/`left` or `width`?
+CSS Transforms: What makes `transform` cheaper to animate than changing `top`/`left` or `width`?
 Back: `transform` doesn't trigger layout/reflow — the element is composited on the GPU and neighbors don't move. Animating `top`/`left`/`width` forces the browser to recalculate layout every frame, causing jank.
 <!--ID: 1780758285494-->
 END
 
 START
 Basic
-Write the transform that scales an element to 1.2× and rotates it 45°, and note which function applies first.
+CSS Transforms: Write the transform that scales an element to 1.2× and rotates it 45°, and note which function applies first.
 Back: `transform: scale(1.2) rotate(45deg);`. Composed transforms apply **right to left**, so the rotate happens first, then the scale.
 <!--ID: 1780758285501-->
 END
 
 START
 Basic
-What does `transform-origin` control, and what's its default?
+CSS Transforms: What does `transform-origin` control, and what's its default?
 Back: The pivot point that `rotate`/`scale`/`skew` operate around. Default is `50% 50%` (the element's center). Set e.g. `top left` to pivot from a corner.
 <!--ID: 1780758285507-->
 END
 
 START
 Basic
-Write the CSS to center an absolutely-positioned element of unknown size using transform.
+CSS Transforms: Write the CSS to center an absolutely-positioned element of unknown size using transform.
 Back: `position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);` — the percentages in translate are relative to the element's *own* size, pulling it back by half.
 <!--ID: 1780758285512-->
 END
 
 START
 Basic
-A key side effect: applying any `transform` (or `filter`, `opacity < 1`) to an element does what to z-index layering?
+CSS Transforms: A key side effect: applying any `transform` (or `filter`, `opacity < 1`) to an element does what to z-index layering?
 Back: It creates a new **stacking context**, so the element's `z-index` is now resolved *within* that context — a common cause of "my z-index suddenly stopped working" bugs.
 <!--ID: 1780758285517-->
 END

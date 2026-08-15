@@ -3,6 +3,7 @@ tags: [java, lang, string, stringbuilder]
 category: java
 related: [text-blocks, primitives-wrappers-autoboxing, var-type-inference, generics]
 ---
+TARGET DECK: Study::Java::Lang
 
 ## Description
 `String` is **immutable**: every "modifying" method returns a new object, so the original is never changed. String *literals* are interned in the string pool, which is why `==` (identity) sometimes appears to work but is a trap — use `equals()` for value comparison. When you need to build a string in a loop, use the **mutable** `StringBuilder` to avoid creating throwaway `String` objects.
@@ -64,63 +65,63 @@ System.out.println("  hi ".strip());    // "hi"
 ```anki
 START
 Basic
-`String s = "ab"; s.concat("cd"); print(s)` — output, and the principle?
+Strings and StringBuilder: `String s = "ab"; s.concat("cd"); print(s)` — output, and the principle?
 Back: Prints `ab`.<br>`String` is immutable — `concat` returns a new `"abcd"` you discarded; `s` never changes.
 <!--ID: 1781902680960-->
 END
 
 START
 Basic
-`"hi" == "hi"` is true but `"hi" == new String("hi")` is false. Why?
+Strings and StringBuilder: `"hi" == "hi"` is true but `"hi" == new String("hi")` is false. Why?
 Back: Both literals reference the same pooled (interned) instance, so `==` (identity) is true.<br>`new String(...)` forces a fresh heap object, so identity differs even though `.equals` is true.
 <!--ID: 1781902680966-->
 END
 
 START
 Basic
-What does `intern()` do?
+Strings and StringBuilder: What does `intern()` do?
 Back: Returns the canonical pooled `String` for that value, adding it to the pool if absent.<br>`a == c.intern()` becomes true when `a` is the pooled literal. Use for memory dedup, not for correctness.
 <!--ID: 1781902680972-->
 END
 
 START
 Basic
-`strip()` vs `trim()` — when does the difference matter?
+Strings and StringBuilder: `strip()` vs `trim()` — when does the difference matter?
 Back: `trim()` removes only characters `<= U+0020` (ASCII).<br>`strip()` (Java 11+) removes all Unicode whitespace, e.g. non-breaking/full-width spaces. Prefer `strip()`.
 <!--ID: 1781902680979-->
 END
 
 START
 Basic
-You see `if (s.isBlank())` — what is it checking, and how does it differ from `isEmpty()`?
+Strings and StringBuilder: You see `if (s.isBlank())` — what is it checking, and how does it differ from `isEmpty()`?
 Back: `isBlank()` is true if the string is empty **or only whitespace**.<br>`isEmpty()` is true only when `length() == 0`. `isBlank` came in Java 11.
 <!--ID: 1781902680986-->
 END
 
 START
 Basic
-When do you reach for `StringBuilder` over `String` concatenation?
+Strings and StringBuilder: When do you reach for `StringBuilder` over `String` concatenation?
 Back: When building incrementally, especially in loops.<br>`String` is immutable so `s += ...` creates a new object each time; `StringBuilder` mutates one buffer. Its methods return `this`, enabling chaining.
 <!--ID: 1781902680993-->
 END
 
 START
 Basic
-Name the four mutating `StringBuilder` methods for building/editing in place.
+Strings and StringBuilder: Name the four mutating `StringBuilder` methods for building/editing in place.
 Back: `append`, `insert(index, ...)`, `delete(start, end)` / `deleteCharAt`, and `reverse`.<br>All mutate the buffer and return `this` for chaining.
 <!--ID: 1781902681001-->
 END
 
 START
 Basic
-`"x".repeat(3)` and `"%05.2f".formatted(3.1)` — what do these produce?
+Strings and StringBuilder: `"x".repeat(3)` and `"%05.2f".formatted(3.1)` — what do these produce?
 Back: `repeat(3)` → `"xxx"` (Java 11+).<br>`"%05.2f".formatted(3.1)` → `"03.10"` — `formatted` is the instance version of `String.format` (Java 15+).
 <!--ID: 1781902681008-->
 END
 
 START
 Basic
-`s.substring(1, 4)` — which characters are included?
+Strings and StringBuilder: `s.substring(1, 4)` — which characters are included?
 Back: Indices `[1, 4)` — start inclusive, end exclusive (length = end - start).<br>An end index past `length()` throws `StringIndexOutOfBoundsException`.
 <!--ID: 1781902681013-->
 END

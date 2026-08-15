@@ -3,6 +3,7 @@ tags: [web-dev, auth, comparison]
 category: vs
 related: [jwt-tokens, stateful-vs-stateless]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Cookies are small pieces of data stored on the client's browser and sent with every request. Sessions are server-side storage linked to a client via a session ID (usually stored in a cookie). Cookies are visible to the client; session data is hidden on the server.

@@ -3,6 +3,7 @@ tags: [threads, os, concurrency]
 category: threads
 related: [process, race-conditions, deadlock]
 ---
+TARGET DECK: Study::Threads
 
 ## Description
 A lightweight unit of execution within a process. Threads share the same memory space as their parent process, which makes them fast to communicate with each other but also makes them prone to race conditions. A process can have multiple threads running concurrently.

@@ -3,6 +3,7 @@ tags: [design-pattern, creational]
 category: patterns
 related: [singleton-pattern, prototype-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that pre-creates and reuses a pool of objects instead of creating and destroying them on demand. Used when object creation is expensive (like database connections or threads).

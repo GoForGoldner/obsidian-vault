@@ -3,6 +3,7 @@ tags: [cypress, testing, assertions, web-dev]
 category: web-dev
 related: [cypress-overview-command-queue, cypress-selectors, cypress-actions, cypress-network-intercept, cypress-best-practices, dom-events]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::Testing
 
 ## Description
 Cypress assertions are built on Chai. The idiomatic form is the **implicit** assertion `.should('matcher', ...)` chained off a subject — crucially, `.should` **retries the whole preceding query** until the assertion passes or times out, which is how Cypress flushes out timing/race issues without manual waits. Chain more conditions with `.and(...)`. The **explicit** form `expect(value).to.equal(...)` (BDD/Chai) runs once, synchronously, with no retry — use it inside `.then()` callbacks on values you already have. For multi-step or computed checks, pass a callback `.should(($el) => {...})`; Cypress retries the entire callback until every `expect` inside it passes. Java contrast: there is no JUnit-style single-shot `assertEquals` at the top level — top-level assertions retry.
@@ -50,42 +51,42 @@ cy.get('[data-cy="item"]').should(($items) => {
 ```anki
 START
 Basic
-What makes `.should('be.visible')` resilient to timing issues that a single-shot assertion would fail on?
+Cypress Assertions: What makes `.should('be.visible')` resilient to timing issues that a single-shot assertion would fail on?
 Back: `.should` retries the entire preceding query + assertion until it passes or the command times out. So if the element appears slightly late, the assertion still passes once it does.
 <!--ID: 1782407009954-->
 END
 
 START
 Basic
-What's the difference between `.should(...)` and Chai's `expect(...)` in Cypress regarding retries?
+Cypress Assertions: What's the difference between `.should(...)` and Chai's `expect(...)` in Cypress regarding retries?
 Back: `.should` (implicit) retries until pass/timeout. `expect` (explicit, BDD/Chai) runs once synchronously with no retry — use it inside `.then()` on values you already hold.
 <!--ID: 1782407009957-->
 END
 
 START
 Basic
-Write a Cypress assertion that an element has text "Welcome" AND is enabled, in one chain.
+Cypress Assertions: Write a Cypress assertion that an element has text "Welcome" AND is enabled, in one chain.
 Back: cy.get('[data-cy="x"]').should('have.text', 'Welcome').and('be.enabled');
 <!--ID: 1782407009960-->
 END
 
 START
 Basic
-What does `.and()` do, and what is it equivalent to?
+Cypress Assertions: What does `.and()` do, and what is it equivalent to?
 Back: `.and()` adds another assertion against the same current subject. `.and('be.visible')` is equivalent to chaining a second `.should('be.visible')`.
 <!--ID: 1782407009964-->
 END
 
 START
 Basic
-You need to assert several computed things about a set of elements together, with retry. Which form do you use?
+Cypress Assertions: You need to assert several computed things about a set of elements together, with retry. Which form do you use?
 Back: The callback form: `.should(($els) => { expect(...); expect(...); })`. Cypress retries the whole callback until every `expect` inside passes or it times out.
 <!--ID: 1782407009967-->
 END
 
 START
 Basic
-A Java dev expects a top-level `assertEquals` that runs once. How does Cypress's top-level assertion differ?
+Cypress Assertions: A Java dev expects a top-level `assertEquals` that runs once. How does Cypress's top-level assertion differ?
 Back: Top-level Cypress assertions (`.should`) retry the preceding query until they pass or time out, rather than evaluating exactly once. Single-shot behavior only happens with `expect` inside a `.then` callback.
 <!--ID: 1782407009970-->
 END

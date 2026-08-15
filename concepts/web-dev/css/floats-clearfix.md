@@ -3,6 +3,7 @@ tags: [css, web-dev, layout, legacy]
 category: web-dev
 related: [css-display, flexbox, css-positioning]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 `float` pulls an element to the left or right of its container and lets inline content (text) wrap around it. It was the backbone of pre-flexbox layouts but is now mostly **legacy** — its one remaining good use is wrapping text around an image. The classic problem: a floated child is taken out of normal flow, so its parent **collapses to zero height**. The fix is "clearing" — historically the `::after { clear: both }` clearfix hack, now simply `display: flow-root` on the parent. Use Flexbox/Grid for actual layout.
@@ -33,21 +34,21 @@ related: [css-display, flexbox, css-positioning]
 ```anki
 START
 Basic
-A container with only floated children collapses to zero height. Why, and what's the modern one-line fix?
+Floats and Clearfix: A container with only floated children collapses to zero height. Why, and what's the modern one-line fix?
 Back: Floated elements are removed from normal flow, so they don't contribute to the parent's height. Fix: `display: flow-root;` on the parent — it establishes a BFC that contains the floats. (Legacy fix was the `::after { clear: both }` clearfix.)
 <!--ID: 1780758285731-->
 END
 
 START
 Basic
-Write the legacy clearfix hack you'll still encounter in older codebases.
+Floats and Clearfix: Write the legacy clearfix hack you'll still encounter in older codebases.
 Back: `.clearfix::after { content: ""; display: block; clear: both; }`
 <!--ID: 1780758285738-->
 END
 
 START
 Basic
-What does `clear: both` actually do?
+Floats and Clearfix: What does `clear: both` actually do?
 Back: It forces the element to move below (clear past) any preceding left- AND right-floated elements, rather than sitting beside them.
 <!--ID: 1780758285744-->
 END

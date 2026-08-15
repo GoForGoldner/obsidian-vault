@@ -3,6 +3,7 @@ tags: [jquery, web-dev, dom, selectors]
 category: web-dev
 related: [jquery-dom-manipulation, jquery-events, jquery-traversal, jquery-ajax, document-and-selectors, dom-manipulation]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::jQuery
 
 ## Description
 jQuery is a library that wraps the browser DOM in a single global function, `$` (an alias for `jQuery`). `$('.x')` runs a **CSS selector** against the document and returns a **jQuery object** — an array-like *collection* of matched elements, never a single element, even when one matched. This is the #1 mental-model shift: every method you call (`.text()`, `.css()`, `.on()`) operates on the **whole set** and returns the set again, so calls **chain**. It's roughly `querySelectorAll` + wrapper methods + automatic looping. It exists because pre-2015 the native DOM API was verbose and browser-inconsistent; modern browsers closed that gap, so jQuery is now mostly **legacy**. Convention: store jQuery collections in variables prefixed `$` (`const $btn = $('#save')`) to signal "this is a jQuery object, not a raw element."
@@ -61,42 +62,42 @@ $(el);                     // wrap a raw element back into jQuery
 ```anki
 START
 Basic
-You write `$('#save')` and `#save` matches exactly one element. Is the result a single element or something else?
+jQuery Overview and Selectors: You write `$('#save')` and `#save` matches exactly one element. Is the result a single element or something else?
 Back: A **jQuery collection** (array-like), not the element. It holds 0 or 1 elements. Use `$('#save')[0]` or `.get(0)` to get the raw DOM element.
 <!--ID: 1782407010113-->
 END
 
 START
 Basic
-What is the relationship between `$`, `jQuery`, and `document.querySelectorAll`?
+jQuery Overview and Selectors: What is the relationship between `$`, `jQuery`, and `document.querySelectorAll`?
 Back: `$` is just an alias for the `jQuery` function. `$(selector)` is like `querySelectorAll` (CSS-selector based, returns a collection) but adds wrapper methods that auto-loop over the set.
 <!--ID: 1782407010116-->
 END
 
 START
 Basic
-Why can you write `$('.error').addClass('seen').hide()` as one chain?
+jQuery Overview and Selectors: Why can you write `$('.error').addClass('seen').hide()` as one chain?
 Back: jQuery methods operate on the whole collection and **return the same collection**, so each call feeds the next. (vanilla would need an explicit forEach loop.)
 <!--ID: 1782407010119-->
 END
 
 START
 Basic
-Write the modern concise jQuery idiom to run code once the DOM is ready.
+jQuery Overview and Selectors: Write the modern concise jQuery idiom to run code once the DOM is ready.
 Back: `$(function () { ... });` (shorthand for `$(document).ready(fn)`). Vanilla equivalent: `document.addEventListener('DOMContentLoaded', fn)`.
 <!--ID: 1782407010122-->
 END
 
 START
 Basic
-What does the `$` prefix on a variable name like `$btn` conventionally signal?
+jQuery Overview and Selectors: What does the `$` prefix on a variable name like `$btn` conventionally signal?
 Back: That the variable holds a **jQuery object** (a wrapped collection), not a raw DOM element. Pure convention, no language meaning.
 <!--ID: 1782407010125-->
 END
 
 START
 Basic
-A jQuery selector matched nothing. What does `$('.nope')` return and how do you detect "no match"?
+jQuery Overview and Selectors: A jQuery selector matched nothing. What does `$('.nope')` return and how do you detect "no match"?
 Back: An **empty collection** (never null). Check `$('.nope').length === 0`. (Contrast: `document.querySelector` returns `null` on no match.)
 <!--ID: 1782407010129-->
 END

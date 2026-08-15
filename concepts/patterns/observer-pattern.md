@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [event-sourcing-pattern, mediator-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern where an object (the subject) maintains a list of dependents (observers) and notifies them automatically when its state changes. Basically a pub/sub system where things subscribe to events and get notified when something happens.

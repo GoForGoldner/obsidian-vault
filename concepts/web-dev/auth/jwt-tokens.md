@@ -6,6 +6,8 @@ tags:
 category:
 related: []
 ---
+TARGET DECK: Study::Web Dev::Auth
+
 ## Description
 A signed token (Header.Payload.Signature) used for stateless authentication. The server signs it with a secret key; the client sends it in the Authorization: Bearer header on every request. The server verifies the signature without a database lookup, making it ideal for distributed/stateless APIs.
 

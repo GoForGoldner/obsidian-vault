@@ -3,6 +3,7 @@ tags: [java, data-structures, list]
 category: java
 related: [collections-framework, java-iterators, java-queue-deque]
 ---
+TARGET DECK: Study::Java
 
 ## Description
 A `List` is the Java collections type you choose when order and position matter. It preserves encounter order, allows duplicates, and supports indexed read/write operations such as `get(i)`, `set(i, e)`, `add(i, e)`, and `remove(i)`. In real programs, `ArrayList` is the default because it gives O(1) positional reads and excellent cache locality. `LinkedList` only becomes interesting when you truly need deque-style operations at the ends, and even then `ArrayDeque` is usually the better non-list choice. The biggest practical list mistakes are confusing `remove(index)` with `remove(object)`, forgetting that `subList()` is a live view, and mutating the list unsafely during iteration.
@@ -82,77 +83,77 @@ String previous = it.previous(); // returns "D"
 ```anki
 START
 Basic
-When should you use `LinkedList` over `ArrayList`?
+Java List: When should you use `LinkedList` over `ArrayList`?
 Back: Almost never.<br>`ArrayList` gives O(1) random access and far better cache locality.<br>`LinkedList` mainly helps when you truly need frequent insertion/removal at both ends and want a `Deque`, but even then `ArrayDeque` is usually better.
 <!--ID: 1780580933015-->
 END
 
 START
 Basic
-What's the gotcha with `remove()` on a `List<Integer>`?
+Java List: What's the gotcha with `remove()` on a `List<Integer>`?
 Back: `remove(2)` calls `remove(int index)`, not `remove(Object)`.<br>To remove the Integer value `2`, call `remove(Integer.valueOf(2))`.<br>The overloads even return different types: `E` for index removal and `boolean` for object removal.
 <!--ID: 1780580933017-->
 END
 
 START
 Basic
-Why is `Iterator.remove()` safe during iteration but `Collection.remove()` is not?
+Java List: Why is `Iterator.remove()` safe during iteration but `Collection.remove()` is not?
 Back: A for-each loop uses an iterator internally, so calling `list.remove(...)` directly causes a structural modification the iterator did not expect and can throw `ConcurrentModificationException`.<br>`Iterator.remove()` is safe because it removes through the iterator's own state.
 <!--ID: 1780580933019-->
 END
 
 START
 Basic
-What's the `subList()` trap?
+Java List: What's the `subList()` trap?
 Back: `subList(from, to)` returns a live view backed by the original list, not a copy.<br>Mutating the sublist changes the original list, and structural changes to the original list can invalidate the view.<br>Use `new ArrayList<>(list.subList(...))` when you need an independent slice.
 <!--ID: 1780580933020-->
 END
 
 START
 Basic
-What does `List.sort(Comparator)` do and how do you use it?
+Java List: What does `List.sort(Comparator)` do and how do you use it?
 Back: It sorts the list in place and returns `void`.<br>Examples: `list.sort(Comparator.naturalOrder())` and `list.sort(Comparator.comparing(Person::getAge))`.<br>Because it mutates, make a copy first if you need to preserve the old order.
 <!--ID: 1780580933022-->
 END
 
 START
 Basic
-What does `List.replaceAll(UnaryOperator)` do?
+Java List: What does `List.replaceAll(UnaryOperator)` do?
 Back: It replaces every element in the list in place by applying the operator to each element.<br>Example: `names.replaceAll(String::toUpperCase);`.<br>Unlike `stream().map(...)`, it mutates the original list instead of producing a new result list.
 <!--ID: 1780580933023-->
 END
 
 START
 Basic
-What does `List.of()` vs `new ArrayList<>(List.of())` give you?
+Java List: What does `List.of()` vs `new ArrayList<>(List.of())` give you?
 Back: `List.of(...)` creates an immutable list, so `add`, `remove`, and `set` throw `UnsupportedOperationException`.<br>`new ArrayList<>(List.of(...))` creates a mutable copy you can edit normally.
 <!--ID: 1780580933025-->
 END
 
 START
 Basic
-What is the complexity of `get(index)` in `ArrayList` vs `LinkedList`?
+Java List: What is the complexity of `get(index)` in `ArrayList` vs `LinkedList`?
 Back: `ArrayList.get(index)` is O(1) because it uses array indexing.<br>`LinkedList.get(index)` is O(n) because it must walk node-by-node from one end.<br>This is a major reason `ArrayList` is the default list choice.
 <!--ID: 1780580933026-->
 END
 
 START
 Basic
-What is the complexity of `add/remove` at the HEAD in `ArrayList` vs `LinkedList`?
+Java List: What is the complexity of `add/remove` at the HEAD in `ArrayList` vs `LinkedList`?
 Back: At index 0, `ArrayList` is O(n) because elements must shift, while `LinkedList` is O(1) for pointer updates.<br>But `LinkedList` still often loses in practice because of object overhead and poor cache locality.
 <!--ID: 1780580933028-->
 END
 
 START
 Basic
-What does `List.indexOf(Object)` return if the element isn't found?
+Java List: What does `List.indexOf(Object)` return if the element isn't found?
 Back: It returns `-1`.<br>The comparison uses `equals()`.<br>`lastIndexOf(Object)` works the same way but searches for the last matching occurrence.
 <!--ID: 1780580933030-->
 END
 
 START
 Basic
-Why can `List.replaceAll` not change the element type the way `Stream.map` can?
+Java List: Why can `List.replaceAll` not change the element type the way `Stream.map` can?
 Back: `replaceAll` takes a `UnaryOperator<E>` whose input and output are the SAME type `E`, and it mutates the list in place (returns void).<br>`Stream.map` takes a `Function<T,R>`, so it can change the type (e.g. `String` to `Integer`) and returns a new stream without touching the original.
 <!--ID: 1782144297766-->
 END

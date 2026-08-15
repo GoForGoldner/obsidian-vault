@@ -3,6 +3,7 @@ tags: [system-design, devops]
 category: system-design
 related: [ci-cd, microservices-vs-monolith]
 ---
+TARGET DECK: Study::System Design
 
 ## Description
 A platform that packages your application and all its dependencies into a container, a lightweight isolated portable unit. Containers share the host OS kernel (unlike VMs which have their own OS), making them fast to start and resource-efficient.

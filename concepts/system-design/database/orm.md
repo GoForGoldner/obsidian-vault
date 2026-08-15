@@ -3,6 +3,7 @@ tags: [database, backend]
 category: system-design
 related: [sql, repository-pattern]
 ---
+TARGET DECK: Study::System Design::Database
 
 ## Description
 Object-Relational Mapping. A tool that lets you interact with a database using objects in your programming language instead of writing raw SQL. Classes map to tables, properties map to columns, and the ORM generates SQL for you. Examples: Hibernate (Java), Entity Framework (C#), Prisma (JS/TS).

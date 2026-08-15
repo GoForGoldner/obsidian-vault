@@ -3,6 +3,7 @@ tags: [java, lang, primitives, wrappers, autoboxing]
 category: java
 related: [var-type-inference, strings-and-stringbuilder, generics, stream-api]
 ---
+TARGET DECK: Study::Java::Lang
 
 ## Description
 Java has 8 primitive types (value types stored directly) and a matching wrapper class for each (objects on the heap). **Autoboxing** converts a primitive to its wrapper automatically; **unboxing** does the reverse. The exam loves the consequences: the `Integer` cache making `==` lie, `NullPointerException` from unboxing a `null` wrapper, overload-resolution order, and integer overflow.
@@ -57,56 +58,56 @@ Integer w = Integer.valueOf("42");   // returns Integer (cached if in range)
 ```anki
 START
 Basic
-`Integer a = 127, b = 127; a == b` vs `Integer c = 128, d = 128; c == d` — results?
+Primitives, Wrappers, and Autoboxing: `Integer a = 127, b = 127; a == b` vs `Integer c = 128, d = 128; c == d` — results?
 Back: `a == b` is **true**; `c == d` is **false**.<br>Autoboxing caches `Integer` objects for `-128..127`, so equal small values share one object.<br>Always use `.equals()` to compare wrapper values.
 <!--ID: 1781902680849-->
 END
 
 START
 Basic
-Why does `int x = someInteger;` sometimes throw `NullPointerException`?
+Primitives, Wrappers, and Autoboxing: Why does `int x = someInteger;` sometimes throw `NullPointerException`?
 Back: If the `Integer` is `null`, unboxing calls `.intValue()` on `null`.<br>Auto-unboxing a `null` wrapper always NPEs.
 <!--ID: 1781902680856-->
 END
 
 START
 Basic
-Overload resolution: order the compiler prefers among widening, boxing, and varargs.
+Primitives, Wrappers, and Autoboxing: Overload resolution: order the compiler prefers among widening, boxing, and varargs.
 Back: Widening > boxing > varargs.<br>`f(1)` picks `f(long)` over `f(Integer)` over `f(int...)`.<br>The compiler avoids autoboxing and varargs until no primitive-widening match exists.
 <!--ID: 1781902680863-->
 END
 
 START
 Basic
-`Integer.parseInt("42")` vs `Integer.valueOf("42")` — what does each return?
+Primitives, Wrappers, and Autoboxing: `Integer.parseInt("42")` vs `Integer.valueOf("42")` — what does each return?
 Back: `parseInt` returns a primitive `int`.<br>`valueOf` returns an `Integer` (and may return a cached object for `-128..127`).
 <!--ID: 1781902680870-->
 END
 
 START
 Basic
-What does autoboxing `Integer x = 5;` actually compile to?
+Primitives, Wrappers, and Autoboxing: What does autoboxing `Integer x = 5;` actually compile to?
 Back: `Integer x = Integer.valueOf(5);`<br>That call consults the Integer cache, which is why `==` on small values can be true.
 <!--ID: 1781902680877-->
 END
 
 START
 Basic
-`Integer.MAX_VALUE + 1` evaluates to what?
+Primitives, Wrappers, and Autoboxing: `Integer.MAX_VALUE + 1` evaluates to what?
 Back: `Integer.MIN_VALUE` (-2147483648).<br>`int` arithmetic wraps around silently on overflow — no exception. Use `Math.addExact` to detect it.
 <!--ID: 1781902680884-->
 END
 
 START
 Basic
-How many primitive types does Java have, and why do collections use wrappers?
+Primitives, Wrappers, and Autoboxing: How many primitive types does Java have, and why do collections use wrappers?
 Back: 8: `boolean char byte short int long float double`.<br>Generics/collections hold only reference types, so `List<Integer>` (not `List<int>`).
 <!--ID: 1781902680891-->
 END
 
 START
 Basic
-You compare two `Long` or `Integer` values with `==` and get inconsistent results across runs/inputs. Cause and fix?
+Primitives, Wrappers, and Autoboxing: You compare two `Long` or `Integer` values with `==` and get inconsistent results across runs/inputs. Cause and fix?
 Back: The wrapper cache makes `==` true only for small cached values; larger values are distinct objects.<br>Fix: compare with `.equals()` or unbox to primitives first.
 <!--ID: 1781902680898-->
 END

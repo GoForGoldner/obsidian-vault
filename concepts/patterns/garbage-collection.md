@@ -3,6 +3,7 @@ tags: [memory-management, runtime]
 category: patterns
 related: [stack-and-heap, process]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 Automatic memory management that reclaims memory occupied by objects no longer reachable by the program. The runtime periodically finds and cleans up unused objects on the heap.

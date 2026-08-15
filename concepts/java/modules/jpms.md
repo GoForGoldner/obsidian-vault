@@ -3,6 +3,7 @@ tags: [java, modules, jpms]
 category: java
 related: []
 ---
+TARGET DECK: Study::Java::Modules
 
 ## Description
 The Java Platform Module System (JPMS, introduced in Java 9 and unchanged in essence through Java 26) adds a unit of organization above the package: the **module**, declared in a `module-info.java` at the source root. A module explicitly states what it `requires` (depends on), what packages it `exports` (makes its public API), and what it `opens` (allows deep reflective access). The headline benefit is **strong encapsulation**: a package that is not exported is genuinely inaccessible to other modules at compile time and run time, even if its types are `public`.
@@ -76,56 +77,56 @@ jlink --add-modules com.acme.orders --output runtime  # build a minimal custom J
 ```anki
 START
 Basic
-What does `requires transitive M` give you that plain `requires M` does not?
+JPMS: What does `requires transitive M` give you that plain `requires M` does not?
 Back: It grants **implied readability**: any module that reads YOU automatically also reads `M`.<br>Use it when `M`'s types appear in your exported API (e.g. you return a `java.sql` type).<br>Plain `requires M` keeps the dependency private to your module's implementation.
 <!--ID: 1781902681177-->
 END
 
 START
 Basic
-When do you use `requires static M`?
+JPMS: When do you use `requires static M`?
 Back: For a **compile-time-only** dependency that is optional at run time (e.g. annotations, an optional integration).<br>The module need not be present on the runtime module path, and its absence is not an error.<br>Plain `requires` would fail at startup if the module were missing.
 <!--ID: 1781902681183-->
 END
 
 START
 Basic
-What's the difference between `exports P` and `opens P`?
+JPMS: What's the difference between `exports P` and `opens P`?
 Back: `exports P` makes package `P`'s **public API** accessible for normal compile/run use, but blocks reflection on private members.<br>`opens P` grants **deep reflective** access at runtime (for frameworks like Jackson/Spring) WITHOUT exporting the API for ordinary code.<br>Both have qualified forms (`... to M`).
 <!--ID: 1781902681190-->
 END
 
 START
 Basic
-Name the three kinds of module and where each comes from.
+JPMS: Name the three kinds of module and where each comes from.
 Back: **Named** — has `module-info.java`, on the module path; name from the descriptor.<br>**Automatic** — a plain jar (no descriptor) placed on the module path.<br>**Unnamed** — anything loaded from the classpath; reads everything but can't be `requires`d by name.
 <!--ID: 1781902681195-->
 END
 
 START
 Basic
-How is an automatic module's name determined?
+JPMS: How is an automatic module's name determined?
 Back: If the jar's manifest has `Automatic-Module-Name`, that value is used (stable, preferred).<br>Otherwise it is derived from the FILENAME: strip `.jar`, drop a trailing `-version`, and replace non-alphanumerics with `.` (e.g. `guava-32.1.0.jar` -> `guava`).<br>Gotcha: a version-driven filename change can silently change the module name.
 <!--ID: 1781902681201-->
 END
 
 START
 Basic
-What is "strong encapsulation" in JPMS?
+JPMS: What is "strong encapsulation" in JPMS?
 Back: A package that is NOT exported is inaccessible to other modules at compile AND run time, even if its types are declared `public`.<br>This is stronger than the old classpath world, where any public type was reachable.<br>So `public` no longer means "public to everyone" — only within the module unless exported.
 <!--ID: 1781902681207-->
 END
 
 START
 Basic
-Why are split packages not allowed in JPMS, and what's the rule?
+JPMS: Why are split packages not allowed in JPMS, and what's the rule?
 Back: The same package may not be supplied by more than one module that a given module reads — each package must belong to exactly ONE module.<br>Split packages cause the module system to reject the configuration at startup.<br>This forces a clean, non-overlapping package ownership across modules.
 <!--ID: 1781902681214-->
 END
 
 START
 Basic
-What do `jdeps` and `jlink` do?
+JPMS: What do `jdeps` and `jlink` do?
 Back: `jdeps` analyzes a jar/class's dependencies and can suggest a `module-info` (useful for migration).<br>`jlink` assembles a minimal custom runtime image containing only the modules your app needs.<br>Together they help move from the classpath to modules and ship a smaller JRE.
 <!--ID: 1781902681227-->
 END

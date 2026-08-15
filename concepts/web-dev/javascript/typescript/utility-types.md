@@ -3,6 +3,7 @@ tags: [typescript, web-dev, types, utility-types]
 category: web-dev
 related: [generics-typescript, interfaces-vs-type-aliases, functions-typing, basic-types-annotations, components-and-props]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 Utility types are built-in generic type transformers that derive new types from existing ones — so you define a shape once and project variants instead of duplicating. The core set: `Partial<T>` (all optional), `Required<T>`, `Readonly<T>`, `Pick<T, K>` / `Omit<T, K>` (subset by keys), `Record<K, V>` (object from key union to value). Function-related: `ReturnType<F>`, `Parameters<F>`, and `Awaited<T>` (unwrap a Promise). The primitives behind them are `keyof T` (union of a type's keys) and **indexed access** `T[K]` (the type of a property). These keep types DRY and in sync with the source type.
@@ -43,42 +44,42 @@ type Data = Awaited<Promise<number>>; // number
 ```anki
 START
 Basic
-You have `interface User {...}` and need a type with every field optional for a PATCH update. Which utility type?
+Utility Types: You have `interface User {...}` and need a type with every field optional for a PATCH update. Which utility type?
 Back: `Partial<User>` — makes all properties optional. (`Required<T>` is the inverse.)
 <!--ID: 1782407009696-->
 END
 
 START
 Basic
-Difference between `Pick<T, K>` and `Omit<T, K>`?
+Utility Types: Difference between `Pick<T, K>` and `Omit<T, K>`?
 Back: `Pick<T, K>` keeps only the listed keys `K`; `Omit<T, K>` keeps everything except `K`. Both produce a subset object type from `T`.
 <!--ID: 1782407009699-->
 END
 
 START
 Basic
-What does `keyof User` produce, given `User` has `id`, `name`, `email`?
+Utility Types: What does `keyof User` produce, given `User` has `id`, `name`, `email`?
 Back: The union of its keys as string literals: `"id" | "name" | "email"`.
 <!--ID: 1782407009702-->
 END
 
 START
 Basic
-You have `function load(): {...}`. How do you get its return type as a type, without re-typing it?
+Utility Types: You have `function load(): {...}`. How do you get its return type as a type, without re-typing it?
 Back: `ReturnType<typeof load>`. `typeof load` gets the function's type; `ReturnType<>` extracts what it returns.
 <!--ID: 1782407009705-->
 END
 
 START
 Basic
-How do you build a type `{ admin: boolean; guest: boolean }` from a key union and a value type?
+Utility Types: How do you build a type `{ admin: boolean; guest: boolean }` from a key union and a value type?
 Back: `Record<"admin" | "guest", boolean>`. `Record<K, V>` maps each key in union `K` to value type `V`.
 <!--ID: 1782407009708-->
 END
 
 START
 Basic
-You have `type T = Promise<User>`. How do you get just `User` out of it as a type?
+Utility Types: You have `type T = Promise<User>`. How do you get just `User` out of it as a type?
 Back: `Awaited<T>` — unwraps the Promise (and recursively nested promises) to its resolved value type.
 <!--ID: 1782407009711-->
 END

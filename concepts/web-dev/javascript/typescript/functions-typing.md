@@ -3,6 +3,7 @@ tags: [typescript, web-dev, functions, types]
 category: web-dev
 related: [basic-types-annotations, generics-typescript, utility-types, union-intersection-narrowing, functions-and-arrows]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 Type the parameters and (optionally) the return — the return is usually inferred. Params can be **optional** (`x?: T`, trailing only) or have **defaults** (`x = 5`, which also makes them optional); **rest params** collect the rest as a tuple/array (`...args: number[]`). A standalone **function type expression** is `(a: string) => number`. Interfaces/types can carry **call signatures** and **overloads** (multiple signatures + one implementation) when one input shape returns different output types. The `this` parameter is a fake first param used purely for typing — it has no runtime cost and disappears on emit. Java contrast: arrow functions lexically bind `this`, and TS has no method overloading at runtime (overloads are type-only).
@@ -49,35 +50,35 @@ function handler(this: HTMLButtonElement, e: Event) {
 ```anki
 START
 Basic
-Write a standalone TS type for a function taking two numbers and returning a number.
+Typing Functions: Write a standalone TS type for a function taking two numbers and returning a number.
 Back: `type BinOp = (a: number, b: number) => number;`. Note the `=>` arrow in *type* position (different from a value arrow function).
 <!--ID: 1782407009578-->
 END
 
 START
 Basic
-What's the difference between `x?: number` and `x = 5` in a parameter list?
+Typing Functions: What's the difference between `x?: number` and `x = 5` in a parameter list?
 Back: `x?: number` is optional (may be `undefined`). `x = 5` gives a default value (also makes it optional, but supplies 5 when omitted). Optional params must be trailing.
 <!--ID: 1782407009581-->
 END
 
 START
 Basic
-How do TypeScript function overloads work at runtime?
+Typing Functions: How do TypeScript function overloads work at runtime?
 Back: They don't — overloads are type-only. You write multiple signature lines, then ONE implementation that handles all cases (and whose own signature isn't callable). After emit, it's a single JS function.
 <!--ID: 1782407009584-->
 END
 
 START
 Basic
-How do you type the `this` value inside a standalone function, and does it cost anything at runtime?
+Typing Functions: How do you type the `this` value inside a standalone function, and does it cost anything at runtime?
 Back: Add a fake first parameter `this: SomeType` (e.g. `function f(this: HTMLButtonElement, e: Event)`). It's type-only and erased — not a real argument.
 <!--ID: 1782407009588-->
 END
 
 START
 Basic
-How do you type a rest parameter that collects any number of strings?
+Typing Functions: How do you type a rest parameter that collects any number of strings?
 Back: `...args: string[]` (or a tuple type). Must be the last parameter.
 <!--ID: 1782407009591-->
 END

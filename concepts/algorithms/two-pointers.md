@@ -3,6 +3,7 @@ tags: [algorithms, technique]
 category: algorithms
 related: [bfs, dfs]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 A technique that uses two pointers (or indices) to traverse a data structure, usually a sorted array or linked list. The pointers move toward each other, in the same direction at different speeds, or from fixed positions. Reduces O(n²) brute force to O(n) by eliminating redundant comparisons.

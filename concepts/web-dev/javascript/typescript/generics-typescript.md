@@ -3,6 +3,7 @@ tags: [typescript, web-dev, generics, types]
 category: web-dev
 related: [typescript-overview, utility-types, functions-typing, interfaces-vs-type-aliases, union-intersection-narrowing]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 Generics parameterize types so code is reusable without losing type info. Syntax mirrors Java (`<T>`), and you can constrain a parameter with `extends` (an upper bound), give **default type params** (`<T = string>`), and use generics on functions, interfaces, classes, and type aliases. Two big differences from Java: TS generics are **erased like everything else** (no `T.class`, no `new T()`, no reified arrays — but also no Java erasure casts/warnings), and TS **inference** is much stronger — you rarely write the type argument explicitly because it's inferred from the arguments. Use a constraint when the body needs to access members of `T`.
@@ -48,35 +49,35 @@ class Stack<T> {
 ```anki
 START
 Basic
-How do you require that a generic parameter `T` has a `.length` property?
+TypeScript Generics: How do you require that a generic parameter `T` has a `.length` property?
 Back: Constrain it: `<T extends { length: number }>`. `extends` sets an upper bound, so the body can safely access `.length`.
 <!--ID: 1782407009595-->
 END
 
 START
 Basic
-Why does `first([1,2,3])` not need `first<number>(...)` in TypeScript?
+TypeScript Generics: Why does `first([1,2,3])` not need `first<number>(...)` in TypeScript?
 Back: TS inference deduces the type argument from the call arguments (`number[]` -> `T = number`). Explicit type args are usually only needed when inference can't see them.
 <!--ID: 1782407009598-->
 END
 
 START
 Basic
-Two ways TS generics differ from Java generics?
+TypeScript Generics: Two ways TS generics differ from Java generics?
 Back: (1) Like all TS types they're fully erased — no `new T()`, no `T.class`, no reified generic arrays. (2) Inference is far stronger, so you rarely annotate the type argument. (No unchecked-cast warnings either.)
 <!--ID: 1782407009601-->
 END
 
 START
 Basic
-Write a generic interface whose type parameter defaults to `string`.
+TypeScript Generics: Write a generic interface whose type parameter defaults to `string`.
 Back: `interface Box<T = string> { value: T; }`. Used as `Box` it behaves like `Box<string>`.
 <!--ID: 1782407009605-->
 END
 
 START
 Basic
-You wrote `function id<T>(x: T): T`. Why is that better than `(x: any): any`?
+TypeScript Generics: You wrote `function id<T>(x: T): T`. Why is that better than `(x: any): any`?
 Back: Generics preserve the relationship: output type equals input type, so the caller keeps full type info. `any` throws it away and disables checking.
 <!--ID: 1782407009608-->
 END

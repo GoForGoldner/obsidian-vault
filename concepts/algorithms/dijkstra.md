@@ -3,6 +3,7 @@ tags: [algorithms, graph, shortest-path]
 category: algorithms
 related: [bfs, topological-sort, union-find]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Dijkstra's algorithm computes shortest paths from one source in a weighted graph as long as all edge weights are non-negative. It repeatedly expands the currently cheapest reachable node using a min-heap, giving a standard time complexity of O((V + E) log V) with adjacency lists.
@@ -44,14 +45,14 @@ int[] dijkstra(List<int[]>[] graph, int src) {
 ```anki
 START
 Basic
-You see: weighted graph, non-negative edges, shortest path from one source. What algorithm?
+Dijkstra: You see: weighted graph, non-negative edges, shortest path from one source. What algorithm?
 Back: Dijkstra. Use a min-heap of `(cost, node)` pairs and always process the cheapest next state. The key stale-entry guard is `if (d > dist[u]) continue;`.
 <!--ID: 1780580932925-->
 END
 
 START
 Basic
-When do you use Dijkstra vs BFS vs Bellman-Ford?
+Dijkstra: When do you use Dijkstra vs BFS vs Bellman-Ford?
 Back: BFS for unweighted graphs. Dijkstra for weighted graphs with non-negative edges. Bellman-Ford when negative edges are allowed, assuming no negative cycle. Dijkstra can give wrong answers if negative edges exist.
 <!--ID: 1780580932926-->
 END

@@ -3,6 +3,7 @@ tags: [java, lang, generics, wildcards, type-erasure]
 category: java
 related: [primitives-wrappers-autoboxing, var-type-inference, strings-and-stringbuilder, collections-framework]
 ---
+TARGET DECK: Study::Java::Lang
 
 ## Description
 Generics give compile-time type safety to types and methods that are parameterized over a type variable `<T>`. They let collections and APIs be both reusable and statically checked, eliminating most casts. The exam focuses on **bounded** type parameters, **wildcards** (`?`, `? extends`, `? super`) and the PECS rule, and the consequences of **type erasure** — generics exist only at compile time and are erased to their bounds (or `Object`) in bytecode.
@@ -69,63 +70,63 @@ static <T> List<T> of(T... xs) { return List.of(xs); }
 ```anki
 START
 Basic
-Write the syntax for a generic method that returns its type parameter.
+Generics: Write the syntax for a generic method that returns its type parameter.
 Back: `static <T> T pick(T a, T b) { ... }`<br>The `<T>` goes **before** the return type; `T` is usually inferred from the arguments.
 <!--ID: 1781902680784-->
 END
 
 START
 Basic
-What does `<T extends Comparable<T>>` express?
+Generics: What does `<T extends Comparable<T>>` express?
 Back: A bounded type parameter — `T` must be a type comparable to itself.<br>It lets you call `a.compareTo(b)` inside the method while keeping callers type-safe.
 <!--ID: 1781902680791-->
 END
 
 START
 Basic
-State the PECS rule and what it maps to.
+Generics: State the PECS rule and what it maps to.
 Back: **Producer Extends, Consumer Super.**<br>`? extends T` when you only read T out (producer); `? super T` when you only write T in (consumer).
 <!--ID: 1781902680797-->
 END
 
 START
 Basic
-From a `List<? extends Number>`, can you read? Can you add elements?
+Generics: From a `List<? extends Number>`, can you read? Can you add elements?
 Back: Read yes — each element is a `Number`.<br>Add no (except `null`) — the exact element type is unknown, so the compiler rejects any insert.
 <!--ID: 1781902680805-->
 END
 
 START
 Basic
-Into a `List<? super Integer>`, what can you add and what do reads give you?
+Generics: Into a `List<? super Integer>`, what can you add and what do reads give you?
 Back: Add `Integer` (or any `Integer` subtype) safely.<br>Reads come back as `Object`, since the element type could be any supertype of `Integer`.
 <!--ID: 1781902680812-->
 END
 
 START
 Basic
-What is type erasure, and what does `new ArrayList<String>().getClass() == new ArrayList<Integer>().getClass()` return?
+Generics: What is type erasure, and what does `new ArrayList<String>().getClass() == new ArrayList<Integer>().getClass()` return?
 Back: Generic type info is removed at compile time (erased to bounds/`Object`); the runtime has one raw class.<br>So the comparison is `true` — both are just `ArrayList`.
 <!--ID: 1781902680819-->
 END
 
 START
 Basic
-Name three things erasure forbids inside a generic with type variable `T`.
+Generics: Name three things erasure forbids inside a generic with type variable `T`.
 Back: `new T()`, `new T[...]`, and `x instanceof T`.<br>At runtime `T` doesn't exist, so it can't be instantiated, arrayed, or type-checked. Also: no primitive type arguments.
 <!--ID: 1781902680825-->
 END
 
 START
 Basic
-You get an "unchecked" warning from a generic varargs method. What is it warning about, and what annotation silences it?
+Generics: You get an "unchecked" warning from a generic varargs method. What is it warning about, and what annotation silences it?
 Back: Heap pollution — a generic varargs param creates an array of an erased type that could hold a wrong type.<br>`@SafeVarargs` on a static/final/private method suppresses it once you've verified safety.
 <!--ID: 1781902680833-->
 END
 
 START
 Basic
-Why use `List<Integer>` instead of `List<int>`?
+Generics: Why use `List<Integer>` instead of `List<int>`?
 Back: Type arguments must be reference types; primitives are not allowed.<br>You use the wrapper `Integer`, relying on autoboxing at the boundaries.
 <!--ID: 1781902680840-->
 END

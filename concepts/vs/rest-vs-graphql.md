@@ -3,6 +3,7 @@ tags: [web-dev, api, comparison]
 category: vs
 related: [gRPC, http-requests]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 REST uses multiple endpoints (one per resource) with fixed response shapes. GraphQL uses a single endpoint where the client specifies exactly what data it wants. REST is simpler and well-cached; GraphQL avoids over/under-fetching but is more complex to implement.

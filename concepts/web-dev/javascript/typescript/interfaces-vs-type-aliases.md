@@ -3,6 +3,7 @@ tags: [typescript, web-dev, types]
 category: web-dev
 related: [typescript-overview, basic-types-annotations, union-intersection-narrowing, utility-types, components-and-props]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 Both `interface` and `type` name a shape. **Interfaces** can be re-opened and merged (**declaration merging**) and extend via `extends`; they're idiomatic for object/class contracts. **Type aliases** can name *anything* — unions, intersections, primitives, tuples, mapped types — which interfaces can't. Members support `?` (optional) and `readonly`, and **index signatures** `[key: string]: T` describe open-ended keys. Rule of thumb: use `interface` for object shapes and public APIs (better merging/extension); use `type` when you need unions/intersections/conditionals. Unlike Java interfaces, these are purely structural and erased at runtime.
@@ -48,35 +49,35 @@ interface Animal { age: number; } // MERGES — Animal now has name + age
 ```anki
 START
 Basic
-When do you reach for `interface` vs `type` alias in TypeScript?
+Interfaces vs Type Aliases: When do you reach for `interface` vs `type` alias in TypeScript?
 Back: `interface` for object/class shapes and public APIs (supports declaration merging, `extends`). `type` when you need a union, intersection, tuple, primitive alias, or mapped/conditional type — things interface can't express.
 <!--ID: 1782407009611-->
 END
 
 START
 Basic
-What is declaration merging, and which one supports it — `interface` or `type`?
+Interfaces vs Type Aliases: What is declaration merging, and which one supports it — `interface` or `type`?
 Back: Only `interface`. Two `interface` declarations with the same name merge into one combined shape. `type` aliases with a duplicate name are a redeclaration error. Useful for augmenting library types.
 <!--ID: 1782407009614-->
 END
 
 START
 Basic
-Write an interface member that is optional and one that can't be reassigned.
+Interfaces vs Type Aliases: Write an interface member that is optional and one that can't be reassigned.
 Back: `name?: string;` (optional) and `readonly id: number;` (readonly). `readonly` is compile-time only — erased at runtime.
 <!--ID: 1782407009617-->
 END
 
 START
 Basic
-You need a type for an object with unknown string keys all mapping to numbers. What syntax?
+Interfaces vs Type Aliases: You need a type for an object with unknown string keys all mapping to numbers. What syntax?
 Back: An index signature: `interface Scores { [key: string]: number }` (or `Record<string, number>`).
 <!--ID: 1782407009621-->
 END
 
 START
 Basic
-Why can't you write `interface Status = "a" | "b"`?
+Interfaces vs Type Aliases: Why can't you write `interface Status = "a" | "b"`?
 Back: Interfaces only describe object shapes — they can't alias a union of literals. Use a type alias: `type Status = "a" | "b";`.
 <!--ID: 1782407009624-->
 END

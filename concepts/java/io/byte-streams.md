@@ -3,6 +3,7 @@ tags: [java, io, streams, bytes]
 category: java
 related: [files-and-paths, character-streams, try-with-resources, serialization, console-and-standard-streams]
 ---
+TARGET DECK: Study::Java::IO
 
 ## Description
 Byte streams move raw 8-bit data and are rooted at the abstract classes `InputStream`
@@ -80,49 +81,49 @@ int first = bin.read();                    // 1
 ```anki
 START
 Basic
-What does `InputStream.read()` return, and how does it signal end-of-stream?
+Byte Streams: What does `InputStream.read()` return, and how does it signal end-of-stream?
 Back: It returns an `int` in 0–255 (one unsigned byte), NOT a `byte`.<br>At EOF it returns `-1`.<br>It's an `int` so that the 256 valid byte values stay distinct from the `-1` sentinel.
 <!--ID: 1781902680323-->
 END
 
 START
 Basic
-Why does the read loop use `int b` instead of `byte b`?
+Byte Streams: Why does the read loop use `int b` instead of `byte b`?
 Back: `read()` returns `int`; a `byte` can't represent the `-1` EOF sentinel distinctly (byte `-1` == `0xFF`, a valid value).<br>`while ((b = in.read()) != -1)` only works with `int`.
 <!--ID: 1781902680331-->
 END
 
 START
 Basic
-You write to a `BufferedOutputStream` but the file ends up empty/short. What's missing?
+Byte Streams: You write to a `BufferedOutputStream` but the file ends up empty/short. What's missing?
 Back: Buffered data sits in memory until you `flush()` (or `close()`, which flushes).<br>Either call `out.flush()` or let try-with-resources close it.<br>Buffering trades immediacy for fewer syscalls.
 <!--ID: 1781902680339-->
 END
 
 START
 Basic
-You see `new BufferedInputStream(new FileInputStream("f"))` — what pattern is this and why?
+Byte Streams: You see `new BufferedInputStream(new FileInputStream("f"))` — what pattern is this and why?
 Back: The decorator pattern: `BufferedInputStream` wraps the raw stream to add buffering.<br>Closing the outer stream closes the wrapped one too.<br>Buffering reduces the number of underlying read syscalls.
 <!--ID: 1781902680346-->
 END
 
 START
 Basic
-When do you reach for byte streams over character streams?
+Byte Streams: When do you reach for byte streams over character streams?
 Back: For binary, byte-exact data: images, audio, `.class` files, serialized objects, verbatim file copies.<br>Byte streams have no charset concept; character streams decode bytes to `char` using an encoding.
 <!--ID: 1781902680353-->
 END
 
 START
 Basic
-What does `read(byte[] buf)` return, and what's the trap with the count?
+Byte Streams: What does `read(byte[] buf)` return, and what's the trap with the count?
 Back: It returns the number of bytes actually read, or `-1` at EOF.<br>The count may be LESS than `buf.length` — always process only `buf[0..n)`, not the whole array.
 <!--ID: 1781902680361-->
 END
 
 START
 Basic
-What is `ByteArrayOutputStream` for, and how do you get the bytes back out?
+Byte Streams: What is `ByteArrayOutputStream` for, and how do you get the bytes back out?
 Back: An in-memory `OutputStream` that accumulates bytes in a growable `byte[]`.<br>Retrieve with `toByteArray()`.<br>Pair with `ByteArrayInputStream` to read from a `byte[]`; no file/close needed.
 <!--ID: 1781902680368-->
 END

@@ -3,6 +3,7 @@ tags: [algorithms, graph, comparison]
 category: vs
 related: [bfs, dfs]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 BFS explores level by level using a queue. finds the shortest path in unweighted graphs. DFS explores as deep as possible using a stack/recursion. better for exhaustive search and backtracking problems.

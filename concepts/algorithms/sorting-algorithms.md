@@ -3,6 +3,7 @@ tags: [algorithms, sorting]
 category: algorithms
 related: [heap-priority-queue, line-sweep, cyclic-sort]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Sorting problems split into comparison-based algorithms like merge sort and quick sort, which are typically O(n log n), and specialized non-comparison approaches like bucket sort, which can reach linear-time performance when the input distribution fits the assumptions. Merge sort gives stable, guaranteed O(n log n) behavior with O(n) extra space, quick sort is usually fast and in-place but has O(n²) worst case, and bucket sort shines when values are uniformly distributed or frequencies can be grouped efficiently.
@@ -68,14 +69,14 @@ for (int count = buckets.length - 1; count >= 0 && ans.size() < k; count--) {
 ```anki
 START
 Basic
-When do you choose merge sort vs quick sort vs bucket sort?
+Sorting Algorithms: When do you choose merge sort vs quick sort vs bucket sort?
 Back: Merge sort: need stability or guaranteed O(n log n), willing to pay O(n) space. Quick sort: in-place preferred, average O(n log n), randomize pivot to avoid O(n²). Bucket sort: data uniformly distributed in known range, O(n) average.
 <!--ID: 1780580932971-->
 END
 
 START
 Basic
-What is Quick Select and when do you use it?
+Sorting Algorithms: What is Quick Select and when do you use it?
 Back: Find the kth smallest element in O(n) average. Same partition as quick sort, but only recurse into ONE side (the side containing k). After partitioning, pivot is at its final sorted position — if that's k, you're done.
 <!--ID: 1780580932972-->
 END

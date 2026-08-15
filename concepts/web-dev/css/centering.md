@@ -3,6 +3,7 @@ tags: [css, web-dev, layout]
 category: web-dev
 related: [flexbox, css-grid, box-model, css-positioning]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 "How do I center this?" has different answers depending on *what* you're centering and *which axes*. The modern default is flexbox or grid on the parent. For a single fixed-width block, `margin: 0 auto` still wins. For an absolutely-positioned element of unknown size, the `translate(-50%, -50%)` trick is the classic. This note ties together [[flexbox]], [[css-grid]], [[box-model]], and [[css-positioning]] around one practical problem.
@@ -41,42 +42,42 @@ related: [flexbox, css-grid, box-model, css-positioning]
 ```anki
 START
 Basic
-Write the CSS to center plain inline text horizontally inside its container.
+Centering: Write the CSS to center plain inline text horizontally inside its container.
 Back: `text-align: center;` on the container. (Works for inline / inline-block content, not block-level boxes.)
 <!--ID: 1780758285211-->
 END
 
 START
 Basic
-Write the CSS to horizontally center a block element that has a known width — using the box model, not flexbox.
+Centering: Write the CSS to horizontally center a block element that has a known width — using the box model, not flexbox.
 Back: `margin: 0 auto;` (with a set `width`). Auto left/right margins absorb the leftover space equally.
 <!--ID: 1780758285216-->
 END
 
 START
 Basic
-Write the shortest CSS that centers a child on BOTH axes using grid.
+Centering: Write the shortest CSS that centers a child on BOTH axes using grid.
 Back: `display: grid; place-items: center;` on the parent.
 <!--ID: 1780758285221-->
 END
 
 START
 Basic
-Write the CSS to center an absolutely-positioned element whose width and height you don't know.
+Centering: Write the CSS to center an absolutely-positioned element whose width and height you don't know.
 Back: `position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);` — the negative translate pulls it back by half its own size.
 <!--ID: 1780758285226-->
 END
 
 START
 Basic
-Why doesn't `margin: auto` vertically center a block in normal document flow, and where does it actually work vertically?
+Centering: Why doesn't `margin: auto` vertically center a block in normal document flow, and where does it actually work vertically?
 Back: In normal block flow, vertical `auto` margins compute to 0 — no centering. `margin: auto` *does* center vertically inside a **flex** (or grid) container.
 <!--ID: 1780758285232-->
 END
 
 START
 Basic
-You need to quickly center one item both horizontally and vertically in a container. What are the two go-to modern one-block answers?
+Centering: You need to quickly center one item both horizontally and vertically in a container. What are the two go-to modern one-block answers?
 Back: Flexbox — `display: flex; justify-content: center; align-items: center;` — or Grid — `display: grid; place-items: center;`.
 <!--ID: 1780758285238-->
 END

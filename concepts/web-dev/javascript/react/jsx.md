@@ -3,6 +3,7 @@ tags: [react, web-dev, jsx]
 category: web-dev
 related: [react-overview, components-and-props, conditional-rendering-and-lists, typing-the-dom]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 JSX is a syntax extension that lets you write HTML-looking markup directly in TypeScript/JavaScript. It is **not** a string template — it compiles to function calls (`react/jsx-runtime`'s `jsx(...)`, historically `React.createElement(...)`), so a JSX expression is just an ordinary value you can store in a variable or return. Inside JSX, `{}` switches back to JS expression mode (only expressions, not statements — no `if`/`for`). Because it's really JS, attribute names use **camelCase** and a few are renamed to avoid reserved words: `class` becomes `className`, `for` becomes `htmlFor`. A component must return a **single root element**; wrap siblings in a fragment `<>...</>` (renders nothing extra to the DOM) when you don't want an extra wrapper div.
@@ -51,35 +52,35 @@ const b = jsx("button", { className: "primary", children: "Go" });
 ```anki
 START
 Basic
-In JSX, what kind of code can go inside `{ }`, and what's the one thing you can't put there?
+JSX: In JSX, what kind of code can go inside `{ }`, and what's the one thing you can't put there?
 Back: Any JS *expression* (produces a value): variables, calls, ternaries, `.map`. You cannot put *statements* — no `if`, `for`, or variable declarations inside the braces.
 <!--ID: 1782407009747-->
 END
 
 START
 Basic
-Why is it `className` and not `class` in JSX, and what's the equivalent rename for the `for` attribute?
+JSX: Why is it `className` and not `class` in JSX, and what's the equivalent rename for the `for` attribute?
 Back: `class` and `for` are reserved words in JS, so JSX uses `className` and `htmlFor`. Most other attributes just become camelCase (e.g. `tabindex` -> `tabIndex`, `onclick` -> `onClick`).
 <!--ID: 1782407009754-->
 END
 
 START
 Basic
-You see `<>...</>` wrapping several elements. What is it and why use it instead of a `<div>`?
+JSX: You see `<>...</>` wrapping several elements. What is it and why use it instead of a `<div>`?
 Back: A Fragment. It lets a component return multiple sibling elements (which must have a single root) without adding an extra wrapper node to the actual DOM.
 <!--ID: 1782407009759-->
 END
 
 START
 Basic
-A coworker says JSX is "just an HTML string template." Why is that wrong?
+JSX: A coworker says JSX is "just an HTML string template." Why is that wrong?
 Back: JSX compiles to function calls (`jsx(...)` / `React.createElement(...)`) that return plain JS objects (React elements). It's a value you can assign, return, or pass around — not a string.
 <!--ID: 1782407009762-->
 END
 
 START
 Basic
-A component body is `return <h1>Hi</h1> <p>Bye</p>;`. Why does this fail, and how do you fix it?
+JSX: A component body is `return <h1>Hi</h1> <p>Bye</p>;`. Why does this fail, and how do you fix it?
 Back: A component must return a single root element. Wrap the siblings in a fragment: `return <><h1>Hi</h1><p>Bye</p></>;`
 <!--ID: 1782407009765-->
 END

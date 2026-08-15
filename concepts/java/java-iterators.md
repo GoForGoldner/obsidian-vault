@@ -3,6 +3,7 @@ tags: [java, data-structures, iterators]
 category: java
 related: [collections-framework, java-list, java-set-and-map]
 ---
+TARGET DECK: Study::Java
 
 ## Description
 `Iterator` is Java's low-level traversal cursor: it walks forward through a collection one element at a time and can safely remove the element most recently returned by `next()`. `ListIterator` extends that model specifically for lists by adding backward traversal, insertion at the cursor, in-place replacement, and index awareness. Modern Java often prefers `forEach`, `stream`, and `removeIf` for common traversal patterns, but explicit iterators still matter whenever the loop itself controls mutation or cursor position. `Spliterator` sits one level lower as the traversal primitive used by the Stream API, especially for splitting work in parallel pipelines.
@@ -72,49 +73,49 @@ if (right != null) {
 ```anki
 START
 Basic
-What can `ListIterator` do that `Iterator` cannot?
+Java Iterators: What can `ListIterator` do that `Iterator` cannot?
 Back: `ListIterator` can move backward with `hasPrevious()` and `previous()`, insert with `add(e)`, replace with `set(e)`, and report positions with `nextIndex()` and `previousIndex()`.<br>It is only available for `List`, not for `Set` or `Queue`.
 <!--ID: 1780580933066-->
 END
 
 START
 Basic
-When should you still use an explicit `Iterator` instead of `forEach` or streams?
+Java Iterators: When should you still use an explicit `Iterator` instead of `forEach` or streams?
 Back: Use an explicit iterator when the loop needs fine-grained control or safe mutation via `iterator.remove()`.<br>`forEach` is simpler for visiting, and streams are better for transformation pipelines, but they are less direct for cursor-driven mutation.
 <!--ID: 1780580933069-->
 END
 
 START
 Basic
-What is `Spliterator` for at a concept level?
+Java Iterators: What is `Spliterator` for at a concept level?
 Back: `Spliterator` is a traversal primitive that can both advance through elements and split them into chunks.<br>The Stream API uses it under the hood for bulk traversal and parallel stream execution.
 <!--ID: 1780580933071-->
 END
 
 START
 Basic
-How do you safely remove elements during iteration?
+Java Iterators: How do you safely remove elements during iteration?
 Back: Use `Iterator.remove()` after `next()` has returned the element you want to delete: `Iterator<String> it = list.iterator(); while (it.hasNext()) { if (it.next().isEmpty()) it.remove(); }`.<br>In Java 8+, `list.removeIf(String::isEmpty)` is often even cleaner.
 <!--ID: 1780580933073-->
 END
 
 START
 Basic
-What does `ListIterator.add(e)` do exactly?
+Java Iterators: What does `ListIterator.add(e)` do exactly?
 Back: It inserts the element immediately before the element that would be returned by `next()` and immediately after the element that would be returned by `previous()`.<br>After insertion, the cursor sits after the new element, so `previous()` returns it and `next()` continues with the old next element.
 <!--ID: 1780580933075-->
 END
 
 START
 Basic
-What does `ListIterator.set(e)` do?
+Java Iterators: What does `ListIterator.set(e)` do?
 Back: It replaces the last element returned by `next()` or `previous()`.<br>You cannot call it immediately after `add()` or `remove()`; if no traversal step has established a last-returned element, Java throws `IllegalStateException`.
 <!--ID: 1780580933077-->
 END
 
 START
 Basic
-What does `Iterator.forEachRemaining(Consumer)` do?
+Java Iterators: What does `Iterator.forEachRemaining(Consumer)` do?
 Back: It consumes every remaining element from the iterator without a manual `while (hasNext())` loop.<br>Example: `iterator.forEachRemaining(System.out::println);`.<br>It was added as a default method in Java 8.
 <!--ID: 1780580933080-->
 END

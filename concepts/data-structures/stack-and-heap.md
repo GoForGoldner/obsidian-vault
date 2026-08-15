@@ -3,6 +3,7 @@ tags: [data-structures, memory]
 category: data-structures
 related: [garbage-collection, process]
 ---
+TARGET DECK: Study::Data Structures
 
 ## Description
 The stack is used for local variables and function call frames. automatically freed when a function returns. The heap is used for dynamically allocated objects that need to live beyond the current function scope.

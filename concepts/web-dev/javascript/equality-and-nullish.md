@@ -3,6 +3,7 @@ tags: [javascript, web-dev, equality]
 category: web-dev
 related: [types-and-coercion, objects-and-prototypes, variables-scope-hoisting]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 JS has two equality operators: `===` (strict) compares without coercion, while `==` (loose) coerces operands to a common type first, producing surprises like `0 == ""` and `null == undefined` being `true`. **Always use `===` / `!==`**; the one accepted use of `==` is `x == null`, which checks for both `null` and `undefined` at once. JS distinguishes `null` (an intentional "no value", set by you) from `undefined` (the default for unassigned variables, missing properties, and missing arguments). Modern null-handling syntax: optional chaining `?.` short-circuits to `undefined` instead of throwing when the left side is `null`/`undefined`; the nullish coalescing operator `??` supplies a fallback **only** for `null`/`undefined` (unlike `||`, which also falls back on any falsy value like `0` or `""`); and `??=` assigns only when the target is currently nullish.
@@ -48,42 +49,42 @@ settings.theme ??= "dark";          // assign "dark" only if theme is null/undef
 ```anki
 START
 Basic
-What's the practical rule for choosing `==` vs `===`, and the one accepted exception?
+Equality and Nullish: What's the practical rule for choosing `==` vs `===`, and the one accepted exception?
 Back: Always use `===`/`!==` (no coercion). The one accepted `==` use is `x == null`, which matches both `null` and `undefined`.
 <!--ID: 1782407009119-->
 END
 
 START
 Basic
-Conceptually, how does `null` differ from `undefined` in JS?
+Equality and Nullish: Conceptually, how does `null` differ from `undefined` in JS?
 Back: `undefined` = a value was never assigned (unassigned var, missing property/argument). `null` = an intentional "no value" that you explicitly set.
 <!--ID: 1782407009123-->
 END
 
 START
 Basic
-You see `?.` chained on a value: `user?.address?.city`. What does it do and what does it return if `user` is null?
+Equality and Nullish: You see `?.` chained on a value: `user?.address?.city`. What does it do and what does it return if `user` is null?
 Back: It short-circuits — if any link is `null`/`undefined`, the whole expression evaluates to `undefined` instead of throwing a TypeError. So it returns `undefined`.
 <!--ID: 1782407009127-->
 END
 
 START
 Basic
-Why does `count ?? 5` differ from `count || 5` when `count` is `0`?
+Equality and Nullish: Why does `count ?? 5` differ from `count || 5` when `count` is `0`?
 Back: `??` only falls back on `null`/`undefined`, so `0 ?? 5` is `0`. `||` falls back on any falsy value, so `0 || 5` is `5`. Use `??` for numeric/boolean defaults.
 <!--ID: 1782407009132-->
 END
 
 START
 Basic
-Write the syntax to set `settings.theme` to `"dark"` only if it's currently null or undefined.
+Equality and Nullish: Write the syntax to set `settings.theme` to `"dark"` only if it's currently null or undefined.
 Back: `settings.theme ??= "dark";` (nullish assignment — leaves existing falsy-but-defined values like `""` untouched).
 <!--ID: 1782407009137-->
 END
 
 START
 Basic
-Why is `loose == ` dangerous for defaulting config like `if (config.port == 0)` vs strict checks? (give a concrete == surprise)
+Equality and Nullish: Why is `loose == ` dangerous for defaulting config like `if (config.port == 0)` vs strict checks? (give a concrete == surprise)
 Back: `==` coerces, so e.g. `0 == ""` is `true` and `0 == "0"` is `true`. These accidental matches make defaulting/branching unpredictable; `===` avoids them.
 <!--ID: 1782407009141-->
 END

@@ -3,6 +3,7 @@ tags: [algorithms, technique, dynamic-programming]
 category: algorithms
 related: [sorting-algorithms, trie, cyclic-sort]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Dynamic programming solves problems with overlapping subproblems and optimal substructure by defining a state, writing a recurrence, and storing results instead of recomputing them. The most useful interview patterns are 1D DP, Kadane, Knapsack, Grid, Subsequence, Interval, Partition, State Machine, and Bitmask DP, and strong DP pattern recognition usually matters more than memorizing one specific problem.
@@ -44,21 +45,21 @@ for (int i = 1; i < nums.length; i++) {
 ```anki
 START
 Basic
-How do you identify which DP pattern to use for a problem?
+Dynamic Programming: How do you identify which DP pattern to use for a problem?
 Back: Sequence → 1D DP or Kadane. Items + capacity → Knapsack. Grid/matrix → Grid DP. Two strings → Subsequence (LCS). Range [i,j] with split points → Interval DP. Prefix with cuts → Partition DP. States with transitions → State Machine. n ≤ 20 tracking used → Bitmask DP.
 <!--ID: 1780580932976-->
 END
 
 START
 Basic
-What is Kadane's algorithm and what's the core decision at each step?
+Dynamic Programming: What is Kadane's algorithm and what's the core decision at each step?
 Back: Find max subarray sum in O(n). At each index: extend current subarray (currentSum + nums[i]) or start fresh (nums[i]). currentSum = max(nums[i], currentSum + nums[i]). If running sum is negative, it can only hurt — reset. Variant: track both max and min for max product subarray.
 <!--ID: 1780580932978-->
 END
 
 START
 Basic
-What's the difference between 0/1 Knapsack and Unbounded Knapsack in the DP transition?
+Dynamic Programming: What's the difference between 0/1 Knapsack and Unbounded Knapsack in the DP transition?
 Back: 0/1 (each item once): iterate capacity RIGHT to LEFT in 1D — ensures each item used at most once. Unbounded (items reusable): iterate LEFT to RIGHT — allows same item to be picked again. Same recurrence, different loop direction.
 <!--ID: 1780580932979-->
 END

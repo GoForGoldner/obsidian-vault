@@ -3,6 +3,7 @@ tags: [java, concurrency, collections, threads]
 category: java
 related: [executor-service, completable-future, atomics-and-volatile, race-conditions, thread]
 ---
+TARGET DECK: Study::Java::Concurrency
 
 ## Description
 The `java.util.concurrent` collections are purpose-built for multi-threaded access,
@@ -88,56 +89,56 @@ synchronized (sync) {                 // REQUIRED, or risk CME / corruption
 ```anki
 START
 Basic
-You put `map.put("k", null)` into a ConcurrentHashMap. Result?
+Concurrent Collections: You put `map.put("k", null)` into a ConcurrentHashMap. Result?
 Back: `NullPointerException` — `ConcurrentHashMap` allows no `null` keys or values.<br>A `null` would be ambiguous: "key absent" vs "present mapped to null" under concurrent access.<br>(Plain `HashMap` allows both — this is a CHM-specific trap.)
 <!--ID: 1781902680118-->
 END
 
 START
 Basic
-Iterating a normal `ArrayList` while another thread (or the same loop) modifies it — what happens?
+Concurrent Collections: Iterating a normal `ArrayList` while another thread (or the same loop) modifies it — what happens?
 Back: `ConcurrentModificationException` from the fail-fast iterator.<br>It compares `modCount` to an expected value and throws on structural change.<br>It's a best-effort safety check, not a guarantee — never rely on it for correctness.
 <!--ID: 1781902680125-->
 END
 
 START
 Basic
-How do concurrent collections' iterators differ from fail-fast ones?
+Concurrent Collections: How do concurrent collections' iterators differ from fail-fast ones?
 Back: They are *weakly consistent*: never throw `ConcurrentModificationException`.<br>They reflect the collection's state at some point and tolerate concurrent modification.<br>You may or may not see elements added after the iterator was created.
 <!--ID: 1781902680132-->
 END
 
 START
 Basic
-You need an atomic "increment this key's count, or set to 1 if absent" on a ConcurrentHashMap. API?
+Concurrent Collections: You need an atomic "increment this key's count, or set to 1 if absent" on a ConcurrentHashMap. API?
 Back: `map.merge(key, 1, Integer::sum)`.<br>Or `compute(key, (k,v) -> v == null ? 1 : v + 1)`.<br>These are atomic; a plain `get` + `put` is a check-then-act race.
 <!--ID: 1781902680139-->
 END
 
 START
 Basic
-When is `CopyOnWriteArrayList` the right choice, and what's its cost?
+Concurrent Collections: When is `CopyOnWriteArrayList` the right choice, and what's its cost?
 Back: Read-heavy, write-rare data (e.g. event-listener lists).<br>Every mutation copies the whole backing array — writes are O(n) and expensive.<br>Iterators see an immutable snapshot, so no CME even while others write.
 <!--ID: 1781902680146-->
 END
 
 START
 Basic
-`BlockingQueue`: `put`/`take` vs `offer`/`poll`?
+Concurrent Collections: `BlockingQueue`: `put`/`take` vs `offer`/`poll`?
 Back: `put` blocks if full; `take` blocks until an element exists.<br>`offer(e, t, unit)` / `poll(t, unit)` wait up to a timeout, returning a `boolean` / possibly `null`.<br>This blocking is what makes producer/consumer work without busy-waiting.
 <!--ID: 1781902680152-->
 END
 
 START
 Basic
-Difference between `Collections.synchronizedList(...)` and a true concurrent collection?
+Concurrent Collections: Difference between `Collections.synchronizedList(...)` and a true concurrent collection?
 Back: `synchronizedList` wraps every method in one lock (coarse); you must `synchronized(list){}` manually to iterate safely.<br>Concurrent collections use fine-grained / lock-free strategies and weakly-consistent iterators (no external sync needed).<br>Concurrent types scale far better under contention.
 <!--ID: 1781902680160-->
 END
 
 START
 Basic
-`ArrayBlockingQueue` vs `LinkedBlockingQueue` capacity behavior?
+Concurrent Collections: `ArrayBlockingQueue` vs `LinkedBlockingQueue` capacity behavior?
 Back: `ArrayBlockingQueue` is always bounded (fixed capacity set at construction).<br>`LinkedBlockingQueue` is optionally bounded — unbounded by default.<br>A bounded queue gives natural back-pressure on producers.
 <!--ID: 1781902680166-->
 END

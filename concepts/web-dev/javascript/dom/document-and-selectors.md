@@ -3,6 +3,7 @@ tags: [dom, web-dev, javascript]
 category: web-dev
 related: [dom-manipulation, dom-events, dom-traversal, dom-forms-inputs, jquery-overview-and-selectors]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::DOM
 
 ## Description
 The **DOM** (Document Object Model) is the browser's live, tree-shaped object representation of the parsed HTML. `document` is the global root object you query to find elements; mutating DOM nodes re-renders the page. You find elements with `document.getElementById('x')` (fast, returns one element or `null`) or the general-purpose `querySelector`/`querySelectorAll`, which take **CSS selector strings** (`'#id'`, `'.class'`, `'div > a'`). The Java-relevant gotcha: selector methods return a `NodeList` or `HTMLCollection`, **not an array** — these are array-*like* (have `.length`, are indexable, iterable with `for...of`) but lack `.map`/`.filter`/`.reduce`, so you convert with `[...nodeList]` or `Array.from(...)` before using array methods. A second trap: `getElementsByClassName`/`getElementsByTagName` return a **live** `HTMLCollection` that updates as the DOM changes, while `querySelectorAll` returns a **static** snapshot `NodeList`.
@@ -55,42 +56,42 @@ const title = card.querySelector('h2'); // searches WITHIN card, not whole doc
 ```anki
 START
 Basic
-What does `document.querySelector('.btn')` return when no element matches, and how does that differ from `querySelectorAll`?
+Document and Selectors: What does `document.querySelector('.btn')` return when no element matches, and how does that differ from `querySelectorAll`?
 Back: `querySelector` returns `null` for no match; `querySelectorAll` returns an empty `NodeList` (length 0), never null.
 <!--ID: 1782407009386-->
 END
 
 START
 Basic
-You have `const items = document.querySelectorAll('li')` and call `items.map(...)`. Why does it throw, and how do you fix it?
+Document and Selectors: You have `const items = document.querySelectorAll('li')` and call `items.map(...)`. Why does it throw, and how do you fix it?
 Back: A `NodeList` is array-like but has no `.map`. Convert first: `[...items].map(...)` or `Array.from(items, fn)`.
 <!--ID: 1782407009390-->
 END
 
 START
 Basic
-When do you reach for `getElementById` over `querySelector`?
+Document and Selectors: When do you reach for `getElementById` over `querySelector`?
 Back: When selecting by id and you want the most direct/fast call. `getElementById('x')` vs `querySelector('#x')` — same result, getElementById is marginally faster and reads clearer.
 <!--ID: 1782407009394-->
 END
 
 START
 Basic
-Distinction: `getElementsByClassName(...)` vs `querySelectorAll(...)` — what's the live-vs-static difference?
+Document and Selectors: Distinction: `getElementsByClassName(...)` vs `querySelectorAll(...)` — what's the live-vs-static difference?
 Back: `getElementsByClassName` returns a LIVE `HTMLCollection` that auto-updates as the DOM changes. `querySelectorAll` returns a STATIC `NodeList` snapshot taken at call time.
 <!--ID: 1782407009399-->
 END
 
 START
 Basic
-Write the call to find the first `<a>` inside an element already stored in `card` (not the whole document).
+Document and Selectors: Write the call to find the first `<a>` inside an element already stored in `card` (not the whole document).
 Back: `card.querySelector('a')` — querySelector/All exist on every element and scope the search to that subtree.
 <!--ID: 1782407009403-->
 END
 
 START
 Basic
-What kind of argument do `querySelector`/`querySelectorAll` take?
+Document and Selectors: What kind of argument do `querySelector`/`querySelectorAll` take?
 Back: A CSS selector string, e.g. `'#id'`, `'.cls'`, `'ul > li.active'`, `'[data-x]'`. Same syntax as CSS rules.
 <!--ID: 1782407009415-->
 END

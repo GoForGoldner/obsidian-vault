@@ -3,6 +3,7 @@ tags: [database, backend]
 category: system-design
 related: [nosql, orm, database-indexes]
 ---
+TARGET DECK: Study::System Design::Database
 
 ## Description
 Structured Query Language for relational databases. Data lives in tables with fixed schemas, rows are records, columns are fields. Supports relationships through foreign keys and joins. ACID-compliant (Atomicity, Consistency, Isolation, Durability). Examples: PostgreSQL, MySQL, SQL Server.

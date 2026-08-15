@@ -3,6 +3,7 @@ tags: [css, web-dev, layout]
 category: web-dev
 related: [css-positioning, css-transforms, css-colors]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 A **stacking context** is a self-contained layer group on the z-axis. Within one context, children paint by: non-positioned elements first, then by `z-index` (and source order for ties). The catch: `z-index` values **only compete inside the same stacking context** — a child with `z-index: 9999` can never escape above an element in a *higher* parent context. Contexts are created by the root element, `position` + a `z-index`, `opacity < 1`, any `transform`/`filter`, `will-change`, and `isolation: isolate`.
@@ -31,28 +32,28 @@ A **stacking context** is a self-contained layer group on the z-axis. Within one
 ```anki
 START
 Basic
-Why can an element with `z-index: 9999` still appear *behind* another element that has a much lower z-index?
+Stacking Context: Why can an element with `z-index: 9999` still appear *behind* another element that has a much lower z-index?
 Back: They're in different **stacking contexts**. z-index only orders siblings within the same context; if the 9999 element's parent context sits below the other element's context, no z-index can lift it above.
 <!--ID: 1780758285575-->
 END
 
 START
 Basic
-List the common things that create a new stacking context (beyond the root element).
+Stacking Context: List the common things that create a new stacking context (beyond the root element).
 Back: A positioned element (`relative`/`absolute`/`fixed`/`sticky`) **with a z-index**, `opacity < 1`, any `transform` or `filter`, `will-change`, and `isolation: isolate`. Also flex/grid children with a z-index.
 <!--ID: 1780758285580-->
 END
 
 START
 Basic
-On what kind of element does `z-index` have no effect at all?
+Stacking Context: On what kind of element does `z-index` have no effect at all?
 Back: A `position: static` element (the default) — z-index is ignored. It only applies to positioned elements and flex/grid items.
 <!--ID: 1780758285587-->
 END
 
 START
 Basic
-Within a single stacking context, what's the paint order from back to front?
+Stacking Context: Within a single stacking context, what's the paint order from back to front?
 Back: (1) the context root's background/border, (2) negative z-index children, (3) non-positioned block boxes, (4) non-positioned floats, (5) inline content, (6) positioned children by z-index (then source order for ties).
 <!--ID: 1780758285599-->
 END

@@ -3,6 +3,7 @@ tags: [jquery, web-dev, ajax, http]
 category: web-dev
 related: [jquery-overview-and-selectors, jquery-events, jquery-dom-manipulation, json-and-fetch, http-requests]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::jQuery
 
 ## Description
 Before `fetch` existed, jQuery's `$.ajax` was *the* way to make HTTP requests from the browser without a page reload (AJAX = Asynchronous JavaScript And XML, though it's almost always JSON now). `$.ajax(options)` is the full-control form; `$.get`, `$.post`, and `$.getJSON` are convenience shorthands. They return a **jqXHR** object (a Promise-like "thenable"), so you attach `.done(successFn)` / `.fail(errorFn)` / `.always(fn)` callbacks. A key contrast with `fetch`: jQuery **rejects on HTTP error statuses** (404/500 trigger `.fail`) and **auto-parses JSON** when the response looks like JSON — whereas `fetch` only rejects on network failure and makes you call `.json()` yourself. In modern code you should reach for `fetch` (or `axios`); `$.ajax` only shows up in legacy jQuery codebases. The `done`/`fail` callbacks predate native Promises but interop with `await`.
@@ -48,42 +49,42 @@ const data = await res.json();              // and you must parse JSON yourself
 ```anki
 START
 Basic
-Distinction: how does `$.ajax`'s `.fail()` differ from `fetch`'s rejection behavior on a 404?
+jQuery AJAX: Distinction: how does `$.ajax`'s `.fail()` differ from `fetch`'s rejection behavior on a 404?
 Back: jQuery **rejects (.fail fires)** on HTTP error statuses like 404/500. `fetch` only rejects on **network failure** — a 404 still resolves, so you must check `res.ok` yourself.
 <!--ID: 1782407010052-->
 END
 
 START
 Basic
-What does `.done()` / `.fail()` / `.always()` attach to, and what object provides them?
+jQuery AJAX: What does `.done()` / `.fail()` / `.always()` attach to, and what object provides them?
 Back: They attach success / error / settled callbacks to the **jqXHR** object returned by `$.ajax` and friends — a Promise-like thenable.
 <!--ID: 1782407010057-->
 END
 
 START
 Basic
-What's the difference between `$.getJSON(url, cb)` and `$.get(url, cb)` for a JSON endpoint?
+jQuery AJAX: What's the difference between `$.getJSON(url, cb)` and `$.get(url, cb)` for a JSON endpoint?
 Back: `$.getJSON` forces the response to be parsed as JSON (`JSON.parse`). `$.get` auto-detects type and may or may not parse depending on the response content-type.
 <!--ID: 1782407010060-->
 END
 
 START
 Basic
-You're in a modern codebase. Should you write `$.ajax` for a new HTTP call? What instead?
+jQuery AJAX: You're in a modern codebase. Should you write `$.ajax` for a new HTTP call? What instead?
 Back: No — use native `fetch` (or `axios`). `$.ajax` is legacy-only; you'd keep it for consistency in an existing jQuery codebase, not for new code.
 <!--ID: 1782407010064-->
 END
 
 START
 Basic
-Why must `fetch` callers write `await res.json()` while `$.getJSON` doesn't?
+jQuery AJAX: Why must `fetch` callers write `await res.json()` while `$.getJSON` doesn't?
 Back: jQuery auto-parses the body into a JS object for you. `fetch` returns a Response whose body is read separately and asynchronously via `res.json()` (or `.text()`).
 <!--ID: 1782407010067-->
 END
 
 START
 Basic
-Write a `$.post` that sends `{ name: 'Ada' }` to `/api/users` and logs the response.
+jQuery AJAX: Write a `$.post` that sends `{ name: 'Ada' }` to `/api/users` and logs the response.
 Back: `$.post('/api/users', { name: 'Ada' }, (data) => console.log(data));` (sends form-encoded by default; use `$.ajax` with `contentType: 'application/json'` for a JSON body).
 <!--ID: 1782407010070-->
 END

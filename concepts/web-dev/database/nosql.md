@@ -3,6 +3,7 @@ tags: [web-dev, database]
 category: web-dev
 related: [sql, sql-vs-nosql]
 ---
+TARGET DECK: Study::Web Dev::Database
 
 ## Description
 Non-relational databases that don't use tables with fixed schemas. Main types: Document stores (MongoDB. JSON-like docs), Key-Value stores (Redis. fast cache), Column stores (Cassandra. analytics), Graph databases (Neo4j. relationships). Optimized for specific access patterns rather than general-purpose querying.

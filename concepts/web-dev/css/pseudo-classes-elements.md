@@ -3,6 +3,7 @@ tags: [css, web-dev, fundamentals]
 category: web-dev
 related: [css-selectors-specificity, modern-selectors-nesting, text-typography]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 A **pseudo-class** (`:`) selects an element in a particular *state or position* — `:hover`, `:focus`, `:disabled`, `:checked`, `:first-child`, `:nth-child()`, `:not()`. A **pseudo-element** (`::`) styles or *generates* a sub-part of an element — `::before`/`::after` (insert generated content, requires `content`), `::first-line`, `::placeholder`, `::selection`. The two-colon `::` syntax distinguishes pseudo-elements from pseudo-classes. `:focus-visible` is the modern, keyboard-aware focus ring.
@@ -34,42 +35,42 @@ button:focus-visible { outline: 2px solid blue; }
 ```anki
 START
 Basic
-What's the visual/syntax convention that distinguishes a pseudo-element from a pseudo-class, and what's the conceptual difference?
+Pseudo-classes and Elements: What's the visual/syntax convention that distinguishes a pseudo-element from a pseudo-class, and what's the conceptual difference?
 Back: Pseudo-elements use `::` (e.g. `::before`), pseudo-classes use `:` (e.g. `:hover`). A pseudo-class targets a *state/position* of a real element; a pseudo-element styles or *creates* a *sub-part* of it.
 <!--ID: 1780758285606-->
 END
 
 START
 Basic
-Write the CSS to insert a red asterisk before every element with class `required`.
+Pseudo-classes and Elements: Write the CSS to insert a red asterisk before every element with class `required`.
 Back: `.required::before { content: "* "; color: red; }` — `::before`/`::after` render nothing without a `content` property.
 <!--ID: 1780758285611-->
 END
 
 START
 Basic
-What does `:nth-child(2n)` select, and how would you target the FIRST item specifically?
+Pseudo-classes and Elements: What does `:nth-child(2n)` select, and how would you target the FIRST item specifically?
 Back: `:nth-child(2n)` selects every 2nd element (the even ones); `2n+1` or `odd` gets the odd ones. The first item is `:first-child` (or `:nth-child(1)`).
 <!--ID: 1780758285623-->
 END
 
 START
 Basic
-What's the difference between `:focus` and `:focus-visible`, and why prefer the latter for outlines?
+Pseudo-classes and Elements: What's the difference between `:focus` and `:focus-visible`, and why prefer the latter for outlines?
 Back: `:focus` matches on *any* focus, including mouse clicks (often producing an unwanted ring). `:focus-visible` matches only when the browser heuristically decides a focus ring is warranted (typically keyboard navigation) — better UX.
 <!--ID: 1780758285631-->
 END
 
 START
 Basic
-Write a selector that matches every button that does NOT have the class `primary`.
+Pseudo-classes and Elements: Write a selector that matches every button that does NOT have the class `primary`.
 Back: `button:not(.primary)` — `:not()` is the negation pseudo-class.
 <!--ID: 1780758285637-->
 END
 
 START
 Basic
-Which pseudo-element styles the greyed-out hint text inside an empty input?
+Pseudo-classes and Elements: Which pseudo-element styles the greyed-out hint text inside an empty input?
 Back: `::placeholder` — e.g. `input::placeholder { color: #999; }`.
 <!--ID: 1780758285642-->
 END

@@ -3,6 +3,7 @@ tags: [algorithms, graph, traversal]
 category: algorithms
 related: [bfs, stack-and-heap]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Depth-First Search explores a graph by going as deep as possible down each branch before backtracking. Uses a stack (or recursion). Good for pathfinding, cycle detection, and topological sorting.

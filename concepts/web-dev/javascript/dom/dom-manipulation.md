@@ -3,6 +3,7 @@ tags: [dom, web-dev, javascript]
 category: web-dev
 related: [document-and-selectors, dom-events, dom-traversal, dom-forms-inputs, jquery-overview-and-selectors]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::DOM
 
 ## Description
 Once you have an element, you build and mutate the tree imperatively: `document.createElement('div')` makes a detached node, then `parent.appendChild(child)` (or the newer `parent.append(...)`/`prepend(...)`) inserts it; `element.remove()` deletes it. Read/write text with `textContent` (plain text, **safe**) versus `innerHTML` (parses an HTML string — convenient but the classic **XSS hole** if you inject untrusted input). Attributes go through `setAttribute`/`getAttribute`, classes through the ergonomic `classList` API (`add`/`remove`/`toggle`/`contains`) rather than string-munging `className`, inline styles through the `style` object, and `data-*` attributes through `dataset`. Key JS-isms: `append` accepts multiple nodes **and** strings and returns nothing, whereas `appendChild` takes exactly one node and returns it; `classList.toggle('x')` returns the resulting boolean; and `dataset.userId` maps to the attribute `data-user-id` (kebab ⇄ camelCase conversion is automatic).
@@ -60,49 +61,49 @@ parent.append(node1, node2, 'text'); // many nodes + strings, returns undefined
 ```anki
 START
 Basic
-What is the security risk of `el.innerHTML = userInput`, and what should you use instead for plain text?
+DOM Manipulation: What is the security risk of `el.innerHTML = userInput`, and what should you use instead for plain text?
 Back: `innerHTML` parses the string as HTML, so untrusted input can inject scripts/handlers (XSS). Use `el.textContent = userInput`, which inserts it as literal text.
 <!--ID: 1782407009508-->
 END
 
 START
 Basic
-Distinction: `parent.append(x)` vs `parent.appendChild(x)` — name two differences.
+DOM Manipulation: Distinction: `parent.append(x)` vs `parent.appendChild(x)` — name two differences.
 Back: `append` takes multiple nodes AND strings and returns undefined; `appendChild` takes exactly one Node and returns that node.
 <!--ID: 1782407009512-->
 END
 
 START
 Basic
-You want to flip a CSS class on/off based on its current presence. Which `classList` method, and what does it return?
+DOM Manipulation: You want to flip a CSS class on/off based on its current presence. Which `classList` method, and what does it return?
 Back: `el.classList.toggle('open')` — adds the class if absent, removes it if present, and returns a boolean (true if the class is now present).
 <!--ID: 1782407009515-->
 END
 
 START
 Basic
-You wrote `data-user-id="42"` in HTML. How do you read it in JS via `dataset`?
+DOM Manipulation: You wrote `data-user-id="42"` in HTML. How do you read it in JS via `dataset`?
 Back: `el.dataset.userId` — `data-*` attributes are exposed on `dataset` with the suffix camelCased (and the value is always a string).
 <!--ID: 1782407009520-->
 END
 
 START
 Basic
-Write the JS to set the inline CSS property `background-color` to `red` on `el`.
+DOM Manipulation: Write the JS to set the inline CSS property `background-color` to `red` on `el`.
 Back: `el.style.backgroundColor = 'red';` — `style` uses camelCased property names, values are strings.
 <!--ID: 1782407009524-->
 END
 
 START
 Basic
-How do you create a detached `<li>` with text "Hi" and add it as the last child of `ul`?
+DOM Manipulation: How do you create a detached `<li>` with text "Hi" and add it as the last child of `ul`?
 Back: `const li = document.createElement('li'); li.textContent = 'Hi'; ul.append(li);`
 <!--ID: 1782407009529-->
 END
 
 START
 Basic
-When is `innerHTML` actually fine to use?
+DOM Manipulation: When is `innerHTML` actually fine to use?
 Back: When the HTML string is static/trusted (hardcoded markup you control), not built from user input. The risk is interpolating untrusted data.
 <!--ID: 1782407009533-->
 END

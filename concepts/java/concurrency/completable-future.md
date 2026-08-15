@@ -3,6 +3,7 @@ tags: [java, concurrency, completable-future, async, threads]
 category: java
 related: [executor-service, concurrent-collections, atomics-and-volatile, thread]
 ---
+TARGET DECK: Study::Java::Concurrency
 
 ## Description
 `CompletableFuture<T>` is the composable, non-blocking evolution of `Future`. A plain
@@ -85,56 +86,56 @@ cf.join();  // throws UNCHECKED CompletionException (no checked exceptions)
 ```anki
 START
 Basic
-`supplyAsync` vs `runAsync`?
+CompletableFuture: `supplyAsync` vs `runAsync`?
 Back: `supplyAsync(Supplier<T>)` produces a value -> `CompletableFuture<T>`.<br>`runAsync(Runnable)` does work with no result -> `CompletableFuture<Void>`.<br>Both default to the common `ForkJoinPool` unless you pass an `Executor`.
 <!--ID: 1781902680009-->
 END
 
 START
 Basic
-`thenApply` vs `thenCompose` — when does the nested-future trap bite?
+CompletableFuture: `thenApply` vs `thenCompose` — when does the nested-future trap bite?
 Back: `thenApply(fn)` maps `T -> U` (plain transform).<br>If `fn` itself returns a `CompletableFuture`, `thenApply` yields `CF<CF<U>>` (nested).<br>Use `thenCompose` (flatMap) to chain a dependent future and flatten it.
 <!--ID: 1781902680016-->
 END
 
 START
 Basic
-`thenApply` vs `thenAccept` vs `thenRun`?
+CompletableFuture: `thenApply` vs `thenAccept` vs `thenRun`?
 Back: `thenApply`: `T -> U`, returns the transformed value.<br>`thenAccept`: `T -> void`, consumes the value (side effect).<br>`thenRun`: `() -> void`, ignores the value entirely. Each carries less of the upstream result.
 <!--ID: 1781902680021-->
 END
 
 START
 Basic
-You have two independent CompletableFutures and want to merge their results. API?
+CompletableFuture: You have two independent CompletableFutures and want to merge their results. API?
 Back: `cf1.thenCombine(cf2, (a, b) -> combine(a, b))`.<br>Both run concurrently; the BiFunction fires once both complete.<br>(`thenCompose` is for *dependent* futures, where the second needs the first's result.)
 <!--ID: 1781902680026-->
 END
 
 START
 Basic
-`exceptionally` vs `handle` vs `whenComplete`?
+CompletableFuture: `exceptionally` vs `handle` vs `whenComplete`?
 Back: `exceptionally(fn)`: runs ONLY on failure, returns a recovery value.<br>`handle((v, ex) -> ...)`: runs on success OR failure, returns a (possibly new) value.<br>`whenComplete((v, ex) -> ...)`: observes both but does NOT transform — passes the result through.
 <!--ID: 1781902680030-->
 END
 
 START
 Basic
-`join()` vs `get()` on a CompletableFuture?
+CompletableFuture: `join()` vs `get()` on a CompletableFuture?
 Back: `get()` throws checked `InterruptedException` + `ExecutionException`.<br>`join()` throws unchecked `CompletionException` (no checked exceptions).<br>`join()` is preferred inside lambdas/streams where checked exceptions are awkward.
 <!--ID: 1781902680035-->
 END
 
 START
 Basic
-What do the `...Async`-suffixed variants (e.g. `thenApplyAsync`) give you?
+CompletableFuture: What do the `...Async`-suffixed variants (e.g. `thenApplyAsync`) give you?
 Back: They run the callback on a separate thread instead of the completing thread.<br>An overload takes an `Executor`, so you can target your own pool (e.g. a virtual-thread executor).<br>Without `Async`, the stage may run on whatever thread completed the previous stage.
 <!--ID: 1781902680042-->
 END
 
 START
 Basic
-A task inside `supplyAsync` throws. Where does the exception surface?
+CompletableFuture: A task inside `supplyAsync` throws. Where does the exception surface?
 Back: The `CompletableFuture` completes exceptionally; downstream stages are skipped.<br>It surfaces at `get()` (as `ExecutionException`) or `join()` (as `CompletionException`), or in `exceptionally`/`handle`/`whenComplete`.<br>The original throwable is the `getCause()` of the wrapper.
 <!--ID: 1781902680049-->
 END

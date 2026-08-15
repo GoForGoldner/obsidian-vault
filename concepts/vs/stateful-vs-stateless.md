@@ -3,6 +3,7 @@ tags: [architecture, comparison]
 category: vs
 related: [cookies-vs-sessions, jwt-tokens, horizontal-vs-vertical-scaling]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Stateless means each request contains all the info needed to process it. the server doesn't remember previous requests. Stateful means the server keeps track of client state between requests (sessions, connections). Stateless is easier to scale because any server can handle any request.

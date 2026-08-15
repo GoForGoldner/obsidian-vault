@@ -3,6 +3,7 @@ tags: [dom, web-dev, javascript]
 category: web-dev
 related: [document-and-selectors, dom-manipulation, dom-events, dom-forms-inputs, jquery-overview-and-selectors]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::DOM
 
 ## Description
 Once you hold a node you can walk the tree relative to it instead of re-querying the whole document. The crucial JS gotcha: most properties come in an **"...Node" form that counts text/whitespace/comment nodes** and an **"...Element" form that skips them** — almost always you want the Element form. So prefer `parentElement`, `children` (an `HTMLCollection` of element children), `firstElementChild`/`lastElementChild`, and `nextElementSibling`/`previousElementSibling` over `parentNode`, `childNodes` (a `NodeList` including whitespace text nodes), `firstChild`, and `nextSibling`. `element.closest(selector)` walks **up** from the element (including itself) to the nearest ancestor matching a CSS selector — the workhorse of event delegation. `element.matches(selector)` returns a boolean: does this element match the selector? (no DOM movement, just a test).
@@ -59,42 +60,42 @@ if (e.target.matches('button.delete')) { /* ... */ }
 ```anki
 START
 Basic
-Gotcha: why does `ul.firstChild` often return something unexpected, and what should you use instead?
+DOM Traversal: Gotcha: why does `ul.firstChild` often return something unexpected, and what should you use instead?
 Back: `firstChild` includes text nodes, so it usually returns a whitespace/newline TEXT node from indentation. Use `firstElementChild` to get the first element.
 <!--ID: 1782407009483-->
 END
 
 START
 Basic
-Distinction: `parentNode`/`childNodes` vs `parentElement`/`children` — what's the difference and which do you usually want?
+DOM Traversal: Distinction: `parentNode`/`childNodes` vs `parentElement`/`children` — what's the difference and which do you usually want?
 Back: The `...Node` forms include text/comment nodes; the `...Element` forms include only elements. You almost always want the Element forms (`parentElement`, `children`).
 <!--ID: 1782407009487-->
 END
 
 START
 Basic
-What does `el.closest('.card')` do and what does it return when nothing matches?
+DOM Traversal: What does `el.closest('.card')` do and what does it return when nothing matches?
 Back: Walks UP from `el` (including `el` itself) to the nearest ancestor matching the CSS selector. Returns that element, or `null` if none matches.
 <!--ID: 1782407009491-->
 END
 
 START
 Basic
-You see `if (e.target.matches('button.delete'))`. What does `matches` do?
+DOM Traversal: You see `if (e.target.matches('button.delete'))`. What does `matches` do?
 Back: Returns a boolean — does this element match the given CSS selector? It tests the element in place; it does not move through the DOM.
 <!--ID: 1782407009495-->
 END
 
 START
 Basic
-Write the property access to get the next sibling ELEMENT of `row` (skipping whitespace).
+DOM Traversal: Write the property access to get the next sibling ELEMENT of `row` (skipping whitespace).
 Back: `row.nextElementSibling` (not `nextSibling`, which would include text nodes).
 <!--ID: 1782407009499-->
 END
 
 START
 Basic
-In event delegation, why is `closest()` preferred over checking `e.target` directly?
+DOM Traversal: In event delegation, why is `closest()` preferred over checking `e.target` directly?
 Back: The click may land on a descendant of the element you care about; `e.target.closest('li')` finds the intended `<li>` regardless of which inner node was clicked.
 <!--ID: 1782407009504-->
 END

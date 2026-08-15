@@ -3,6 +3,7 @@ tags: [spring, jpa, hql, jpql, database]
 category: spring
 related: [spring-data-jpa, spring-data-query-methods]
 ---
+TARGET DECK: Study::Spring
 
 ## Description
 JPQL (Jakarta Persistence Query Language) is the query language you write inside `@Query`. HQL (Hibernate Query Language) is Hibernate's superset of JPQL — same syntax plus a few extras. The single most important idea: **JPQL/HQL queries operate on your entity classes and their Java fields, not on database tables and columns.** You write `select u from User u where u.emailAddress = :email` even if the table is `users` and the column is `email_addr`. Spring's `@Query` defaults to JPQL; set `nativeQuery = true` to drop down to raw SQL (which then *does* use table/column names and loses portability). Most JPQL bugs come from treating it like SQL: referencing table names, forgetting that joins traverse object paths, or hitting `LazyInitializationException` because you didn't `join fetch`.
@@ -73,63 +74,63 @@ public interface UserRepository extends JpaRepository<User, Long> {
 ```anki
 START
 Basic
-In JPQL/HQL, do you reference table+column names or entity+field names?
+JPQL / HQL: In JPQL/HQL, do you reference table+column names or entity+field names?
 Back: Entity class names and Java field names, e.g. `select u from User u where u.email = :email` — even if the table is `users` and the column is `email_addr`.<br>Only `nativeQuery = true` (raw SQL) uses table/column names.
 <!--ID: 1782144297799-->
 END
 
 START
 Basic
-What is HQL vs JPQL, and which does Spring `@Query` use by default?
+JPQL / HQL: What is HQL vs JPQL, and which does Spring `@Query` use by default?
 Back: JPQL (Jakarta Persistence Query Language) is the JPA standard query language; HQL (Hibernate Query Language) is Hibernate's superset of it.<br>`@Query` defaults to JPQL; set `nativeQuery = true` to use raw SQL instead.
 <!--ID: 1782144297802-->
 END
 
 START
 Basic
-Why and when do you use `join fetch` in a JPQL query?
+JPQL / HQL: Why and when do you use `join fetch` in a JPQL query?
 Back: `select u from User u left join fetch u.roles where u.id = :id` loads the association in the SAME query.<br>Use it to avoid the N+1 problem and `LazyInitializationException` when you know you'll need a lazy association outside the transaction.
 <!--ID: 1782144297805-->
 END
 
 START
 Basic
-JPQL parameters: difference between `:name` and `?1`?
+JPQL / HQL: JPQL parameters: difference between `:name` and `?1`?
 Back: `:name` is a named parameter, bound with `@Param("name")`.<br>`?1` is a positional parameter (1-based), bound by argument order.<br>Prefer named parameters for readability.
 <!--ID: 1782144297808-->
 END
 
 START
 Basic
-How do you do a `LIKE '%term%'` search with a bound parameter in JPQL?
+JPQL / HQL: How do you do a `LIKE '%term%'` search with a bound parameter in JPQL?
 Back: You cannot write `like %:term%`. Concatenate the wildcards: `where u.name like concat('%', :term, '%')`.<br>(Spring Data derived `Containing` does this wrapping for you automatically.)
 <!--ID: 1782144297811-->
 END
 
 START
 Basic
-How do you return a DTO/projection directly from a JPQL query?
+JPQL / HQL: How do you return a DTO/projection directly from a JPQL query?
 Back: Use a constructor expression with the fully-qualified class name: `select new com.example.UserSummary(u.name, u.email) from User u`.<br>The DTO must have a matching constructor.
 <!--ID: 1782144297815-->
 END
 
 START
 Basic
-What annotation must a JPQL `update`/`delete` query have, and why?
+JPQL / HQL: What annotation must a JPQL `update`/`delete` query have, and why?
 Back: `@Modifying` (on top of `@Query`), because by default `@Query` expects a `select`.<br>Often pair it with `@Modifying(clearAutomatically = true, flushAutomatically = true)` so the persistence context isn't left stale after the bulk write, and wrap the caller in `@Transactional`.
 <!--ID: 1782144297818-->
 END
 
 START
 Basic
-For a paginated `@Query`, how do you get a `Page` and what's the gotcha with native queries?
+JPQL / HQL: For a paginated `@Query`, how do you get a `Page` and what's the gotcha with native queries?
 Back: Add a `Pageable` parameter and return `Page<T>`/`Slice<T>` — don't put `LIMIT` in the query.<br>For JPQL Spring auto-derives the count query; for `nativeQuery = true` you must supply a `countQuery` yourself.
 <!--ID: 1782144297821-->
 END
 
 START
 Basic
-In JPQL, how do you filter on an associated entity's field without an explicit JOIN?
+JPQL / HQL: In JPQL, how do you filter on an associated entity's field without an explicit JOIN?
 Back: Walk the object path: `select u from User u where u.address.city = :city`.<br>JPA generates the implicit join for you when you traverse a to-one association by path.
 <!--ID: 1782144297825-->
 END

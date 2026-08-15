@@ -3,6 +3,7 @@ tags: [threads, concurrency, synchronization]
 category: threads
 related: [deadlock, race-conditions, thread]
 ---
+TARGET DECK: Study::Threads
 
 ## Description
 Mechanisms to control access to shared resources in multithreaded environments. Prevents race conditions by ensuring only one thread can access a critical section at a time (or controlled access for reads).

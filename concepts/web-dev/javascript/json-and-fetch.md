@@ -3,6 +3,7 @@ tags: [javascript, web-dev, json, http, fetch]
 category: web-dev
 related: [async-await, async-promises, error-handling, template-literals]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 `JSON.stringify(value)` serializes a JS value to a JSON string; `JSON.parse(text)` does the reverse. Both take extras: `stringify` accepts a **replacer** (filter/transform keys) and a **space** arg for pretty-printing; functions and `undefined` are silently dropped. `fetch(url)` is the modern browser/Node HTTP API and returns a **promise of a `Response`**. The big gotcha for everyone: `fetch` **only rejects on network failure** — a 404 or 500 still *resolves*, so you must check `res.ok` (true for 200–299) yourself. The body is read asynchronously with another promise: `await res.json()` parses JSON, `res.text()` for raw text. For writes, pass an options object with `method`, `headers` (set `Content-Type`), and a `body` (usually `JSON.stringify(...)`).
@@ -49,42 +50,42 @@ const created = await res.json();
 ```anki
 START
 Basic
-Gotcha: does `fetch` reject its promise on an HTTP 404 or 500?
+JSON and Fetch: Gotcha: does `fetch` reject its promise on an HTTP 404 or 500?
 Back: No. `fetch` only rejects on network failure. 4xx/5xx still resolve, so you must check `res.ok` (true for status 200–299) yourself.
 <!--ID: 1782407009203-->
 END
 
 START
 Basic
-After `const res = await fetch(url)`, how do you get the parsed JSON body, and what does that call return?
+JSON and Fetch: After `const res = await fetch(url)`, how do you get the parsed JSON body, and what does that call return?
 Back: `await res.json()`. Reading the body is itself async — `res.json()` returns a promise of the parsed value.
 <!--ID: 1782407009207-->
 END
 
 START
 Basic
-What do the 2nd and 3rd args of `JSON.stringify(value, replacer, space)` do?
+JSON and Fetch: What do the 2nd and 3rd args of `JSON.stringify(value, replacer, space)` do?
 Back: `replacer` filters/transforms keys (array of keys, or a function). `space` (e.g. `2`) pretty-prints with that indent. `JSON.stringify(obj, null, 2)` is the common pretty form.
 <!--ID: 1782407009212-->
 END
 
 START
 Basic
-Write a fetch POST sending a JSON object `data`.
+JSON and Fetch: Write a fetch POST sending a JSON object `data`.
 Back: `fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })` — body must be a string.
 <!--ID: 1782407009217-->
 END
 
 START
 Basic
-Gotcha: what happens to functions or `undefined` values when you `JSON.stringify` an object?
+JSON and Fetch: Gotcha: what happens to functions or `undefined` values when you `JSON.stringify` an object?
 Back: They're silently dropped (omitted from object output; become `null` inside arrays). JSON has no representation for them.
 <!--ID: 1782407009221-->
 END
 
 START
 Basic
-What kind of object does `fetch(url)` resolve to, and is the body available immediately on it?
+JSON and Fetch: What kind of object does `fetch(url)` resolve to, and is the body available immediately on it?
 Back: A `Response` object. The body is not parsed yet — you must call an async reader like `.json()` or `.text()` (each returns a promise).
 <!--ID: 1782407009225-->
 END

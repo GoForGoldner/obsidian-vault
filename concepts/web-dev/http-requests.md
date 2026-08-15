@@ -3,6 +3,7 @@ tags: [web-dev, networking]
 category: web-dev
 related: [rest-vs-graphql, idempotency, cors]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 HTTP status codes grouped by category:

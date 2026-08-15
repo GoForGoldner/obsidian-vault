@@ -3,6 +3,7 @@ tags: [css, web-dev, comparison]
 category: vs
 related: [flexbox, css-grid]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Both lay out children, but they think differently. **Flexbox is one-dimensional and content-first**: you place items along a single axis and they size themselves from their content outward — great for navbars, toolbars, and rows that wrap. **Grid is two-dimensional and layout-first**: you define the row/column structure up front and drop content into it — great for page skeletons and dashboards. They compose well: grid for the macro layout, flex for aligning items inside each cell.
@@ -31,21 +32,21 @@ Both lay out children, but they think differently. **Flexbox is one-dimensional 
 ```anki
 START
 Basic
-When do you reach for flexbox over grid, and vice versa?
+Flexbox vs Grid: When do you reach for flexbox over grid, and vice versa?
 Back: Flexbox for **1D** flows — a single row/column of items, distributing space along one axis (navbars, button groups). Grid for **2D** structure where rows *and* columns must align (page layouts, dashboards, galleries).
 <!--ID: 1780758285771-->
 END
 
 START
 Basic
-What does "content-first" (flexbox) vs "layout-first" (grid) mean?
+Flexbox vs Grid: What does "content-first" (flexbox) vs "layout-first" (grid) mean?
 Back: Flexbox sizes the track from the items' content outward — content drives the layout. Grid defines the row/column structure first, then content flows into the cells — the layout drives the content.
 <!--ID: 1780758285777-->
 END
 
 START
 Basic
-Can flexbox and grid be used together, and what's the common division of labor?
+Flexbox vs Grid: Can flexbox and grid be used together, and what's the common division of labor?
 Back: Yes, frequently. Use Grid for the overall page skeleton (rows + columns), and Flexbox inside individual cells/components to align their contents.
 <!--ID: 1780758285784-->
 END

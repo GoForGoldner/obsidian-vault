@@ -3,6 +3,7 @@ tags: [java, lang, string, text-blocks]
 category: java
 related: [strings-and-stringbuilder, var-type-inference, generics]
 ---
+TARGET DECK: Study::Java::Lang
 
 ## Description
 A text block (JEP 378, final in Java 15) is a multi-line string literal delimited by `"""`. It produces an ordinary `String` — there is no new type and no string interpolation in Java. Its value is the property exam questions probe: the **opening** `"""` must be followed by a line terminator, and the compiler strips *incidental* whitespace based on where the **closing** `"""` sits.
@@ -58,49 +59,49 @@ String t = "count = %d".formatted(n);  // use formatted / String.format instead
 ```anki
 START
 Basic
-What must immediately follow the opening `"""` of a text block?
+Text Blocks: What must immediately follow the opening `"""` of a text block?
 Back: A line terminator (newline).<br>`"""hello"""` is a compile error; the content must begin on the line after the opening delimiter.
 <!--ID: 1781902681070-->
 END
 
 START
 Basic
-What determines how much leading whitespace is stripped from a text block?
+Text Blocks: What determines how much leading whitespace is stripped from a text block?
 Back: The position of the **closing** `"""` (plus the least-indented content line).<br>That leftmost column marks essential whitespace; everything to its left is incidental and removed.
 <!--ID: 1781902681077-->
 END
 
 START
 Basic
-Closing `"""` on its own line vs at the end of the last content line — what changes?
+Text Blocks: Closing `"""` on its own line vs at the end of the last content line — what changes?
 Back: On its own line → the text block ends with a trailing newline.<br>At the end of the last content line → no trailing newline.
 <!--ID: 1781902681084-->
 END
 
 START
 Basic
-In a text block, what does a `\` at the end of a line do?
+Text Blocks: In a text block, what does a `\` at the end of a line do?
 Back: Line continuation — it suppresses the newline, joining the two lines.<br>`Hello \`(newline)`World` becomes `"Hello World"`.
 <!--ID: 1781902681091-->
 END
 
 START
 Basic
-You need to keep trailing spaces on a line in a text block, but they keep disappearing. What do you use?
+Text Blocks: You need to keep trailing spaces on a line in a text block, but they keep disappearing. What do you use?
 Back: `\s` — an escape for a single space that is added **after** incidental-whitespace stripping.<br>It anchors the line end so trailing spaces survive.
 <!--ID: 1781902681098-->
 END
 
 START
 Basic
-Does `"""count = {n}"""` substitute the variable `n`?
+Text Blocks: Does `"""count = {n}"""` substitute the variable `n`?
 Back: No — Java has no string interpolation.<br>The text is literal `count = {n}`; use `String.format` / `.formatted(n)` or concatenation instead.
 <!--ID: 1781902681105-->
 END
 
 START
 Basic
-What type does a text block evaluate to, and when would you choose one?
+Text Blocks: What type does a text block evaluate to, and when would you choose one?
 Back: A plain `String` — no special type.<br>Choose them for multi-line JSON/SQL/HTML where escaping `\n` and `\"` would be noisy.
 <!--ID: 1781902681112-->
 END

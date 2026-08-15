@@ -3,6 +3,7 @@ tags: [css, web-dev, responsive, layout]
 category: web-dev
 related: [responsive-design, css-grid, css-functions]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 Container queries style an element based on the size of its **parent container** rather than the viewport — the missing piece that makes components truly reusable. You mark an ancestor as a query container with `container-type: inline-size`, then write `@container (min-width: ...)` rules that respond to *that* container's width, wherever it sits on the page. A card can show a horizontal layout in a wide sidebar and a stacked layout in a narrow one — with one rule set. New unit `cqi` = 1% of the container's inline size.
@@ -36,28 +37,28 @@ Container queries style an element based on the size of its **parent container**
 ```anki
 START
 Basic
-What's the fundamental difference between a container query and a media query?
+Container Queries: What's the fundamental difference between a container query and a media query?
 Back: A media query responds to the **viewport** (whole window) size. A container query responds to a **specific ancestor element's** size — so a component adapts to the space it's actually placed in, no matter where that is on the page.
 <!--ID: 1780758285672-->
 END
 
 START
 Basic
-Write the two-step CSS to make a `.card` switch to a flex row when its container (not the viewport) is at least 400px wide.
+Container Queries: Write the two-step CSS to make a `.card` switch to a flex row when its container (not the viewport) is at least 400px wide.
 Back: On the parent: `container-type: inline-size;`. Then: `@container (min-width: 400px) { .card { display: flex; } }`
 <!--ID: 1780758285676-->
 END
 
 START
 Basic
-Why do container queries make components more reusable than media queries?
+Container Queries: Why do container queries make components more reusable than media queries?
 Back: The same component reacts to whatever container it's dropped into — wide sidebar vs narrow column vs full page — without knowing the viewport or needing page-level breakpoints. Layout logic lives with the component.
 <!--ID: 1780758285682-->
 END
 
 START
 Basic
-What must you set on the ancestor before any `@container` rule will work, and what's the usual value?
+Container Queries: What must you set on the ancestor before any `@container` rule will work, and what's the usual value?
 Back: `container-type` — usually `inline-size` (queries the width). Without declaring a query container, `@container` rules match nothing.
 <!--ID: 1780758285687-->
 END

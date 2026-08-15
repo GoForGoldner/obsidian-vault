@@ -3,6 +3,7 @@ tags: [java, streams, collectors]
 category: java
 related: [stream-api, functional-interfaces, lambdas-and-method-references, optional]
 ---
+TARGET DECK: Study::Java::Streams
 
 ## Description
 `collect(Collector)` is the workhorse terminal operation: it performs a mutable reduction, accumulating stream elements into a container. The `java.util.stream.Collectors` factory class supplies the common ones. The exam loves the edge cases: `toMap` throws `IllegalStateException` on **duplicate keys** unless you pass a merge function; `groupingBy` accepts a *downstream* collector to reduce each group; `partitioningBy` always produces a `Map<Boolean, …>` with **both** `true` and `false` keys present even when one side is empty.
@@ -88,56 +89,56 @@ List<Integer> c = Stream.of(1, 2, 3).collect(Collectors.toUnmodifiableList()); /
 ```anki
 START
 Basic
-What happens when `Collectors.toMap(keyFn, valFn)` produces two equal keys?
+Collectors: What happens when `Collectors.toMap(keyFn, valFn)` produces two equal keys?
 Back: It throws `IllegalStateException: Duplicate key ...`.<br>Fix: use the 3-arg overload with a **merge function**, e.g. `toMap(k, v, (a, b) -> a)` or `(a, b) -> a + b`.<br>The merge function decides which value wins (or how to combine).
 <!--ID: 1781902681236-->
 END
 
 START
 Basic
-Distinction: `Stream.toList()` vs `collect(Collectors.toList())` — mutability?
+Collectors: Distinction: `Stream.toList()` vs `collect(Collectors.toList())` — mutability?
 Back: `Stream.toList()` (Java 16+) returns an **unmodifiable** list.<br>`Collectors.toList()` makes **no guarantee** — it currently returns a mutable `ArrayList`, but you must not rely on that.<br>For a guaranteed-immutable result use `Stream.toList()` or `Collectors.toUnmodifiableList()`.
 <!--ID: 1781902681242-->
 END
 
 START
 Basic
-What's special about the map `partitioningBy` returns?
+Collectors: What's special about the map `partitioningBy` returns?
 Back: It's a `Map<Boolean, List<T>>` that **always contains both `true` and `false` keys**, even if one partition is empty.<br>`groupingBy` only creates keys that actually occur.<br>So `partitioningBy` result keys are safe to access without null checks.
 <!--ID: 1781902681248-->
 END
 
 START
 Basic
-You want to count elements per group, not list them. What do you write?
+Collectors: You want to count elements per group, not list them. What do you write?
 Back: `groupingBy(classifier, Collectors.counting())`.<br>The second arg is a **downstream collector** applied to each group, giving `Map<K, Long>`.<br>Downstreams like `counting`, `mapping`, `summingInt`, `toSet` reshape each group's value.
 <!--ID: 1781902681254-->
 END
 
 START
 Basic
-What does `Collectors.joining(", ", "[", "]")` do on `["a","b","c"]`?
+Collectors: What does `Collectors.joining(", ", "[", "]")` do on `["a","b","c"]`?
 Back: Produces the `String` `"[a, b, c]"`.<br>Args are `(delimiter, prefix, suffix)`.<br>`joining()` with no args just concatenates; the 1-arg form adds only a delimiter.
 <!--ID: 1781902681259-->
 END
 
 START
 Basic
-When would you use `Collectors.teeing`?
+Collectors: When would you use `Collectors.teeing`?
 Back: To feed the same stream into **two collectors in one pass** and merge their results.<br>`teeing(downstream1, downstream2, (r1, r2) -> merged)` (Java 12+).<br>Classic use: compute sum and count together to get an average without two traversals.
 <!--ID: 1781902681264-->
 END
 
 START
 Basic
-What does `Collectors.mapping(fn, downstream)` do that plain `map` doesn't?
+Collectors: What does `Collectors.mapping(fn, downstream)` do that plain `map` doesn't?
 Back: It transforms elements **inside** a downstream collector, typically within `groupingBy`/`partitioningBy`.<br>e.g. `groupingBy(k, mapping(Item::name, toList()))` groups, then keeps only names per group.<br>It adapts the elements before they reach the inner collector.
 <!--ID: 1781902681268-->
 END
 
 START
 Basic
-How do `summingInt` and `averagingInt` differ in return type?
+Collectors: How do `summingInt` and `averagingInt` differ in return type?
 Back: `summingInt(toIntFn)` returns an `Integer` (sum).<br>`averagingInt(toIntFn)` returns a `Double` (mean) — even for int inputs.<br>Both take a `ToIntFunction` to extract the int from each element.
 <!--ID: 1781902681272-->
 END

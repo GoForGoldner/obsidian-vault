@@ -3,6 +3,7 @@ tags: [security, comparison]
 category: vs
 related: [jwt-tokens, rate-limiting]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Authentication is verifying WHO you are (login, credentials, identity). Authorization is verifying WHAT you can do (permissions, roles, access control). Authentication comes first, then authorization.

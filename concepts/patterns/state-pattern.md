@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [stradegy-pattern, command-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern where an object changes its behavior based on its internal state. Instead of giant if/else or switch blocks, each state is its own class that handles the behavior for that state.

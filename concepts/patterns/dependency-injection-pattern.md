@@ -3,6 +3,7 @@ tags: [design-pattern, architectural]
 category: patterns
 related: [dependency-inversion, repository-pattern, singleton-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A strategy where you pass dependencies into a class instead of the class creating them itself. Instead of `new`-ing up dependencies in the constructor, you pass them in through an interface.

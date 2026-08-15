@@ -3,6 +3,7 @@ tags: [java, io, exceptions, try-with-resources, autocloseable]
 category: java
 related: [files-and-paths, byte-streams, character-streams, serialization, console-and-standard-streams]
 ---
+TARGET DECK: Study::Java::IO
 
 ## Description
 Try-with-resources (TWR) automatically closes anything that implements `AutoCloseable`
@@ -82,56 +83,56 @@ try (AutoCloseable c = () -> { throw new IOException("from close"); }) {
 ```anki
 START
 Basic
-In what ORDER are try-with-resources closed?
+Try-With-Resources: In what ORDER are try-with-resources closed?
 Back: Reverse order of declaration — last declared closes first (LIFO).<br>`try (var a=...; var b=...)` closes `b` then `a`.<br>Mirrors construction dependencies (b may depend on a).
 <!--ID: 1781902680543-->
 END
 
 START
 Basic
-Timing gotcha: when do try-with-resources close relative to `catch`/`finally`?
+Try-With-Resources: Timing gotcha: when do try-with-resources close relative to `catch`/`finally`?
 Back: Resources close BEFORE any `catch` or `finally` block runs.<br>So inside `catch`, the resource is already closed.<br>Different from manual try/finally where you control the order.
 <!--ID: 1781902680550-->
 END
 
 START
 Basic
-Body throws `RuntimeException`, and `close()` also throws. Which propagates? Where's the other?
+Try-With-Resources: Body throws `RuntimeException`, and `close()` also throws. Which propagates? Where's the other?
 Back: The body's exception propagates as the primary.<br>The `close()` exception is attached as a SUPPRESSED exception.<br>Retrieve via `primary.getSuppressed()`.
 <!--ID: 1781902680557-->
 END
 
 START
 Basic
-What's the difference between `AutoCloseable` and `Closeable`?
+Try-With-Resources: What's the difference between `AutoCloseable` and `Closeable`?
 Back: `AutoCloseable` (`java.lang`): `close()` throws `Exception`.<br>`Closeable` (`java.io`) extends it and narrows `close()` to `IOException`; should be idempotent.<br>Both work in try-with-resources.
 <!--ID: 1781902680565-->
 END
 
 START
 Basic
-Java 9+ syntax: can you put an existing variable in the resource header?
+Try-With-Resources: Java 9+ syntax: can you put an existing variable in the resource header?
 Back: Yes, if it's final or effectively final: `try (existingResource) { ... }`.<br>Before Java 9 you had to declare a fresh variable inside the parens.<br>Reassigning the variable breaks "effectively final" and won't compile.
 <!--ID: 1781902680572-->
 END
 
 START
 Basic
-Write the try-with-resources skeleton that copies a reader to a writer.
+Try-With-Resources: Write the try-with-resources skeleton that copies a reader to a writer.
 Back: `try (var r = new BufferedReader(...);`<br>`     var w = new BufferedWriter(...)) {`<br>`    // use r and w`<br>`} catch (IOException e) { ... }`<br>Both auto-close in reverse order, even on exception.
 <!--ID: 1781902680579-->
 END
 
 START
 Basic
-Which interface must a class implement to be usable in try-with-resources?
+Try-With-Resources: Which interface must a class implement to be usable in try-with-resources?
 Back: `AutoCloseable` (or `Closeable`, which extends it).<br>The single method `close()` is invoked automatically on block exit.
 <!--ID: 1781902680586-->
 END
 
 START
 Basic
-How do you read the exception that `close()` threw when the body also failed?
+Try-With-Resources: How do you read the exception that `close()` threw when the body also failed?
 Back: `Throwable.getSuppressed()` returns the array of suppressed throwables.<br>The primary (body) exception is what `catch` catches; the close failure rides along suppressed.
 <!--ID: 1781902680593-->
 END

@@ -3,6 +3,7 @@ tags: [javascript, web-dev, this]
 category: web-dev
 related: [functions-and-arrows, closures, objects-and-prototypes]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 The #1 trap for Java devs: in JS, `this` is **not** the enclosing class instance — it's determined **at call time** by *how* the function is invoked, not where it's defined. Four binding rules, in priority order: **(1) `new`** — `this` is the freshly created object; **(2) explicit** — `call`/`apply`/`bind` set `this` to their first argument; **(3) implicit** — `obj.method()` sets `this` to `obj` (the thing left of the dot); **(4) default** — a plain `fn()` call gets `undefined` in strict mode (or `globalThis` in sloppy mode). The killer consequence: extracting a method (`const f = obj.method; f()`) **loses** the `this` binding. **Arrow functions** ignore all four rules — they capture `this` lexically from the surrounding scope at definition time, which is exactly why they're the fix for callbacks. `call(thisArg, ...args)` and `apply(thisArg, argsArray)` invoke immediately; `bind(thisArg)` returns a new permanently-bound function.
@@ -53,42 +54,42 @@ bound("Hey", ".");               // "Hey, Ada."
 ```anki
 START
 Basic
-A Java dev assumes `this` refers to the class instance. In JS, what actually decides what `this` is?
+this, call, apply, bind: A Java dev assumes `this` refers to the class instance. In JS, what actually decides what `this` is?
 Back: How the function is *called* (call site), not where it's defined. `this` is bound at call time, not lexically (except for arrow functions).
 <!--ID: 1782407009329-->
 END
 
 START
 Basic
-Name the 4 `this` binding rules in priority order.
+this, call, apply, bind: Name the 4 `this` binding rules in priority order.
 Back: 1) `new` (new object), 2) explicit `call`/`apply`/`bind` (the given arg), 3) implicit `obj.method()` (the object left of the dot), 4) default plain call (`undefined` in strict mode / global in sloppy).
 <!--ID: 1782407009333-->
 END
 
 START
 Basic
-You write `const f = obj.method; f();`. Why does `this` break inside `f`?
+this, call, apply, bind: You write `const f = obj.method; f();`. Why does `this` break inside `f`?
 Back: Detaching the method loses the implicit binding. A plain `f()` call uses the default rule, so `this` is `undefined` (strict) instead of `obj`.
 <!--ID: 1782407009337-->
 END
 
 START
 Basic
-What's the one thing about arrow functions and `this` that fixes the Java-dev callback gotcha?
+this, call, apply, bind: What's the one thing about arrow functions and `this` that fixes the Java-dev callback gotcha?
 Back: Arrow functions don't get their own `this` — they capture it lexically from the enclosing scope at definition. So a callback arrow keeps the surrounding `this` (e.g. the instance) instead of being re-bound at call time.
 <!--ID: 1782407009342-->
 END
 
 START
 Basic
-Difference between `fn.call(obj, a, b)` and `fn.apply(obj, [a, b])`?
+this, call, apply, bind: Difference between `fn.call(obj, a, b)` and `fn.apply(obj, [a, b])`?
 Back: Both invoke immediately with `this = obj`; `call` takes arguments listed individually, `apply` takes them as a single array.
 <!--ID: 1782407009346-->
 END
 
 START
 Basic
-What does `fn.bind(obj)` return, and how does it differ from `call`?
+this, call, apply, bind: What does `fn.bind(obj)` return, and how does it differ from `call`?
 Back: It returns a *new* function permanently bound to `obj` (and optionally pre-set args) without invoking it. `call` invokes right away; `bind` defers invocation.
 <!--ID: 1782407009350-->
 END

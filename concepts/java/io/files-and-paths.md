@@ -3,6 +3,7 @@ tags: [java, io, nio, files, path]
 category: java
 related: [byte-streams, character-streams, try-with-resources, serialization, console-and-standard-streams]
 ---
+TARGET DECK: Study::Java::IO
 
 ## Description
 NIO.2 (`java.nio.file`) is the modern file API. A `Path` is an immutable, abstract
@@ -109,70 +110,70 @@ try (DirectoryStream<Path> ds = Files.newDirectoryStream(Path.of("/project"))) {
 ```anki
 START
 Basic
-On the exam, which `Path` methods do real disk I/O (and can throw `IOException`) vs which are pure?
+Files and Paths: On the exam, which `Path` methods do real disk I/O (and can throw `IOException`) vs which are pure?
 Back: Pure (no I/O, no `IOException`): `Path.of`, `resolve`, `relativize`, `normalize`, `getParent`, `toAbsolutePath`.<br>I/O (checked `IOException`): the `Files.*` verbs (`readString`, `copy`, `walk`, `delete`...).<br>`Path` is just an abstract location; `Files` is what touches the disk.
 <!--ID: 1781902680487-->
 END
 
 START
 Basic
-`base.resolve(other)` — what happens when `other` is an absolute path?
+Files and Paths: `base.resolve(other)` — what happens when `other` is an absolute path?
 Back: The absolute `other` is returned unchanged, ignoring `base`.<br>`Path.of("/home").resolve("/abs")` -> `/abs`.<br>Only relative arguments get appended.
 <!--ID: 1781902680494-->
 END
 
 START
 Basic
-`resolve` vs `resolveSibling`?
+Files and Paths: `resolve` vs `resolveSibling`?
 Back: `resolve` appends to the path: `/a/b`.resolve(`c`) -> `/a/b/c`.<br>`resolveSibling` replaces the last element: `/a/b`.resolveSibling(`c`) -> `/a/c`.<br>Sibling = same parent, different name.
 <!--ID: 1781902680501-->
 END
 
 START
 Basic
-You call `Files.lines(path)` or `Files.walk(path)` and just iterate — what's the bug?
+Files and Paths: You call `Files.lines(path)` or `Files.walk(path)` and just iterate — what's the bug?
 Back: Both return a lazy `Stream` backed by an OPEN file handle; you must close it.<br>Wrap in try-with-resources: `try (var s = Files.lines(p)) { ... }`.<br>Forgetting it leaks a file descriptor.
 <!--ID: 1781902680508-->
 END
 
 START
 Basic
-`Files.delete(p)` vs `Files.deleteIfExists(p)` when the file is missing?
+Files and Paths: `Files.delete(p)` vs `Files.deleteIfExists(p)` when the file is missing?
 Back: `delete` throws `NoSuchFileException` (an `IOException`).<br>`deleteIfExists` returns `false`, no exception.<br>Use the latter for idempotent cleanup.
 <!--ID: 1781902680516-->
 END
 
 START
 Basic
-How do you convert between legacy `java.io.File` and NIO.2 `Path`?
+Files and Paths: How do you convert between legacy `java.io.File` and NIO.2 `Path`?
 Back: `file.toPath()` and `path.toFile()`.<br>Lets old `File`-based code interop with the modern `Files`/`Path` API.
 <!--ID: 1781902680523-->
 END
 
 START
 Basic
-What's the difference between `Path.of(...)` and `Paths.get(...)`?
+Files and Paths: What's the difference between `Path.of(...)` and `Paths.get(...)`?
 Back: None functionally — `Paths.get` just delegates to `Path.of`.<br>`Path.of` was added in Java 11 and is now preferred; `Paths.get` is the older form.
 <!--ID: 1781902680529-->
 END
 
 START
 Basic
-Why can't `myPath.normalize()` mutate `myPath` in place?
+Files and Paths: Why can't `myPath.normalize()` mutate `myPath` in place?
 Back: `Path` is immutable; every "operation" returns a NEW `Path`.<br>`p.normalize();` with no reassignment is a no-op bug — use `p = p.normalize();`.<br>Same trap as `String` methods.
 <!--ID: 1781902680535-->
 END
 
 START
 Basic
-Gotcha: why does `path.getFileName().equals("x.md")` always return `false`?
+Files and Paths: Gotcha: why does `path.getFileName().equals("x.md")` always return `false`?
 Back: `getFileName()` returns a **`Path`**, not a `String` — and a `Path` is never `.equals()` to a `String`.<br>Call `.toString()` first: `path.getFileName().toString().equals("x.md")`.<br>Same trap when comparing any `Path` component (`getName(i)`, `getParent()`) against text.
 <!--ID: 1781990693208-->
 END
 
 START
 Basic
-`File.separator` vs `File.pathSeparator` — what's the difference, and are they methods?
+Files and Paths: `File.separator` vs `File.pathSeparator` — what's the difference, and are they methods?
 Back: Both are **fields** (no parentheses), `static final String`.<br>`File.separator` joins NAME elements within one path (`/` Unix, `\` Windows).<br>`File.pathSeparator` separates ENTRIES in a list like `PATH`/`CLASSPATH` (`:` Unix, `;` Windows) — this is what you `split` an env var on.
 <!--ID: 1781990693213-->
 END

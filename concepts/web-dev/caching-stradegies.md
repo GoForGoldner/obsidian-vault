@@ -3,6 +3,7 @@ tags: [web-dev, performance]
 category: web-dev
 related: [load-balancing, database-indexes]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 Storing frequently accessed data in a fast layer (memory) to avoid expensive recomputation or database hits. Main strategies: Cache-Aside (app checks cache first, loads from DB on miss), Write-Through (write to cache and DB together), Write-Behind (write to cache, async write to DB), Read-Through (cache loads from DB on miss).

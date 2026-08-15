@@ -3,6 +3,7 @@ tags: [css, web-dev, layout, fundamentals]
 category: web-dev
 related: [box-model, flexbox, css-grid, css-positioning, display-none-vs-visibility-hidden]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 `display` is the single most important layout property — it sets how a box behaves. It has an **outer** role (how the box participates in its parent: `block` stacks vertically and fills width; `inline` flows with text and ignores width/height) and an **inner** role (how its children lay out: `flow`, `flex`, `grid`). `inline-block` is the hybrid that flows inline yet respects width/height/margins. `none` removes the element entirely. `flow-root` makes a box contain its floats (modern clearfix).
@@ -30,35 +31,35 @@ related: [box-model, flexbox, css-grid, css-positioning, display-none-vs-visibil
 ```anki
 START
 Basic
-You set `width` and `height` on an inline element (like a `<span>`) and nothing changes. Why, and what display value fixes it while keeping it in the text flow?
+CSS Display: You set `width` and `height` on an inline element (like a `<span>`) and nothing changes. Why, and what display value fixes it while keeping it in the text flow?
 Back: `display: inline` ignores width/height (and top/bottom margins). Switch to `display: inline-block` — it still flows inline but now respects box dimensions.
 <!--ID: 1780758285464-->
 END
 
 START
 Basic
-Explain the "outer" vs "inner" display roles with an example.
+CSS Display: Explain the "outer" vs "inner" display roles with an example.
 Back: Outer = how the box sits in its parent (`block` vs `inline`). Inner = how its children are laid out (`flow`/`flex`/`grid`). `display: flex` means block-level outer + flex inner; children become flex items.
 <!--ID: 1780758285470-->
 END
 
 START
 Basic
-What's the difference between `display: block` and `display: inline` for flow and sizing?
+CSS Display: What's the difference between `display: block` and `display: inline` for flow and sizing?
 Back: `block` starts on a new line, fills available width, and respects width/height/all margins. `inline` flows within a line alongside text, sizes to its content, and ignores width/height and vertical margins.
 <!--ID: 1780758285476-->
 END
 
 START
 Basic
-What does `display: flow-root` do, and what classic hack does it replace?
+CSS Display: What does `display: flow-root` do, and what classic hack does it replace?
 Back: It establishes a new block formatting context so the element fully contains its floated children (the parent no longer collapses). It's the modern, one-line replacement for the `::after { clear: both }` clearfix.
 <!--ID: 1780758285481-->
 END
 
 START
 Basic
-When you apply `display: flex` or `display: grid` to a parent, what happens to its direct children?
+CSS Display: When you apply `display: flex` or `display: grid` to a parent, what happens to its direct children?
 Back: They become flex items / grid items and are laid out by that container's rules. Their own `display` is partly overridden (e.g. inline children start behaving like blockified flex items).
 <!--ID: 1780758285487-->
 END

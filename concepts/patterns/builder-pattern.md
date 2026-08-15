@@ -3,6 +3,7 @@ tags: [design-pattern, creational]
 category: patterns
 related: [singleton-pattern, prototype-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that constructs complex objects step by step. Instead of a constructor with 10 parameters, you chain readable method calls.

@@ -3,6 +3,7 @@ tags: [data-structures, trees]
 category: data-structures
 related: [hash-table, dfs, bfs]
 ---
+TARGET DECK: Study::Data Structures
 
 ## Description
 A binary tree where each node has at most 2 children (left and right), with the property: left subtree < root < right subtree.

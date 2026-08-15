@@ -3,6 +3,7 @@ tags: [cypress, testing, e2e, web-dev]
 category: web-dev
 related: [cypress-selectors, cypress-actions, cypress-assertions, cypress-network-intercept, cypress-best-practices, dom-events]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::Testing
 
 ## Description
 Cypress is an end-to-end browser testing tool (13+/14) where every `cy.*` call **enqueues a command** onto an internal queue rather than executing immediately. The test function body runs to completion synchronously, building the queue; Cypress then drains it asynchronously. This is the #1 gotcha: `cy.*` commands look like promises but are **not** — you cannot `await` them, and the return value is a chainer, not the resolved subject. To act on a yielded value (DOM element, response, alias) you pass a callback to `.then()`. Each query command (like `cy.get`) has **built-in retry-ability**: it re-runs until it finds the element or times out, so Cypress automatically waits and you rarely insert manual waits.
@@ -56,42 +57,42 @@ it('runs in queued order, not source order of side effects', () => {
 ```anki
 START
 Basic
-In Cypress, what does a `cy.*` call actually do when the line executes, and when does the work happen?
+Cypress Overview and Command Queue: In Cypress, what does a `cy.*` call actually do when the line executes, and when does the work happen?
 Back: It enqueues a command onto Cypress's internal command queue and returns a chainer. The actual work runs later, asynchronously, when Cypress drains the queue in order — not at the moment the line is reached.
 <!--ID: 1782407010011-->
 END
 
 START
 Basic
-Why can't you `await cy.get('.foo')` or assign it to a variable to use the element?
+Cypress Overview and Command Queue: Why can't you `await cy.get('.foo')` or assign it to a variable to use the element?
 Back: `cy.*` commands are not promises — they return a chainer, not a resolved value. `await` yields the chainer object, not the element. To use the yielded subject you must pass a callback to `.then(($el) => {...})`.
 <!--ID: 1782407010014-->
 END
 
 START
 Basic
-You need the text of an `<h1>` to do a computation in a Cypress test. Write the correct pattern.
+Cypress Overview and Command Queue: You need the text of an `<h1>` to do a computation in a Cypress test. Write the correct pattern.
 Back: cy.get('h1').then(($h1) => {\n  const text = $h1.text();\n  // use text here\n});
 <!--ID: 1782407010017-->
 END
 
 START
 Basic
-What is "retry-ability" in Cypress and which kind of command has it?
+Cypress Overview and Command Queue: What is "retry-ability" in Cypress and which kind of command has it?
 Back: Query commands like `cy.get`/`cy.contains` automatically re-run until they succeed (find the element) or hit the timeout. This is why Cypress auto-waits and you rarely need manual waits.
 <!--ID: 1782407010020-->
 END
 
 START
 Basic
-A Java dev writes `let x = 0; cy.get('btn').click().then(() => x = 1); expect(x).to.eq(1)`. Why does the assertion see x as 0?
+Cypress Overview and Command Queue: A Java dev writes `let x = 0; cy.get('btn').click().then(() => x = 1); expect(x).to.eq(1)`. Why does the assertion see x as 0?
 Back: The test body runs synchronously to build the queue. The `.then` callback only fires later when the queue drains, so at the `expect` line x is still 0. The assignment hasn't happened yet.
 <!--ID: 1782407010023-->
 END
 
 START
 Basic
-Does Cypress run the lines of a test in the order they appear? What's the nuance?
+Cypress Overview and Command Queue: Does Cypress run the lines of a test in the order they appear? What's the nuance?
 Back: The enqueued cy.* commands run in source order, but the synchronous JS around them (variables, plain expects, console.log) executes immediately while the queue is still being built — before any command resolves.
 <!--ID: 1782407010026-->
 END

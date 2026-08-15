@@ -5,6 +5,7 @@ tags:
 category: theads
 related: []
 ---
+TARGET DECK: Study::Threads
 
 ## Description
 When 2 or more threads are trying to both update a shared resource. Updating or modifying the resource can cause errors because they are updating the value at the same time causing inconsistency.

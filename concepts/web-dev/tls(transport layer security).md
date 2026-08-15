@@ -3,6 +3,7 @@ tags: [web-dev, security, networking]
 category: web-dev
 related: [encryption-vs-hashing, internet-protocal]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 A communication protocol in the transport layer that ensures authentication, integrity, and encryption. Authentication: a CA (Certificate Authority) chain verifies the server's identity. Integrity: uses HMAC to verify messages haven't been modified. Encryption: both parties exchange keys and encrypt all traffic so eavesdroppers can't read it.

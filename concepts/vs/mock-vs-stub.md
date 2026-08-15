@@ -3,6 +3,7 @@ tags: [testing, comparison]
 category: vs
 related: [repository-pattern, dependency-injection-pattern]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Stubs provide canned responses to calls. they fake the data. Mocks verify that specific interactions happened. they track calls. Stubs test state (was the result correct?). Mocks test behavior (did the code call the right method?).

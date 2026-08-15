@@ -3,6 +3,7 @@ tags: [java, oop, interfaces, default-methods]
 category: java
 related: [nested-classes, sealed-classes, records, enums, equals-hashcode-tostring]
 ---
+TARGET DECK: Study::Java::OOP
 
 ## Description
 Since Java 8, interfaces are far more than abstract method lists. A **`default` method** has a body and is inherited by implementors, letting an interface evolve without breaking existing classes. A **`static` method** belongs to the interface itself — call it as `MyInterface.helper()`; it is **not inherited** by implementing classes or sub-interfaces. Since Java 9, an interface may also have **`private` (and `private static`) methods**, used purely to share code among default/static methods without exposing it. Remember that interface fields are always **`public static final`** constants implicitly, and methods without a body are implicitly `public abstract`.
@@ -62,49 +63,49 @@ class C implements A, B {
 ```anki
 START
 Basic
-Is an interface `static` method inherited by implementing classes?
+Interfaces and Default Methods: Is an interface `static` method inherited by implementing classes?
 Back: **No.** A `static` interface method is called on the interface itself — `MyInterface.helper()`.<br>It is not visible on implementors or sub-interfaces.<br>Contrast `default` methods, which *are* inherited.
 <!--ID: 1781902681609-->
 END
 
 START
 Basic
-A class implements two interfaces with the same-signature `default` method. What happens?
+Interfaces and Default Methods: A class implements two interfaces with the same-signature `default` method. What happens?
 Back: **Compile error** until the class **overrides** the method.<br>Inside the override, delegate explicitly with `A.super.id()` / `B.super.id()`.<br>This is the diamond problem's resolution rule.
 <!--ID: 1781902681616-->
 END
 
 START
 Basic
-What modifiers does `int CONST = 5;` declared in an interface implicitly have?
+Interfaces and Default Methods: What modifiers does `int CONST = 5;` declared in an interface implicitly have?
 Back: `public static final`.<br>All interface fields are constants — you cannot declare interface instance state.
 <!--ID: 1781902681623-->
 END
 
 START
 Basic
-What were `private` interface methods (Java 9+) added for?
+Interfaces and Default Methods: What were `private` interface methods (Java 9+) added for?
 Back: To **share code among `default`/`static` methods** without exposing it as part of the API.<br>`private static` helpers serve the static methods; instance `private` helpers serve the defaults.
 <!--ID: 1781902681630-->
 END
 
 START
 Basic
-When choose an abstract class over an interface?
+Interfaces and Default Methods: When choose an abstract class over an interface?
 Back: When you need **instance state, constructors, or non-public members** shared across subtypes.<br>Interface = capability/role and multiple inheritance; abstract class = shared state + partial implementation, single inheritance.
 <!--ID: 1781902681637-->
 END
 
 START
 Basic
-What is the implicit signature of `String name();` inside an interface?
+Interfaces and Default Methods: What is the implicit signature of `String name();` inside an interface?
 Back: `public abstract String name();`.<br>A bodyless interface method is always public and abstract — implementors must provide it (or inherit a default).
 <!--ID: 1781902681643-->
 END
 
 START
 Basic
-Syntax to call a specific super-interface's default from an overriding method?
+Interfaces and Default Methods: Syntax to call a specific super-interface's default from an overriding method?
 Back: `InterfaceName.super.method()` — e.g. `A.super.id()`.<br>Note it's `Interface.super`, not plain `super`, which refers to the class hierarchy.
 <!--ID: 1781902681650-->
 END

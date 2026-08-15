@@ -3,6 +3,7 @@ tags: [algorithms, graph, traversal]
 category: algorithms
 related: [dfs, hash-table]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Breadth-First Search explores a graph level by level using a queue. It visits all neighbors at the current depth before moving to the next level. Guarantees the shortest path in unweighted graphs because it finds nodes in order of their distance from the source.

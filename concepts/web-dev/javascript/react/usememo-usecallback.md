@@ -3,6 +3,7 @@ tags: [react, web-dev, hooks, performance]
 category: web-dev
 related: [useeffect, usestate, custom-hooks, rules-of-hooks]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 `useMemo` and `useCallback` are **caching** hooks tied to a dependency array (same rules as `useEffect`): they return the *same* reference across renders until a dependency changes. `useMemo(fn, deps)` caches the **value** that `fn` returns; `useCallback(fn, deps)` caches the **function** itself (it's just `useMemo(() => fn, deps)`). The point is almost never raw speed — it's **referential equality**. In JS, `{} !== {}` and `() => {} !== () => {}`, so a freshly-created object/function passed to a memoized child component, or listed in another hook's deps, looks "changed" every render and defeats memoization or re-triggers effects. These hooks give you a stable reference. They are **easy to overuse**: each one has its own bookkeeping cost, and memoizing a cheap computation is premature optimization. Reach for them only when (a) the computation is genuinely expensive, or (b) the stable reference is needed by `React.memo`, a dependency array, or a context value.
@@ -42,35 +43,35 @@ const total = useMemo(() => a + b, [a, b]); // just write: const total = a + b;
 ```anki
 START
 Basic
-What does `useMemo` cache vs what does `useCallback` cache?
+useMemo and useCallback: What does `useMemo` cache vs what does `useCallback` cache?
 Back: `useMemo(fn, deps)` caches the value `fn` returns. `useCallback(fn, deps)` caches the function itself. (`useCallback(fn, d)` === `useMemo(() => fn, d)`.)
 <!--ID: 1782407009878-->
 END
 
 START
 Basic
-The real reason to use useMemo/useCallback is usually NOT speed. What is it?
+useMemo and useCallback: The real reason to use useMemo/useCallback is usually NOT speed. What is it?
 Back: Referential equality. In JS a new object/function is never === the previous one, which breaks React.memo, dependency arrays, and context. These hooks return a stable reference.
 <!--ID: 1782407009881-->
 END
 
 START
 Basic
-A coworker wraps every value and handler in useMemo/useCallback "for performance." Why is that often a mistake?
+useMemo and useCallback: A coworker wraps every value and handler in useMemo/useCallback "for performance." Why is that often a mistake?
 Back: Each memo has its own cost (storing deps, comparing them). For cheap computations or non-referential uses it adds overhead and clutter without benefit — premature optimization.
 <!--ID: 1782407009885-->
 END
 
 START
 Basic
-You pass an inline `onClick={() => ...}` to a `React.memo`-wrapped child and it still re-renders every time. Why, and what fixes it?
+useMemo and useCallback: You pass an inline `onClick={() => ...}` to a `React.memo`-wrapped child and it still re-renders every time. Why, and what fixes it?
 Back: A new arrow function is created each render, so the prop reference changes and memo can't bail out. Wrap it in `useCallback(fn, deps)` to keep the reference stable.
 <!--ID: 1782407009889-->
 END
 
 START
 Basic
-Name two concrete situations where reaching for useMemo/useCallback is justified.
+useMemo and useCallback: Name two concrete situations where reaching for useMemo/useCallback is justified.
 Back: (1) The computation is genuinely expensive (large sort/filter). (2) A stable reference is required — by React.memo, another hook's dependency array, or a context Provider value.
 <!--ID: 1782407009892-->
 END

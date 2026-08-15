@@ -3,6 +3,7 @@ tags: [oop, solid, principles]
 category: oop
 related: [dependency-injection-pattern, repository-pattern]
 ---
+TARGET DECK: Study::OOP::SOLID Principles
 
 ## Description
 The "D" in SOLID. High-level modules should not depend on low-level modules. both should depend on abstractions (interfaces). Instead of a service directly referencing a concrete database class, it references an IDatabase interface. This makes it easy to swap implementations and test with mocks.

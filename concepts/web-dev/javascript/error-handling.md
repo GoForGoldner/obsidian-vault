@@ -3,6 +3,7 @@ tags: [javascript, web-dev, errors, exceptions]
 category: web-dev
 related: [async-await, async-promises, json-and-fetch, functions-and-arrows]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 JS error handling looks like Java's — `try`/`catch`/`finally` and `throw` — but with key differences. There are **no checked exceptions** and **no `catch (TypeError e)` typed clauses**: `catch` takes a single binding and you discriminate inside with `instanceof` (or omit the binding entirely: `catch { }`). You can `throw` *any value* (a string, a number), but you should throw an `Error` (or subclass) so you get a `message` and a `stack`. Define custom errors by extending `Error`. Crucially, `throw` is **expression-level** in the language grammar's sense — but note it's a statement, not an expression you can assign; what's idiomatic is throwing inside expressions via helpers, and using `??`/`||` guards. In **async** code, a rejected promise *is* a thrown error: it's caught by `try/catch` around `await`, or by `.catch()` on the chain — but a `throw` inside a bare callback (e.g. `setTimeout`) escapes your `try` because it runs later on a fresh stack.
@@ -57,42 +58,42 @@ async function load() {
 ```anki
 START
 Basic
-JS has no typed catch clauses like Java's `catch (IOException e)`. How do you handle different error types?
+Error Handling: JS has no typed catch clauses like Java's `catch (IOException e)`. How do you handle different error types?
 Back: One `catch (err)` binding, then discriminate inside with `if (err instanceof SyntaxError)` etc., re-throwing what you can't handle.
 <!--ID: 1782407009146-->
 END
 
 START
 Basic
-Why throw a `new Error("msg")` instead of `throw "msg"` even though both are legal?
+Error Handling: Why throw a `new Error("msg")` instead of `throw "msg"` even though both are legal?
 Back: An `Error` object carries a `message`, a `name`, and a captured `stack` trace. A bare string has none of that, making debugging far harder.
 <!--ID: 1782407009151-->
 END
 
 START
 Basic
-Write a custom error class `HttpError` carrying a `status`.
+Error Handling: Write a custom error class `HttpError` carrying a `status`.
 Back: `class HttpError extends Error { constructor(status, msg) { super(msg); this.name = "HttpError"; this.status = status; } }`
 <!--ID: 1782407009155-->
 END
 
 START
 Basic
-When does the `finally` block run relative to a `return` or `throw` in the `try`?
+Error Handling: When does the `finally` block run relative to a `return` or `throw` in the `try`?
 Back: Always — after the try/catch completes, even when the try `return`s or throws. Used for cleanup that must happen regardless.
 <!--ID: 1782407009160-->
 END
 
 START
 Basic
-Gotcha: a `throw` inside a `setTimeout(() => {...})` callback — is it caught by a surrounding `try/catch`?
+Error Handling: Gotcha: a `throw` inside a `setTimeout(() => {...})` callback — is it caught by a surrounding `try/catch`?
 Back: No. The callback runs later on a fresh stack, after the `try` has exited, so the error escapes. Handle it inside the callback (or use promises).
 <!--ID: 1782407009164-->
 END
 
 START
 Basic
-In async code, how is a rejected promise related to a thrown error?
+Error Handling: In async code, how is a rejected promise related to a thrown error?
 Back: They're the same mechanism — `await`ing a rejected promise throws, caught by `try/catch`; on a chain it's caught by `.catch()`.
 <!--ID: 1782407009169-->
 END

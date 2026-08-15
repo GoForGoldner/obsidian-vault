@@ -3,6 +3,7 @@ tags: [web-dev, auth, security]
 category: web-dev
 related: [jwt-tokens, load-balancing]
 ---
+TARGET DECK: Study::Web Dev::Auth
 
 ## Description
 Limiting how many requests a client can make in a given time window. Common strategies: fixed window (100 requests per minute), sliding window, and token bucket.

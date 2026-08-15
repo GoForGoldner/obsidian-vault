@@ -3,6 +3,7 @@ tags: [javascript, web-dev, closures]
 category: web-dev
 related: [functions-and-arrows, this-call-apply-bind, variables-scope-hoisting]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 A **closure** is a function bundled together with references to the variables from the scope where it was *defined* — so an inner function keeps access to its outer function's locals even after the outer function has returned. Crucially it captures the **variable**, not a snapshot of its value, so later mutations are visible. Closures power **data privacy** (variables only the returned function can touch — JS's classic alternative to private fields), **stateful callbacks**, and partial application. The infamous gotcha: a `var` in a `for` loop is shared by all iterations because it's function-scoped, so closures created in the loop all see the final value; `let` creates a **fresh binding per iteration** and fixes it.
@@ -51,35 +52,35 @@ read(); // "bye"  -- sees the updated value
 ```anki
 START
 Basic
-Define a closure in one sentence.
+Closures: Define a closure in one sentence.
 Back: A function together with references to the variables from the scope where it was defined, keeping access to them even after that outer scope has returned.
 <!--ID: 1782407009078-->
 END
 
 START
 Basic
-A loop builds 3 functions with `for (var i...) fns.push(() => i)`. What does calling them return, and why?
+Closures: A loop builds 3 functions with `for (var i...) fns.push(() => i)`. What does calling them return, and why?
 Back: `[3, 3, 3]`. `var i` is function-scoped, so all three closures capture the *same* `i`, which is `3` after the loop ends.
 <!--ID: 1782407009082-->
 END
 
 START
 Basic
-How does switching that loop to `let i` change the closure behavior?
+Closures: How does switching that loop to `let i` change the closure behavior?
 Back: `let` creates a fresh binding per iteration, so each closure captures its own copy — they return `0, 1, 2`.
 <!--ID: 1782407009086-->
 END
 
 START
 Basic
-Do closures capture a snapshot of a variable's value or the variable itself? Prove it.
+Closures: Do closures capture a snapshot of a variable's value or the variable itself? Prove it.
 Back: The variable (binding) itself. `let m = "hi"; const r = () => m; m = "bye"; r()` returns `"bye"` — the later mutation is visible.
 <!--ID: 1782407009090-->
 END
 
 START
 Basic
-How do you implement private/encapsulated state with a closure (vs Java private fields)?
+Closures: How do you implement private/encapsulated state with a closure (vs Java private fields)?
 Back: Declare a variable in an outer function and return an inner function that closes over it; nothing outside can read or reassign that variable — only the returned function can.
 <!--ID: 1782407009093-->
 END

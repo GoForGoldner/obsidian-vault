@@ -3,6 +3,7 @@ tags: [threads, os, comparison]
 category: vs
 related: [process, thread]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 A process has its own memory space and is isolated from other processes. A thread runs inside a process and shares memory with other threads in the same process. Processes are heavier to create and safer; threads are lighter and faster but risk race conditions.

@@ -3,6 +3,7 @@ tags: [react, web-dev, events, forms]
 category: web-dev
 related: [usestate, useref, jsx, dom-events, typing-the-dom]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 React attaches handlers via camelCase JSX props (`onClick`, `onChange`, `onSubmit`) that take a **function reference**, not a string. The event object you receive is a **SyntheticEvent** — React's cross-browser wrapper around the native DOM event with the same API (`e.target`, `e.preventDefault()`); `e.target` for an input is the DOM element. The central form concept is **controlled vs uncontrolled**. A **controlled input** has its `value` driven by state and an `onChange` that writes back to state — React is the single source of truth, and the input can't change without going through your code. An **uncontrolled input** keeps its own value in the DOM and you read it imperatively via a ref (or on submit). Controlled is the default recommendation. On submit, call `e.preventDefault()` to stop the browser's full-page reload. In TypeScript, type handlers with `React.ChangeEvent<HTMLInputElement>`, `React.FormEvent<HTMLFormElement>`, `React.MouseEvent<HTMLButtonElement>`.
@@ -46,42 +47,42 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 ```anki
 START
 Basic
-What is a React SyntheticEvent and how does it relate to the native DOM event?
+React Events and Forms: What is a React SyntheticEvent and how does it relate to the native DOM event?
 Back: A cross-browser wrapper React passes to handlers, with the same API as the native event (`e.target`, `e.preventDefault()`). It normalizes browser differences; `e.nativeEvent` gives the underlying event.
 <!--ID: 1782407009788-->
 END
 
 START
 Basic
-Distinguish a controlled vs an uncontrolled input in React.
+React Events and Forms: Distinguish a controlled vs an uncontrolled input in React.
 Back: Controlled: its `value` is driven by state with an `onChange` writing back — React is the source of truth. Uncontrolled: the DOM holds the value (use `defaultValue`) and you read it via a ref.
 <!--ID: 1782407009791-->
 END
 
 START
 Basic
-You set `<input value={name} />` with no `onChange` and the field won't accept typing. Why?
+React Events and Forms: You set `<input value={name} />` with no `onChange` and the field won't accept typing. Why?
 Back: A controlled input's value is locked to state. With no onChange to update that state, React re-renders the same value on every keystroke, so it appears frozen.
 <!--ID: 1782407009794-->
 END
 
 START
 Basic
-Write the TypeScript type for the event parameter of an `<input>`'s onChange handler.
+React Events and Forms: Write the TypeScript type for the event parameter of an `<input>`'s onChange handler.
 Back: `React.ChangeEvent<HTMLInputElement>` — e.g. `(e: React.ChangeEvent<HTMLInputElement>) => setX(e.target.value)`.
 <!--ID: 1782407009797-->
 END
 
 START
 Basic
-Why call `e.preventDefault()` in a form's onSubmit handler?
+React Events and Forms: Why call `e.preventDefault()` in a form's onSubmit handler?
 Back: To stop the browser's default form submission, which would reload/navigate the page and discard your SPA state. You then handle the data in JS instead.
 <!--ID: 1782407009800-->
 END
 
 START
 Basic
-In JSX, how do you wire up a click handler, and what's the common mistake from HTML habits?
+React Events and Forms: In JSX, how do you wire up a click handler, and what's the common mistake from HTML habits?
 Back: `onClick={handleClick}` — pass a function reference (camelCase). Mistakes: writing `onclick`, passing a string `onClick="handleClick()"`, or calling it `onClick={handleClick()}` which runs it during render.
 <!--ID: 1782407009803-->
 END

@@ -3,6 +3,7 @@ tags: [system-design, distributed-systems]
 category: system-design
 related: [cap-theorem, message-queue]
 ---
+TARGET DECK: Study::System Design
 
 ## Description
 A consistency model where updates to a distributed system will propagate to all nodes eventually, but not immediately. At any given moment, different nodes might return different values, but given enough time with no new updates, all nodes will converge to the same value.

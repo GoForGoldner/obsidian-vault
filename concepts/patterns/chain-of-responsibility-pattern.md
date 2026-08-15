@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [decorator-pattern, command-pattern, mediator-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that passes requests down a chain of handlers until one handles it. Each handler decides whether to process the request or pass it to the next handler.

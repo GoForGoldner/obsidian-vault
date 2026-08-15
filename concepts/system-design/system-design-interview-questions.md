@@ -1,6 +1,7 @@
 ---
 tags: [system-design, interview-prep]
 ---
+TARGET DECK: Study::System Design
 
 # System Design Interview Questions
 

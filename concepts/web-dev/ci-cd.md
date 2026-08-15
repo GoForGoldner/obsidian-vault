@@ -3,6 +3,7 @@ tags: [web-dev, devops]
 category: web-dev
 related: [testing-stradegies, docker]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 CI (Continuous Integration) automatically builds and tests code every time someone pushes to the repo. CD (Continuous Delivery/Deployment) automatically deploys that code to production after tests pass.

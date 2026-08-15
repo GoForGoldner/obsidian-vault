@@ -3,6 +3,7 @@ tags: [web-dev, testing]
 category: web-dev
 related: [mock-vs-stub, ci-cd]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 Different levels of testing that catch different kinds of bugs. Unit tests verify individual functions in isolation. Integration tests verify that components work together. End-to-end (E2E) tests verify the entire system from the user's perspective. The testing pyramid says: many unit tests, fewer integration tests, fewest E2E tests.

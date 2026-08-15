@@ -3,6 +3,7 @@ tags: [software-engineering, comparison]
 category: vs
 related: []
 ---
+TARGET DECK: Study::VS
 
 ## Description
 A library is code you call. you control the flow. A framework is code that calls you. it controls the flow (Inversion of Control). You plug your code into a framework's structure; you pull a library into your own structure.

@@ -3,6 +3,7 @@ tags: [design-pattern, architectural]
 category: patterns
 related: [dependency-injection-pattern, orm]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 An abstraction layer between your business logic and data access. Instead of querying the database directly in your services, you go through a repository that handles all the data operations.

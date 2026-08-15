@@ -3,6 +3,7 @@ tags: [java, oop, equals, hashcode]
 category: java
 related: [records, enums, nested-classes, sealed-classes, interfaces-and-default-methods]
 ---
+TARGET DECK: Study::Java::OOP
 
 ## Description
 `equals`, `hashCode`, and `toString` all come from `Object`, and the exam loves the *contracts* that bind the first two. `equals` must be **reflexive** (`x.equals(x)`), **symmetric** (`x.equals(y) == y.equals(x)`), **transitive**, **consistent** (same result on repeated calls if nothing changes), and `x.equals(null)` must return `false` (never throw). `hashCode`'s contract is the linchpin for hash collections: **equal objects must have equal hash codes**, and the code must be self-consistent across calls. Unequal objects *may* share a hash code (a collision), so the implication is one-directional.
@@ -71,56 +72,56 @@ if (o == null || getClass() != o.getClass()) return false;  // strict
 ```anki
 START
 Basic
-You override `equals` but not `hashCode`. What breaks?
+equals, hashCode, toString: You override `equals` but not `hashCode`. What breaks?
 Back: `HashMap`/`HashSet` — two "equal" objects can hash to different buckets, so lookups/`contains` miss them.<br>Rule: **always override both together** (or neither).
 <!--ID: 1781902681550-->
 END
 
 START
 Basic
-State the one-directional `hashCode` rule.
+equals, hashCode, toString: State the one-directional `hashCode` rule.
 Back: Equal objects **must** have equal hash codes.<br>Unequal objects **may** share a hash code (a collision) — that's allowed.<br>So equal⇒equalHash, but equalHash does *not* imply equal.
 <!--ID: 1781902681558-->
 END
 
 START
 Basic
-What must `x.equals(null)` do, and what must it never do?
+equals, hashCode, toString: What must `x.equals(null)` do, and what must it never do?
 Back: Return **`false`**.<br>It must **never throw** (e.g. no NPE).<br>The `instanceof` pattern handles this for free, since `null instanceof T` is `false`.
 <!--ID: 1781902681565-->
 END
 
 START
 Basic
-List the five parts of the `equals` contract.
+equals, hashCode, toString: List the five parts of the `equals` contract.
 Back: Reflexive, symmetric, transitive, consistent, and `x.equals(null) == false`.<br>(Reflexive: x=x; symmetric: x=y ⇔ y=x; transitive: x=y,y=z ⇒ x=z; consistent: repeatable.)
 <!--ID: 1781902681572-->
 END
 
 START
 Basic
-`instanceof` vs `getClass()` in `equals` — the tradeoff?
+equals, hashCode, toString: `instanceof` vs `getClass()` in `equals` — the tradeoff?
 Back: `instanceof` lets a subclass equal a superclass instance (Liskov-friendly) but can break **symmetry** if subclasses add to equality.<br>`getClass()` enforces exact runtime type — symmetric, but rejects subclasses/proxies.
 <!--ID: 1781902681580-->
 END
 
 START
 Basic
-Which helpers make correct `equals`/`hashCode` easy?
+equals, hashCode, toString: Which helpers make correct `equals`/`hashCode` easy?
 Back: `Objects.equals(a, b)` — null-safe field comparison.<br>`Objects.hash(f1, f2, ...)` — varargs combiner for `hashCode`.<br>(Don't use `Objects.hash` for a single field on a hot path — boxing/array overhead.)
 <!--ID: 1781902681587-->
 END
 
 START
 Basic
-You put an object in a `HashSet`, then mutate a field used by its `hashCode`. What can go wrong?
+equals, hashCode, toString: You put an object in a `HashSet`, then mutate a field used by its `hashCode`. What can go wrong?
 Back: The object now lives in the wrong bucket — `contains`/removal can fail to find it.<br>Base `hashCode`/`equals` only on **immutable** fields for hashed objects.
 <!--ID: 1781902681594-->
 END
 
 START
 Basic
-Do you write `equals`/`hashCode`/`toString` for a record?
+equals, hashCode, toString: Do you write `equals`/`hashCode`/`toString` for a record?
 Back: No — a **record auto-generates all three** over its components, contract-correct.<br>Override only if you need non-default semantics (rare).
 <!--ID: 1781902681601-->
 END

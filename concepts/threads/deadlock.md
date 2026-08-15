@@ -3,6 +3,7 @@ tags: [threads, concurrency]
 category: threads
 related: [locking-stradegies, race-conditions, thread]
 ---
+TARGET DECK: Study::Threads
 
 ## Description
 Two or more threads waiting on each other to release a resource in order to progress, causing infinite waiting. Neither can continue because each holds what the other needs.

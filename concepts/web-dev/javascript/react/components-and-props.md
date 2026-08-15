@@ -3,6 +3,7 @@ tags: [react, web-dev, components, typescript]
 category: web-dev
 related: [react-overview, jsx, usestate, usecontext, conditional-rendering-and-lists]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 A function component takes a single object argument — **props** — and returns JSX. Props are the component's read-only inputs (think constructor args, but immutable): the parent passes them as JSX attributes, and you receive them by destructuring the props object. In TypeScript you type props with an **interface** (or `type`); this gives you autocomplete and compile-time checking on every usage. The special `children` prop holds whatever JSX you nest between the component's tags. There's no built-in "default props" for function components — you just give the destructured parameters JS default values. Passing a prop down through many intermediate components that don't use it is **prop drilling**, the pain point that Context exists to solve.
@@ -52,35 +53,35 @@ function Header({ user }) { return <Avatar user={user} />; } // <- finally used 
 ```anki
 START
 Basic
-How do you give a function component's prop a default value in modern React (there's no `defaultProps` for you to use)?
+Components and Props: How do you give a function component's prop a default value in modern React (there's no `defaultProps` for you to use)?
 Back: Use a JS default in the destructured parameter list: `function Button({ variant = "primary" }: Props)`. The default applies when the prop is omitted/undefined.
 <!--ID: 1782407009731-->
 END
 
 START
 Basic
-Write the TypeScript to type a `Greeting` component's props that take a required `name: string` and an optional `count?: number`.
+Components and Props: Write the TypeScript to type a `Greeting` component's props that take a required `name: string` and an optional `count?: number`.
 Back: `interface GreetingProps { name: string; count?: number; }` then `function Greeting({ name, count }: GreetingProps) { ... }`
 <!--ID: 1782407009734-->
 END
 
 START
 Basic
-What is the `children` prop and how does a parent pass it?
+Components and Props: What is the `children` prop and how does a parent pass it?
 Back: `children` is whatever JSX is nested between the component's opening and closing tags: `<Card>this is children</Card>`. You type it as `React.ReactNode`.
 <!--ID: 1782407009737-->
 END
 
 START
 Basic
-Are props mutable? What happens if you try to reassign `props.name = "x"` inside a component?
+Components and Props: Are props mutable? What happens if you try to reassign `props.name = "x"` inside a component?
 Back: Props are read-only — a component must never mutate its props. Treat them like immutable inputs from the parent; to change displayed data, use state or have the parent pass new props.
 <!--ID: 1782407009740-->
 END
 
 START
 Basic
-What is "prop drilling" and which React feature is designed to relieve it?
+Components and Props: What is "prop drilling" and which React feature is designed to relieve it?
 Back: Passing a prop down through many intermediate components that don't use it, just to reach a deep child. Context (createContext/useContext) lets the deep child read the value directly without threading.
 <!--ID: 1782407009743-->
 END

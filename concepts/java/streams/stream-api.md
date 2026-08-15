@@ -3,6 +3,7 @@ tags: [java, streams, stream-api]
 category: java
 related: [functional-interfaces, lambdas-and-method-references, collectors, optional]
 ---
+TARGET DECK: Study::Java::Streams
 
 ## Description
 A stream pipeline has three parts: a **source** (collection, array, `Stream.of`, `IntStream.range`, etc.), zero or more **intermediate** operations, and exactly one **terminal** operation. Intermediate operations are *lazy*: they return a new stream and build up a plan but do no work until the terminal operation runs. The terminal operation is *eager* — it triggers traversal and produces a value or side effect. This laziness enables *short-circuiting*: operations like `limit`, `findFirst`, and `anyMatch` can stop the pipeline early without consuming the whole source.
@@ -74,63 +75,63 @@ IntStream.of(1, 2, 3).boxed().toList();                       // List<Integer> [
 ```anki
 START
 Basic
-What are the three parts of a stream pipeline, and which do the work?
+Stream API: What are the three parts of a stream pipeline, and which do the work?
 Back: **Source** + **intermediate** ops + one **terminal** op.<br>Intermediate ops are lazy (build a plan, return a `Stream`); the terminal op is eager and triggers traversal.<br>No terminal op = no elements are ever processed.
 <!--ID: 1781902681369-->
 END
 
 START
 Basic
-What happens if you reuse a stream after its terminal operation?
+Stream API: What happens if you reuse a stream after its terminal operation?
 Back: `IllegalStateException: stream has already been operated upon or closed`.<br>Streams are **single-use** — get a fresh stream from the source each time.<br>Reassign or recompute `collection.stream()` rather than caching a `Stream` variable.
 <!--ID: 1781902681376-->
 END
 
 START
 Basic
-Why does `findFirst()` after a `filter` often process fewer elements than the source has?
+Stream API: Why does `findFirst()` after a `filter` often process fewer elements than the source has?
 Back: Laziness enables **short-circuiting**.<br>`filter` is lazy, and `findFirst` stops as soon as one element passes — the rest of the source is never traversed.<br>Same for `anyMatch`/`allMatch`/`noneMatch`/`limit`.
 <!--ID: 1781902681384-->
 END
 
 START
 Basic
-Distinguish `takeWhile(p)` from `filter(p)`.
+Stream API: Distinguish `takeWhile(p)` from `filter(p)`.
 Back: `takeWhile` keeps elements **until the first one that fails** `p`, then stops (short-circuits).<br>`filter` checks every element and keeps all that pass.<br>On `[2,4,7,8]` with even-check: `takeWhile` -> `[2,4]`, `filter` -> `[2,4,8]`.
 <!--ID: 1781902681391-->
 END
 
 START
 Basic
-When do you reach for `flatMap` instead of `map`?
+Stream API: When do you reach for `flatMap` instead of `map`?
 Back: When each element maps to **multiple** elements (or a stream/collection), and you want one flat stream.<br>`map` gives `Stream<List<X>>`; `flatMap(List::stream)` flattens it to `Stream<X>`.<br>Think "map then concatenate the resulting streams."
 <!--ID: 1781902681398-->
 END
 
 START
 Basic
-What does `IntStream.range(1,4)` produce vs `rangeClosed(1,4)`?
+Stream API: What does `IntStream.range(1,4)` produce vs `rangeClosed(1,4)`?
 Back: `range(1,4)` -> `1,2,3` (upper bound **exclusive**).<br>`rangeClosed(1,4)` -> `1,2,3,4` (upper bound **inclusive**).<br>Off-by-one here is a classic exam trap.
 <!--ID: 1781902681406-->
 END
 
 START
 Basic
-How do you convert between an object `Stream` and an `IntStream`?
+Stream API: How do you convert between an object `Stream` and an `IntStream`?
 Back: `Stream` -> `IntStream`: `mapToInt(toIntFn)`.<br>`IntStream` -> object `Stream`: `mapToObj(fn)` or `boxed()`.<br>`boxed()` wraps `int` into `Integer`; use primitive streams to get `sum()`/`average()` without boxing.
 <!--ID: 1781902681413-->
 END
 
 START
 Basic
-What does `IntStream.average()` return, and why not a plain `double`?
+Stream API: What does `IntStream.average()` return, and why not a plain `double`?
 Back: `OptionalDouble` — because an **empty** stream has no average.<br>Read it with `getAsDouble()`, `orElse(0)`, etc.<br>`sum()` returns a plain `int`/`long` (empty sum is `0`), but `average`/`min`/`max` return `OptionalDouble`/`OptionalInt`.
 <!--ID: 1781902681420-->
 END
 
 START
 Basic
-What is `peek()` for, and why shouldn't you rely on it for program logic?
+Stream API: What is `peek()` for, and why shouldn't you rely on it for program logic?
 Back: `peek(Consumer)` is an intermediate op meant for **debugging** (e.g. logging each element).<br>Because it's lazy and tied to traversal, elements skipped by short-circuiting are never peeked, so it's unreliable for side-effecting logic.<br>Use `forEach`/`map` for real work.
 <!--ID: 1781902681427-->
 END

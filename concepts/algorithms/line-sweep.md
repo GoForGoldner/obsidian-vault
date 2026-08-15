@@ -3,6 +3,7 @@ tags: [algorithms, technique, intervals]
 category: algorithms
 related: [sorting-algorithms, heap-priority-queue, two-pointers]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Line sweep solves interval and event problems by turning starts and ends into sorted events along a number line, then scanning from left to right while maintaining a running state such as active overlaps. Because sorting dominates the work, the pattern usually runs in O(n log n) and is especially useful for overlap counting, meeting rooms, and interval merging problems.
@@ -54,21 +55,21 @@ for (int[] cur : intervals) {
 ```anki
 START
 Basic
-You see: overlapping intervals, need to find max concurrent overlap or merge them. What technique?
+Line Sweep: You see: overlapping intervals, need to find max concurrent overlap or merge them. What technique?
 Back: Line Sweep. Convert each interval to two events: (start, +1) and (end, -1). Sort by position, sweep left→right maintaining a running count. Peak count = max overlap = min meeting rooms needed.
 <!--ID: 1780580932957-->
 END
 
 START
 Basic
-How do you handle tie-breaking when sorting line sweep events?
+Line Sweep: How do you handle tie-breaking when sorting line sweep events?
 Back: Depends on the problem definition. If intervals touching at a point DON'T overlap: process ends (-1) before starts (+1) at the same position. If they DO overlap: process starts before ends. Wrong tie-breaking gives off-by-one errors.
 <!--ID: 1780580932959-->
 END
 
 START
 Basic
-Why is line sweep usually O(n log n)?
+Line Sweep: Why is line sweep usually O(n log n)?
 Back: You create O(n) events and sort them, which costs O(n log n). The actual sweep pass is linear because you only scan the sorted events once while updating a running state.
 <!--ID: 1780580932960-->
 END

@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [event-sourcing-pattern, mediator-pattern, chain-of-responsibility-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that encapsulates a request or operation into a single object. Operations become first-class objects that can be stored, queued, and replayed.

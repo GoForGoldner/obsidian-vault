@@ -3,6 +3,7 @@ tags: [threads, os, concurrency]
 category: threads
 related: [thread, deadlock]
 ---
+TARGET DECK: Study::Threads
 
 ## Description
 An independent program in execution with its own memory space, resources, and at least one thread. Processes are isolated from each other. one crashing doesn't take down another. The OS manages scheduling and resource allocation between processes.

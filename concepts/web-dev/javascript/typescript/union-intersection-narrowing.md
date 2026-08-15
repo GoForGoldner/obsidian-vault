@@ -3,6 +3,7 @@ tags: [typescript, web-dev, types, narrowing]
 category: web-dev
 related: [basic-types-annotations, interfaces-vs-type-aliases, enums-literals-as-const, generics-typescript, type-assertions-and-satisfies]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 A **union** `A | B` is a value that is one of several types; an **intersection** `A & B` is a value that has all members of both. **Literal types** (`"GET" | "POST"`, `1 | 2`) let unions enumerate exact values. To use a union you must **narrow** it — TS tracks control flow, so `typeof`, `instanceof`, the `in` operator, and truthiness checks refine the type inside the branch. A **discriminated union** (each member sharing a literal "tag" field) is the idiomatic pattern; switching on the tag narrows cleanly, and a `never`-typed default gives **compile-time exhaustiveness** so adding a new variant breaks the build until you handle it. This is the TS replacement for sealed-class/visitor patterns.
@@ -50,42 +51,42 @@ type Person = Named & Aged;     // must have BOTH name and age
 ```anki
 START
 Basic
-What's a discriminated union and what makes narrowing on it work?
+Union, Intersection, and Narrowing: What's a discriminated union and what makes narrowing on it work?
 Back: A union whose members each carry the same literal "tag" field (e.g. `kind: "circle"`). Switching/branching on that tag narrows the value to the matching member, exposing its specific fields.
 <!--ID: 1782407009677-->
 END
 
 START
 Basic
-You want the compiler to force you to handle every variant of a union. What's the trick?
+Union, Intersection, and Narrowing: You want the compiler to force you to handle every variant of a union. What's the trick?
 Back: Exhaustiveness via `never`: in the `default`/`else`, assign the value to a `never`-typed variable (`const _x: never = s`). If a new variant is added and unhandled, it won't be `never` and the build fails.
 <!--ID: 1782407009680-->
 END
 
 START
 Basic
-Difference between `A | B` and `A & B` in TypeScript?
+Union, Intersection, and Narrowing: Difference between `A | B` and `A & B` in TypeScript?
 Back: `A | B` (union) = one of the types; you can only use members common to all until you narrow. `A & B` (intersection) = a single value having all members of both.
 <!--ID: 1782407009683-->
 END
 
 START
 Basic
-You have `x: string | number`. How do you make `x.padStart()` type-check?
+Union, Intersection, and Narrowing: You have `x: string | number`. How do you make `x.padStart()` type-check?
 Back: Narrow first: `if (typeof x === "string") { x.padStart(...) }`. Inside the branch TS knows `x` is `string`.
 <!--ID: 1782407009686-->
 END
 
 START
 Basic
-Which narrowing operator checks whether a property exists on an object union member?
+Union, Intersection, and Narrowing: Which narrowing operator checks whether a property exists on an object union member?
 Back: The `in` operator — `if ("swim" in animal)` narrows to the union member(s) that have a `swim` property.
 <!--ID: 1782407009689-->
 END
 
 START
 Basic
-Why use a union of string literals like `"GET" | "POST"` instead of `string`?
+Union, Intersection, and Narrowing: Why use a union of string literals like `"GET" | "POST"` instead of `string`?
 Back: It restricts the value to an exact allowed set, catches typos at compile time, and gives autocomplete — far stronger than a plain `string`.
 <!--ID: 1782407009693-->
 END

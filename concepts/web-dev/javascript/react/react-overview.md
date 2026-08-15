@@ -3,6 +3,7 @@ tags: [react, web-dev, components]
 category: web-dev
 related: [jsx, components-and-props, usestate, useeffect]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 React is a JavaScript library for building UIs out of **components** — self-contained functions that return a description of what the screen should look like. The model is **declarative**: you describe the UI as a function of state (`UI = f(state)`), and React figures out the DOM mutations needed to get there, instead of you imperatively calling `element.appendChild(...)` like in vanilla DOM. React keeps a lightweight in-memory tree (the **virtual DOM**); when state changes it re-runs your component, diffs the new tree against the old one, and patches only what actually changed. Coming from Java/Swing or imperative GUI code, the mental shift is: you never "update the widget" — you update state and let React re-render. Modern React (19) is built around **function components and hooks**, not classes.
@@ -41,35 +42,35 @@ function Counter() {
 ```anki
 START
 Basic
-React's core mental model is summarized by the equation UI = f(state). What does that mean for how you update the screen?
+React Overview: React's core mental model is summarized by the equation UI = f(state). What does that mean for how you update the screen?
 Back: You never imperatively mutate the DOM. You update state, and React re-runs your component and re-derives the UI. The view is a pure function of state.
 <!--ID: 1782407009806-->
 END
 
 START
 Basic
-What is the "virtual DOM" and what problem does it solve?
+React Overview: What is the "virtual DOM" and what problem does it solve?
 Back: A lightweight in-memory tree of your UI. On each render React diffs the new tree against the previous one and applies only the minimal real-DOM mutations, so you don't hand-write DOM updates.
 <!--ID: 1782407009810-->
 END
 
 START
 Basic
-You're coming from imperative GUI code (Swing/vanilla DOM). What's the key behavioral difference when something needs to change on screen in React?
+React Overview: You're coming from imperative GUI code (Swing/vanilla DOM). What's the key behavioral difference when something needs to change on screen in React?
 Back: You don't find the element and mutate it. You call a state setter; React re-renders the affected components. The DOM is an output, not something you manage.
 <!--ID: 1782407009814-->
 END
 
 START
 Basic
-Why must a React component name start with a capital letter (e.g. `Greeting`, not `greeting`)?
+React Overview: Why must a React component name start with a capital letter (e.g. `Greeting`, not `greeting`)?
 Back: JSX treats lowercase tags as built-in HTML elements (strings like "div") and capitalized tags as component references. Lowercase would be rendered as an unknown HTML tag, not your component.
 <!--ID: 1782407009817-->
 END
 
 START
 Basic
-In modern React 19, are you expected to write class components with `render()` and lifecycle methods?
+React Overview: In modern React 19, are you expected to write class components with `render()` and lifecycle methods?
 Back: No. Modern React is function components + hooks. Classes still work but are legacy; new code uses functions and hooks like useState/useEffect.
 <!--ID: 1782407009820-->
 END

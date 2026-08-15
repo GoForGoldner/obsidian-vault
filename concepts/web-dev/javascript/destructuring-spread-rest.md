@@ -3,6 +3,7 @@ tags: [javascript, web-dev, syntax, idioms]
 category: web-dev
 related: [arrays-higher-order, functions-and-arrows, objects-and-prototypes, modules-import-export]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 Destructuring pulls values out of arrays/objects into variables in one statement — there is no Java equivalent, and it's *everywhere* in real JS/TS (function params, imports, React hooks). Array destructuring is **positional** (`const [a, b] = arr`); object destructuring is **by key name** (`const {x, y} = obj`). You can supply defaults (used only when the value is `undefined`), rename (`{x: localName}`), and nest. The `...` token is overloaded: as **spread** it expands an iterable/object into a new array or object (shallow copy / merge); as **rest** it collects "the remaining" items into one variable. Key gotchas: defaults trigger on `undefined`, not `null`; spread is a **shallow** copy; and object spread merge is last-wins for duplicate keys.
@@ -52,42 +53,42 @@ function sum(...nums) { return nums.reduce((a, b) => a + b, 0); } // varargs
 ```anki
 START
 Basic
-Write the syntax to destructure `name` and `age` out of an object `user`.
+Destructuring, Spread, and Rest: Write the syntax to destructure `name` and `age` out of an object `user`.
 Back: `const { name, age } = user;` — object destructuring matches by key name, not position.
 <!--ID: 1782407009099-->
 END
 
 START
 Basic
-A destructuring default `const { role = "guest" } = obj` — does it fire when `obj.role` is `null`?
+Destructuring, Spread, and Rest: A destructuring default `const { role = "guest" } = obj` — does it fire when `obj.role` is `null`?
 Back: No. Defaults fire only when the value is `undefined` (missing key). `null` is a real value and is kept as-is.
 <!--ID: 1782407009102-->
 END
 
 START
 Basic
-What does `...` do in `const obj2 = { ...base, active: true }` vs in `const [head, ...tail] = arr`?
+Destructuring, Spread, and Rest: What does `...` do in `const obj2 = { ...base, active: true }` vs in `const [head, ...tail] = arr`?
 Back: First is spread (shallow-copies `base`'s keys into a new object). Second is rest (collects remaining elements into `tail`). Same token, opposite roles.
 <!--ID: 1782407009106-->
 END
 
 START
 Basic
-You see `const { name: userName } = user`. What is the resulting variable name and value?
+Destructuring, Spread, and Rest: You see `const { name: userName } = user`. What is the resulting variable name and value?
 Back: A variable `userName` holding `user.name`. The `key: alias` form renames during destructuring.
 <!--ID: 1782407009109-->
 END
 
 START
 Basic
-Gotcha: is `const copy = [...arr]` a deep or shallow copy?
+Destructuring, Spread, and Rest: Gotcha: is `const copy = [...arr]` a deep or shallow copy?
 Back: Shallow. Top-level elements are copied, but nested objects/arrays are still shared references. Same for `{ ...obj }`.
 <!--ID: 1782407009112-->
 END
 
 START
 Basic
-Two objects merged with `{ ...a, ...b }` share a key. Which value wins?
+Destructuring, Spread, and Rest: Two objects merged with `{ ...a, ...b }` share a key. Which value wins?
 Back: `b`'s value — later spreads override earlier ones (last-wins), left to right.
 <!--ID: 1782407009115-->
 END

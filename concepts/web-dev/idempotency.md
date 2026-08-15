@@ -3,6 +3,7 @@ tags: [web-dev, api]
 category: web-dev
 related: [http-requests, message-queue]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 Making the same request multiple times produces the same result. Idempotent methods: GET, PUT, DELETE. Not idempotent: POST (creates a new resource each time). Important because clients may retry requests and the network is unreliable.

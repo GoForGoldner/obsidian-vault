@@ -3,6 +3,7 @@ tags: [algorithms, data-structures, graph]
 category: algorithms
 related: [dijkstra, topological-sort, bfs]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Union-Find, also called Disjoint Set Union, maintains a partition of elements into connected components and supports fast merges and connectivity checks. With path compression in `find` and union by rank in `union`, each operation is nearly O(1) amortized, which makes the structure a standard tool for connectivity queries and Kruskal's minimum spanning tree.
@@ -48,14 +49,14 @@ class UnionFind {
 ```anki
 START
 Basic
-You see: need to dynamically check if two elements are connected, or merge groups. What data structure?
+Union-Find: You see: need to dynamically check if two elements are connected, or merge groups. What data structure?
 Back: Union-Find. It combines `find()` with path compression and `union()` by rank, giving nearly O(1) amortized operations. A component counter can be decremented on each successful union.
 <!--ID: 1780580932922-->
 END
 
 START
 Basic
-What do path compression and union by rank do in Union-Find?
+Union-Find: What do path compression and union by rank do in Union-Find?
 Back: Path compression rewires nodes directly to the root during `find()`, flattening the tree. Union by rank attaches the shorter tree under the taller one. Together they make operations nearly O(1) amortized, more precisely inverse Ackermann.
 <!--ID: 1780580932923-->
 END

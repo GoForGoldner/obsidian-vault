@@ -3,6 +3,7 @@ tags: [java, switch, switch-expressions, language]
 category: java
 related: [pattern-matching, arrays, exceptions]
 ---
+TARGET DECK: Study::Java::Lang
 
 ## Description
 Modern `switch` (finalized in Java 14) has an arrow form `case L ->` and can be used as an **expression** that produces a value. Arrow cases do not fall through, may list several labels (`case A, B ->`), and use `yield` to return a value from a block body. When `switch` is used as an *expression* it must be **exhaustive**: either a `default` is present, or — for `enum` and `sealed` types — every case is covered.
@@ -92,49 +93,49 @@ switch (sz) {
 ```anki
 START
 Basic
-What's the difference between a switch *statement* and a switch *expression*?
+Switch Expressions: What's the difference between a switch *statement* and a switch *expression*?
 Back: A statement performs side effects and yields no value.<br>An **expression** evaluates to a value you can assign/return.<br>An expression switch must be **exhaustive** and ends with `;` after the closing `}`.
 <!--ID: 1781902681021-->
 END
 
 START
 Basic
-Inside an arrow case with a `{ }` block, how do you produce the switch's value?
+Switch Expressions: Inside an arrow case with a `{ }` block, how do you produce the switch's value?
 Back: Use `yield value;` — not `return`.<br>`return` would exit the enclosing method; `yield` exits the switch with that value.<br>Single-expression arrow cases (`case 1 -> expr;`) yield implicitly.
 <!--ID: 1781902681028-->
 END
 
 START
 Basic
-Do arrow-style `case A ->` labels fall through? How do you group labels?
+Switch Expressions: Do arrow-style `case A ->` labels fall through? How do you group labels?
 Back: No — arrow cases never fall through, so no `break` needed.<br>Group several values with commas: `case A, B, C -> ...`.<br>(Only the old colon form falls through.)
 <!--ID: 1781902681035-->
 END
 
 START
 Basic
-When is `default` required in a switch *expression*, and when can you omit it?
+Switch Expressions: When is `default` required in a switch *expression*, and when can you omit it?
 Back: An expression switch must be exhaustive.<br>You may omit `default` only when all cases are covered — i.e. every `enum` constant or every permitted type of a `sealed` hierarchy.<br>Otherwise `default` is mandatory or it won't compile.
 <!--ID: 1781902681042-->
 END
 
 START
 Basic
-You cover all current enum constants in an expression switch with no `default`. Why might that be intentional?
+Switch Expressions: You cover all current enum constants in an expression switch with no `default`. Why might that be intentional?
 Back: It compiles now, but adding a new enum constant later breaks compilation.<br>That compile error flags every switch you forgot to update — a deliberate safety net.<br>A catch-all `default` would silently hide the new case.
 <!--ID: 1781902681049-->
 END
 
 START
 Basic
-Can you mix `case L ->` and `case L:` styles in the same switch?
+Switch Expressions: Can you mix `case L ->` and `case L:` styles in the same switch?
 Back: No — a single switch must use one style throughout; mixing won't compile.<br>Arrow form: no fall-through, optional `yield` in blocks.<br>Colon form: fall-through, needs `break`.
 <!--ID: 1781902681056-->
 END
 
 START
 Basic
-What's the gotcha when an expression switch on an `int` lists `case 1, 2, 3`?
+Switch Expressions: What's the gotcha when an expression switch on an `int` lists `case 1, 2, 3`?
 Back: `int` has many other values, so the switch isn't exhaustive — you must add `default`.<br>Exhaustiveness-without-default only applies to `enum` and `sealed` types.<br>Missing `default` here is a compile error.
 <!--ID: 1781902681063-->
 END

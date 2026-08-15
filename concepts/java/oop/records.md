@@ -3,6 +3,7 @@ tags: [java, oop, records, immutability]
 category: java
 related: [sealed-classes, enums, equals-hashcode-tostring, nested-classes, interfaces-and-default-methods]
 ---
+TARGET DECK: Study::Java::OOP
 
 ## Description
 A `record` (finalized in Java 16) is a transparent carrier for immutable data. From the header — `record Point(int x, int y)` — the compiler generates a `private final` field per component, a public accessor named like the component (`x()`, **not** `getX()`), a canonical (all-args) constructor, plus `equals`, `hashCode`, and `toString` derived from the components. This makes records the go-to "data class" on the 1Z0-830 exam, where the trap is usually a generated member you forgot the compiler already wrote.
@@ -73,49 +74,49 @@ record SafeTags(List<String> values) {
 ```anki
 START
 Basic
-In a record `Point(int x, int y)`, how do you read `x`, and what is the method called?
+Records: In a record `Point(int x, int y)`, how do you read `x`, and what is the method called?
 Back: Call the accessor `p.x()` — **not** `getX()`.<br>The compiler names each accessor after its component.<br>The field itself is `private final` and not directly readable from outside.
 <!--ID: 1781902681705-->
 END
 
 START
 Basic
-Which of equals, hashCode, toString, and a constructor does a record generate for you?
+Records: Which of equals, hashCode, toString, and a constructor does a record generate for you?
 Back: All of them: canonical (all-args) constructor, an accessor per component, and structural `equals`/`hashCode`/`toString`.<br>You only write members you want to *replace* or *add*.
 <!--ID: 1781902681712-->
 END
 
 START
 Basic
-Can a record extend a class? Can it implement interfaces? Can it be subclassed?
+Records: Can a record extend a class? Can it implement interfaces? Can it be subclassed?
 Back: Extend a class: **no** (it already extends `java.lang.Record`).<br>Implement interfaces: **yes**.<br>Subclassed: **no** — records are implicitly `final`.
 <!--ID: 1781902681718-->
 END
 
 START
 Basic
-You need to validate/normalize record components in one place. Which constructor form?
+Records: You need to validate/normalize record components in one place. Which constructor form?
 Back: The **compact canonical constructor**: `Range { if (lo>hi) throw ...; lo = Math.max(lo,0); }`<br>No parameter list, no explicit field assignment — the `this.x = x;` runs automatically after your code.
 <!--ID: 1781902681725-->
 END
 
 START
 Basic
-Are records immutable? What is the exact nuance?
+Records: Are records immutable? What is the exact nuance?
 Back: They are **shallowly** immutable.<br>Component references are `final`, but a mutable component (`List`, array) can still be mutated through its reference.<br>Use `List.copyOf(...)` in a compact ctor to truly freeze.
 <!--ID: 1781902681732-->
 END
 
 START
 Basic
-You see a `switch` deconstructing `case Point(int x, int y)`. What language feature is this?
+Records: You see a `switch` deconstructing `case Point(int x, int y)`. What language feature is this?
 Back: A **record pattern** — it destructures the record into its components.<br>Works in `switch` and `instanceof`; finalized in Java 21.<br>Relies on the record's component accessors.
 <!--ID: 1781902681739-->
 END
 
 START
 Basic
-Can a record declare static fields/methods and extra instance methods?
+Records: Can a record declare static fields/methods and extra instance methods?
 Back: Yes — `static` members and additional instance methods are allowed.<br>What is **not** allowed: extra *instance* fields beyond the components (and non-static instance initializers).
 <!--ID: 1781902681747-->
 END

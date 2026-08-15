@@ -3,6 +3,7 @@ tags: [security, comparison]
 category: vs
 related: [tls(transport layer security), jwt-tokens]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Encryption is reversible. you can decrypt data back to the original with a key. Hashing is one-way. you can't get the original data back from a hash. Encryption protects data in transit/storage. Hashing verifies data integrity and stores passwords safely.

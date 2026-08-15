@@ -3,6 +3,7 @@ tags: [css, web-dev, layout, responsive]
 category: web-dev
 related: [css-units, css-grid, flexbox, box-model]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 Responsive design makes one layout adapt to any screen. The core tool is the **media query** (`@media`), which applies a block of CSS only when conditions like viewport width are met. The modern best practice is **mobile-first**: write the base styles for small screens, then use `min-width` queries to layer on enhancements as the screen grows. The `<meta name="viewport">` tag is mandatory or mobile browsers fake a desktop width.
@@ -39,28 +40,28 @@ Responsive design makes one layout adapt to any screen. The core tool is the **m
 ```anki
 START
 Basic
-Write a media query that applies its rules only when the viewport is at least 768px wide.
+Responsive Design: Write a media query that applies its rules only when the viewport is at least 768px wide.
 Back: `@media (min-width: 768px) { ... }`
 <!--ID: 1780758285245-->
 END
 
 START
 Basic
-What does "mobile-first" mean in practice, and which media-query direction does it imply?
+Responsive Design: What does "mobile-first" mean in practice, and which media-query direction does it imply?
 Back: Write the base CSS for small screens first, then add complexity for larger ones using `min-width` queries (layering up). The opposite, desktop-first, uses `max-width` (stripping down).
 <!--ID: 1780758285251-->
 END
 
 START
 Basic
-What's a way to get a responsive multi-column grid that needs ZERO media queries?
+Responsive Design: What's a way to get a responsive multi-column grid that needs ZERO media queries?
 Back: `grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));` — the grid reflows the column count on its own as width changes.
 <!--ID: 1780758285263-->
 END
 
 START
 Basic
-For text and spacing that scale with the user's font settings across breakpoints, which units should you prefer over `px`?
+Responsive Design: For text and spacing that scale with the user's font settings across breakpoints, which units should you prefer over `px`?
 Back: Relative units — `rem` (and `em`) for type/spacing, `%`/`vw`/`fr` for layout widths. They adapt; fixed `px` doesn't.
 <!--ID: 1780758285269-->
 END

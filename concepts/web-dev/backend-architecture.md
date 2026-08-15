@@ -3,6 +3,7 @@ tags: [web-dev, architecture]
 category: web-dev
 related: [microservices-vs-monolith, dependency-injection-pattern]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 The structural design of the server-side application. Common patterns include layered architecture (Controller -> Service -> Repository), clean architecture (dependencies point inward), and microservices. The goal is separation of concerns so code is testable, maintainable, and swappable.

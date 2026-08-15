@@ -3,6 +3,7 @@ tags: [system-design, networking, nat]
 category: system-design
 related: [load-balancing]
 ---
+TARGET DECK: Study::System Design
 
 ## Description
 NAT (Network Address Translation) remaps private IP addresses to a public IP by rewriting the source/destination IP+port of packets in transit, tracking each flow in a mapping table. Its purpose is **address translation** — letting many private hosts share one public IPv4 address — **not security**. It only incidentally blocks unsolicited inbound connections because there's no mapping entry for them; that's a side effect, not a firewall. NAT also breaks end-to-end IP transparency, which complicates VoIP, gaming, and peer-to-peer (needing port forwarding or traversal techniques like STUN/TURN). Variants: Static NAT (fixed 1:1), Dynamic NAT (a pool), and PAT / NAT overload (port-based, the common home-router case).
@@ -25,21 +26,21 @@ Reply comes back to 203.0.113.7:40001 -> translated back to 10.0.0.5:51000
 ```anki
 START
 Basic
-What is NAT's actual purpose, and why is it often mistaken for a security feature?
+NAT: What is NAT's actual purpose, and why is it often mistaken for a security feature?
 Back: Its job is address translation — remapping private IPs to a shared public IP so many hosts share one public IPv4.<br>It's not security: it only incidentally blocks unsolicited inbound connections because no mapping entry exists for them. That's a side effect, not a firewall.
 <!--ID: 1782144297904-->
 END
 
 START
 Basic
-What problem does PAT (Port Address Translation / NAT overload) solve that static NAT doesn't?
+NAT: What problem does PAT (Port Address Translation / NAT overload) solve that static NAT doesn't?
 Back: PAT lets MANY private hosts share a single public IP by also remapping source PORTS, tracking each connection by IP+port in the NAT table.<br>Static NAT is only a fixed 1:1 IP mapping, so it can't multiplex many hosts onto one address.
 <!--ID: 1782144297907-->
 END
 
 START
 Basic
-Why does NAT complicate protocols like VoIP, gaming, and peer-to-peer?
+NAT: Why does NAT complicate protocols like VoIP, gaming, and peer-to-peer?
 Back: NAT breaks end-to-end IP transparency — internal hosts have no directly reachable public address.<br>So inbound/peer connections fail without port forwarding or NAT-traversal techniques (STUN/TURN/hole punching).
 <!--ID: 1782144297910-->
 END

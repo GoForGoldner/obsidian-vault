@@ -3,6 +3,7 @@ tags: [algorithms, technique, searching]
 category: algorithms
 related: [two-pointers, prefix-sum, backtracking]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 Binary search finds information in a sorted search space by cutting the remaining range in half each step. Its core runtime is O(log n), and the three most common forms are exact match, lower bound for the first value greater than or equal to a target, and upper bound for the first value strictly greater than a target.
@@ -43,14 +44,14 @@ int lowerBound(int[] arr, int target) {
 ```anki
 START
 Basic
-What's the difference between standard binary search, lower bound, and upper bound?
+Binary Search: What's the difference between standard binary search, lower bound, and upper bound?
 Back: Standard binary search finds an exact match and returns `-1` if missing (`left <= right`, then move `mid ± 1`). Lower bound returns the first index where `arr[i] >= target` (`left < right`, `right = mid`). Upper bound returns the first index where `arr[i] > target`. Count occurrences with `upperBound - lowerBound`.
 <!--ID: 1780580932914-->
 END
 
 START
 Basic
-What's the gotcha with `mid = (left + right) / 2` in binary search?
+Binary Search: What's the gotcha with `mid = (left + right) / 2` in binary search?
 Back: Integer overflow when `left + right` exceeds `Integer.MAX_VALUE`. Use `mid = left + (right - left) / 2` instead.
 <!--ID: 1780580932917-->
 END

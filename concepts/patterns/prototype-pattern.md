@@ -3,6 +3,7 @@ tags: [design-pattern, creational]
 category: patterns
 related: [builder-pattern, singleton-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A creational pattern where you create new objects by cloning an existing object (the prototype) instead of constructing from scratch.

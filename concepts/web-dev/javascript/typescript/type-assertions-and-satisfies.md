@@ -3,6 +3,7 @@ tags: [typescript, web-dev, types, assertions]
 category: web-dev
 related: [basic-types-annotations, enums-literals-as-const, typing-the-dom, union-intersection-narrowing, interfaces-vs-type-aliases]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 A type **assertion** `x as T` tells the compiler "trust me, this is `T`" — it does **no runtime check or conversion** (unlike a Java cast, which throws `ClassCastException`). TS only allows assertions between types that overlap; to force unrelated types you go through `as unknown as T` (a loud code smell). The **non-null assertion** `x!` strips `null`/`undefined` from a type, again with no runtime guard. The newer **`satisfies`** operator validates that an expression *conforms* to a type **without widening or changing** its inferred type — so you keep the precise literal types while still being checked. Reach for `satisfies` over `as` whenever you're describing a value you control; assertions are a smell when you're really just bypassing the checker.
@@ -47,35 +48,35 @@ const bad = { port: 8080 } as Config;
 ```anki
 START
 Basic
-What does `x as T` actually do at runtime in TypeScript?
+Type Assertions and satisfies: What does `x as T` actually do at runtime in TypeScript?
 Back: Nothing — assertions are compile-time only. No check, no conversion. If `x` isn't really a `T`, you get no error until something breaks at runtime (unlike a Java cast that throws).
 <!--ID: 1782407009628-->
 END
 
 START
 Basic
-When and why would you write `value as unknown as T`?
+Type Assertions and satisfies: When and why would you write `value as unknown as T`?
 Back: To force an assertion between two types TS considers non-overlapping (it refuses a direct `as`). Going through `unknown` defeats the check — it's a code smell signaling you're lying to the compiler.
 <!--ID: 1782407009631-->
 END
 
 START
 Basic
-What does the non-null assertion `x!` mean?
+Type Assertions and satisfies: What does the non-null assertion `x!` mean?
 Back: "Trust me, `x` is not null/undefined" — it removes `null | undefined` from the type with no runtime guard. Crashes if it actually is null.
 <!--ID: 1782407009634-->
 END
 
 START
 Basic
-How does `satisfies T` differ from `as T`?
+Type Assertions and satisfies: How does `satisfies T` differ from `as T`?
 Back: `satisfies` checks the value conforms to `T` but keeps its precise inferred (narrow/literal) type. `as` overrides the type to `T`, widening and losing info — and won't catch a missing required property the way `satisfies` does.
 <!--ID: 1782407009638-->
 END
 
 START
 Basic
-You have `const cfg = {...} satisfies Config` vs `const cfg = {...} as Config`. Why prefer satisfies?
+Type Assertions and satisfies: You have `const cfg = {...} satisfies Config` vs `const cfg = {...} as Config`. Why prefer satisfies?
 Back: `satisfies` validates against `Config` AND preserves the literal/narrow property types (so `.toFixed()` etc. still work). `as` widens to `Config`'s types and skips some checks.
 <!--ID: 1782407009641-->
 END

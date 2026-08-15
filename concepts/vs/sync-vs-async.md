@@ -3,6 +3,7 @@ tags: [concurrency, comparison]
 category: vs
 related: [thread, process]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Synchronous means operations execute one at a time. each one blocks until complete before the next starts. Asynchronous means operations can start without waiting for the previous one to finish. the program continues and handles the result when it's ready.

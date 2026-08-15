@@ -3,6 +3,7 @@ tags: [react, web-dev, hooks, state]
 category: web-dev
 related: [react-overview, useeffect, useref, rules-of-hooks, components-and-props]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 `useState` gives a function component a piece of **state** that survives re-renders and, when changed, triggers a re-render. It returns a two-element tuple: the current value and a **setter**. Calling the setter doesn't mutate a variable in place — it schedules a re-render with the new value, so the update is effectively **asynchronous and batched** (multiple setter calls in one event handler are coalesced into one render). Because of batching, reading the state variable right after setting it gives the *old* value; when the new value depends on the previous one, use the **functional update** form `setX(prev => next)`. You must **never mutate state directly** (no `state.push(...)`); always pass a new value/array/object so React detects the change by reference. TypeScript usually infers the type from the initial value; supply a generic when it can't (e.g. `useState<User | null>(null)`).
@@ -47,35 +48,35 @@ setUser(prev => prev ? { ...prev, name: "Tyler" } : prev); // copy, don't mutate
 ```anki
 START
 Basic
-What does `useState(0)` return, and how do you typically capture it?
+useState: What does `useState(0)` return, and how do you typically capture it?
 Back: A tuple `[value, setter]`. You destructure it: `const [count, setCount] = useState(0)`. `count` is the current value; `setCount` schedules an update + re-render.
 <!--ID: 1782407009896-->
 END
 
 START
 Basic
-You call `setCount(count + 1)` three times in one click handler but it only increments by 1. Why, and how do you fix it?
+useState: You call `setCount(count + 1)` three times in one click handler but it only increments by 1. Why, and how do you fix it?
 Back: State updates are batched and `count` stays the stale value for the whole handler. Use the functional form `setCount(prev => prev + 1)` so each update sees the latest value.
 <!--ID: 1782407009899-->
 END
 
 START
 Basic
-Why is `items.push("x"); setItems(items);` broken in React?
+useState: Why is `items.push("x"); setItems(items);` broken in React?
 Back: It mutates the existing array, so the reference is unchanged and React skips the re-render. Pass a new array: `setItems(prev => [...prev, "x"])`.
 <!--ID: 1782407009902-->
 END
 
 START
 Basic
-Right after `setName("Tyler")`, you `console.log(name)` and it still prints the old name. Is that a bug?
+useState: Right after `setName("Tyler")`, you `console.log(name)` and it still prints the old name. Is that a bug?
 Back: No. Setters are asynchronous/batched; `name` only updates on the next render. The current render keeps the old value. Read the new value in the next render or via the updater function.
 <!--ID: 1782407009906-->
 END
 
 START
 Basic
-You need state that's either a `User` object or `null`. Why does `useState(null)` type it wrong, and what's the fix?
+useState: You need state that's either a `User` object or `null`. Why does `useState(null)` type it wrong, and what's the fix?
 Back: It infers the type as `null`, so you can't later set a User. Supply the generic: `useState<User | null>(null)`.
 <!--ID: 1782407009909-->
 END

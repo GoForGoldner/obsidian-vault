@@ -3,6 +3,7 @@ tags: [cypress, testing, network, mocking, web-dev]
 category: web-dev
 related: [cypress-overview-command-queue, cypress-selectors, cypress-actions, cypress-assertions, cypress-best-practices, dom-events]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::Testing
 
 ## Description
 `cy.intercept(method, url, response?)` lets you **spy on** or **stub** HTTP requests the app makes. With a response argument you mock the server (deterministic tests, no backend); without one you only observe. Give the interception an **alias** with `.as('name')`, then `cy.wait('@name')` blocks the queue until that request fires and yields the matched request/response so you can assert on it. Mock bodies often come from `cy.fixture('file.json')` (loaded from `cypress/fixtures`). The key discipline: prefer `cy.wait('@alias')` over `cy.wait(5000)` — waiting on the alias resolves the instant the request completes (fast and reliable), whereas a fixed millisecond wait is both slow (always pays the full delay) and flaky (may be too short under load).
@@ -59,42 +60,42 @@ cy.get('[data-cy="row"]').should('exist');
 ```anki
 START
 Basic
-What's the difference between `cy.intercept('GET', '/api/x')` with no third arg vs with a response object?
+Cypress Network Intercept: What's the difference between `cy.intercept('GET', '/api/x')` with no third arg vs with a response object?
 Back: With no response arg it only spies (observes the real request). With a response object (or `{ fixture }`) it stubs — Cypress returns your mock and the request never hits the real server.
 <!--ID: 1782407009992-->
 END
 
 START
 Basic
-How do you make a test block until a specific intercepted request has fired, and get its request/response?
+Cypress Network Intercept: How do you make a test block until a specific intercepted request has fired, and get its request/response?
 Back: Alias the intercept with `.as('name')`, then `cy.wait('@name')`. It blocks the queue until the request completes and yields the interception object (`.request`, `.response`).
 <!--ID: 1782407009995-->
 END
 
 START
 Basic
-Why is `cy.wait('@getUsers')` preferred over `cy.wait(2000)`?
+Cypress Network Intercept: Why is `cy.wait('@getUsers')` preferred over `cy.wait(2000)`?
 Back: Alias-wait resolves the instant the request completes — fast and reliable. A fixed ms wait always pays the full delay (slow) and is flaky: too short under load, wastefully long otherwise.
 <!--ID: 1782407009998-->
 END
 
 START
 Basic
-Where do fixture files live and how do you use one as a stubbed response body?
+Cypress Network Intercept: Where do fixture files live and how do you use one as a stubbed response body?
 Back: In `cypress/fixtures/`. Use it via `cy.intercept('GET', url, { fixture: 'users.json' })`, or load it directly with `cy.fixture('users.json')`.
 <!--ID: 1782407010001-->
 END
 
 START
 Basic
-After `cy.wait('@login')`, write the pattern to assert the response status was 200.
+Cypress Network Intercept: After `cy.wait('@login')`, write the pattern to assert the response status was 200.
 Back: cy.wait('@login').then((interception) => {\n  expect(interception.response.statusCode).to.eq(200);\n});
 <!--ID: 1782407010004-->
 END
 
 START
 Basic
-Why does stubbing with `cy.intercept` make tests more deterministic?
+Cypress Network Intercept: Why does stubbing with `cy.intercept` make tests more deterministic?
 Back: It removes the real backend from the loop — responses are fixed and controlled, so tests don't fail due to backend data changes, latency, or downtime, and you can simulate edge cases (errors, empty lists) on demand.
 <!--ID: 1782407010007-->
 END

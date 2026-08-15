@@ -3,6 +3,7 @@ tags: [dom, web-dev, javascript, events]
 category: web-dev
 related: [document-and-selectors, dom-manipulation, dom-traversal, dom-forms-inputs, jquery-overview-and-selectors, react-events-and-forms]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::DOM
 
 ## Description
 You react to user activity by registering callbacks with `element.addEventListener('click', handler)`. The handler receives an **event object** carrying details; two of its properties trip up newcomers: `event.target` is the **actual element that triggered** the event (where the click landed), while `event.currentTarget` is the element **whose listener is currently running** (the one you called `addEventListener` on). Events **propagate in three phases**: capture (root → target, listeners added with `{ capture: true }`), then the target, then **bubbling** (target → root, the default). Bubbling enables **event delegation** — attach one listener to a parent and inspect `event.target` (often via `.closest()`), instead of binding a listener per child; this is the idiomatic way to handle dynamic lists. `event.preventDefault()` cancels the browser's default action (e.g. form submit, link navigation); `event.stopPropagation()` halts further propagation. To remove a listener you must pass the **same function reference** to `removeEventListener` — an inline anonymous arrow can never be removed (Java contrast: there's no listener-object identity to detach unless you keep the reference).
@@ -76,49 +77,49 @@ el.removeEventListener('click', handler); // works ONLY because handler is a nam
 ```anki
 START
 Basic
-Inside a click handler bound to a `<button>` containing a `<span>`, you click the span. What is `event.target` vs `event.currentTarget`?
+DOM Events: Inside a click handler bound to a `<button>` containing a `<span>`, you click the span. What is `event.target` vs `event.currentTarget`?
 Back: `event.target` is the `<span>` (what was actually clicked). `event.currentTarget` is the `<button>` (the element the listener is attached to).
 <!--ID: 1782407009454-->
 END
 
 START
 Basic
-What is event delegation and why use it for a list whose items change?
+DOM Events: What is event delegation and why use it for a list whose items change?
 Back: Attach ONE listener to the parent and use `event.target`/`.closest()` to identify the originating child. It relies on bubbling, so dynamically-added children work without rebinding listeners.
 <!--ID: 1782407009459-->
 END
 
 START
 Basic
-Why can't you remove a listener added as `el.addEventListener('click', () => {...})`?
+DOM Events: Why can't you remove a listener added as `el.addEventListener('click', () => {...})`?
 Back: `removeEventListener` matches by function reference. An inline anonymous arrow has no stored reference, so you can never pass the same function to remove it. Use a named function.
 <!--ID: 1782407009463-->
 END
 
 START
 Basic
-Distinction: `event.preventDefault()` vs `event.stopPropagation()`.
+DOM Events: Distinction: `event.preventDefault()` vs `event.stopPropagation()`.
 Back: `preventDefault()` cancels the browser's default action (e.g. form submit, link navigation) but lets the event keep propagating. `stopPropagation()` stops the event reaching other elements but does not cancel the default action.
 <!--ID: 1782407009467-->
 END
 
 START
 Basic
-By default, which propagation phase do listeners fire in, and how do you opt into the capture phase?
+DOM Events: By default, which propagation phase do listeners fire in, and how do you opt into the capture phase?
 Back: By default the bubbling phase (target up to root). Pass `{ capture: true }` as the third arg to `addEventListener` to fire during the capture phase (root down to target).
 <!--ID: 1782407009472-->
 END
 
 START
 Basic
-Write `addEventListener` so the handler runs at most once and auto-removes itself.
+DOM Events: Write `addEventListener` so the handler runs at most once and auto-removes itself.
 Back: `el.addEventListener('click', handler, { once: true });`
 <!--ID: 1782407009475-->
 END
 
 START
 Basic
-In a delegated list handler, how do you map a click on any descendant back to its `<li>`?
+DOM Events: In a delegated list handler, how do you map a click on any descendant back to its `<li>`?
 Back: `const li = e.target.closest('li');` then guard `if (!li) return;`. `closest` walks up from the target to the nearest matching ancestor (or itself).
 <!--ID: 1782407009479-->
 END

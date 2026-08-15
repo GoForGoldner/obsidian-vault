@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "2263871161d0d225",
+        "id": "d533f35b24340534",
         "type": "tabs",
         "children": [
           {
-            "id": "175fa59ad92b69da",
+            "id": "7ef70c00eada3f2c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/java/io/files-and-paths.md",
-                "mode": "preview",
+                "file": "concepts/data-structures/implementations/trie.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "files-and-paths"
+              "title": "trie"
             }
           }
         ]
@@ -74,8 +74,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -191,7 +190,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -208,44 +208,46 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "23427f95f1b5a3aa",
+  "active": "f354826bd052174b",
   "lastOpenFiles": [
-    "concepts/java/i18n/localization.md",
-    "concepts/web-dev/css/css-functions.md",
-    "concepts/web-dev/css/css-display.md",
-    "concepts/web-dev/css/box-model.md",
-    "concepts/spring/spring-aop-testing.md",
-    "concepts/web-dev/css/filters-effects.md",
+    "concepts/web-dev/javascript/dom/dom-events.md",
+    "concepts/web-dev/javascript/dom/document-and-selectors.md",
+    "concepts/data-structures/implementations/bst-impl.md",
+    "concepts/data-structures/implementations/binary-search.md",
+    "concepts/data-structures/implementations/monotonic-stack.md",
+    "concepts/data-structures/implementations/union-find.md",
+    "concepts/data-structures/implementations/binary-heap.md",
+    "concepts/data-structures/implementations/dfs.md",
+    "concepts/data-structures/implementations/bfs.md",
+    "concepts/data-structures/implementations/dijkstra.md",
+    "concepts/data-structures/implementations/README.md",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "concepts/java/concurrency/concurrent-collections.md",
+    "concepts/java/concurrency/completable-future.md",
+    "concepts/java/concurrency/atomics-and-volatile.md",
+    "concepts/web-dev/javascript/angular/angular-overview.md",
+    "concepts/web-dev/javascript/angular/change-detection.md",
+    "concepts/web-dev/backend-architecture.md",
+    "concepts/web-dev/javascript/variables-scope-hoisting.md",
+    "maps/javascript-typescript-moc.md",
+    "concepts/web-dev/javascript/dom/dom-manipulation.md",
+    "concepts/web-dev/javascript/dom/dom-traversal.md",
+    "concepts/java/io/files-and-paths.md",
+    "concepts/web-dev/javascript/jquery/jquery-traversal.md",
+    "concepts/web-dev/javascript/jquery/jquery-overview-and-selectors.md",
+    "concepts/web-dev/javascript/jquery/jquery-events.md",
+    "concepts/web-dev/javascript/jquery/jquery-dom-manipulation.md",
+    "concepts/web-dev/javascript/jquery",
+    "concepts/web-dev/javascript/testing",
+    "concepts/web-dev/javascript/react",
+    "concepts/web-dev/javascript/typescript",
+    "concepts/web-dev/javascript/dom",
     "concepts/web-dev/css/filters-effects.md.tmp.1995.15ed67675df6",
-    "concepts/vs/display-none-vs-visibility-hidden.md",
     "concepts/vs/display-none-vs-visibility-hidden.md.tmp.1995.f6c93c33abd8",
-    "concepts/web-dev/css/floats-clearfix.md",
     "concepts/web-dev/css/floats-clearfix.md.tmp.1995.814e010d46cf",
-    "concepts/web-dev/css/modern-selectors-nesting.md",
     "concepts/web-dev/css/modern-selectors-nesting.md.tmp.1995.b835a63b9b52",
-    "concepts/web-dev/css/container-queries.md",
     "concepts/web-dev/css/container-queries.md.tmp.1995.36ee4f5dbd51",
-    "concepts/web-dev/css/images-media.md",
-    "concepts/web-dev/css/images-media.md.tmp.1995.f634b55fd5c5",
-    "concepts/web-dev/css/pseudo-classes-elements.md",
-    "concepts/web-dev/css/pseudo-classes-elements.md.tmp.1995.57c55e57bc8f",
-    "concepts/web-dev/css/stacking-context.md",
-    "concepts/web-dev/css/stacking-context.md.tmp.1995.c9f34ac2cadd",
-    "concepts/web-dev/css/overflow-scrolling.md",
-    "concepts/web-dev/css/overflow-scrolling.md.tmp.1995.fbac96e4cb64",
-    "concepts/web-dev/css/css-functions.md.tmp.1995.a1dcd34e483a",
-    "concepts/web-dev/css/css-transforms.md",
-    "concepts/web-dev/css/css-custom-properties.md",
-    "concepts/web-dev/css/css-colors.md",
-    "concepts/web-dev/css/cascade-inheritance.md",
-    "concepts/web-dev/css/css-transitions-animations.md",
-    "concepts/web-dev/css/css-backgrounds-borders.md",
-    "concepts/web-dev/css/text-typography.md",
-    "concepts/vs/flexbox-vs-grid.md",
-    "concepts/web-dev/css/responsive-design.md",
-    "concepts/web-dev/css/centering.md",
-    "concepts/web-dev/css/css-units.md",
-    "concepts/web-dev/css/css-selectors-specificity.md",
     "airbnb-design-1.png"
   ]
 }

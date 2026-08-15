@@ -3,6 +3,7 @@ tags: [design-pattern, creational]
 category: patterns
 related: [dependency-injection-pattern, object-pool-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that ensures only one instance of a class exists across the entire application. Uses a private constructor and a static access method. Lazily constructed on first access.

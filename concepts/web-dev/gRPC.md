@@ -3,6 +3,7 @@ tags: [web-dev, api]
 category: web-dev
 related: [rest-vs-graphql, http-requests]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 A high-performance RPC framework that uses HTTP/2 and Protocol Buffers for serialization. Instead of REST's JSON over HTTP/1.1, gRPC uses binary encoding for smaller payloads and supports streaming. The client calls server methods as if they were local functions.

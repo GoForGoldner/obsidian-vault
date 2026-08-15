@@ -3,6 +3,7 @@ tags: [jquery, web-dev, dom, traversal]
 category: web-dev
 related: [jquery-overview-and-selectors, jquery-dom-manipulation, jquery-events, document-and-selectors, dom-manipulation]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::jQuery
 
 ## Description
 Traversal methods take your current collection and return a **new collection** of related elements, so they chain like everything else. Walk **down** with `.find(sel)` (any descendant) and `.children(sel)` (direct children only); walk **up** with `.parent()` (immediate parent), `.parents(sel)` (all ancestors), and `.closest(sel)` (nearest *self-or-ancestor* matching — the one you reach for in event handlers). Move **sideways** with `.siblings(sel)`. Narrow a set with `.filter(sel)`, or pick by position with `.eq(i)`, `.first()`, `.last()`. To loop a collection use `.each(callback)` — and here's the gotcha that bites Java/JS devs coming from `Array.forEach`: jQuery's callback is **`(index, element)`**, index **first**, and `element` is a **raw DOM node** (wrap with `$(this)` or `$(el)`). `this` inside `.each` is also the raw element. Native array methods like `.map`/`.forEach` are not on jQuery collections; use `.each` or `$.map`.
@@ -56,42 +57,42 @@ $('li').each(function (index, el) {   // NOTE: index FIRST, then raw element
 ```anki
 START
 Basic
-Distinction: when do you use `.find()` vs `.children()` on a jQuery collection?
+jQuery Traversal: Distinction: when do you use `.find()` vs `.children()` on a jQuery collection?
 Back: `.find(sel)` matches **any descendant** at any depth. `.children(sel)` matches only **direct children**. Both return new collections.
 <!--ID: 1782407010132-->
 END
 
 START
 Basic
-In a delete-button click handler, how do you walk up to the enclosing `.item` row to remove it?
+jQuery Traversal: In a delete-button click handler, how do you walk up to the enclosing `.item` row to remove it?
 Back: `$(this).closest('.item').remove();` — `.closest` finds the nearest **self-or-ancestor** matching the selector. (Vanilla: `e.target.closest('.item')`.)
 <!--ID: 1782407010135-->
 END
 
 START
 Basic
-Gotcha: what is the callback signature of jQuery's `.each()`, and how does it differ from `Array.forEach`?
+jQuery Traversal: Gotcha: what is the callback signature of jQuery's `.each()`, and how does it differ from `Array.forEach`?
 Back: jQuery: `(index, element)` — **index first**, and `element` is a **raw DOM node**. `Array.forEach` is `(element, index)` — element first. Easy to mix up.
 <!--ID: 1782407010138-->
 END
 
 START
 Basic
-Inside `$('li').each(function(i, el){...})`, what is `this` and how do you call jQuery methods on the current item?
+jQuery Traversal: Inside `$('li').each(function(i, el){...})`, what is `this` and how do you call jQuery methods on the current item?
 Back: `this` is the **raw DOM element** (same as `el`). Wrap it: `$(this)` or `$(el)` to use jQuery methods like `.addClass()`.
 <!--ID: 1782407010141-->
 END
 
 START
 Basic
-What's the difference between `.parent()`, `.parents('.x')`, and `.closest('.x')`?
+jQuery Traversal: What's the difference between `.parent()`, `.parents('.x')`, and `.closest('.x')`?
 Back: `.parent()` = immediate parent only. `.parents('.x')` = **all** ancestors matching `.x`. `.closest('.x')` = the **single nearest** self-or-ancestor matching `.x`.
 <!--ID: 1782407010145-->
 END
 
 START
 Basic
-You have `$('li')` and want just the 3rd one as a jQuery object. Write it.
+jQuery Traversal: You have `$('li')` and want just the 3rd one as a jQuery object. Write it.
 Back: `$('li').eq(2)` (0-based; returns a jQuery collection). `.first()` is `.eq(0)`, `.last()` is the final one. Note: `$('li')[2]` would give the **raw** element instead.
 <!--ID: 1782407010147-->
 END

@@ -3,6 +3,7 @@ tags: [algorithms, graph]
 category: algorithms
 related: [bfs, dfs, dynamic-programming]
 ---
+TARGET DECK: Study::Algorithms
 
 ## Description
 A graph is bipartite if you can color every node with one of two colors so that no edge connects nodes of the same color, which is equivalent to saying the graph contains no odd-length cycle. The standard solution uses BFS or DFS to alternate colors across edges, checking every connected component in O(V + E) time.
@@ -47,14 +48,14 @@ return true;
 ```anki
 START
 Basic
-You see: need to check if a graph can be split into two groups with no edges within a group. What algorithm?
+Bipartite Check: You see: need to check if a graph can be split into two groups with no edges within a group. What algorithm?
 Back: Bipartite Check. BFS/DFS with 2-coloring: assign color 0 to start, alternate for neighbors. If a neighbor already has the same color → not bipartite (odd cycle found). Must check all components for disconnected graphs.
 <!--ID: 1780580932981-->
 END
 
 START
 Basic
-What graph property is equivalent to being bipartite?
+Bipartite Check: What graph property is equivalent to being bipartite?
 Back: A graph is bipartite if and only if it has no odd-length cycle. During BFS or DFS coloring, a conflict where adjacent nodes need the same color is exactly evidence of an odd cycle.
 <!--ID: 1780580932982-->
 END

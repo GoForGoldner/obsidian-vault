@@ -3,6 +3,7 @@ tags: [spring, spring-boot, auto-configuration]
 category: spring
 related: [spring-core, spring-web-mvc, spring-aop-testing]
 ---
+TARGET DECK: Study::Spring
 
 ## Description
 Spring Boot auto-configuration is mostly a giant set of `@Configuration` classes guarded by `@Conditional*` annotations. Boot checks the classpath, existing beans, active environment, and external properties; if the right conditions match, it registers default beans. The value is not hidden magic but predictable conventions: defaults first, explicit application beans win, and configuration is externalized into typed properties objects instead of being hard-coded.
@@ -157,70 +158,70 @@ class MaintenanceJobs {
 ```anki
 START
 Basic
-What three annotations does `@SpringBootApplication` combine?
+Spring Boot Autoconfiguration: What three annotations does `@SpringBootApplication` combine?
 Back: `@SpringBootApplication` combines `@SpringBootConfiguration`, `@EnableAutoConfiguration`, and `@ComponentScan`.<br>Equivalent shape: `@SpringBootConfiguration @EnableAutoConfiguration @ComponentScan class ApplicationBootstrap {}`.<br>That means "this is the Boot config class, import auto-config, and scan this package tree".
 <!--ID: 1780580933084-->
 END
 
 START
 Basic
-How does Spring Boot auto-configuration decide which beans to create?
+Spring Boot Autoconfiguration: How does Spring Boot auto-configuration decide which beans to create?
 Back: Boot uses `@Conditional*` annotations on `@Configuration` classes and `@Bean` methods.<br>Examples: `@ConditionalOnClass`, `@ConditionalOnBean`, `@ConditionalOnMissingBean`, and `@ConditionalOnProperty`.<br>If conditions match, Boot creates the bean; if you define your own bean, conditions like `@ConditionalOnMissingBean` make Boot back off.
 <!--ID: 1780580933087-->
 END
 
 START
 Basic
-What's the difference between `@Value` and `@ConfigurationProperties` for external config?
+Spring Boot Autoconfiguration: What's the difference between `@Value` and `@ConfigurationProperties` for external config?
 Back: `@Value("${app.mail.host}")` injects a single property into one field.<br>`@ConfigurationProperties(prefix = "app.mail") class MailProperties { private String host; private int port; }` binds a whole config group into one typed object.<br>Use `@ConfigurationProperties` for grouped settings, validation, and cleaner code.
 <!--ID: 1780580933089-->
 END
 
 START
 Basic
-`@ConfigurationProperties`: show the full pattern with validation.
+Spring Boot Autoconfiguration: `@ConfigurationProperties`: show the full pattern with validation.
 Back: `@ConfigurationProperties(prefix = "app.mail") @Validated class MailProperties { @NotNull private String host; private int port = 587; }`.<br>Register it with `@EnableConfigurationProperties(MailProperties.class)`.<br>Then Boot binds `app.mail.host` and `app.mail.port` from `application.yml` or `application.properties`.
 <!--ID: 1780580933091-->
 END
 
 START
 Basic
-`@ConditionalOnMissingBean`: why is it the key to auto-config?
+Spring Boot Autoconfiguration: `@ConditionalOnMissingBean`: why is it the key to auto-config?
 Back: Auto-config uses `@Bean @ConditionalOnMissingBean MailClient mailClient(...) { ... }` so Boot supplies a default only when you did not already define one.<br>If your app declares its own `MailClient` bean, the auto-config method is skipped.<br>That is Boot's "opinionated defaults, easy overrides" model.
 <!--ID: 1780580933093-->
 END
 
 START
 Basic
-`@Scheduled`: what are the three scheduling modes?
+Spring Boot Autoconfiguration: `@Scheduled`: what are the three scheduling modes?
 Back: Cron: `@Scheduled(cron = "0 0 8 * * MON-FRI")`.<br>Fixed rate: `@Scheduled(fixedRate = 5000)` starts every 5 seconds measured from the previous start time.<br>Fixed delay: `@Scheduled(fixedDelay = 5000)` waits 5 seconds after the previous execution finishes.<br>All require `@EnableScheduling`.
 <!--ID: 1780580933095-->
 END
 
 START
 Basic
-`@Async`: how do you make a method run in a background thread?
+Spring Boot Autoconfiguration: `@Async`: how do you make a method run in a background thread?
 Back: Mark the method `@Async public CompletableFuture<Result> process() { return CompletableFuture.completedFuture(result); }` and enable async execution with `@EnableAsync`.<br>The caller gets the `CompletableFuture` immediately.<br>Gotcha: `@Async` only works when the method is invoked through the Spring proxy, not from another method in the same class.
 <!--ID: 1780580933098-->
 END
 
 START
 Basic
-`@ConditionalOnProperty`: how do you conditionally enable a feature?
+Spring Boot Autoconfiguration: `@ConditionalOnProperty`: how do you conditionally enable a feature?
 Back: Use `@Bean @ConditionalOnProperty(name = "feature.cache.enabled", havingValue = "true", matchIfMissing = false) CacheManager cacheManager() { ... }`.<br>The bean is created only when the property exists and equals `true`.<br>`matchIfMissing` controls what happens when the property is absent.
 <!--ID: 1780580933102-->
 END
 
 START
 Basic
-`@SpringBootConfiguration` vs `@Configuration`: what's the difference?
+Spring Boot Autoconfiguration: `@SpringBootConfiguration` vs `@Configuration`: what's the difference?
 Back: `@SpringBootConfiguration` is a specialization of `@Configuration` used by Boot on the main application class.<br>`@SpringBootApplication` already includes it, so you rarely write it directly.<br>Regular `@Configuration` is still what you use for most custom config classes.
 <!--ID: 1780580933105-->
 END
 
 START
 Basic
-With `@ConfigurationProperties`, what happens to unknown config keys, and how does relaxed binding map names?
+Spring Boot Autoconfiguration: With `@ConfigurationProperties`, what happens to unknown config keys, and how does relaxed binding map names?
 Back: Unknown keys are silently ignored by default; set `ignoreUnknownFields = false` to fail fast instead.<br>Relaxed binding maps kebab/underscore/caps to camelCase, e.g. `app.max-pool-size` binds to `maxPoolSize`.<br>Missing keys keep field defaults; enforce required ones with `@Validated` + `@NotNull`.
 <!--ID: 1782144297796-->
 END

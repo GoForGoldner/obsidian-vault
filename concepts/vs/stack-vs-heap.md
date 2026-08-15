@@ -3,6 +3,7 @@ tags: [memory, comparison]
 category: vs
 related: [stack-and-heap, garbage-collection]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Stack is fast, ordered memory for local variables and function calls. automatically freed when a function returns. Heap is slower, unordered memory for dynamically allocated objects. must be freed manually or by garbage collection. Stack is small and fixed-size; heap is large but requires management.
@@ -28,8 +29,9 @@ void example() {
 ```anki
 START
 Basic
-What goes on the stack vs the heap?
+Stack vs Heap: What goes on the stack vs the heap?
 Back: Stack: local variables, call frames, value types - fast (pointer move), auto-freed. Heap: dynamic objects, reference types - slower (needs GC), lives beyond function scope. Stack overflow = deep recursion. Memory leak = heap objects still referenced but unused.
+<!--ID: 1782496828836-->
 END
 ```
 

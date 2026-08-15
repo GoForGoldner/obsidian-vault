@@ -3,6 +3,7 @@ tags: [design-pattern, structural]
 category: patterns
 related: [adapter-pattern, stradegy-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that separates an abstraction from its implementation so the two can vary independently. Instead of one giant class hierarchy, you split it into two: the "what" (abstraction) and the "how" (implementation), connected by composition.

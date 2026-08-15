@@ -3,6 +3,7 @@ tags: [cypress, testing, selectors, web-dev]
 category: web-dev
 related: [cypress-overview-command-queue, cypress-actions, cypress-assertions, cypress-best-practices, document-and-selectors, dom-events]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::Testing
 
 ## Description
 Selector commands locate elements in the DOM and yield them (as jQuery-wrapped objects) to the next command. `cy.get(selector)` takes a **CSS selector** and retries until it matches; `cy.contains(text)` finds by visible text. Once you have a subject, `.find()` searches its descendants, `.within()` scopes following commands inside it, and `.first()`/`.eq(n)`/`.last()` narrow a multi-element result. Unlike raw `document.querySelector` (which runs once, synchronously, and returns `null` if absent), `cy.get` keeps retrying and fails the test on timeout. The strong best practice is to select by a dedicated `[data-cy=...]` or `[data-testid=...]` attribute so tests don't break when CSS classes or text change.
@@ -48,42 +49,42 @@ cy.get('li').contains('Settings').click();  // contains scoped to the li set
 ```anki
 START
 Basic
-What kind of selector does `cy.get()` accept, and how does its behavior differ from `document.querySelector`?
+Cypress Selectors: What kind of selector does `cy.get()` accept, and how does its behavior differ from `document.querySelector`?
 Back: It accepts a CSS selector. Unlike `querySelector` (runs once, returns null if not found), `cy.get` retries until the element appears or the command times out, then fails the test.
 <!--ID: 1782407010029-->
 END
 
 START
 Basic
-You need to select an element by its visible text rather than a CSS selector. Which command?
+Cypress Selectors: You need to select an element by its visible text rather than a CSS selector. Which command?
 Back: `cy.contains('text')` — yields the first element containing that text. Can be chained off a subject to scope the search, e.g. `cy.get('li').contains('Settings')`.
 <!--ID: 1782407010032-->
 END
 
 START
 Basic
-What's the difference between `.find()` and `cy.get()` when chained off an existing element?
+Cypress Selectors: What's the difference between `.find()` and `cy.get()` when chained off an existing element?
 Back: `.find(sel)` searches only within the descendants of the current subject. `cy.get(sel)` starts a fresh query against the whole document, ignoring the previous subject.
 <!--ID: 1782407010035-->
 END
 
 START
 Basic
-What does `.within(() => {...})` do and when do you use it?
+Cypress Selectors: What does `.within(() => {...})` do and when do you use it?
 Back: It scopes all `cy.get`/`cy.contains` calls inside the callback to descendants of the current subject. Use it to disambiguate selectors inside a specific form, card, or row.
 <!--ID: 1782407010039-->
 END
 
 START
 Basic
-Why prefer `[data-cy="submit"]` over `cy.get('.btn-primary')` or `cy.contains('Submit')`?
+Cypress Selectors: Why prefer `[data-cy="submit"]` over `cy.get('.btn-primary')` or `cy.contains('Submit')`?
 Back: data-cy/data-testid attributes are dedicated test hooks decoupled from styling and copy. CSS classes change with redesigns and visible text changes with i18n/wording, both of which silently break selector-by-class/text tests.
 <!--ID: 1782407010042-->
 END
 
 START
 Basic
-Given many matching elements, how do you pick the first one vs the element at index 2?
+Cypress Selectors: Given many matching elements, how do you pick the first one vs the element at index 2?
 Back: `.first()` for the first match; `.eq(2)` for the zero-indexed third element. (`.last()` for the final one.)
 <!--ID: 1782407010045-->
 END

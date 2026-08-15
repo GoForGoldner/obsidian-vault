@@ -3,6 +3,7 @@ tags: [java, io, streams, characters, charset]
 category: java
 related: [files-and-paths, byte-streams, try-with-resources, serialization, console-and-standard-streams]
 ---
+TARGET DECK: Study::Java::IO
 
 ## Description
 Character streams are rooted at `Reader` and `Writer` and deal in `char`s, decoding
@@ -87,56 +88,56 @@ try (var pw = new PrintWriter(new FileWriter("c.txt"))) {
 ```anki
 START
 Basic
-What was the historical charset gotcha with `new FileReader(file)` / `new FileWriter(file)`?
+Character Streams: What was the historical charset gotcha with `new FileReader(file)` / `new FileWriter(file)`?
 Back: They used the JVM's PLATFORM DEFAULT charset (e.g. `windows-1252`), so text broke when moved between platforms.<br>Fix: use the explicit-`Charset` constructors (Java 11+) or `InputStreamReader` with a `Charset`.
 <!--ID: 1781902680377-->
 END
 
 START
 Basic
-On current Java (18+), what charset does a no-arg `new FileReader("f.txt")` use?
+Character Streams: On current Java (18+), what charset does a no-arg `new FileReader("f.txt")` use?
 Back: UTF-8.<br>JEP 400 (Java 18) standardized the JDK default charset to UTF-8 on all platforms; `file.encoding` defaults to `UTF-8` regardless of OS/locale.<br>Pre-18 it was the platform default.
 <!--ID: 1781902680384-->
 END
 
 START
 Basic
-You need to read a text file as a SPECIFIC charset, portably across Java versions. Which API?
+Character Streams: You need to read a text file as a SPECIFIC charset, portably across Java versions. Which API?
 Back: Bridge with `new InputStreamReader(byteStream, StandardCharsets.X)`, or the charset-taking `FileReader(file, charset)` (Java 11+).<br>Explicit charset removes any dependence on the default.
 <!--ID: 1781902680391-->
 END
 
 START
 Basic
-What is `InputStreamReader` / `OutputStreamWriter` for?
+Character Streams: What is `InputStreamReader` / `OutputStreamWriter` for?
 Back: They are the bridges between byte streams and character streams.<br>`InputStreamReader`: bytes -> chars; `OutputStreamWriter`: chars -> bytes.<br>Each takes a `Charset` so you control the encoding explicitly.
 <!--ID: 1781902680397-->
 END
 
 START
 Basic
-What does `BufferedReader.readLine()` return at end of input, and does it keep the newline?
+Character Streams: What does `BufferedReader.readLine()` return at end of input, and does it keep the newline?
 Back: Returns `null` at end of stream (not `-1`).<br>Strips the line terminator (`\n`, `\r`, or `\r\n`).<br>Loop: `while ((line = br.readLine()) != null)`.
 <!--ID: 1781902680404-->
 END
 
 START
 Basic
-`BufferedWriter.newLine()` vs writing `"\n"` — why prefer it?
+Character Streams: `BufferedWriter.newLine()` vs writing `"\n"` — why prefer it?
 Back: `newLine()` writes the platform's line separator (`System.lineSeparator()`), e.g. `\r\n` on Windows.<br>Hard-coding `\n` ignores the platform convention.
 <!--ID: 1781902680411-->
 END
 
 START
 Basic
-Gotcha: why might a `PrintWriter` swallow your I/O error?
+Character Streams: Gotcha: why might a `PrintWriter` swallow your I/O error?
 Back: `PrintWriter` (and `PrintStream`) never throw `IOException` from `print`/`println`/`printf`.<br>They set an internal flag instead — check `checkError()`.<br>Easy to silently lose writes.
 <!--ID: 1781902680418-->
 END
 
 START
 Basic
-`BufferedReader.lines()` returns a `Stream<String>` — what must you remember?
+Character Streams: `BufferedReader.lines()` returns a `Stream<String>` — what must you remember?
 Back: It reads lazily from the still-open reader, so keep the reader open while consuming and close it after.<br>Use try-with-resources around the `BufferedReader`.<br>Same lifecycle trap as `Files.lines`.
 <!--ID: 1781902680426-->
 END

@@ -3,6 +3,7 @@ tags: [database, comparison]
 category: vs
 related: [sql, nosql]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 SQL databases are relational. structured tables with schemas, joins, and ACID transactions. NoSQL databases are non-relational. flexible schemas, optimized for specific data models (documents, key-value, graphs). The choice depends on your data structure, scale, and consistency needs.

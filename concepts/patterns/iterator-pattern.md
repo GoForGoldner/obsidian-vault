@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [visitor-pattern, command-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern for accessing elements of a collection sequentially without exposing the underlying representation. The collection provides an iterator object that knows how to traverse its elements.

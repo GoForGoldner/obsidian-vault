@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/java/io/files-and-paths.md",
+                "file": "concepts/web-dev/javascript/this-call-apply-bind.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "files-and-paths"
+              "title": "this-call-apply-bind"
             }
           }
         ],
@@ -76,7 +76,9 @@
           "type": "file-explorer",
           "state": {
             "sortOrder": "alphabetical",
-            "autoReveal": false
+            "autoReveal": false,
+            "showSearch": false,
+            "searchQuery": ""
           },
           "icon": "lucide-folder-closed",
           "title": "Files"
@@ -240,6 +242,7 @@
   },
   "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "concepts/java/io/files-and-paths.md",
     "copilot/copilot-conversations/Creating_Pointcuts_File@20260616_195547.md",
     "concepts/web-dev/css/css-grid.md",
     "spring-data-query-methods.md",
@@ -267,7 +270,6 @@
     "/concepts/spring/spring-boot-autoconfiguration.md",
     "/concepts/spring/spring-aop-testing.md",
     "/concepts/spring",
-    "/concepts/java/java-set-and-map.md",
     "/concepts/java",
     "/concepts/algorithms",
     "/concepts",

@@ -3,6 +3,7 @@ tags: [database, system-design]
 category: system-design
 related: [sql, cap-theorem, eventual-consistency]
 ---
+TARGET DECK: Study::System Design::Database
 
 ## Description
 Non-relational databases optimized for specific data models and access patterns instead of general-purpose SQL querying. Trade ACID guarantees and joins for horizontal scalability and flexible schemas. Commonly used alongside SQL databases in polyglot persistence architectures.

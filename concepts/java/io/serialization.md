@@ -3,6 +3,7 @@ tags: [java, io, serialization, serializable]
 category: java
 related: [files-and-paths, byte-streams, character-streams, try-with-resources, console-and-standard-streams]
 ---
+TARGET DECK: Study::Java::IO
 
 ## Description
 Serialization converts an object graph into a byte stream (`ObjectOutputStream.writeObject`)
@@ -95,56 +96,56 @@ class Point implements Externalizable {
 ```anki
 START
 Basic
-Which fields are NOT written during serialization?
+Serialization: Which fields are NOT written during serialization?
 Back: `transient` fields and `static` fields.<br>`transient` = explicitly excluded; comes back as the type default (`null`/`0`/`false`).<br>`static` = belongs to the class, not the instance, so it's never part of object state.
 <!--ID: 1781902680602-->
 END
 
 START
 Basic
-Gotcha: does deserialization call the class's constructor?
+Serialization: Gotcha: does deserialization call the class's constructor?
 Back: No. For `Serializable`, NO constructor runs — the JVM allocates the object and restores fields directly.<br>(Exception: `Externalizable` DOES invoke the public no-arg constructor.)<br>So constructor-based invariants/validation are bypassed.
 <!--ID: 1781902680609-->
 END
 
 START
 Basic
-You call `writeObject(obj)` and get `NotSerializableException`. Why?
+Serialization: You call `writeObject(obj)` and get `NotSerializableException`. Why?
 Back: `obj` (or one of its non-transient referenced fields) doesn't implement `Serializable`.<br>The whole reachable graph must be serializable.<br>Fix: mark the field `transient` or make the type `Serializable`.
 <!--ID: 1781902680616-->
 END
 
 START
 Basic
-What is `serialVersionUID` and what breaks if it mismatches?
+Serialization: What is `serialVersionUID` and what breaks if it mismatches?
 Back: A version stamp for a `Serializable` class.<br>If the stream's UID differs from the loaded class's, `readObject` throws `InvalidClassException`.<br>Declare it explicitly (`private static final long serialVersionUID`) so refactors don't silently break compatibility.
 <!--ID: 1781902680622-->
 END
 
 START
 Basic
-`Serializable` vs `Externalizable` — key differences?
+Serialization: `Serializable` vs `Externalizable` — key differences?
 Back: `Serializable`: marker interface, JVM handles fields automatically, no ctor on read.<br>`Externalizable`: you implement `writeExternal`/`readExternal`, and the public no-arg ctor IS called on read.<br>Externalizable = full manual control.
 <!--ID: 1781902680629-->
 END
 
 START
 Basic
-What are the exact methods to customize standard (Serializable) serialization?
+Serialization: What are the exact methods to customize standard (Serializable) serialization?
 Back: `private void writeObject(ObjectOutputStream)` and `private void readObject(ObjectInputStream)`.<br>Call `defaultWriteObject()`/`defaultReadObject()` inside to handle the normal fields, then your custom logic.<br>Often used to handle `transient` fields manually.
 <!--ID: 1781902680637-->
 END
 
 START
 Basic
-How do records serialize, and what happens to custom serialization methods on a record?
+Serialization: How do records serialize, and what happens to custom serialization methods on a record?
 Back: A record serializes by its component values and deserializes by invoking the CANONICAL constructor.<br>Any `writeObject`/`readObject`/`writeExternal`/`readExternal` on a record are IGNORED.<br>So canonical-constructor validation still runs on read (unlike normal classes).
 <!--ID: 1781902680653-->
 END
 
 START
 Basic
-Why is deserializing untrusted data a security risk?
+Serialization: Why is deserializing untrusted data a security risk?
 Back: `readObject` can instantiate arbitrary classes on the classpath and trigger "gadget chains" leading to RCE.<br>It bypasses constructors, so invariants aren't enforced.<br>Mitigate with serialization filters (`ObjectInputFilter`) or avoid Java serialization for untrusted input.
 <!--ID: 1781902680663-->
 END

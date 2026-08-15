@@ -59,6 +59,8 @@ END
 
 ## Card rules
 
+**Every card front starts with `<TopicName>: `.** Prefix the front of every card with the note's topic followed by a colon and a space — e.g. `Dijkstra: You see: weighted graph...` or `Stack vs Heap: What goes on...`. TopicName is the clean human-readable name of the concept the note covers (proper acronym casing, no kebab-case, no file extension). This gives every card context in the mixed review deck. Do not put the prefix on the `Back:`.
+
 **One card = one retrieval cue.** If the answer takes more than 30 seconds to recall, split the card.
 
 **Concept over facts.** Cards should test understanding, not just recall. Ask "why" and "when" more than "what is." If a card feels like a dictionary definition, rewrite it as a scenario or distinction.
@@ -150,26 +152,26 @@ Finding the fastest route between two cities on a map where roads have different
 
 START
 Basic
-You see: weighted graph, non-negative edges, shortest path from one source. What algorithm?
+Dijkstra: You see: weighted graph, non-negative edges, shortest path from one source. What algorithm?
 Back: Dijkstra. Min-heap of (cost, node), always process cheapest next.
 END
 
 START
 Basic
-What is the one line in Dijkstra you can't forget and why?
+Dijkstra: What is the one line in Dijkstra you can't forget and why?
 Back: if cost > dist[node]: continue
 Skips stale heap entries. Without it you reprocess nodes with outdated costs.
 END
 
 START
 Basic
-When do you use Bellman-Ford over Dijkstra?
+Dijkstra: When do you use Bellman-Ford over Dijkstra?
 Back: When the graph has negative edge weights. Dijkstra breaks silently with negatives.
 END
 
 START
 Basic
-What does dist[node] represent in Dijkstra?
+Dijkstra: What does dist[node] represent in Dijkstra?
 Back: The best known shortest distance from the source to that node so far.
 END
 ~~~

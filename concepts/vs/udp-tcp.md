@@ -3,6 +3,7 @@ tags: [networking, comparison]
 category: vs
 related: [internet-protocal, tls(transport layer security)]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 TCP is reliable. guarantees delivery, ordering, and error checking via a connection. UDP is unreliable but fast. no connection, no guaranteed delivery, no ordering. TCP for accuracy, UDP for speed.

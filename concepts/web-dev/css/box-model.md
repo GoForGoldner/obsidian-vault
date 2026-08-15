@@ -3,6 +3,7 @@ tags: [css, web-dev, layout]
 category: web-dev
 related: [css-positioning, centering, css-units, flexbox]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 Every element is a box made of four layers, inside-out: **content → padding → border → margin**. By default (`box-sizing: content-box`), a `width` you set applies to the *content* only, so padding and border are added *on top*, making the element render wider than the number you wrote. Switching to `box-sizing: border-box` makes `width` include padding and border — the box stays the size you asked for. This is the root cause of most "why is my element too big?" bugs.
@@ -34,42 +35,42 @@ Every element is a box made of four layers, inside-out: **content → padding �
 ```anki
 START
 Basic
-Name the four layers of the box model from the inside out.
+Box Model: Name the four layers of the box model from the inside out.
 Back: Content → padding → border → margin. (Padding is inside the border, margin is outside it.)
 <!--ID: 1780758285045-->
 END
 
 START
 Basic
-You set `width: 200px` and `padding: 20px`, but the element renders 240px wide. Why, and what's the one-line fix?
+Box Model: You set `width: 200px` and `padding: 20px`, but the element renders 240px wide. Why, and what's the one-line fix?
 Back: Default `box-sizing: content-box` adds padding/border *outside* the declared width. Fix: `box-sizing: border-box;` so width includes padding + border.
 <!--ID: 1780758285052-->
 END
 
 START
 Basic
-Write the CSS reset that makes every element on the page size by its border edge.
+Box Model: Write the CSS reset that makes every element on the page size by its border edge.
 Back: `* { box-sizing: border-box; }`
 <!--ID: 1780758285057-->
 END
 
 START
 Basic
-What's the practical difference between margin and padding (think background and what sits where)?
+Box Model: What's the practical difference between margin and padding (think background and what sits where)?
 Back: Padding is space *inside* the border — between content and edge — and shows the element's background. Margin is space *outside* the border — between this element and its neighbors — and is always transparent.
 <!--ID: 1780758285065-->
 END
 
 START
 Basic
-Two stacked block elements each have `margin: 20px`. How much vertical space ends up between them, and what is this called?
+Box Model: Two stacked block elements each have `margin: 20px`. How much vertical space ends up between them, and what is this called?
 Back: 20px, not 40px — **margin collapsing**. Adjacent vertical margins collapse to the larger of the two (only vertical, only in normal block flow).
 <!--ID: 1780758285072-->
 END
 
 START
 Basic
-Write the CSS to horizontally center a block element that has a fixed width.
+Box Model: Write the CSS to horizontally center a block element that has a fixed width.
 Back: `width: <value>; margin: 0 auto;` — auto left/right margins split the leftover space evenly. (Requires a defined width.)
 <!--ID: 1780758285079-->
 END

@@ -3,6 +3,7 @@ tags: [java, data-structures, collections]
 category: java
 related: [java-list, java-set-and-map, java-queue-deque, java-iterators]
 ---
+TARGET DECK: Study::Java
 
 ## Description
 The Java Collections Framework is really two coordinated but separate API families. One family starts at `Iterable` and models groups of elements you traverse directly: `Collection`, then `List`, `Set`, and `Queue`/`Deque`. The other family starts at `Map` and models key-value associations: `Map`, then `SortedMap`, then `NavigableMap`. That split is why `Map` has familiar methods like `size()`, `isEmpty()`, and `clear()` but still cannot be passed anywhere a `Collection<?>` is expected. In practice, you choose an interface first (`List`, `Set`, `Queue`, `Deque`, `Map`) and then an implementation (`ArrayList`, `HashSet`, `TreeMap`, `ArrayDeque`, and so on) based on ordering, uniqueness, lookup complexity, and whether you need range/nearest-element operations.
@@ -114,56 +115,56 @@ graph.forEach((node, neighbors) ->
 ```anki
 START
 Basic
-What are the two separate root hierarchies in Java Collections?
+Collections Framework: What are the two separate root hierarchies in Java Collections?
 Back: `Iterable -> Collection -> {List, Set, Queue}` is one hierarchy, while `Map -> SortedMap -> NavigableMap` is a separate hierarchy.<br>`Map` does NOT extend `Collection`, so a `Map<K,V>` cannot be passed where a `Collection<?>` is required.
 <!--ID: 1780580932997-->
 END
 
 START
 Basic
-What 3 live views does `Map` provide?
+Collections Framework: What 3 live views does `Map` provide?
 Back: `keySet()`, `values()`, and `entrySet()`.<br>They are live views backed by the original map, so removing from the view removes from the map, and map updates appear in the view.
 <!--ID: 1780580932999-->
 END
 
 START
 Basic
-What's the difference between `SortedSet`/`SortedMap` and `NavigableSet`/`NavigableMap`?
+Collections Framework: What's the difference between `SortedSet`/`SortedMap` and `NavigableSet`/`NavigableMap`?
 Back: `Sorted*` gives ordered traversal plus range views like `headSet`, `tailSet`, `subSet`, `headMap`, and `tailMap`.<br>`Navigable*` adds nearest-element queries such as `floor`, `ceiling`, `lower`, and `higher`.
 <!--ID: 1780580933001-->
 END
 
 START
 Basic
-What does `Map.computeIfAbsent(key, mappingFn)` do and when do you use it?
+Collections Framework: What does `Map.computeIfAbsent(key, mappingFn)` do and when do you use it?
 Back: If `key` is absent, Java computes a value with `mappingFn`, inserts it, and returns it; if the key already exists, it just returns the existing value.<br>Common pattern: `map.computeIfAbsent(node, k -> new ArrayList<>()).add(neighbor);` when building adjacency lists or groups.
 <!--ID: 1780580933002-->
 END
 
 START
 Basic
-What does `Map.merge(key, value, remappingFn)` do?
+Collections Framework: What does `Map.merge(key, value, remappingFn)` do?
 Back: If `key` is absent, Java inserts `value`.<br>If `key` is present, Java replaces the old value with `remappingFn(oldValue, value)`; for counting, use `map.merge(word, 1, Integer::sum);`.
 <!--ID: 1780580933004-->
 END
 
 START
 Basic
-What does `Map.getOrDefault(key, defaultValue)` do?
+Collections Framework: What does `Map.getOrDefault(key, defaultValue)` do?
 Back: It returns the mapped value if the key exists, otherwise it returns `defaultValue`.<br>It does NOT insert anything, so unlike `computeIfAbsent`, the map is unchanged.
 <!--ID: 1780580933006-->
 END
 
 START
 Basic
-What does `Collection.removeIf(predicate)` do?
+Collections Framework: What does `Collection.removeIf(predicate)` do?
 Back: It removes every element for which the predicate returns `true` and returns whether anything was removed.<br>Example: `list.removeIf(s -> s.isEmpty());`.<br>This is safe and concise compared with mutating a collection directly inside a for-each loop.
 <!--ID: 1780580933008-->
 END
 
 START
 Basic
-Does `Map` extend `Collection`? What are the implications?
+Collections Framework: Does `Map` extend `Collection`? What are the implications?
 Back: No.<br>`Map` defines its own `size()`, `isEmpty()`, and `clear()` methods, but it is not a collection of elements in the API type system.<br>To work with a map as a collection-like view, use `entrySet()`, `keySet()`, or `values()`.
 <!--ID: 1780580933013-->
 END

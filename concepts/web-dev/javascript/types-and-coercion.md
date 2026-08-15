@@ -3,6 +3,7 @@ tags: [javascript, web-dev, types]
 category: web-dev
 related: [equality-and-nullish, variables-scope-hoisting, objects-and-prototypes]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 JS is **dynamically typed**: a variable has no declared type and can hold anything. There are **7 primitives** — `string`, `number`, `boolean`, `undefined`, `null`, `bigint`, `symbol` — plus `object` (which includes arrays and functions). You inspect a value's runtime type with `typeof`, but beware its two famous quirks: `typeof null === "object"` and `typeof function(){} === "function"`. Unlike Java, there's no compile-time type checking and `+` is overloaded: if **either** operand is a string, `+` concatenates, so `1 + "2"` is `"12"` while `1 - "2"` is `-1`. Coercion also drives truthiness — the falsy values are exactly `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, and `NaN`; everything else (including `"0"`, `[]`, and `{}`) is truthy. `NaN` is the only value not equal to itself, so test it with `Number.isNaN`.
@@ -48,49 +49,49 @@ isNaN("foo");         // true  but coerces first; prefer Number.isNaN
 ```anki
 START
 Basic
-List the 7 JavaScript primitive types.
+Types and Coercion: List the 7 JavaScript primitive types.
 Back: `string`, `number`, `boolean`, `undefined`, `null`, `bigint`, `symbol`. (Everything else is an `object`.)
 <!--ID: 1782407009355-->
 END
 
 START
 Basic
-`typeof` returns two surprising results that bite people. What are they?
+Types and Coercion: `typeof` returns two surprising results that bite people. What are they?
 Back: `typeof null` is `"object"` (legacy bug), and `typeof someFunction` is `"function"` (not `"object"`).
 <!--ID: 1782407009360-->
 END
 
 START
 Basic
-Coming from Java, why does `1 + "2"` give `"12"` but `1 - "2"` gives `-1`?
+Types and Coercion: Coming from Java, why does `1 + "2"` give `"12"` but `1 - "2"` gives `-1`?
 Back: `+` is overloaded: if either operand is a string it concatenates, so `1` becomes `"1"`. `-` has no string meaning, so both sides coerce to numbers. No compile-time check stops this.
 <!--ID: 1782407009364-->
 END
 
 START
 Basic
-Which JS values are falsy? (the complete set)
+Types and Coercion: Which JS values are falsy? (the complete set)
 Back: `false`, `0`, `-0`, `0n`, `""` (empty string), `null`, `undefined`, and `NaN`. Everything else is truthy.
 <!--ID: 1782407009369-->
 END
 
 START
 Basic
-Is an empty array `[]` truthy or falsy in an `if` condition?
+Types and Coercion: Is an empty array `[]` truthy or falsy in an `if` condition?
 Back: Truthy. All objects (including `[]` and `{}`) are truthy; only the 8 specific falsy values are falsy.
 <!--ID: 1782407009373-->
 END
 
 START
 Basic
-How do you correctly test whether a value is `NaN`, and why can't you use `===`?
+Types and Coercion: How do you correctly test whether a value is `NaN`, and why can't you use `===`?
 Back: Use `Number.isNaN(x)`. `NaN === NaN` is `false` because `NaN` is the only value not equal to itself.
 <!--ID: 1782407009377-->
 END
 
 START
 Basic
-How do you reliably check if a value is an array, given `typeof` won't tell you?
+Types and Coercion: How do you reliably check if a value is an array, given `typeof` won't tell you?
 Back: `Array.isArray(x)` — because `typeof [1,2]` returns `"object"`, not `"array"`.
 <!--ID: 1782407009381-->
 END

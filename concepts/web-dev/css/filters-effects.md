@@ -3,6 +3,7 @@ tags: [css, web-dev, styling]
 category: web-dev
 related: [css-backgrounds-borders, css-colors, css-transforms, stacking-context]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 `filter` applies graphical effects to an element and its contents — `blur()`, `brightness()`, `contrast()`, `grayscale()`, `drop-shadow()` — and they can be chained. **`backdrop-filter`** applies the same effects to whatever is *behind* a semi-transparent element (the "glassmorphism" frosted-glass look). `mix-blend-mode` controls how an element blends with what's underneath. Note: any `filter` (other than `none`) creates a new **stacking context** and can be GPU-accelerated.
@@ -34,28 +35,28 @@ related: [css-backgrounds-borders, css-colors, css-transforms, stacking-context]
 ```anki
 START
 Basic
-What's the difference between `filter` and `backdrop-filter`?
+Filters and Effects: What's the difference between `filter` and `backdrop-filter`?
 Back: `filter` applies effects to the element and its own content. `backdrop-filter` applies them to whatever is rendered *behind* the element (visible through its translucent background) — that's how the frosted-glass effect is made.
 <!--ID: 1780758285749-->
 END
 
 START
 Basic
-Write the CSS for a frosted-glass ("glassmorphism") panel.
+Filters and Effects: Write the CSS for a frosted-glass ("glassmorphism") panel.
 Back: `background: rgba(255,255,255,0.1); backdrop-filter: blur(12px);` — a translucent background plus a blur of the backdrop behind it.
 <!--ID: 1780758285754-->
 END
 
 START
 Basic
-When would you use `filter: drop-shadow()` instead of `box-shadow`?
+Filters and Effects: When would you use `filter: drop-shadow()` instead of `box-shadow`?
 Back: When the element is a non-rectangular shape (transparent PNG, SVG icon, rounded/clipped content). `drop-shadow()` follows the actual alpha silhouette; `box-shadow` always traces the rectangular box.
 <!--ID: 1780758285759-->
 END
 
 START
 Basic
-Write the filter that makes an image fully grayscale and 10% brighter, in one declaration.
+Filters and Effects: Write the filter that makes an image fully grayscale and 10% brighter, in one declaration.
 Back: `filter: grayscale(100%) brightness(1.1);` — filters chain left to right in a single `filter` value.
 <!--ID: 1780758285764-->
 END

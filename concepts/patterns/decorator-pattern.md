@@ -3,6 +3,7 @@ tags: [design-pattern, structural]
 category: patterns
 related: [adapter-pattern, chain-of-responsibility-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that lets you add new behavior to an object by wrapping it in another object that has the same interface. You stack decorators like layers, each one adds something without modifying the original.

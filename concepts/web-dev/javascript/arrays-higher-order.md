@@ -3,6 +3,7 @@ tags: [javascript, web-dev, arrays, functional]
 category: web-dev
 related: [destructuring-spread-rest, functions-and-arrows, objects-and-prototypes, async-promises]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 JS arrays carry the same higher-order methods you'd build with Java Streams, but **directly on the array** — no `.stream()`/`.collect()` ceremony. `map`/`filter`/`reduce`/`find`/`some`/`every`/`forEach` each take a callback `(element, index, array) => ...`. The big gotcha: `sort` sorts **lexicographically by default** (converting to strings), so `[10, 2, 1].sort()` gives `[1, 10, 2]` — you must pass a comparator `(a, b) => a - b`. Unlike Java Streams, these are **eager** (each call walks the whole array and allocates a new array), so a long chain makes multiple passes. `sort` and `forEach` are not Stream-like at all: `sort` mutates in place and returns the same array; `forEach` returns `undefined` (you can't chain off it).
@@ -52,42 +53,42 @@ const total = orders
 ```anki
 START
 Basic
-You call `[10, 2, 1].sort()` with no argument. What do you get and why?
+Arrays and Higher-Order Functions: You call `[10, 2, 1].sort()` with no argument. What do you get and why?
 Back: `[1, 10, 2]`. Default `sort` converts elements to strings and compares lexicographically. Pass a comparator `(a, b) => a - b` for numeric order.
 <!--ID: 1782407009058-->
 END
 
 START
 Basic
-What does `arr.reduce((acc, n) => acc + n, 0)` do, and what is the `0`?
+Arrays and Higher-Order Functions: What does `arr.reduce((acc, n) => acc + n, 0)` do, and what is the `0`?
 Back: Folds the array to a single value (here, the sum). `0` is the initial accumulator value passed as `acc` on the first call.
 <!--ID: 1782407009061-->
 END
 
 START
 Basic
-Why can't you chain another method after `arr.forEach(...)`?
+Arrays and Higher-Order Functions: Why can't you chain another method after `arr.forEach(...)`?
 Back: `forEach` always returns `undefined` (it's for side effects). Use `map`/`filter` if you need a value to chain off.
 <!--ID: 1782407009065-->
 END
 
 START
 Basic
-What's returned by `arr.find(predicate)` when nothing matches, vs `arr.filter(predicate)`?
+Arrays and Higher-Order Functions: What's returned by `arr.find(predicate)` when nothing matches, vs `arr.filter(predicate)`?
 Back: `find` returns `undefined` (the first match otherwise). `filter` returns an empty array `[]` (a new array of all matches otherwise).
 <!--ID: 1782407009068-->
 END
 
 START
 Basic
-Gotcha: how does JS array chaining differ from Java Streams in evaluation?
+Arrays and Higher-Order Functions: Gotcha: how does JS array chaining differ from Java Streams in evaluation?
 Back: JS is eager — every `map`/`filter` walks the array and allocates a new one immediately. Java Streams are lazy and fuse operations into one pass.
 <!--ID: 1782407009071-->
 END
 
 START
 Basic
-You need to sort an array without mutating the original. Write it.
+Arrays and Higher-Order Functions: You need to sort an array without mutating the original. Write it.
 Back: `const sorted = [...arr].sort((a, b) => a - b);` — spread copies first because `sort` mutates in place.
 <!--ID: 1782407009075-->
 END

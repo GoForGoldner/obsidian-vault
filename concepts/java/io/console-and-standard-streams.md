@@ -3,6 +3,7 @@ tags: [java, io, console, standard-streams, system]
 category: java
 related: [files-and-paths, byte-streams, character-streams, try-with-resources, serialization]
 ---
+TARGET DECK: Study::Java::IO
 
 ## Description
 Every JVM starts with three standard streams on `System`: `System.in` (an
@@ -84,49 +85,49 @@ String got = capture.toString();               // "captured\n"
 ```anki
 START
 Basic
-What are the types of `System.in`, `System.out`, and `System.err`?
+Console and Standard Streams: What are the types of `System.in`, `System.out`, and `System.err`?
 Back: `System.in` is an `InputStream`; `System.out` and `System.err` are both `PrintStream`.<br>`in` gives raw bytes; `out`/`err` give text via `print`/`println`/`printf`.
 <!--ID: 1781902680435-->
 END
 
 START
 Basic
-Exam trap: when does `System.console()` return `null`?
+Console and Standard Streams: Exam trap: when does `System.console()` return `null`?
 Back: When there's no attached interactive terminal — typically inside IDEs, or when stdin/stdout is redirected or piped.<br>Always null-check before calling methods on it, or you'll get a `NullPointerException`.
 <!--ID: 1781902680443-->
 END
 
 START
 Basic
-You need to read a password without echoing it. Which API, and what does it return?
+Console and Standard Streams: You need to read a password without echoing it. Which API, and what does it return?
 Back: `System.console().readPassword(...)` — input is not echoed.<br>Returns a `char[]` (not `String`) so you can zero it out after use, avoiding a lingering secret in the string pool.<br>But `console()` may be `null` outside a terminal.
 <!--ID: 1781902680450-->
 END
 
 START
 Basic
-How do you read a line of text from stdin in a way that works even in an IDE?
+Console and Standard Streams: How do you read a line of text from stdin in a way that works even in an IDE?
 Back: `new BufferedReader(new InputStreamReader(System.in)).readLine()`, or a `Scanner(System.in)`.<br>Unlike `System.console()`, these don't return `null` just because there's no terminal.
 <!--ID: 1781902680457-->
 END
 
 START
 Basic
-`Scanner(System.in)` vs `BufferedReader(InputStreamReader(System.in))` — when pick which?
+Console and Standard Streams: `Scanner(System.in)` vs `BufferedReader(InputStreamReader(System.in))` — when pick which?
 Back: `Scanner`: token/line parsing with `nextInt`/`next`/`nextLine`, convenient for typed input.<br>`BufferedReader.readLine()`: faster, line-at-a-time, returns raw `String` (you parse yourself).<br>Both avoid the `Console` null trap.
 <!--ID: 1781902680464-->
 END
 
 START
 Basic
-How do you redirect `System.out` (e.g. to capture output in a test)?
+Console and Standard Streams: How do you redirect `System.out` (e.g. to capture output in a test)?
 Back: `System.setOut(new PrintStream(new ByteArrayOutputStream()))`; save the original first and restore it after.<br>Likewise `System.setErr` / `System.setIn`.<br>Capture with the `ByteArrayOutputStream`'s `toString()`.
 <!--ID: 1781902680471-->
 END
 
 START
 Basic
-Why does `System.out.println(...)` never seem to throw an `IOException`?
+Console and Standard Streams: Why does `System.out.println(...)` never seem to throw an `IOException`?
 Back: `PrintStream` swallows I/O errors and sets an internal flag instead.<br>Check it with `System.out.checkError()`.<br>Convenient, but it can silently lose output.
 <!--ID: 1781902680478-->
 END

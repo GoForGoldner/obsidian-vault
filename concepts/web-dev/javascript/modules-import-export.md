@@ -3,6 +3,7 @@ tags: [javascript, web-dev, modules, esm]
 category: web-dev
 related: [async-await, json-and-fetch, functions-and-arrows, objects-and-prototypes]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 ES Modules (ESM) are the standard module system: each file is its own scope, and you explicitly `export` what's public and `import` what you need. There are two flavors of export: **named** (many per file, imported by exact name in `{ }`) and **default** (at most one per file, imported under any name without braces). `import` statements are **hoisted and static** — paths must be string literals so tooling can resolve the dependency graph ahead of time; for conditional/lazy loading use **dynamic `import()`**, which returns a promise. The older Node system, **CommonJS**, uses `require()` and `module.exports` and loads synchronously; modern code is ESM, but you'll still meet CommonJS in older Node packages. Gotcha for Java devs: imports are **live bindings** (you import the variable, not a snapshot of its value), and the default export is just a named export called `default` under the hood.
@@ -49,42 +50,42 @@ export { add };
 ```anki
 START
 Basic
-How many default exports can a module have, and how does importing a default differ from a named export?
+Modules (Import/Export): How many default exports can a module have, and how does importing a default differ from a named export?
 Back: At most one default. Import it with any name and no braces (`import x from "./m"`); named imports use the exact name in braces (`import { x } from "./m"`).
 <!--ID: 1782407009174-->
 END
 
 START
 Basic
-Write an import that brings in the default export of `./math.js` as `sq` plus the named export `PI`.
+Modules (Import/Export): Write an import that brings in the default export of `./math.js` as `sq` plus the named export `PI`.
 Back: `import sq, { PI } from "./math.js";` — default name comes first, named exports in braces after.
 <!--ID: 1782407009178-->
 END
 
 START
 Basic
-Why must a static `import` path be a string literal, and what do you use for a path computed at runtime?
+Modules (Import/Export): Why must a static `import` path be a string literal, and what do you use for a path computed at runtime?
 Back: Static imports are resolved ahead of execution to build the dependency graph, so the path can't be dynamic. Use `await import(expr)` (dynamic import) for runtime paths.
 <!--ID: 1782407009183-->
 END
 
 START
 Basic
-What does `import * as utils from "./utils.js"` give you?
+Modules (Import/Export): What does `import * as utils from "./utils.js"` give you?
 Back: A namespace object — every named export becomes a property (`utils.foo`), and the default is `utils.default`.
 <!--ID: 1782407009187-->
 END
 
 START
 Basic
-Distinction: how do CommonJS and ESM differ in syntax and loading?
+Modules (Import/Export): Distinction: how do CommonJS and ESM differ in syntax and loading?
 Back: CommonJS uses `require()` / `module.exports` and loads synchronously (older Node). ESM uses `import` / `export`, is static and async-capable, and is the modern default.
 <!--ID: 1782407009193-->
 END
 
 START
 Basic
-What does dynamic `import("./m.js")` return?
+Modules (Import/Export): What does dynamic `import("./m.js")` return?
 Back: A promise that resolves to the module namespace object — so you `await` it and destructure the exports you need.
 <!--ID: 1782407009198-->
 END

@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [stradegy-pattern, dependency-injection-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that provides a default no-op behavior instead of using null checks everywhere. Instead of returning null and checking `if (obj != null)` before every call, return a NullObject that implements the same interface but does nothing.

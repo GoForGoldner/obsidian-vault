@@ -3,6 +3,7 @@ tags: [system-design, distributed-systems]
 category: system-design
 related: [eventual-consistency, sql-vs-nosql]
 ---
+TARGET DECK: Study::System Design
 
 ## Description
 A theorem that states distributed systems can have at most 2 of: Consistency (all nodes see the same data at the same time), Availability (system always responds to requests), Partition Tolerance (system works even when network splits happen). In practice, Partition Tolerance is essential because the internet is unreliable. so it's really a choice between consistency or availability.

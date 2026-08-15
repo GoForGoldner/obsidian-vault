@@ -3,6 +3,7 @@ tags: [react, web-dev, hooks, context]
 category: web-dev
 related: [components-and-props, usestate, custom-hooks, usememo-usecallback]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 Context lets a value be read by any descendant component without passing it through every intermediate prop — the cure for **prop drilling**. Three pieces: `createContext(defaultValue)` makes a context object; a **`<Context.Provider value={...}>`** wraps a subtree and supplies the value; any descendant calls **`useContext(Context)`** to read the nearest Provider's `value`. If there's no Provider above, you get the default. In TypeScript you type the context with the shape you provide; a common idiom is to default to `null` and write a custom hook that throws if used outside a Provider, so the type is non-null for consumers. **Gotcha:** every consumer re-renders when the Provider's `value` changes — and an inline object `value={{ ... }}` is a new reference every render, so wrap it in `useMemo` if the Provider re-renders often. Context is for low-frequency global-ish data (theme, current user, locale), not a replacement for all state.
@@ -42,35 +43,35 @@ function Header() { const { user } = useAuth(); return <span>{user?.name}</span>
 ```anki
 START
 Basic
-Name the three pieces of the Context API and what each does.
+useContext: Name the three pieces of the Context API and what each does.
 Back: `createContext(default)` creates the context; `<Ctx.Provider value={...}>` supplies a value to its subtree; `useContext(Ctx)` reads the nearest Provider's value from a descendant.
 <!--ID: 1782407009824-->
 END
 
 START
 Basic
-What does `useContext` return if there is no matching Provider above the component?
+useContext: What does `useContext` return if there is no matching Provider above the component?
 Back: The `defaultValue` passed to `createContext`. That's why a common pattern defaults to `null` and throws in a wrapper hook to catch missing Providers.
 <!--ID: 1782407009827-->
 END
 
 START
 Basic
-Why does typing context as `createContext<T | null>(null)` plus a guarding custom hook improve the developer experience?
+useContext: Why does typing context as `createContext<T | null>(null)` plus a guarding custom hook improve the developer experience?
 Back: It forces a Provider to exist (the hook throws otherwise) and narrows the type to non-null `T` for consumers, so they don't have to null-check everywhere.
 <!--ID: 1782407009830-->
 END
 
 START
 Basic
-You pass `value={{ user, logout }}` inline to a Provider and notice every consumer re-renders constantly. Why, and the fix?
+useContext: You pass `value={{ user, logout }}` inline to a Provider and notice every consumer re-renders constantly. Why, and the fix?
 Back: The object literal is a new reference each render, so context value "changes" every time. Wrap it: `value={useMemo(() => ({ user, logout }), [user])}`.
 <!--ID: 1782407009834-->
 END
 
 START
 Basic
-What kind of data is Context well-suited for, and what is it NOT a substitute for?
+useContext: What kind of data is Context well-suited for, and what is it NOT a substitute for?
 Back: Good for low-frequency, widely-needed data: theme, current user, locale. It is not a general state manager or a replacement for local component state.
 <!--ID: 1782407009836-->
 END

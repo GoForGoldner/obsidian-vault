@@ -3,6 +3,7 @@ tags: [web-dev, networking]
 category: web-dev
 related: [tls(transport layer security), http-requests]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 The Internet Protocol (IP) is responsible for addressing and routing packets across networks. Every device gets an IP address. IPv4 uses 32-bit addresses (e.g., 192.168.1.1), IPv6 uses 128-bit addresses. IP is connectionless and unreliable on its own. TCP/UDP sit on top to add reliability or speed.

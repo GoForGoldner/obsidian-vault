@@ -3,6 +3,7 @@ tags: [database, system-design, performance]
 category: system-design
 related: [sql, nosql, orm]
 ---
+TARGET DECK: Study::System Design::Database
 
 ## Description
 A data structure in databases that improves query speed at the cost of extra storage and write performance. Common types: B-Tree (default, good for range queries and sorting), Hash (fast exact lookups only), and Composite (multi-column indexes for common query patterns).

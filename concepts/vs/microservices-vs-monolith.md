@@ -3,6 +3,7 @@ tags: [architecture, comparison]
 category: vs
 related: [docker, message-queue, load-balancing]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 A monolith is a single deployable unit where all features live in one codebase and process. Microservices split features into independently deployable services that communicate over the network. Monoliths are simpler to start; microservices are easier to scale and deploy independently but add network complexity.

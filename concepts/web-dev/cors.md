@@ -3,6 +3,7 @@ tags: [web-dev, security]
 category: web-dev
 related: [http-requests, cookies-vs-sessions]
 ---
+TARGET DECK: Study::Web Dev
 
 ## Description
 Cross-Origin Resource Sharing. A browser security mechanism that blocks web pages from making requests to a different domain than the one that served the page. The server must explicitly allow cross-origin requests by sending CORS headers (Access-Control-Allow-Origin). Without it, your frontend on localhost:3000 can't call your API on localhost:5000.

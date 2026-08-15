@@ -3,6 +3,7 @@ tags: [css, web-dev, fundamentals]
 category: web-dev
 related: [css-positioning, box-model]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 When two rules target the same element, **specificity** decides which one wins. Specificity is a four-part score `(inline, id, class, element)` compared left to right: inline styles beat IDs, IDs beat classes/attributes/pseudo-classes, which beat element/pseudo-element selectors. `!important` overrides the whole calculation. When specificity ties, the rule that appears **later in the source** wins. Knowing this stops the "why won't my style apply?" guessing game.
@@ -36,28 +37,28 @@ p::first-line { }   /* generated/targeted sub-part */
 ```anki
 START
 Basic
-Two rules target the same element with identical specificity. Which one applies?
+CSS Selectors and Specificity: Two rules target the same element with identical specificity. Which one applies?
 Back: The one that appears **later** in the source order (the cascade's last tiebreaker).
 <!--ID: 1780758285158-->
 END
 
 START
 Basic
-What's the difference between `.menu a` and `.menu > a`?
+CSS Selectors and Specificity: What's the difference between `.menu a` and `.menu > a`?
 Back: `.menu a` (descendant) matches an `<a>` nested at *any* depth inside `.menu`. `.menu > a` (child) matches only an `<a>` that is a *direct* child of `.menu`.
 <!--ID: 1780758285164-->
 END
 
 START
 Basic
-What distinguishes a pseudo-class like `:hover` from a pseudo-element like `::before`?
+CSS Selectors and Specificity: What distinguishes a pseudo-class like `:hover` from a pseudo-element like `::before`?
 Back: A pseudo-class targets an element in a particular *state* (hovered, checked, first-child). A pseudo-element creates or targets a *sub-part* of the element (generated content, first line/letter).
 <!--ID: 1780758285169-->
 END
 
 START
 Basic
-Write the selector that styles every other table row (the even ones).
+CSS Selectors and Specificity: Write the selector that styles every other table row (the even ones).
 Back: `tr:nth-child(even)` (equivalently `tr:nth-child(2n)`).
 <!--ID: 1780758285176-->
 END

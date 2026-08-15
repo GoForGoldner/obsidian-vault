@@ -3,6 +3,7 @@ tags: [react, web-dev, hooks]
 category: web-dev
 related: [usestate, useeffect, rules-of-hooks, usecontext, http-requests]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::React
 
 ## Description
 A custom hook is just a function whose name starts with **`use`** that calls other hooks. It's React's mechanism for extracting and reusing **stateful logic** (not markup) — the toggle behavior, the fetch-and-loading-state dance, a subscription — separately from any one component. There's no special API: you compose the built-in hooks (`useState`, `useEffect`, etc.) and return whatever the caller needs (often a tuple or object). The `use` prefix is mandatory because it's what the lint rule keys on to enforce the Rules of Hooks. Crucially, each component that calls your hook gets its **own isolated state** — calling `useToggle()` in two components creates two independent toggles; you are reusing logic, not sharing a value (sharing is Context's job). This replaces the old class-era patterns (HOCs, render props) for logic reuse.
@@ -51,35 +52,35 @@ function useFetch<T>(url: string) {
 ```anki
 START
 Basic
-What actually makes a function a "custom hook" in React?
+Custom Hooks: What actually makes a function a "custom hook" in React?
 Back: Its name starts with `use` and it calls one or more other hooks. There's no special API — it just composes built-in hooks and returns whatever the caller needs.
 <!--ID: 1782407009714-->
 END
 
 START
 Basic
-Why must a custom hook's name start with `use`?
+Custom Hooks: Why must a custom hook's name start with `use`?
 Back: The eslint Rules-of-Hooks lint rule uses the `use` prefix to identify hooks and verify they're only called at the top level of components/hooks. Without it, the rule can't check call order.
 <!--ID: 1782407009718-->
 END
 
 START
 Basic
-Two components both call your `useCounter()` hook. Do they share the same count?
+Custom Hooks: Two components both call your `useCounter()` hook. Do they share the same count?
 Back: No. Each call site gets its own isolated state — you're reusing the *logic*, not the value. Sharing a value across components is Context's job, not a custom hook's.
 <!--ID: 1782407009721-->
 END
 
 START
 Basic
-What kind of thing should you extract into a custom hook (and what shouldn't you)?
+Custom Hooks: What kind of thing should you extract into a custom hook (and what shouldn't you)?
 Back: Extract reusable *stateful logic* (toggles, fetching, subscriptions, timers). Don't extract JSX/markup — that's what regular components are for.
 <!--ID: 1782407009725-->
 END
 
 START
 Basic
-In a `useFetch(url)` hook, why include `[url]` as the effect's dependency and a cancellation flag in cleanup?
+Custom Hooks: In a `useFetch(url)` hook, why include `[url]` as the effect's dependency and a cancellation flag in cleanup?
 Back: `[url]` re-fetches when the url changes; the cleanup flag (or AbortController) discards a now-stale in-flight response so a slow old request can't overwrite newer data.
 <!--ID: 1782407009728-->
 END

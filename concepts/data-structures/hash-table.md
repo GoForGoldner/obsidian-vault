@@ -3,6 +3,7 @@ tags: [data-structures]
 category: data-structures
 related: [bst(binary-search-tree)]
 ---
+TARGET DECK: Study::Data Structures
 
 ## Description
 A data structure that maps keys to values using a hash function. The hash function converts the key into an array index where the value is stored. Average case O(1) for insert, lookup, update, and delete. Worst case O(n) when many keys hash to the same index (collisions).

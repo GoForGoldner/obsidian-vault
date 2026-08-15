@@ -3,6 +3,7 @@ tags: [java, datetime, java-time]
 category: java
 related: [localization]
 ---
+TARGET DECK: Study::Java::Datetime
 
 ## Description
 The `java.time` package (JSR-310, since Java 8 and unchanged through Java 26) is the modern date/time API that replaces the legacy `java.util.Date`/`Calendar`. Every core type is **immutable and thread-safe**, so any "mutator" like `plusDays(1)` returns a *new* object and leaves the original untouched. On the exam this is the single most-tested gotcha: ignoring the return value of a `plus*`/`minus*`/`with*` call does nothing.
@@ -96,56 +97,56 @@ ZonedDateTime zdt = inst.atZone(ZoneId.systemDefault());
 ```anki
 START
 Basic
-What is the immutability gotcha with `java.time` methods like `plusDays`?
+java.time: What is the immutability gotcha with `java.time` methods like `plusDays`?
 Back: All `java.time` types are immutable, so `plus*`/`minus*`/`with*` return a NEW object and never mutate the receiver.<br>`date.plusDays(1);` on its own does nothing — you must capture the result: `date = date.plusDays(1);`.<br>Immutability is also what makes these types thread-safe.
 <!--ID: 1781902680277-->
 END
 
 START
 Basic
-`Period` vs `Duration`: when do you use each?
+java.time: `Period` vs `Duration`: when do you use each?
 Back: `Period` is a **date-based** amount (years/months/days) — use it with `LocalDate`.<br>`Duration` is a **time-based** amount (seconds/nanos, up to hours/days) — use it with `Instant`/`LocalTime`/`LocalDateTime`.<br>Gotcha: applying a `Period` to a `LocalTime` throws, because a `LocalTime` has no date fields.
 <!--ID: 1781902680284-->
 END
 
 START
 Basic
-You need the total number of days between two `LocalDate`s. What do you use, and what's the trap?
+java.time: You need the total number of days between two `LocalDate`s. What do you use, and what's the trap?
 Back: Use `ChronoUnit.DAYS.between(start, end)` for the TOTAL count.<br>`Period.between(...).getDays()` gives only the leftover day component (e.g. `P2M14D` -> 14, not 73).<br>`ChronoUnit.between` works for any granularity (`MONTHS`, `HOURS`, etc.).
 <!--ID: 1781902680291-->
 END
 
 START
 Basic
-Which `java.time` type should hold a date+time WITH full time-zone and DST handling?
+java.time: Which `java.time` type should hold a date+time WITH full time-zone and DST handling?
 Back: `ZonedDateTime` — it carries a `ZoneId` and applies the zone's DST rules.<br>`OffsetDateTime` only stores a fixed offset (e.g. `+02:00`) with no DST awareness.<br>`LocalDateTime` has no zone at all (a "wall clock" time).
 <!--ID: 1781902680296-->
 END
 
 START
 Basic
-What does `ZonedDateTime` do at a DST "spring forward" gap (a non-existent local time)?
+java.time: What does `ZonedDateTime` do at a DST "spring forward" gap (a non-existent local time)?
 Back: It shifts the time forward by the gap, so e.g. 02:30 becomes 03:30.<br>For overlaps ("fall back"), the earlier offset is chosen by default; use `withEarlierOffsetAtOverlap()` / `withLaterOffsetAtOverlap()` to control it.<br>This is why scheduling should use `ZonedDateTime`, not `LocalDateTime`.
 <!--ID: 1781902680300-->
 END
 
 START
 Basic
-How do you parse and format with a custom pattern in `java.time`?
+java.time: How do you parse and format with a custom pattern in `java.time`?
 Back: Build a `DateTimeFormatter.ofPattern("dd/MM/yyyy")`, then `value.format(fmt)` or `LocalDate.parse(text, fmt)`.<br>Predefined ones exist too, e.g. `DateTimeFormatter.ISO_LOCAL_DATE`.<br>`parse` without a formatter expects ISO-8601 (`2026-06-19`); a mismatched pattern throws `DateTimeParseException`.
 <!--ID: 1781902680305-->
 END
 
 START
 Basic
-How do you bridge a legacy `java.util.Date` to `java.time`?
+java.time: How do you bridge a legacy `java.util.Date` to `java.time`?
 Back: `date.toInstant()` converts to an `Instant`; `Date.from(instant)` converts back.<br>Add a zone with `instant.atZone(ZoneId.systemDefault())`.<br>Gotcha: `java.sql.Date#toInstant()` throws `UnsupportedOperationException` because it is date-only.
 <!--ID: 1781902680309-->
 END
 
 START
 Basic
-What's the argument trap when constructing dates with `of`?
+java.time: What's the argument trap when constructing dates with `of`?
 Back: The month is 1-based, not 0-based like the old `Calendar` (`LocalDate.of(2026, 6, 19)` is June 19).<br>Out-of-range values throw `DateTimeException` (e.g. month 13).<br>Overflow on `plusMonths` is clamped to a valid day (Jan 31 + 1 month -> Feb 28/29).
 <!--ID: 1781902680314-->
 END

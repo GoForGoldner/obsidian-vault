@@ -3,6 +3,7 @@ tags: [css, web-dev, fundamentals, responsive]
 category: web-dev
 related: [css-units, responsive-design, css-custom-properties]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 CSS has built-in math/comparison functions that compute values at runtime. **`calc()`** does arithmetic and—crucially—**mixes units** (`calc(100% - 40px)`). **`min()`** / **`max()`** pick the smallest/largest of their arguments. **`clamp(min, preferred, max)`** locks a value between bounds, the go-to for fluid typography and widths without media queries. They combine with custom properties and any length unit, replacing a lot of breakpoint juggling.
@@ -34,35 +35,35 @@ h1 { font-size: clamp(1rem, 2vw + 1rem, 2.5rem); }
 ```anki
 START
 Basic
-What can `calc()` do that no static value can, and write an example for a main column beside a 250px sidebar.
+CSS Functions: What can `calc()` do that no static value can, and write an example for a main column beside a 250px sidebar.
 Back: It mixes units and computes at runtime. `width: calc(100% - 250px);` — full container width minus the fixed sidebar. (Always put spaces around `+` and `-`.)
 <!--ID: 1780758285523-->
 END
 
 START
 Basic
-Write the CSS for fluid heading text that's never smaller than 1rem, never larger than 2.5rem, and scales with the viewport in between — using no media queries.
+CSS Functions: Write the CSS for fluid heading text that's never smaller than 1rem, never larger than 2.5rem, and scales with the viewport in between — using no media queries.
 Back: `font-size: clamp(1rem, 2vw + 1rem, 2.5rem);` — `clamp(MIN, PREFERRED, MAX)`.
 <!--ID: 1780758285527-->
 END
 
 START
 Basic
-What's the practical effect of `width: min(90%, 1200px)` and why is it handy?
+CSS Functions: What's the practical effect of `width: min(90%, 1200px)` and why is it handy?
 Back: The element is 90% of its container *until* that exceeds 1200px, then it caps at 1200px. It's a one-liner responsive max-width — narrower than the cap on small screens, capped on large ones.
 <!--ID: 1780758285533-->
 END
 
 START
 Basic
-Counterintuitively, when do you use `max()` to set a *minimum* size? Give the pattern.
+CSS Functions: Counterintuitively, when do you use `max()` to set a *minimum* size? Give the pattern.
 Back: `max(50%, 300px)` → the value is whichever is **larger**, so 300px acts as a floor (it'll be at least 300px, growing to 50% when that's bigger). `min()` sets a ceiling; `max()` sets a floor.
 <!--ID: 1780758285539-->
 END
 
 START
 Basic
-What's the one syntax gotcha with the `+` and `-` operators inside `calc()`?
+CSS Functions: What's the one syntax gotcha with the `+` and `-` operators inside `calc()`?
 Back: They **must** be surrounded by whitespace — `calc(100% - 40px)` works, `calc(100%-40px)` is invalid and silently fails. (`*` and `/` don't require the spaces.)
 <!--ID: 1780758285545-->
 END

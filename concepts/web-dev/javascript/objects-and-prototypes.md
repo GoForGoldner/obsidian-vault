@@ -3,6 +3,7 @@ tags: [javascript, web-dev, objects, prototypes]
 category: web-dev
 related: [this-call-apply-bind, types-and-coercion, destructuring-spread-rest, equality-and-nullish]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 JS objects are dynamic key/value maps with literal syntax `{ key: value }`. Modern shorthand: **property shorthand** (`{ name }` when a variable named `name` exists), **computed keys** (`{ [expr]: value }` to use a runtime value as the key), and **method shorthand** (`{ greet() {} }`). Inheritance is **prototypal, not classical**: every object has an internal link to a **prototype** object, and property lookups walk this **prototype chain** until found or it hits `null`. The `class` keyword is **syntactic sugar** over this — `extends` just sets up the prototype chain; there are no real classes underneath, just functions and prototype links. Iterate object data with `Object.keys()` (array of keys), `Object.values()`, and `Object.entries()` (array of `[key, value]` pairs), which pairs perfectly with `for...of` and destructuring.
@@ -65,42 +66,42 @@ for (const [subject, score] of Object.entries(scores)) {
 ```anki
 START
 Basic
-Write an object literal using property shorthand for existing variables `name` and `age`.
+Objects and Prototypes: Write an object literal using property shorthand for existing variables `name` and `age`.
 Back: `const u = { name, age };` — shorthand for `{ name: name, age: age }`.
 <!--ID: 1782407009230-->
 END
 
 START
 Basic
-You need an object whose key comes from a variable `field` at runtime. Write it.
+Objects and Prototypes: You need an object whose key comes from a variable `field` at runtime. Write it.
 Back: `{ [field]: value }` — square brackets make it a computed key, evaluating `field` to produce the property name.
 <!--ID: 1782407009234-->
 END
 
 START
 Basic
-How does JS resolve `dog.speak()` when `dog` has no own `speak` property?
+Objects and Prototypes: How does JS resolve `dog.speak()` when `dog` has no own `speak` property?
 Back: It walks the prototype chain — checks `dog`, then its prototype, then that prototype's prototype, etc., until it finds `speak` or reaches `null` (then `undefined`).
 <!--ID: 1782407009238-->
 END
 
 START
 Basic
-A Java dev sees `class`/`extends` in JS. What's actually happening under the hood?
+Objects and Prototypes: A Java dev sees `class`/`extends` in JS. What's actually happening under the hood?
 Back: `class` is syntactic sugar over prototypes. There are no real classes — `extends` just links one prototype object to another. Inheritance is prototypal, not classical.
 <!--ID: 1782407009242-->
 END
 
 START
 Basic
-What do `Object.keys(obj)`, `Object.values(obj)`, and `Object.entries(obj)` each return?
+Objects and Prototypes: What do `Object.keys(obj)`, `Object.values(obj)`, and `Object.entries(obj)` each return?
 Back: `keys` → array of the object's own enumerable keys; `values` → array of their values; `entries` → array of `[key, value]` pairs (great with `for...of` + destructuring).
 <!--ID: 1782407009247-->
 END
 
 START
 Basic
-How do you check whether a property lives directly on an object vs. inherited from its prototype?
+Objects and Prototypes: How do you check whether a property lives directly on an object vs. inherited from its prototype?
 Back: `obj.hasOwnProperty("prop")` (or `Object.hasOwn(obj, "prop")`) — returns `true` only for own properties, `false` if it's found further up the prototype chain.
 <!--ID: 1782407009250-->
 END

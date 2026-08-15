@@ -3,6 +3,7 @@ tags: [java, i18n, localization]
 category: java
 related: [java-time]
 ---
+TARGET DECK: Study::Java::I18n
 
 ## Description
 Localization (l10n) is adapting an application's text, numbers, currencies, and dates to a user's `Locale` without changing code. You externalize all user-facing strings into resource bundles so translators (not developers) can edit them and so the JVM can pick the right language at runtime. On the 1Z0-830 exam this area centers on three things: how a `Locale` is built, how `ResourceBundle` resolves and falls back, and which `*Format` class you choose for numbers, currency, percentages, and dates.
@@ -86,49 +87,49 @@ String msg = MessageFormat.format(pattern, 5);    // "Vous avez 5 articles"
 ```anki
 START
 Basic
-What's the exam-correct way to create a `Locale`, and what's deprecated?
+Localization: What's the exam-correct way to create a `Locale`, and what's deprecated?
 Back: Use `Locale.of("fr", "FR")`, a constant like `Locale.US`, or `new Locale.Builder()`.<br>The `Locale` constructors (`new Locale("fr","FR")`) are DEPRECATED since Java 19.<br>A `Locale` is a language plus an optional country/region (and optional variant).
 <!--ID: 1781902680228-->
 END
 
 START
 Basic
-In what order does `ResourceBundle` resolve a key, most to least specific?
+Localization: In what order does `ResourceBundle` resolve a key, most to least specific?
 Back: `Messages_fr_FR` -> `Messages_fr` -> (the default locale's bundles) -> `Messages` (the base, no-locale file).<br>It walks from most specific toward the base default.<br>So always provide a base `Messages.properties` as the final fallback.
 <!--ID: 1781902680235-->
 END
 
 START
 Basic
-When does `ResourceBundle` throw `MissingResourceException`?
+Localization: When does `ResourceBundle` throw `MissingResourceException`?
 Back: When `getBundle` finds NO matching bundle at all, or when `getString(key)` is called for a key absent from the resolved bundle.<br>It is an UNCHECKED (runtime) exception.<br>A more specific file simply falling back to a less specific one is normal and does NOT throw.
 <!--ID: 1781902680243-->
 END
 
 START
 Basic
-You see `getInstance`, `getCurrencyInstance`, `getPercentInstance`. What class and what do they do?
+Localization: You see `getInstance`, `getCurrencyInstance`, `getPercentInstance`. What class and what do they do?
 Back: `NumberFormat` — locale-aware factories for plain numbers, currency, and percentages.<br>Each takes a `Locale`, e.g. `NumberFormat.getCurrencyInstance(Locale.US)` -> `$1,234.50`.<br>Different locales change grouping, decimal separators, and currency symbols.
 <!--ID: 1781902680250-->
 END
 
 START
 Basic
-What value do you pass to `NumberFormat.getPercentInstance().format(...)` to display 75%?
+Localization: What value do you pass to `NumberFormat.getPercentInstance().format(...)` to display 75%?
 Back: Pass `0.75`, not `75`.<br>The percent formatter multiplies by 100, so `format(0.75)` -> `"75%"`.<br>Passing `75` would render `"7,500%"`.
 <!--ID: 1781902680256-->
 END
 
 START
 Basic
-How do you make a date locale-aware, and how do you fill placeholders in a bundled message?
+Localization: How do you make a date locale-aware, and how do you fill placeholders in a bundled message?
 Back: Dates: `DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(loc)`.<br>Placeholders: `MessageFormat.format("Vous avez {0} articles", 5)` -> `"Vous avez 5 articles"`.<br>Combine them by pulling the pattern string from the `ResourceBundle` first.
 <!--ID: 1781902680262-->
 END
 
 START
 Basic
-Why externalize user-facing strings into resource bundles?
+Localization: Why externalize user-facing strings into resource bundles?
 Back: It separates translatable content from code, so translators edit `.properties` files without touching/recompiling source.<br>The JVM auto-selects the right bundle per `Locale` at runtime.<br>One codebase then serves many languages with consistent fallback behavior.
 <!--ID: 1781902680269-->
 END

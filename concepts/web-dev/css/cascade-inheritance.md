@@ -3,6 +3,7 @@ tags: [css, web-dev, fundamentals]
 category: web-dev
 related: [css-selectors-specificity, css-custom-properties, css-colors]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 The **cascade** is the algorithm that picks a winning value when multiple rules set the same property. It resolves in this order: (1) **importance** (`!important` and origin), (2) **specificity**, (3) **source order** (last wins). **Inheritance** is separate: some properties (mostly typography — `color`, `font-*`, `line-height`) pass from parent to child automatically; box properties (`margin`, `border`, `width`, `background`) do not. The keywords `inherit`, `initial`, `unset`, and `revert` let you control inheritance explicitly.
@@ -37,35 +38,35 @@ p { color: green; }   /* green wins — same specificity, comes later */
 ```anki
 START
 Basic
-Which kinds of properties inherit from parent to child by default, and which don't?
+Cascade and Inheritance: Which kinds of properties inherit from parent to child by default, and which don't?
 Back: Mostly text/typography properties inherit — `color`, `font-family`, `font-size`, `line-height`, `text-align`, `visibility`. Box/layout properties do **not** — `margin`, `padding`, `border`, `width`, `background`, `display`.
 <!--ID: 1780758285386-->
 END
 
 START
 Basic
-A child element isn't picking up the parent's `color`, but you want it to. Write the declaration that forces inheritance.
+Cascade and Inheritance: A child element isn't picking up the parent's `color`, but you want it to. Write the declaration that forces inheritance.
 Back: `color: inherit;` — explicitly takes the computed value of the parent's `color`.
 <!--ID: 1780758285391-->
 END
 
 START
 Basic
-What does the `unset` keyword do, and how does it differ from `initial`?
+Cascade and Inheritance: What does the `unset` keyword do, and how does it differ from `initial`?
 Back: `unset` = behave as `inherit` if the property *naturally inherits*, otherwise as `initial`. `initial` always resets to the CSS-spec default regardless of inheritance.
 <!--ID: 1780758285395-->
 END
 
 START
 Basic
-What is a cascade layer (`@layer`) and where does it sit in the cascade?
+Cascade and Inheritance: What is a cascade layer (`@layer`) and where does it sit in the cascade?
 Back: `@layer` groups rules into ordered layers; earlier-declared layers lose to later ones *regardless of specificity*. Layers are compared after importance/origin but before normal specificity — a clean way to tame override wars without `!important`.
 <!--ID: 1780758285400-->
 END
 
 START
 Basic
-Why is leaning on `!important` to win a conflict considered a code smell?
+Cascade and Inheritance: Why is leaning on `!important` to win a conflict considered a code smell?
 Back: It bypasses specificity and source order, so the only way to beat it later is *another* `!important` — escalating an arms race. Prefer raising specificity, fixing source order, or using `@layer`.
 <!--ID: 1780758285404-->
 END

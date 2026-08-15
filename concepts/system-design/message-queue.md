@@ -3,6 +3,7 @@ tags: [system-design, distributed-systems]
 category: system-design
 related: [event-sourcing-pattern, microservices-vs-monolith, eventual-consistency]
 ---
+TARGET DECK: Study::System Design
 
 ## Description
 A broker that sits between sender and receiver, storing messages for async consumption. The sender publishes messages without knowing who consumes them. Examples: RabbitMQ, Kafka, AWS SQS.

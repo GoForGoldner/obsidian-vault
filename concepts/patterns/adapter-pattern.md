@@ -3,6 +3,7 @@ tags: [design-pattern, structural]
 category: patterns
 related: [bridge-pattern, decorator-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that converts one interface into another interface that the client expects. Acts as a wrapper/translator between two incompatible systems.

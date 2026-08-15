@@ -3,6 +3,7 @@ tags: [jquery, web-dev, events]
 category: web-dev
 related: [jquery-overview-and-selectors, jquery-dom-manipulation, jquery-traversal, dom-events, document-and-selectors]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::jQuery
 
 ## Description
 `.on(eventName, handler)` is jQuery's general event binder — it attaches the same handler to **every element in the collection** at once (no loop). Older shorthands like `.click(fn)` and `.submit(fn)` are just thin wrappers around `.on('click', fn)`; prefer `.on()` in real code. The killer feature is **delegated events**: `$parent.on('click', '.child', handler)` binds **one** listener on the parent that fires only when the event bubbles up from a descendant matching `.child` — so it works for elements added to the DOM *later*, which a direct binding can't. Inside the handler, `this` is the raw DOM element that was matched, and the first arg is a normalized jQuery **event object** (`e.target`, `e.preventDefault()`, plus jQuery's `e.currentTarget`). Remove handlers with `.off()`. The vanilla parallel is `addEventListener`, but vanilla has **no built-in delegation** — you'd manually check `e.target.matches('.child')`.
@@ -60,42 +61,42 @@ $('#save').off('click', onClick); // remove that specific handler (needs the sam
 ```anki
 START
 Basic
-You see `$('#list').on('click', '.item', handler)`. What does the `.item` argument do?
+jQuery Events: You see `$('#list').on('click', '.item', handler)`. What does the `.item` argument do?
 Back: It sets up **delegated** binding: one listener on `#list` that fires only when the event bubbles from a descendant matching `.item`. Works for `.item` elements added later, too.
 <!--ID: 1782407010093-->
 END
 
 START
 Basic
-Why prefer `.on('click', fn)` over the `.click(fn)` shorthand?
+jQuery Events: Why prefer `.on('click', fn)` over the `.click(fn)` shorthand?
 Back: `.click()` is just a wrapper around `.on('click', ...)`. `.on()` is the general form that also supports delegation, namespaces, and multiple events — so it's the form real/modern jQuery uses.
 <!--ID: 1782407010096-->
 END
 
 START
 Basic
-Inside a jQuery event handler `function(e){...}`, what is `this`?
+jQuery Events: Inside a jQuery event handler `function(e){...}`, what is `this`?
 Back: The **raw DOM element** the handler is bound to (the matched/delegated element). Wrap it with `$(this)` to call jQuery methods on it.
 <!--ID: 1782407010099-->
 END
 
 START
 Basic
-What's the vanilla DOM gap that makes jQuery delegated events convenient?
+jQuery Events: What's the vanilla DOM gap that makes jQuery delegated events convenient?
 Back: `addEventListener` has **no built-in delegation** — you must manually do `e.target.closest('.child')` and check it. jQuery bakes the selector filter into `.on()`.
 <!--ID: 1782407010103-->
 END
 
 START
 Basic
-You bound a handler with `$('#x').on('click', onClick)`. Write how to remove exactly that handler.
+jQuery Events: You bound a handler with `$('#x').on('click', onClick)`. Write how to remove exactly that handler.
 Back: `$('#x').off('click', onClick);` — must pass the **same function reference**. (Vanilla: `removeEventListener('click', onClick)`.)
 <!--ID: 1782407010106-->
 END
 
 START
 Basic
-Why can't a *direct* (non-delegated) binding handle dynamically added elements?
+jQuery Events: Why can't a *direct* (non-delegated) binding handle dynamically added elements?
 Back: A direct binding attaches the listener to the elements that exist **at bind time**. Elements added later never got the listener. Delegation binds on a stable ancestor instead, so it catches future descendants.
 <!--ID: 1782407010110-->
 END

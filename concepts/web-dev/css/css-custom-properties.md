@@ -3,6 +3,7 @@ tags: [css, web-dev, fundamentals]
 category: web-dev
 related: [cascade-inheritance, css-colors, css-functions]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 Custom properties (a.k.a. **CSS variables**) let you store a value once and reuse it: declare `--name: value` and read it with `var(--name)`. Unlike Sass variables, they're **live at runtime** — they cascade, inherit, can be overridden per-selector, and can be read/changed with JavaScript. The conventional home for globals is the `:root` selector. `var()` accepts a fallback as a second argument. This is the backbone of theming (e.g. light/dark mode).
@@ -38,35 +39,35 @@ Custom properties (a.k.a. **CSS variables**) let you store a value once and reus
 ```anki
 START
 Basic
-Write the CSS to define a global color variable and use it as a button's background.
+CSS Custom Properties: Write the CSS to define a global color variable and use it as a button's background.
 Back: `:root { --brand: #a78bfa; }` then `.btn { background: var(--brand); }`
 <!--ID: 1780758285435-->
 END
 
 START
 Basic
-How do CSS custom properties fundamentally differ from Sass/preprocessor variables?
+CSS Custom Properties: How do CSS custom properties fundamentally differ from Sass/preprocessor variables?
 Back: CSS custom properties are **live at runtime** — they cascade, inherit, can be scoped/overridden per selector, and are readable/writable from JavaScript. Sass variables are compiled away to static values before the browser ever sees them.
 <!--ID: 1780758285439-->
 END
 
 START
 Basic
-Write a `var()` call that falls back to `hotpink` if `--accent` isn't defined.
+CSS Custom Properties: Write a `var()` call that falls back to `hotpink` if `--accent` isn't defined.
 Back: `color: var(--accent, hotpink);` — the second argument is the fallback.
 <!--ID: 1780758285444-->
 END
 
 START
 Basic
-Why is `:root` the conventional place to declare global custom properties?
+CSS Custom Properties: Why is `:root` the conventional place to declare global custom properties?
 Back: `:root` matches the `<html>` element (with slightly higher specificity than `html`), so variables declared there inherit down into every element — making them effectively global.
 <!--ID: 1780758285450-->
 END
 
 START
 Basic
-How do you implement a dark theme by overriding a single variable, and why does it "just work" for descendants?
+CSS Custom Properties: How do you implement a dark theme by overriding a single variable, and why does it "just work" for descendants?
 Back: Re-declare the variable in a scoped selector, e.g. `.dark { --brand: #1e1e1e; }`. Because custom properties inherit and resolve at use-time, every descendant's `var(--brand)` recomputes to the new value automatically.
 <!--ID: 1780758285457-->
 END

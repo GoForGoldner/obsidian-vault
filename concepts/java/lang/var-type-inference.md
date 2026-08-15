@@ -3,6 +3,7 @@ tags: [java, lang, var, type-inference]
 category: java
 related: [primitives-wrappers-autoboxing, strings-and-stringbuilder, generics, stream-api]
 ---
+TARGET DECK: Study::Java::Lang
 
 ## Description
 `var` (Java 10+, JEP 286) is local-variable type inference: the compiler infers the static type from the initializer. It is **not** dynamic typing — the variable still has one fixed compile-time type, you just don't write it. On the exam `var` shows up as "does this compile?" trap questions, because it is only legal in a narrow set of positions.
@@ -54,56 +55,56 @@ BiFunction<Integer,Integer,Integer> h = (var a, b) -> a + b;     // ERROR: all-o
 ```anki
 START
 Basic
-In which four local positions is `var` type inference legal?
+var Type Inference: In which four local positions is `var` type inference legal?
 Back: Local variable with an initializer.<br>`for` index and `for`-each loop variables.<br>`try`-with-resources resource variable.<br>Lambda parameters (only if **all** params use `var`).
 <!--ID: 1781902681120-->
 END
 
 START
 Basic
-You write `var x = null;` — what happens and why?
+var Type Inference: You write `var x = null;` — what happens and why?
 Back: Compile error — `null` has no type, so nothing can be inferred.<br>`var` needs an initializer whose type the compiler can determine.
 <!--ID: 1781902681127-->
 END
 
 START
 Basic
-Name positions where `var` is illegal even though they look like declarations.
+var Type Inference: Name positions where `var` is illegal even though they look like declarations.
 Back: Fields, method parameters, method return types, and `catch` clauses.<br>`var` is for **local** variables only.
 <!--ID: 1781902681134-->
 END
 
 START
 Basic
-`(var a, b) -> a + b` as a lambda — legal?
+var Type Inference: `(var a, b) -> a + b` as a lambda — legal?
 Back: No — lambda params are all-or-none on `var`.<br>Either every param uses `var` or none do; you cannot mix `var` with a bare/typed param.
 <!--ID: 1781902681140-->
 END
 
 START
 Basic
-Is `var` a keyword? Can you name a variable `var`?
+var Type Inference: Is `var` a keyword? Can you name a variable `var`?
 Back: It is a *reserved type name*, not a keyword.<br>`int var = 3;` is legal; only using `var` as a class/interface name is forbidden.
 <!--ID: 1781902681147-->
 END
 
 START
 Basic
-`var n = 1;` — what type is `n`, and why does it matter?
+var Type Inference: `var n = 1;` — what type is `n`, and why does it matter?
 Back: `int` — `var` infers the **most specific** type of the initializer, never a widened one.<br>It will not silently become `long`, `Number`, or `Object`.
 <!--ID: 1781902681154-->
 END
 
 START
 Basic
-Why does `var arr = {1, 2, 3};` fail but `var arr = new int[]{1, 2, 3};` compile?
+var Type Inference: Why does `var arr = {1, 2, 3};` fail but `var arr = new int[]{1, 2, 3};` compile?
 Back: A bare array initializer `{...}` only works when the array type is declared explicitly.<br>`var` has no declared type to anchor it, so you must write `new int[]{...}`.
 <!--ID: 1781902681162-->
 END
 
 START
 Basic
-Does using `var` change runtime behavior or performance?
+var Type Inference: Does using `var` change runtime behavior or performance?
 Back: No — it is pure compile-time inference.<br>The bytecode is identical to writing the explicit type; the variable is statically typed.
 <!--ID: 1781902681169-->
 END

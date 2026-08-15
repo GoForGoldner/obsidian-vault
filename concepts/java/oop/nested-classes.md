@@ -3,6 +3,7 @@ tags: [java, oop, nested-classes, closures]
 category: java
 related: [interfaces-and-default-methods, records, enums, sealed-classes, equals-hashcode-tostring]
 ---
+TARGET DECK: Study::Java::OOP
 
 ## Description
 Java has four kinds of nested classes, and the exam tests the difference between them. A **static nested class** is just a class scoped inside another — it has no link to any enclosing instance and can access only the outer class's static members directly. A (non-static) **inner class** is bound to an *instance* of the enclosing class: it holds an implicit reference to that outer instance, can read the outer instance's fields, and can only be created from one (`outer.new Inner()`). Because of that implicit reference, an inner class cannot declare static members other than constants and cannot exist without its enclosing object.
@@ -65,49 +66,49 @@ Runnable make() {
 ```anki
 START
 Basic
-Static nested class vs inner class — the one defining difference?
+Nested Classes: Static nested class vs inner class — the one defining difference?
 Back: An **inner (non-static) class** holds an implicit reference to an enclosing instance (`Outer.this`) and needs one to exist.<br>A **static nested class** has no such link and can only directly access the outer class's *static* members.
 <!--ID: 1781902681657-->
 END
 
 START
 Basic
-How do you instantiate a non-static inner class from outside?
+Nested Classes: How do you instantiate a non-static inner class from outside?
 Back: `outer.new Inner()` — you need an existing enclosing instance.<br>`Outer.Nested n = new Outer.Nested();` (no instance) works only for a **static** nested class.
 <!--ID: 1781902681664-->
 END
 
 START
 Basic
-A local/anonymous class uses a local variable. What requirement must that variable meet?
+Nested Classes: A local/anonymous class uses a local variable. What requirement must that variable meet?
 Back: It must be **effectively final** — assigned once and never reassigned.<br>Reassigning it later turns every capture into a compile error.
 <!--ID: 1781902681670-->
 END
 
 START
 Basic
-Why can't a static nested class read `instanceVal` (a non-static field of the outer class)?
+Nested Classes: Why can't a static nested class read `instanceVal` (a non-static field of the outer class)?
 Back: It has **no enclosing instance** to read it from.<br>Without an `Outer.this`, only the outer class's *static* members are directly reachable.
 <!--ID: 1781902681677-->
 END
 
 START
 Basic
-You need a one-off implementation of an interface inline. Anonymous class or lambda?
+Nested Classes: You need a one-off implementation of an interface inline. Anonymous class or lambda?
 Back: Use a **lambda** if the target is a *functional* interface (one abstract method).<br>Use an **anonymous class** when you need multiple methods, fields, or to extend a class.
 <!--ID: 1781902681684-->
 END
 
 START
 Basic
-Can an inner (non-static) class declare static fields/methods?
+Nested Classes: Can an inner (non-static) class declare static fields/methods?
 Back: No — only `static final` *constants*.<br>Because each inner instance is tied to an outer instance, general static members aren't allowed.
 <!--ID: 1781902681691-->
 END
 
 START
 Basic
-The workaround when a lambda/anonymous class "needs" to mutate a captured local?
+Nested Classes: The workaround when a lambda/anonymous class "needs" to mutate a captured local?
 Back: Capture is by value and requires effectively-final, so mutate through a *reference*: a one-element array (`int[] c = {0}; c[0]++;`) or a field/`AtomicInteger`.<br>The reference stays final; its contents change.
 <!--ID: 1781902681697-->
 END

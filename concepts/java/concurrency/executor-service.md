@@ -3,6 +3,7 @@ tags: [java, concurrency, executor-service, threads]
 category: java
 related: [concurrent-collections, completable-future, atomics-and-volatile, thread, race-conditions]
 ---
+TARGET DECK: Study::Java::Concurrency
 
 ## Description
 `ExecutorService` is the high-level `java.util.concurrent` abstraction for running
@@ -94,56 +95,56 @@ if (!es.awaitTermination(10, TimeUnit.SECONDS)) {
 ```anki
 START
 Basic
-You need to run async work but want a result back from the task. Which method + return type?
+ExecutorService: You need to run async work but want a result back from the task. Which method + return type?
 Back: `submit(Callable<T>)` returns a `Future<T>`.<br>`execute(Runnable)` is fire-and-forget (returns `void`).<br>`submit` also accepts a `Runnable`, giving `Future<?>` whose `get()` returns `null`.
 <!--ID: 1781902680172-->
 END
 
 START
 Basic
-A task submitted to an ExecutorService throws an exception. What does `future.get()` throw?
+ExecutorService: A task submitted to an ExecutorService throws an exception. What does `future.get()` throw?
 Back: A checked `ExecutionException` wrapping the original.<br>Retrieve the real cause via `e.getCause()`.<br>`get()` also throws `InterruptedException`. The wrapping is why you can't catch the task's own type directly.
 <!--ID: 1781902680179-->
 END
 
 START
 Basic
-Runnable vs Callable — the two differences?
+ExecutorService: Runnable vs Callable — the two differences?
 Back: `Callable<T>` returns a value and may throw checked exceptions.<br>`Runnable` returns `void` and cannot throw checked exceptions.<br>Pick `Callable` whenever you need a result or checked-exception propagation via `Future`.
 <!--ID: 1781902680185-->
 END
 
 START
 Basic
-`shutdown()` vs `shutdownNow()`?
+ExecutorService: `shutdown()` vs `shutdownNow()`?
 Back: `shutdown()` = graceful: refuse new tasks, finish queued ones.<br>`shutdownNow()` = interrupt running tasks and return the `List<Runnable>` never started.<br>Neither blocks; use `awaitTermination(...)` to wait for the pool to actually terminate.
 <!--ID: 1781902680192-->
 END
 
 START
 Basic
-You see `try (ExecutorService es = Executors.newFixedThreadPool(4)) { ... }`. Valid? What does close do?
+ExecutorService: You see `try (ExecutorService es = Executors.newFixedThreadPool(4)) { ... }`. Valid? What does close do?
 Back: Valid since Java 19 — `ExecutorService extends AutoCloseable`.<br>`close()` calls `shutdown()` then blocks until all tasks finish (re-interrupting if needed).<br>So the try block won't exit until submitted work completes.
 <!--ID: 1781902680199-->
 END
 
 START
 Basic
-Which Executors factory for many blocking-I/O tasks, and why?
+ExecutorService: Which Executors factory for many blocking-I/O tasks, and why?
 Back: `Executors.newVirtualThreadPerTaskExecutor()` (Java 21+, finalized JEP 444).<br>One lightweight virtual thread per task; blocked threads cost almost nothing.<br>A fixed platform-thread pool would starve under thousands of blocking calls.
 <!--ID: 1781902680206-->
 END
 
 START
 Basic
-Difference between `newFixedThreadPool(n)` and `newCachedThreadPool()` when tasks pile up?
+ExecutorService: Difference between `newFixedThreadPool(n)` and `newCachedThreadPool()` when tasks pile up?
 Back: Fixed: exactly `n` threads, extra tasks wait in an unbounded queue.<br>Cached: spawns new threads on demand, reuses idle ones, trims them after ~60s idle.<br>Cached can explode thread count under a burst; fixed bounds it.
 <!--ID: 1781902680213-->
 END
 
 START
 Basic
-Which factory runs tasks one-at-a-time in submission order, and which schedules delayed/periodic work?
+ExecutorService: Which factory runs tasks one-at-a-time in submission order, and which schedules delayed/periodic work?
 Back: `newSingleThreadExecutor()` — sequential, ordered, single worker.<br>`newScheduledThreadPool(n)` — `schedule()`, `scheduleAtFixedRate()`, `scheduleWithFixedDelay()`.<br>Single-thread is handy for serializing access without manual locking.
 <!--ID: 1781902680220-->
 END

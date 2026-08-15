@@ -3,6 +3,7 @@ tags: [database, performance]
 category: web-dev
 related: [sql, nosql]
 ---
+TARGET DECK: Study::Web Dev::Database
 
 ## Description
 A data structure in databases that improves query speed at the cost of extra storage and write performance. Like a book index: instead of scanning every page, you look up the topic and jump to the right page. Turns O(n) scans into O(log n) lookups.

@@ -3,6 +3,7 @@ tags: [css, web-dev, layout]
 category: web-dev
 related: [box-model, css-display, css-positioning]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 `overflow` controls what happens when content is larger than its box: **`visible`** (default — content spills out), **`hidden`** (clipped, no scrollbar), **`scroll`** (always shows scrollbars), **`auto`** (scrollbars only when needed). Use `overflow-x` / `overflow-y` to set axes independently. A side effect that matters: any `overflow` value other than `visible` makes the element establish a **block formatting context** (so it contains floats and stops margin collapse) — and it can break `position: sticky` on descendants. `scroll-behavior: smooth` animates jumps.
@@ -34,35 +35,35 @@ html { scroll-behavior: smooth; }
 ```anki
 START
 Basic
-Compare `overflow: hidden`, `scroll`, and `auto` for content that's too big for its box.
+Overflow and Scrolling: Compare `overflow: hidden`, `scroll`, and `auto` for content that's too big for its box.
 Back: `hidden` clips the overflow with no scrollbar. `scroll` always shows scrollbars (even when not needed). `auto` shows scrollbars **only when** content actually overflows — usually the one you want.
 <!--ID: 1780758285551-->
 END
 
 START
 Basic
-Write the CSS for a panel that's at most 400px tall and scrolls vertically only when its content exceeds that.
+Overflow and Scrolling: Write the CSS for a panel that's at most 400px tall and scrolls vertically only when its content exceeds that.
 Back: `max-height: 400px; overflow-y: auto;`
 <!--ID: 1780758285555-->
 END
 
 START
 Basic
-What surprising layout side effect does setting any `overflow` value other than `visible` have?
+Overflow and Scrolling: What surprising layout side effect does setting any `overflow` value other than `visible` have?
 Back: It makes the element establish a **block formatting context (BFC)** — so it now contains floated children and won't margin-collapse with them. It can also disable `position: sticky` on descendants.
 <!--ID: 1780758285560-->
 END
 
 START
 Basic
-Your `position: sticky` child stopped sticking after you added `overflow: hidden` to an ancestor. Why?
+Overflow and Scrolling: Your `position: sticky` child stopped sticking after you added `overflow: hidden` to an ancestor. Why?
 Back: Sticky positions itself within its nearest scroll container. An ancestor with `overflow: hidden/auto/scroll` becomes that container and clips/changes the sticky behavior — remove or relocate the overflow.
 <!--ID: 1780758285565-->
 END
 
 START
 Basic
-Write the one declaration that makes in-page anchor jumps animate smoothly instead of snapping.
+Overflow and Scrolling: Write the one declaration that makes in-page anchor jumps animate smoothly instead of snapping.
 Back: `html { scroll-behavior: smooth; }`
 <!--ID: 1780758285570-->
 END

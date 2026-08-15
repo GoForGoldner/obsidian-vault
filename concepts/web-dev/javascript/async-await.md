@@ -3,6 +3,7 @@ tags: [javascript, web-dev, async, promises]
 category: web-dev
 related: [async-promises, json-and-fetch, error-handling, functions-and-arrows]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 `async`/`await` is **syntactic sugar over promises** — it doesn't add new capability, it makes promise-based code read top-to-bottom like synchronous code. An `async` function **always returns a promise**, regardless of what you `return` inside it. `await` pauses that function until the awaited promise settles, yielding its resolved value (or throwing its rejection). Because rejections surface as thrown errors, you handle them with ordinary `try/catch` instead of `.catch()`. The classic gotcha for Java devs: `await` inside a `for` loop runs requests **serially** (each waits for the previous) — if they're independent, kick them off together and `await Promise.all(...)` for concurrency. **Top-level await** is allowed in ES modules (no wrapping `async` function needed). (For how the event loop / microtasks actually schedule this, see async-promises.)
@@ -49,35 +50,35 @@ const config = await fetch("/config.json").then(r => r.json());
 ```anki
 START
 Basic
-What does an `async` function return, even if its body does `return 42`?
+Async/Await: What does an `async` function return, even if its body does `return 42`?
 Back: A Promise — here a promise that fulfills with `42`. `async` always wraps the return value (and a thrown error becomes a rejection).
 <!--ID: 1782407009020-->
 END
 
 START
 Basic
-How do you handle a rejected promise when using `await` instead of `.catch()`?
+Async/Await: How do you handle a rejected promise when using `await` instead of `.catch()`?
 Back: A regular `try/catch` — a rejected awaited promise throws, so `catch (err)` receives the rejection reason.
 <!--ID: 1782407009023-->
 END
 
 START
 Basic
-Gotcha: you `await fetchUser(id)` inside a `for` loop over many ids. What's the performance problem and the fix?
+Async/Await: Gotcha: you `await fetchUser(id)` inside a `for` loop over many ids. What's the performance problem and the fix?
 Back: Requests run serially (each waits for the prior), so time = sum of all. If independent, use `await Promise.all(ids.map(fetchUser))` to run them concurrently.
 <!--ID: 1782407009027-->
 END
 
 START
 Basic
-Does `async`/`await` give you any capability that plain promises lack?
+Async/Await: Does `async`/`await` give you any capability that plain promises lack?
 Back: No — it's pure syntax sugar over promises. It only makes the same promise code read sequentially and lets you use `try/catch`.
 <!--ID: 1782407009030-->
 END
 
 START
 Basic
-Where can you use `await` without wrapping it in an `async` function?
+Async/Await: Where can you use `await` without wrapping it in an `async` function?
 Back: At the top level of an ES module (top-level await). Not in CommonJS or inside a non-async function.
 <!--ID: 1782407009034-->
 END

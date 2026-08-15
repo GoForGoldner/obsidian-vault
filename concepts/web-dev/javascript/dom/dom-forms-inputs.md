@@ -3,6 +3,7 @@ tags: [dom, web-dev, javascript, forms]
 category: web-dev
 related: [document-and-selectors, dom-manipulation, dom-events, dom-traversal, jquery-overview-and-selectors, react-events-and-forms]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::DOM
 
 ## Description
 Form controls expose their state as element properties, and these are the canonical accessors — not attributes. A text `<input>`/`<textarea>`/`<select>` reflects its current value in `.value` (**always a string**, even for `type="number"` — convert with `Number(...)`), checkboxes/radios use the boolean `.checked` (not `.value`), and a `<select>` also gives you `.value` (the chosen option). The form-wide gotcha: a real `<form>` **submit reloads the page by default**, so you listen for the `submit` event and call `event.preventDefault()` to handle it in JS. `FormData` reads every named control at once (`new FormData(formEl)`), giving an iterable of `[name, value]` pairs ready to POST. Finally, two distinct change events: `input` fires on **every keystroke / immediate value change** (live), while `change` fires only when the value is **committed** — on blur for text fields, but immediately for checkboxes and `<select>`.
@@ -67,49 +68,49 @@ selectEl.addEventListener('change', (e) => console.log(e.target.value));
 ```anki
 START
 Basic
-Gotcha: you read `.value` from an `<input type="number">`. What type do you get, and what must you do?
+DOM Forms and Inputs: Gotcha: you read `.value` from an `<input type="number">`. What type do you get, and what must you do?
 Back: A string, always. Convert explicitly with `Number(input.value)` (or `parseInt`/`parseFloat`) before doing math.
 <!--ID: 1782407009423-->
 END
 
 START
 Basic
-How do you read whether a checkbox is ticked, and why not use `.value`?
+DOM Forms and Inputs: How do you read whether a checkbox is ticked, and why not use `.value`?
 Back: Use the boolean `input.checked`. `.value` on a checkbox is just its `value` attribute (default `"on"`), not whether it's selected.
 <!--ID: 1782407009427-->
 END
 
 START
 Basic
-Why do you call `event.preventDefault()` in a form `submit` handler?
+DOM Forms and Inputs: Why do you call `event.preventDefault()` in a form `submit` handler?
 Back: A `<form>` submit triggers a full-page navigation/reload by default. `preventDefault()` cancels that so you can handle the data in JS (e.g. fetch).
 <!--ID: 1782407009432-->
 END
 
 START
 Basic
-Distinction: the `input` event vs the `change` event on a text field.
+DOM Forms and Inputs: Distinction: the `input` event vs the `change` event on a text field.
 Back: `input` fires on every keystroke / immediate value change (live). `change` fires only when the value is committed — for text that's on blur (focus leaves the field).
 <!--ID: 1782407009436-->
 END
 
 START
 Basic
-Write the code to collect all named fields of `form` and turn them into a plain object.
+DOM Forms and Inputs: Write the code to collect all named fields of `form` and turn them into a plain object.
 Back: `const data = new FormData(form); const obj = Object.fromEntries(data);`
 <!--ID: 1782407009440-->
 END
 
 START
 Basic
-You construct `new FormData(formEl)` — which controls does it include?
+DOM Forms and Inputs: You construct `new FormData(formEl)` — which controls does it include?
 Back: Every form control that has a `name` attribute (and is not disabled). Unnamed controls are omitted. Access values with `data.get('field')`.
 <!--ID: 1782407009445-->
 END
 
 START
 Basic
-For a checkbox or `<select>`, when does the `change` event fire compared to a text input?
+DOM Forms and Inputs: For a checkbox or `<select>`, when does the `change` event fire compared to a text input?
 Back: Immediately on toggle/selection (no blur needed), unlike text fields where `change` waits for blur/commit.
 <!--ID: 1782407009449-->
 END

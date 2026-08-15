@@ -3,6 +3,7 @@ tags: [system-design, comparison]
 category: vs
 related: [load-balancing, microservices-vs-monolith]
 ---
+TARGET DECK: Study::VS
 
 ## Description
 Vertical scaling (scale up) means adding more power to one machine. more CPU, RAM, storage. Horizontal scaling (scale out) means adding more machines and distributing the load. Vertical is simpler but has a ceiling; horizontal is harder but virtually unlimited.

@@ -3,6 +3,7 @@ tags: [typescript, web-dev, types]
 category: web-dev
 related: [typescript-overview, union-intersection-narrowing, type-assertions-and-satisfies, functions-typing, interfaces-vs-type-aliases]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 TS primitives are lowercase: `string`, `number` (one numeric type — no `int`/`double`), `boolean`. Arrays are `T[]` or `Array<T>`; fixed-length heterogeneous arrays are **tuples** `[string, number]`. `any` opts out of all checking (avoid it). `unknown` is the **safe** top type — you can hold anything but must narrow before using it. `void` is a function returning nothing useful; `never` is a value that can't exist (throws, infinite loops, exhaustiveness). TS has strong **inference**, so annotate at boundaries (function params, exported APIs) and let locals infer.
@@ -49,42 +50,42 @@ let opt: string | undefined;       // undefined is its own type
 ```anki
 START
 Basic
-What's the difference between `unknown` and `any` in TypeScript?
+Basic Types and Annotations: What's the difference between `unknown` and `any` in TypeScript?
 Back: `any` disables all type checking (you can do anything, unsafely). `unknown` accepts any value but lets you do *nothing* with it until you narrow (typeof/instanceof/etc.). `unknown` is the safe choice for untrusted input.
 <!--ID: 1782407009538-->
 END
 
 START
 Basic
-How many numeric types does TypeScript have, and what are they called?
+Basic Types and Annotations: How many numeric types does TypeScript have, and what are they called?
 Back: One: `number` (covers ints and floats; lowercase). There's no `int`/`long`/`double`. (`bigint` exists separately for arbitrary-precision integers.)
 <!--ID: 1782407009542-->
 END
 
 START
 Basic
-Write a type annotation for a tuple holding a string then a number.
+Basic Types and Annotations: Write a type annotation for a tuple holding a string then a number.
 Back: `[string, number]` — e.g. `let pair: [string, number] = ["age", 30];`. Fixed length and per-position types, unlike `(string|number)[]`.
 <!--ID: 1782407009546-->
 END
 
 START
 Basic
-When does the `never` type show up, and what does it mean?
+Basic Types and Annotations: When does the `never` type show up, and what does it mean?
 Back: A value that can never occur. Return type of functions that always throw or loop forever, and the type that remains after exhaustive narrowing. Useful for compile-time exhaustiveness checks.
 <!--ID: 1782407009550-->
 END
 
 START
 Basic
-You wrote `let nums = [1, 2, 3];` with no annotation. What type does TS infer?
+Basic Types and Annotations: You wrote `let nums = [1, 2, 3];` with no annotation. What type does TS infer?
 Back: `number[]`. TS infers from the initializer, so locals usually don't need annotations — annotate function params and public APIs, not obvious locals.
 <!--ID: 1782407009553-->
 END
 
 START
 Basic
-With `strictNullChecks` on, how do you type a variable that may hold a string or be null?
+Basic Types and Annotations: With `strictNullChecks` on, how do you type a variable that may hold a string or be null?
 Back: `string | null` (an explicit union). Without it in the type, assigning `null` is an error — TS doesn't silently allow null like Java references.
 <!--ID: 1782407009557-->
 END

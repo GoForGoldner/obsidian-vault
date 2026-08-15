@@ -3,6 +3,7 @@ tags: [java, oop, sealed, type-hierarchy]
 category: java
 related: [records, enums, interfaces-and-default-methods, nested-classes, equals-hashcode-tostring]
 ---
+TARGET DECK: Study::Java::OOP
 
 ## Description
 A `sealed` class or interface (finalized in Java 17) restricts *which* types may extend or implement it, listed in a `permits` clause. The point is to lock down a type hierarchy so the compiler — and the reader — knows the complete set of subtypes. This is the foundation for **exhaustive `switch`**: when the compiler can see every permitted subtype, a `switch` over them needs **no `default`** branch, and adding a new subtype later turns formerly-complete switches into compile errors until you handle the new case.
@@ -61,49 +62,49 @@ sealed interface Expr {
 ```anki
 START
 Basic
-A class is `sealed ... permits A, B`. What must `A` and `B` each declare?
+Sealed Classes: A class is `sealed ... permits A, B`. What must `A` and `B` each declare?
 Back: Each permitted subtype must be exactly one of: `final`, `sealed` (with its own `permits`), or `non-sealed`.<br>Anything else is a **compile error** — sealing must be propagated explicitly.
 <!--ID: 1781902681755-->
 END
 
 START
 Basic
-Why use `sealed` instead of just leaving a class open?
+Sealed Classes: Why use `sealed` instead of just leaving a class open?
 Back: To **control the type hierarchy** — fix the complete set of subtypes.<br>Enables **exhaustive `switch`** with no `default`, and makes adding a subtype a compile-time prompt to update all switches.
 <!--ID: 1781902681763-->
 END
 
 START
 Basic
-What does `non-sealed` do to a permitted subtype?
+Sealed Classes: What does `non-sealed` do to a permitted subtype?
 Back: It **re-opens** the hierarchy below that type — any class may now extend it.<br>It is the escape hatch that lets a sealed family have an open branch.
 <!--ID: 1781902681770-->
 END
 
 START
 Basic
-Where must permitted subclasses live relative to the sealed type?
+Sealed Classes: Where must permitted subclasses live relative to the sealed type?
 Back: In the **same module**.<br>In the unnamed module (no `module-info`), they must be in the **same package**.<br>If all subtypes share the source file, the `permits` clause may be omitted entirely.
 <!--ID: 1781902681777-->
 END
 
 START
 Basic
-You `switch` over a sealed type and the compiler complains a case is missing — but you have a `default`. Why prefer removing default?
+Sealed Classes: You `switch` over a sealed type and the compiler complains a case is missing — but you have a `default`. Why prefer removing default?
 Back: With no `default`, the compiler enforces **exhaustiveness**: a new permitted subtype later becomes a compile error here.<br>A `default` silently swallows the new case at runtime instead.
 <!--ID: 1781902681784-->
 END
 
 START
 Basic
-Can a record be a permitted subtype of a sealed interface without extra keywords?
+Sealed Classes: Can a record be a permitted subtype of a sealed interface without extra keywords?
 Back: Yes — records are **implicitly `final`**, which satisfies the "final / sealed / non-sealed" requirement automatically.<br>This is why sealed-interface + record families are idiomatic.
 <!--ID: 1781902681791-->
 END
 
 START
 Basic
-Can interfaces be sealed?
+Sealed Classes: Can interfaces be sealed?
 Back: Yes — `sealed interface Shape permits ...`.<br>Permitted implementors/sub-interfaces follow the same final/sealed/non-sealed rule as classes.
 <!--ID: 1781902681798-->
 END

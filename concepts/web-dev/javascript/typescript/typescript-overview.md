@@ -3,6 +3,7 @@ tags: [typescript, web-dev, types]
 category: web-dev
 related: [basic-types-annotations, interfaces-vs-type-aliases, types-and-coercion, generics-typescript]
 ---
+TARGET DECK: Study::Web Dev::JavaScript::TypeScript
 
 ## Description
 TypeScript is JavaScript plus a **compile-time** type layer. `tsc` checks your types and then **erases** them, emitting plain JS — so types have **zero runtime presence** (no reflection, no `instanceof MyInterface`, no runtime type checks for free, unlike Java). The biggest mental shift from Java is **structural ("duck") typing**: a value is assignable to a type if its shape matches, regardless of declared names or `implements` clauses. There is no JVM; the output runs in browsers and Node. Types catch bugs and power editor tooling, but at runtime you are running ordinary JavaScript.
@@ -43,35 +44,35 @@ tsc --noEmit        # type-check only (CI/lint use)
 ```anki
 START
 Basic
-In TypeScript, when do type annotations actually run / take effect?
+TypeScript Overview: In TypeScript, when do type annotations actually run / take effect?
 Back: Never at runtime. Types are checked by `tsc` at compile time, then fully erased — the emitted JS has no type info. No runtime reflection like Java.
 <!--ID: 1782407009644-->
 END
 
 START
 Basic
-A function takes `interface Point { x: number; y: number }`. You pass `{ x: 3, y: 4, label: "hi" }` declared with no relation to Point. Does it type-check?
+TypeScript Overview: A function takes `interface Point { x: number; y: number }`. You pass `{ x: 3, y: 4, label: "hi" }` declared with no relation to Point. Does it type-check?
 Back: Yes. TS uses structural ("duck") typing — shape compatibility is enough. The object has the required `x`/`y`, so it's assignable. (Excess-property checks only fire on object *literals* passed directly.)
 <!--ID: 1782407009647-->
 END
 
 START
 Basic
-What's the key typing difference between Java and TypeScript that bites Java devs first?
+TypeScript Overview: What's the key typing difference between Java and TypeScript that bites Java devs first?
 Back: Java is nominal (must `implements`/`extends` by name); TS is structural — matching shape is sufficient, no declared relationship required.
 <!--ID: 1782407009650-->
 END
 
 START
 Basic
-Why can't you write `if (x instanceof MyInterface)` in TypeScript?
+TypeScript Overview: Why can't you write `if (x instanceof MyInterface)` in TypeScript?
 Back: Interfaces are erased at compile time, so they don't exist as runtime values. `instanceof` needs a real constructor/class. Use a runtime shape check or a class instead.
 <!--ID: 1782407009654-->
 END
 
 START
 Basic
-What does `tsc --noEmit` do and when do you use it?
+TypeScript Overview: What does `tsc --noEmit` do and when do you use it?
 Back: Type-checks without producing any `.js` output. Used in CI / lint steps where another tool (Babel, esbuild, Vite) does the actual transpilation.
 <!--ID: 1782407009657-->
 END

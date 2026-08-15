@@ -3,6 +3,7 @@ tags: [javascript, web-dev, functions]
 category: web-dev
 related: [this-call-apply-bind, closures, destructuring-spread-rest, arrays-higher-order]
 ---
+TARGET DECK: Study::Web Dev::JavaScript
 
 ## Description
 Functions in JS are **first-class values**: you assign them to variables, pass them as arguments, and return them. A **function declaration** (`function foo(){}`) is hoisted whole, so you can call it before its line; a **function expression** (`const foo = function(){}`) is not. **Arrow functions** (`x => x + 1`) are a terse expression form with implicit return for single expressions — but they differ semantically from regular functions: they don't bind their own `this`, `arguments`, or `super` (covered in the `this` note). Parameters support **defaults** (`function f(x = 1)`) and a **rest parameter** (`...args`) that collects remaining arguments into a real array — unlike Java varargs, it's an actual `Array`. An **IIFE** (Immediately Invoked Function Expression) runs a function the moment it's defined, historically used to create a private scope.
@@ -57,42 +58,42 @@ const ops = [square, add];            // functions stored in an array (first-cla
 ```anki
 START
 Basic
-Why can you call a `function foo(){}` declaration before its line, but not a `const foo = function(){}` expression?
+Functions and Arrow Functions: Why can you call a `function foo(){}` declaration before its line, but not a `const foo = function(){}` expression?
 Back: Function declarations are fully hoisted (name + body). For an expression only the variable binding is hoisted; the assignment happens on its own line, so calling earlier fails.
 <!--ID: 1782407009278-->
 END
 
 START
 Basic
-Write an arrow function `make` that returns the object literal `{ ok: true }`. What's the syntax gotcha?
+Functions and Arrow Functions: Write an arrow function `make` that returns the object literal `{ ok: true }`. What's the syntax gotcha?
 Back: `const make = () => ({ ok: true });` — you must wrap the object in parentheses, otherwise `{}` is parsed as a function body.
 <!--ID: 1782407009282-->
 END
 
 START
 Basic
-When does a default parameter value like `function f(x = 1)` actually get used?
+Functions and Arrow Functions: When does a default parameter value like `function f(x = 1)` actually get used?
 Back: Only when the argument is `undefined` (omitted or explicitly `undefined`). Passing `null`, `0`, or `""` does NOT trigger the default.
 <!--ID: 1782407009286-->
 END
 
 START
 Basic
-What does `...nums` as a function parameter do, and how does the result differ from Java varargs?
+Functions and Arrow Functions: What does `...nums` as a function parameter do, and how does the result differ from Java varargs?
 Back: It's a rest parameter that collects all remaining arguments into a real `Array` (so `.map`/`.reduce` work directly), unlike Java's array-typed varargs which feel separate.
 <!--ID: 1782407009291-->
 END
 
 START
 Basic
-What is an IIFE and what was its classic purpose?
+Functions and Arrow Functions: What is an IIFE and what was its classic purpose?
 Back: An Immediately Invoked Function Expression — `(function(){ ... })()` — runs the moment it's defined. Classic use: create a private scope to avoid leaking variables into the global scope (largely replaced by modules/`let`).
 <!--ID: 1782407009295-->
 END
 
 START
 Basic
-What does "functions are first-class" mean in JS, in concrete terms?
+Functions and Arrow Functions: What does "functions are first-class" mean in JS, in concrete terms?
 Back: Functions are values: you can assign them to variables, store them in arrays/objects, pass them as arguments, and return them from other functions.
 <!--ID: 1782407009300-->
 END

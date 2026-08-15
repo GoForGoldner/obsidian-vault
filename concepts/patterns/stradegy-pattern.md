@@ -3,6 +3,7 @@ tags: [design-pattern, behavioral]
 category: patterns
 related: [state-pattern, dependency-injection-pattern]
 ---
+TARGET DECK: Study::Patterns
 
 ## Description
 A pattern that lets you define a family of algorithms, put each one in its own class, and make them interchangeable. The caller picks which strategy to use at runtime.

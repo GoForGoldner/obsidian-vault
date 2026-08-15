@@ -3,6 +3,7 @@ tags: [css, web-dev, layout]
 category: web-dev
 related: [box-model, css-units, responsive-design]
 ---
+TARGET DECK: Study::Web Dev::CSS
 
 ## Description
 Replaced elements like `<img>` and `<video>` have intrinsic dimensions, so they need special handling. **`object-fit`** controls how the media fills its box without distortion: `cover` (fill + crop), `contain` (fit + letterbox), `fill` (stretch, default). **`object-position`** sets which part stays visible when cropped. **`aspect-ratio`** reserves a fixed width:height ratio (e.g. `16 / 9`) — preventing layout shift. The responsive image baseline is `max-width: 100%; height: auto;`.
@@ -34,35 +35,35 @@ img { max-width: 100%; height: auto; display: block; }
 ```anki
 START
 Basic
-Write the CSS to make a square avatar that fills an 80×80 circle, cropping (not squishing) the image.
+Images and Media: Write the CSS to make a square avatar that fills an 80×80 circle, cropping (not squishing) the image.
 Back: `width: 80px; height: 80px; object-fit: cover; border-radius: 50%;` — `cover` fills and crops while preserving aspect ratio.
 <!--ID: 1780758285648-->
 END
 
 START
 Basic
-What's the difference between `object-fit: cover` and `object-fit: contain`?
+Images and Media: What's the difference between `object-fit: cover` and `object-fit: contain`?
 Back: `cover` scales the media to fill the box, cropping whatever overflows (no empty space). `contain` scales it to fit entirely inside the box, possibly leaving empty bars (letterboxing). Neither distorts; the default `fill` stretches and *does* distort.
 <!--ID: 1780758285652-->
 END
 
 START
 Basic
-Write the CSS to reserve a 16:9 responsive box for a video so the page doesn't jump while it loads.
+Images and Media: Write the CSS to reserve a 16:9 responsive box for a video so the page doesn't jump while it loads.
 Back: `width: 100%; aspect-ratio: 16 / 9;` — the height is derived from the width, reserving space and preventing layout shift.
 <!--ID: 1780758285657-->
 END
 
 START
 Basic
-What's the classic one-liner that makes images responsive (never overflow, keep proportions)?
+Images and Media: What's the classic one-liner that makes images responsive (never overflow, keep proportions)?
 Back: `img { max-width: 100%; height: auto; }` — caps width to the container and lets height scale proportionally.
 <!--ID: 1780758285662-->
 END
 
 START
 Basic
-When an image is cropped by `object-fit: cover`, which property decides *which* part stays visible?
+Images and Media: When an image is cropped by `object-fit: cover`, which property decides *which* part stays visible?
 Back: `object-position` (e.g. `object-position: top;` keeps the top edge in frame). Default is `center`.
 <!--ID: 1780758285666-->
 END
