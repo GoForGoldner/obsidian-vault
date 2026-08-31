@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/data-structures/implementations/trie.md",
+                "file": "concepts/aws/aws-ec2-autoscaling.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "trie"
+              "title": "aws-ec2-autoscaling"
             }
           }
         ]
@@ -208,8 +208,11 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "f354826bd052174b",
+  "active": "7ef70c00eada3f2c",
   "lastOpenFiles": [
+    "concepts/aws/aws-caching-elasticache.md",
+    "concepts/aws/aws-analytics-ingestion.md",
+    "concepts/data-structures/implementations/trie.md",
     "concepts/web-dev/javascript/dom/dom-events.md",
     "concepts/web-dev/javascript/dom/document-and-selectors.md",
     "concepts/data-structures/implementations/bst-impl.md",
@@ -235,9 +238,6 @@
     "concepts/web-dev/javascript/dom/dom-traversal.md",
     "concepts/java/io/files-and-paths.md",
     "concepts/web-dev/javascript/jquery/jquery-traversal.md",
-    "concepts/web-dev/javascript/jquery/jquery-overview-and-selectors.md",
-    "concepts/web-dev/javascript/jquery/jquery-events.md",
-    "concepts/web-dev/javascript/jquery/jquery-dom-manipulation.md",
     "concepts/web-dev/javascript/jquery",
     "concepts/web-dev/javascript/testing",
     "concepts/web-dev/javascript/react",
