@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/aws/aws-organizations.md",
+                "file": "concepts/data-structures/implementations/monotonic-stack.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "aws-organizations"
+              "title": "monotonic-stack"
             }
           }
         ],
@@ -242,6 +242,7 @@
   },
   "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "concepts/aws/aws-organizations.md",
     "concepts/aws/aws-iam.md",
     "concepts/aws/aws-global-infrastructure.md",
     "concepts/algorithms/dynamic-programming.md",
@@ -268,7 +269,6 @@
     "copilot/copilot-conversations/Navigable_Set_Subset_Confusion@20260605_070917.md",
     "/concepts/vs/partition-key-vs-clustering-key.md",
     "/concepts/vs",
-    "/concepts/spring/spring-web-mvc.md",
     "/concepts/spring",
     "/concepts/java",
     "/concepts/algorithms",
