@@ -51,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/algorithms/dynamic-programming.md",
-                "mode": "source",
+                "file": "concepts/aws/aws-organizations.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "dynamic-programming"
+              "title": "aws-organizations"
             }
           }
         ],
@@ -242,6 +242,9 @@
   },
   "active": "c7b0305953f1b8f5",
   "lastOpenFiles": [
+    "concepts/aws/aws-iam.md",
+    "concepts/aws/aws-global-infrastructure.md",
+    "concepts/algorithms/dynamic-programming.md",
     "concepts/algorithms/cyclic-sort.md",
     "concepts/web-dev/javascript/this-call-apply-bind.md",
     "concepts/java/io/files-and-paths.md",
@@ -266,9 +269,6 @@
     "/concepts/vs/partition-key-vs-clustering-key.md",
     "/concepts/vs",
     "/concepts/spring/spring-web-mvc.md",
-    "/concepts/spring/spring-security.md",
-    "/concepts/spring/spring-data-jpa.md",
-    "/concepts/spring/spring-core.md",
     "/concepts/spring",
     "/concepts/java",
     "/concepts/algorithms",
