@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "d533f35b24340534",
+        "id": "d86049accf75836a",
         "type": "tabs",
         "children": [
           {
-            "id": "7ef70c00eada3f2c",
+            "id": "8391cc08624d1e76",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "concepts/aws/aws-ec2-autoscaling.md",
+                "file": "concepts/algorithms/templates/trie.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "aws-ec2-autoscaling"
+              "title": "trie"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -53,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "union find",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -208,8 +210,24 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "7ef70c00eada3f2c",
+  "active": "8391cc08624d1e76",
   "lastOpenFiles": [
+    "concepts/algorithms/templates/monotonic-stack.md",
+    "concepts/algorithms/templates/bellman-ford.md",
+    "concepts/algorithms/templates/eulerian-path.md",
+    "concepts/algorithms/templates/quickselect.md",
+    "concepts/algorithms/templates/lru-cache.md",
+    "concepts/algorithms/templates/bfs.md",
+    "concepts/algorithms/templates/bit-manipulation.md",
+    "concepts/algorithms/templates/binary-search.md",
+    "concepts/algorithms/templates/union-find.md",
+    "concepts/algorithms/templates/trie.md",
+    "concepts/algorithms/templates/two-heaps.md",
+    "concepts/algorithms/templates/two-pointers-converging.md",
+    "concepts/algorithms/templates/minimum-spanning-tree.md",
+    "concepts/algorithms/templates/dfs.md",
+    "misc/claude-card-prompt.md",
+    "concepts/aws/aws-ec2-autoscaling.md",
     "concepts/aws/aws-caching-elasticache.md",
     "concepts/aws/aws-analytics-ingestion.md",
     "concepts/data-structures/implementations/trie.md",
@@ -220,24 +238,8 @@
     "concepts/data-structures/implementations/monotonic-stack.md",
     "concepts/data-structures/implementations/union-find.md",
     "concepts/data-structures/implementations/binary-heap.md",
-    "concepts/data-structures/implementations/dfs.md",
-    "concepts/data-structures/implementations/bfs.md",
-    "concepts/data-structures/implementations/dijkstra.md",
-    "concepts/data-structures/implementations/README.md",
     "Untitled 1.canvas",
     "Untitled.canvas",
-    "concepts/java/concurrency/concurrent-collections.md",
-    "concepts/java/concurrency/completable-future.md",
-    "concepts/java/concurrency/atomics-and-volatile.md",
-    "concepts/web-dev/javascript/angular/angular-overview.md",
-    "concepts/web-dev/javascript/angular/change-detection.md",
-    "concepts/web-dev/backend-architecture.md",
-    "concepts/web-dev/javascript/variables-scope-hoisting.md",
-    "maps/javascript-typescript-moc.md",
-    "concepts/web-dev/javascript/dom/dom-manipulation.md",
-    "concepts/web-dev/javascript/dom/dom-traversal.md",
-    "concepts/java/io/files-and-paths.md",
-    "concepts/web-dev/javascript/jquery/jquery-traversal.md",
     "concepts/web-dev/javascript/jquery",
     "concepts/web-dev/javascript/testing",
     "concepts/web-dev/javascript/react",

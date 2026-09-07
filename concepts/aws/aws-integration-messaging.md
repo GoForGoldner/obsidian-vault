@@ -73,6 +73,7 @@ Basic
 SQS vs SNS: One event must reach three independent systems. Which service, and why not SQS?
 Back: SNS — pub/sub fan-out delivers a copy to every subscriber. An SQS message is consumed by exactly one consumer, so the other two would never see it.
 <!--ID: 1788139020610-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -80,6 +81,7 @@ Basic
 SQS: Messages are being processed twice. What's the first thing to check?
 Back: The visibility timeout is shorter than actual processing time, so the message reappears mid-work. Raise it, or extend it in-flight with ChangeMessageVisibility.
 <!--ID: 1788139020617-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -87,6 +89,7 @@ Basic
 SQS: Payment events must be processed in order with no duplicates. Which queue type, and what do you give up?
 Back: FIFO queue. You give up throughput — 300 messages/sec (3,000 batched) versus Standard's near-unlimited.
 <!--ID: 1788139020624-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -94,6 +97,7 @@ Basic
 SQS: A malformed message keeps failing and blocking the queue. What do you configure?
 Back: A dead-letter queue with a maxReceiveCount — after N failed receives the poison message moves aside for inspection instead of retrying forever.
 <!--ID: 1788139020630-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -101,6 +105,7 @@ Basic
 Messaging: When do you choose Kinesis Data Streams over SQS?
 Back: When you need ordering, replay, and multiple independent consumers reading the same records. SQS deletes on consume; Kinesis retains records 1–365 days and each consumer tracks its own position.
 <!--ID: 1788139020637-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -108,6 +113,7 @@ Basic
 Messaging: When is EventBridge the answer instead of SNS?
 Back: When you need to route based on event CONTENT with filter rules, ingest from SaaS/third-party sources, or run scheduled (cron) events. SNS is a simpler topic-based broadcast.
 <!--ID: 1788139020644-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -115,6 +121,7 @@ Basic
 Messaging: A company is migrating an on-prem app that speaks AMQP and JMS and doesn't want to rewrite it. Which service?
 Back: Amazon MQ — managed ActiveMQ/RabbitMQ supporting industry-standard protocols. SQS/SNS would require rewriting the messaging code.
 <!--ID: 1788139020650-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -122,6 +129,7 @@ Basic
 Decoupling: How should you auto-scale the workers consuming an SQS queue?
 Back: Target-track on queue depth (ApproximateNumberOfMessagesVisible), or backlog-per-instance — not CPU. Idle workers waiting on a deep queue show low CPU.
 <!--ID: 1788139020657-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -129,6 +137,7 @@ Basic
 Decoupling: The web tier fails during traffic spikes because the processing tier can't keep up. What's the architectural fix and why does it work?
 Back: Put an SQS queue between them. The queue absorbs the spike, the web tier returns immediately, and consumers scale independently and drain at their own rate.
 <!--ID: 1788139020665-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -136,6 +145,7 @@ Basic
 Messaging: SNS fan-out delivers straight to three Lambdas, but one downstream system is often down. What do you change?
 Back: Insert SQS queues between SNS and each consumer. The queue buffers and retries while that consumer is unavailable, instead of losing the notification.
 <!--ID: 1788139020671-->
+Tags: cantrill::serverless-app
 END
 ```
 ```dataviewjs

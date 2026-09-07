@@ -55,6 +55,7 @@ AWS Organizations: Why is a separate AWS account a stronger isolation boundary t
 Back: Account boundaries isolate IAM, billing, service quotas, and blast radius — not just networking. A VPC only separates the network.
 This is why "isolate dev from prod" → separate accounts.
 <!--ID: 1788139020786-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -63,6 +64,7 @@ AWS Organizations: An SCP allows S3 but the user has no IAM policy. What can the
 Back: Nothing. SCPs never grant — they only cap. You still need an IAM Allow underneath.
 Effective = SCP ∩ IAM policy.
 <!--ID: 1788139020793-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -70,6 +72,7 @@ Basic
 AWS Organizations: Which account do SCPs NOT apply to, and what's the design consequence?
 Back: The management (payer) account. So you keep it empty of workloads — anything running there is ungoverned by your own guardrails.
 <!--ID: 1788139020800-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -78,6 +81,7 @@ AWS Organizations: A company buys a Reserved Instance in the dev account but dev
 Back: The RI discount automatically applies to matching usage in any other account in the org. RIs and Savings Plans pool org-wide.
 A classic cost-optimization answer.
 <!--ID: 1788139020806-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -85,6 +89,7 @@ Basic
 AWS Organizations: You see "quickly set up a governed, compliant multi-account environment with guardrails." Which service?
 Back: AWS Control Tower — it provisions the landing zone (Organizations, log archive + audit accounts, Identity Center, preventive and detective guardrails) rather than making you assemble it.
 <!--ID: 1788139020813-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -92,6 +97,7 @@ Basic
 AWS Organizations: Ten accounts each need to run workloads in the same VPC subnets. Peering mesh or something better?
 Back: AWS RAM — share the subnets from one central networking account. Avoids an O(n²) peering mesh and duplicate NAT gateways.
 <!--ID: 1788139020820-->
+Tags: cantrill::advanced-vpc
 END
 
 START
@@ -99,6 +105,7 @@ Basic
 AWS Organizations: How do you stop any account in the org from disabling CloudTrail — permanently, even for admins?
 Back: An SCP denying `cloudtrail:StopLogging` / `DeleteTrail`, attached to the root or OU. Account-level admins cannot override an SCP.
 <!--ID: 1788139020827-->
+Tags: cantrill::iam-orgs
 END
 ```
 ```dataviewjs

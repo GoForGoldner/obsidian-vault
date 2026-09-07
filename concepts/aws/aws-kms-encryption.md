@@ -83,6 +83,7 @@ KMS: When do you need a customer-managed key instead of an AWS-managed one?
 Back: When you need control over the key policy, custom rotation schedules, cross-account key sharing, or the ability to disable/delete the key.
 AWS-managed keys are free but uneditable.
 <!--ID: 1788139020835-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -90,6 +91,7 @@ Basic
 KMS: Why can't you copy an encrypted EBS snapshot to another Region without extra steps?
 Back: KMS keys are Regional. The copy must be re-encrypted with a KMS key that exists in the destination Region — you specify it during the copy.
 <!--ID: 1788139020842-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -97,6 +99,7 @@ Basic
 KMS: An admin with full IAM permissions gets AccessDenied using a KMS key. Why?
 Back: The KMS key policy doesn't allow them. Access needs BOTH the IAM policy and the key policy — and the key policy is the authoritative one.
 <!--ID: 1788139020848-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -104,6 +107,7 @@ Basic
 Encryption: The requirement is FIPS 140-2 Level 3 with dedicated hardware and AWS having no access to the keys. KMS or CloudHSM?
 Back: CloudHSM — single-tenant dedicated HSM under your sole control. KMS is multi-tenant (FIPS 140-2 Level 3 validated HSMs, but AWS-operated).
 <!--ID: 1788139020855-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -111,6 +115,7 @@ Basic
 Secrets: "Database credentials must rotate automatically every 30 days." Secrets Manager or Parameter Store?
 Back: Secrets Manager — native automatic rotation via Lambda, with built-in RDS integration. Parameter Store has no native rotation.
 <!--ID: 1788139020862-->
+Tags: cantrill::advanced-ec2
 END
 
 START
@@ -118,6 +123,7 @@ Basic
 Secrets: When is Parameter Store the better answer despite having fewer features?
 Back: When you're storing plain configuration or non-rotating values and cost matters — the standard tier is free, while Secrets Manager bills per secret per month.
 <!--ID: 1788139020869-->
+Tags: cantrill::advanced-ec2
 END
 
 START
@@ -125,6 +131,7 @@ Basic
 ACM: A CloudFront distribution needs a TLS certificate. What's the Region gotcha?
 Back: The ACM certificate MUST be in us-east-1 for CloudFront, no matter where the origin or the rest of the stack lives.
 <!--ID: 1788139020876-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -132,6 +139,7 @@ Basic
 Encryption: An existing RDS instance is unencrypted and must be encrypted. What's the procedure?
 Back: You can't encrypt in place. Snapshot it, copy the snapshot with encryption enabled, restore a new instance from that copy, then cut over.
 <!--ID: 1788139020884-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -139,6 +147,7 @@ Basic
 ACM: Why can't you use an ACM public certificate directly on an EC2 instance?
 Back: ACM public certs can only be deployed to integrated services — ALB/NLB, CloudFront, API Gateway. EC2 can't export the private key, so you'd need your own cert or ACM Private CA.
 <!--ID: 1788139020891-->
+Tags: cantrill::serverless-app
 END
 ```
 ```dataviewjs

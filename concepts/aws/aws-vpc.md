@@ -74,6 +74,7 @@ VPC: What single thing makes a subnet "public"?
 Back: A route to an Internet Gateway (0.0.0.0/0 → igw) in its route table. Nothing else — not the name, not the CIDR.
 Instances also need a public or Elastic IP to be reachable.
 <!--ID: 1788139021228-->
+Tags: cantrill::vpc-basics
 END
 
 START
@@ -82,6 +83,7 @@ VPC: Private instances need to download OS patches from the internet. What do yo
 Back: A NAT Gateway — placed in a PUBLIC subnet, with the private subnet's route table sending 0.0.0.0/0 to it.
 Outbound-only: nothing on the internet can initiate a connection inward.
 <!--ID: 1788139021233-->
+Tags: cantrill::vpc-basics
 END
 
 START
@@ -89,6 +91,7 @@ Basic
 VPC: "Block traffic from one specific malicious IP." Security group or NACL — and why is there only one answer?
 Back: NACL. Security groups support Allow rules only; a NACL is the only place you can write an explicit Deny.
 <!--ID: 1788139021239-->
+Tags: cantrill::vpc-basics
 END
 
 START
@@ -97,6 +100,7 @@ VPC: You allow inbound 443 on a NACL and traffic still fails. What did you forge
 Back: The outbound rule for ephemeral ports (1024–65535). NACLs are stateless — return traffic needs its own explicit rule.
 Security groups are stateful and don't have this problem.
 <!--ID: 1788139021247-->
+Tags: cantrill::vpc-basics
 END
 
 START
@@ -105,6 +109,7 @@ VPC: When is a Gateway endpoint the answer instead of an Interface endpoint?
 Back: Only for S3 and DynamoDB — and it's free, so prefer it there. Everything else needs an Interface endpoint (PrivateLink), which costs hourly + per-GB.
 "Reduce NAT gateway data charges for S3 traffic" → Gateway endpoint.
 <!--ID: 1788139021254-->
+Tags: cantrill::advanced-vpc
 END
 
 START
@@ -112,6 +117,7 @@ Basic
 VPC: Three VPCs are peered A↔B and B↔C. Can A reach C?
 Back: No. VPC peering is non-transitive. Either peer A↔C directly, or replace the mesh with a Transit Gateway, which IS transitive.
 <!--ID: 1788139021261-->
+Tags: cantrill::advanced-vpc
 END
 
 START
@@ -119,6 +125,7 @@ Basic
 VPC: Why does "highly available" always force you to think about subnets?
 Back: A subnet exists in exactly one AZ. Multi-AZ therefore always means multiple subnets — one per AZ — and that constrains ALB, ASG, and RDS Multi-AZ placement.
 <!--ID: 1788139021268-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -126,6 +133,7 @@ Basic
 VPC: How many usable IPs in a /24 subnet, and why isn't it 256?
 Back: 251. AWS reserves 5 per subnet: network address, VPC router, DNS, one for future use, and broadcast.
 <!--ID: 1788139021275-->
+Tags: cantrill::vpc-basics
 END
 
 START
@@ -134,6 +142,7 @@ VPC: A NAT Gateway in one AZ serves private subnets in three AZs. What's the tra
 Back: Cheaper (one gateway) but the AZ's failure cuts internet access for all three, and you pay cross-AZ data transfer.
 One NAT GW per AZ is the HA answer; one shared is the cost-optimized answer.
 <!--ID: 1788139021283-->
+Tags: cantrill::vpc-basics
 END
 ```
 ```dataviewjs

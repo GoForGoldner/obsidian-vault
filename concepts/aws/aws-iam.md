@@ -69,6 +69,7 @@ IAM: An application on EC2 needs S3 access. The options include "store access ke
 Back: Roles deliver short-lived, auto-rotating credentials via STS. Access keys are long-lived, get baked into images, leak into git, and must be rotated by hand.
 "Store credentials anywhere" is a distractor by construction.
 <!--ID: 1788139020536-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -77,6 +78,7 @@ IAM: State the policy evaluation order, and what it means when two policies conf
 Back: Explicit Deny > explicit Allow > implicit Deny (the default).
 One Deny anywhere wins outright — you cannot out-Allow a Deny.
 <!--ID: 1788139020544-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -85,6 +87,7 @@ IAM: What does a resource-based policy have that an identity-based policy does n
 Back: A `Principal` field — it names WHO may act on it. Identity policies are already attached to the principal, so they omit it.
 This is the fastest way to tell the two apart in an exam JSON snippet.
 <!--ID: 1788139020551-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -93,6 +96,7 @@ IAM: For cross-account access via AssumeRole, what must be true on BOTH sides?
 Back: The target account's role needs a trust policy naming the source principal; the source principal needs an identity policy allowing `sts:AssumeRole`.
 One side alone silently fails — a very common distractor.
 <!--ID: 1788139020558-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -101,6 +105,7 @@ IAM: When do you use a permission boundary instead of just writing a tighter ide
 Back: When you're delegating permission-granting — letting a dev team create their own roles, but capping what those roles can ever receive.
 Boundaries only subtract; they never grant.
 <!--ID: 1788139020579-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -109,6 +114,7 @@ IAM: A company already has 5,000 employees in on-prem Active Directory and wants
 Back: Do not create 5,000 IAM users. Federate — IAM Identity Center (or SAML 2.0 to IAM roles) — so AD stays the source of truth and users assume roles.
 "Create an IAM user for each" is always wrong at scale.
 <!--ID: 1788139020588-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -116,6 +122,7 @@ Basic
 IAM: A user is in a group that Allows S3, and an SCP on their account denies S3. What can they do?
 Back: Nothing in S3. Effective permissions are the intersection of SCP ∩ boundary ∩ identity policy — and an SCP Deny is absolute.
 <!--ID: 1788139020595-->
+Tags: cantrill::iam-orgs
 END
 
 START
@@ -124,6 +131,54 @@ IAM: Why is an IAM group never the answer to "how does the Lambda function get a
 Back: Groups can't be a principal — nothing assumes a group. Only roles issue credentials to services.
 Groups exist purely to attach policies to human users.
 <!--ID: 1788139020602-->
+Tags: cantrill::serverless-app
+END
+START
+Basic
+IAM: What are the parts of an ARN, and which part is often blank for global services?
+Back: arn:partition:service:region:account-id:resource. Region and account-id are empty for global services like S3 and IAM.
+Tags: cantrill::iam-orgs
+<!--ID: 1788209676736-->
+END
+
+START
+Basic
+IAM: What are the hard limits on IAM users, and what do they force you toward?
+Back: 5,000 users per account, and a user can be in 10 groups. Any scenario with more identities than that means federation or Cognito, never IAM users.
+Tags: cantrill::iam-orgs
+<!--ID: 1788209676742-->
+END
+
+START
+Basic
+IAM: Inline policy vs managed policy — when is each right?
+Back: Managed policies are reusable across many identities and are the default choice. Inline policies are 1:1 with a single identity — use them for genuine exceptions you don't want reused.
+Tags: cantrill::iam-orgs
+<!--ID: 1788209676746-->
+END
+
+START
+Basic
+IAM: What is a service-linked role and what's different about it?
+Back: A role predefined by an AWS service that the service itself assumes to act on your behalf. You generally can't delete it while the service still needs it, and its permissions are set by the service.
+Tags: cantrill::iam-orgs
+<!--ID: 1788209676750-->
+END
+
+START
+Basic
+IAM: What is iam:PassRole guarding against?
+Back: Privilege escalation. Passing a role to a service (e.g. handing EC2 a role) means granting that service the role's permissions — so PassRole controls WHICH roles a user may hand out.
+Tags: cantrill::iam-orgs
+<!--ID: 1788209676755-->
+END
+
+START
+Basic
+IAM: A policy has an explicit Allow on an action and no Deny anywhere, but the call still fails. Name two causes beyond IAM.
+Back: An SCP ceiling in Organizations, or a permission boundary on the identity. Also possible: a resource policy that doesn't grant the principal, on cross-account calls.
+Tags: cantrill::iam-orgs
+<!--ID: 1788209676759-->
 END
 ```
 ```dataviewjs

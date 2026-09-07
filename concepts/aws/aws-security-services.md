@@ -75,6 +75,7 @@ Basic
 Security: Someone needs to find credit card numbers accidentally stored in S3. Which service?
 Back: Amazon Macie — sensitive data discovery and classification for S3. GuardDuty detects threats; Macie classifies data.
 <!--ID: 1788139021112-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -82,6 +83,7 @@ Basic
 Security: Unusual API calls suggest an IAM credential is compromised. Which service detects this?
 Back: GuardDuty — it analyzes CloudTrail, VPC Flow Logs, and DNS logs for malicious or anomalous behaviour, with no agents to install.
 <!--ID: 1788139021117-->
+Tags: cantrill::advanced-vpc
 END
 
 START
@@ -89,6 +91,7 @@ Basic
 Security: You need to know which EC2 instances are running software with known CVEs. Which service?
 Back: Amazon Inspector — automated vulnerability scanning for EC2, ECR images, and Lambda.
 <!--ID: 1788139021121-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -96,6 +99,7 @@ Basic
 Security: The application is being hit with SQL injection attempts. What blocks them, and where does it attach?
 Back: AWS WAF — attaches to CloudFront, ALB, API Gateway, or AppSync. Security groups and NACLs work at layers 3/4 and can't inspect the request payload.
 <!--ID: 1788139021125-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -104,6 +108,7 @@ Security: What does Shield Advanced give you that Shield Standard doesn't?
 Back: Layer 7 DDoS protection, 24/7 access to the DDoS Response Team, and cost protection for scaling charges incurred during an attack.
 Standard is free, automatic, and Layer 3/4 only.
 <!--ID: 1788139021130-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -111,6 +116,7 @@ Basic
 Cognito: What's the difference between a User Pool and an Identity Pool?
 Back: User Pool = the user directory that authenticates (returns a JWT). Identity Pool = exchanges that identity for temporary AWS credentials via STS so the user can call AWS services directly.
 <!--ID: 1788139021142-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -118,6 +124,7 @@ Basic
 Security: A mobile app needs sign-up, sign-in, and social login for a million end users. Why not IAM users?
 Back: IAM is for your organization's people and workloads, and caps at 5,000 users. Cognito is purpose-built for application end users at any scale.
 <!--ID: 1788139021149-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -125,6 +132,7 @@ Basic
 Security: An auditor asks for AWS's SOC 2 and PCI compliance reports. Where do you get them?
 Back: AWS Artifact — the self-service portal for AWS's own compliance documentation.
 <!--ID: 1788139021153-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -132,6 +140,7 @@ Basic
 Security: You have 40 accounts and need identical WAF rules enforced everywhere. Which service?
 Back: AWS Firewall Manager — centrally deploys and enforces WAF, Shield, and Network Firewall policies across an Organization.
 <!--ID: 1788139021158-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -139,6 +148,7 @@ Basic
 Security: GuardDuty, Macie, Inspector, and Config all produce findings. What consolidates them?
 Back: AWS Security Hub — aggregates findings into one dashboard and scores them against standards like CIS and PCI DSS.
 <!--ID: 1788139021163-->
+Tags: cantrill::security-ops
 END
 ```
 ```dataviewjs

@@ -66,6 +66,7 @@ Basic
 Hybrid Connectivity: A company needs a hybrid link "as soon as possible" for a project starting next week. DX or VPN?
 Back: Site-to-Site VPN. Direct Connect takes weeks-to-months to provision — any question emphasizing speed of setup rules it out.
 <!--ID: 1788139020480-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -73,6 +74,7 @@ Basic
 Hybrid Connectivity: Direct Connect is described as "private." Is the traffic encrypted?
 Back: No. Private ≠ encrypted. If the requirement says encryption in transit, the answer is Direct Connect WITH a VPN (IPsec) running over it.
 <!--ID: 1788139020487-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -80,6 +82,7 @@ Basic
 Hybrid Connectivity: What's the standard answer for resilient hybrid connectivity without paying for two fibre circuits?
 Back: Direct Connect as primary, Site-to-Site VPN as the backup path. Cheap failover for the rare DX outage.
 <!--ID: 1788139020494-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -87,6 +90,7 @@ Basic
 Hybrid Connectivity: Beyond latency, what cost advantage does Direct Connect have?
 Back: Lower per-GB data transfer OUT than internet egress. For sustained large transfers, DX can pay for itself — a cost-optimization answer, not just a performance one.
 <!--ID: 1788139020501-->
+Tags: cantrill::hybrid-migration
 END
 
 START
@@ -94,6 +98,7 @@ Basic
 Hybrid Connectivity: Clients need to allow-list your application's IP addresses in their firewall, and it sits behind an ALB. What do you put in front?
 Back: AWS Global Accelerator — it provides 2 static anycast IPs. ALBs only give you a changing DNS name.
 <!--ID: 1788139020508-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -101,6 +106,7 @@ Basic
 Hybrid Connectivity: The workload is a UDP-based multiplayer game needing low global latency. CloudFront or Global Accelerator?
 Back: Global Accelerator. CloudFront is HTTP/HTTPS only and caching-oriented; GA handles any TCP/UDP traffic over the AWS backbone.
 <!--ID: 1788139020515-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -108,6 +114,7 @@ Basic
 Hybrid Connectivity: A SaaS vendor must reach one internal service in your VPC. You don't want to peer networks or expose anything publicly. What?
 Back: AWS PrivateLink — exposes that single service via an interface endpoint. No route tables joined, no CIDR overlap concerns, no internet exposure.
 <!--ID: 1788139020522-->
+Tags: cantrill::advanced-vpc
 END
 
 START
@@ -115,6 +122,7 @@ Basic
 Hybrid Connectivity: When is Client VPN the answer rather than Site-to-Site VPN?
 Back: When individual remote users/laptops need access, not a whole office network. Site-to-Site connects networks; Client VPN connects people.
 <!--ID: 1788139020529-->
+Tags: cantrill::hybrid-migration
 END
 ```
 ```dataviewjs

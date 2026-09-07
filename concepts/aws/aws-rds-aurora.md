@@ -83,6 +83,7 @@ RDS: Reporting queries are slowing the production app. Multi-AZ or read replica?
 Back: Read replica — it exists to offload reads. A Multi-AZ standby serves NO traffic; it's purely for failover.
 This distinction is the most-tested RDS fact on the exam.
 <!--ID: 1788139020899-->
+Tags: cantrill::rds
 END
 
 START
@@ -90,6 +91,7 @@ Basic
 RDS: Why is Multi-AZ replication synchronous while read replicas are asynchronous?
 Back: Multi-AZ must guarantee zero data loss on failover, so writes commit to the standby before acknowledging. Read replicas trade freshness for not slowing the primary — so they can lag.
 <!--ID: 1788139020906-->
+Tags: cantrill::rds
 END
 
 START
@@ -97,6 +99,7 @@ Basic
 RDS: A Lambda function scales to 2,000 concurrent executions and RDS starts refusing connections. Fix?
 Back: RDS Proxy — pools and reuses connections so thousands of Lambdas share a small set. It also cuts failover time.
 <!--ID: 1788139020913-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -104,6 +107,7 @@ Basic
 Aurora: What does "6 copies across 3 AZs" actually buy you?
 Back: Writes survive losing 2 copies, reads survive losing 3, and repair is automatic. Durability comes from the shared storage layer, not from the compute nodes.
 <!--ID: 1788139020920-->
+Tags: cantrill::rds
 END
 
 START
@@ -111,6 +115,7 @@ Basic
 Aurora: The database is idle most of the week and spikes unpredictably. Which option?
 Back: Aurora Serverless v2 — scales capacity in fine increments and down when idle, so you don't pay for a provisioned instance sitting unused.
 <!--ID: 1788139020927-->
+Tags: cantrill::rds
 END
 
 START
@@ -118,6 +123,7 @@ Basic
 Aurora: Requirement is "global read latency under 100ms AND recover from a Region failure in under a minute." What?
 Back: Aurora Global Database — sub-second cross-Region replication lag and RTO under a minute. Cross-Region read replicas alone are slower to promote.
 <!--ID: 1788139020934-->
+Tags: cantrill::rds
 END
 
 START
@@ -125,6 +131,7 @@ Basic
 RDS: Migrating Oracle to Aurora PostgreSQL. Which two tools, and why both?
 Back: Schema Conversion Tool (SCT) to convert schema and stored procedures, then DMS to move the data. Heterogeneous migrations need both; homogeneous ones need only DMS.
 <!--ID: 1788139020941-->
+Tags: cantrill::hybrid-migration
 END
 
 START
@@ -132,6 +139,7 @@ Basic
 RDS: The question asks for petabyte-scale analytical queries over historical data. Why is RDS wrong?
 Back: RDS is row-oriented OLTP. Analytics over petabytes wants Redshift — columnar, MPP, built for OLAP scans.
 <!--ID: 1788139020948-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -139,6 +147,7 @@ Basic
 Databases: "Detect fraud rings by traversing relationships between accounts." Which AWS database?
 Back: Amazon Neptune — a managed graph database. Relationship traversal is the tell; a relational join-heavy design would be the wrong answer.
 <!--ID: 1788139020954-->
+Tags: cantrill::rds
 END
 
 START
@@ -146,6 +155,7 @@ Basic
 RDS: What's the difference between automated backups and manual snapshots when you delete the DB instance?
 Back: Automated backups are deleted with the instance (retention 1–35 days). Manual snapshots persist until you explicitly delete them — the answer for long-term retention.
 <!--ID: 1788139020960-->
+Tags: cantrill::network-storage
 END
 ```
 ```dataviewjs

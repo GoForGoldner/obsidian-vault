@@ -80,6 +80,7 @@ Basic
 Analytics: "Stream logs into S3 with zero administration and no shard management." Kinesis Data Streams or Firehose?
 Back: Firehose — fully managed delivery, auto-scaling, no shards. Data Streams requires you to manage shards and write consumers.
 <!--ID: 1788139019950-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -87,6 +88,7 @@ Basic
 Analytics: Why would you choose Kinesis Data Streams over Firehose?
 Back: When you need sub-second latency, replay of retained records, or multiple independent consumers reading the same stream at their own positions. Firehose is buffered (~60s) and delivery-only.
 <!--ID: 1788139019959-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -94,6 +96,7 @@ Basic
 Athena: Athena queries cost too much. What three changes cut the bill most?
 Back: Convert to a columnar format (Parquet/ORC), compress, and partition the data. Athena bills per TB scanned, so scanning less is the entire optimization.
 <!--ID: 1788139019964-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -101,6 +104,7 @@ Basic
 Analytics: "Run ad-hoc SQL against data already in S3 without provisioning anything." Which service?
 Back: Amazon Athena — serverless SQL directly over S3, billed per TB scanned. Redshift would require loading data into a provisioned cluster.
 <!--ID: 1788139019971-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -108,6 +112,7 @@ Basic
 Analytics: When is Redshift right instead of Athena?
 Back: For sustained, complex analytical workloads over petabytes with frequent joins and BI concurrency. Athena wins for infrequent, ad-hoc queries where you don't want a running cluster.
 <!--ID: 1788139019977-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -115,6 +120,7 @@ Basic
 Analytics: What does the AWS Glue Data Catalog do that Athena depends on?
 Back: It stores table/schema metadata for data in S3 — Athena and Redshift Spectrum query against it rather than the raw files' structure.
 <!--ID: 1788139019985-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -122,6 +128,7 @@ Basic
 Analytics: The question mentions existing Apache Kafka producers and consumers. Which AWS service?
 Back: Amazon MSK — managed Kafka. Migrating to Kinesis would mean rewriting the client code.
 <!--ID: 1788139019992-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -129,6 +136,7 @@ Basic
 Analytics: Which service for running existing Spark jobs on large datasets, ideally on Spot for cost?
 Back: Amazon EMR — managed Hadoop/Spark/Hive, and it supports Spot for task nodes to cut cost dramatically.
 <!--ID: 1788139020000-->
+Tags: cantrill::ec2-basics
 END
 ```
 ```dataviewjs

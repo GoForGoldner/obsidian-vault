@@ -79,6 +79,7 @@ Basic
 DynamoDB: You need to query an existing table by an attribute that isn't the partition key. LSI or GSI?
 Back: GSI — it uses a different partition key and can be added at any time. An LSI must share the table's partition key AND be created with the table.
 <!--ID: 1788139020221-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -86,6 +87,7 @@ Basic
 DynamoDB: The table throttles even though provisioned capacity looks sufficient. Most likely cause?
 Back: A hot partition — a low-cardinality partition key concentrating traffic on one partition. Capacity is divided across partitions, so one key can starve.
 <!--ID: 1788139020226-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -93,6 +95,7 @@ Basic
 DynamoDB: A new application's traffic is completely unpredictable. Which capacity mode?
 Back: On-demand — instant scaling, pay per request, no forecasting. Switch to provisioned + auto scaling later once the pattern is known and steady, for lower cost.
 <!--ID: 1788139020231-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -100,6 +103,7 @@ Basic
 DynamoDB: Reads must be in microseconds, not milliseconds. What do you add?
 Back: DAX — an in-memory cache built for DynamoDB, requiring no application caching logic. ElastiCache would work but forces you to write cache-aside code.
 <!--ID: 1788139020238-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -107,6 +111,7 @@ Basic
 DynamoDB: How do you trigger a Lambda whenever an item is updated?
 Back: DynamoDB Streams — an ordered change log of item-level modifications that Lambda consumes. The standard event-driven pattern.
 <!--ID: 1788139020243-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -114,6 +119,7 @@ Basic
 DynamoDB: Users in three continents must WRITE with local latency. What feature?
 Back: Global Tables — multi-Region, multi-active replication. Cross-Region read replicas would only help reads.
 <!--ID: 1788139020247-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -121,6 +127,7 @@ Basic
 DynamoDB: Session records should disappear after 24 hours without a cleanup job. What?
 Back: TTL — set an expiry timestamp attribute and DynamoDB deletes expired items automatically, at no cost.
 <!--ID: 1788139020253-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -128,6 +135,7 @@ Basic
 DynamoDB: Why can't a GSI serve a strongly consistent read?
 Back: GSIs are replicated asynchronously from the base table, so they're eventually consistent by definition. Only base-table reads (and LSIs) can be strongly consistent.
 <!--ID: 1788139020258-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -135,6 +143,7 @@ Basic
 DynamoDB: The question mentions complex joins across five tables and ACID transactions across them. Why is DynamoDB the wrong answer?
 Back: DynamoDB has no joins and is designed around known access patterns. Relational, join-heavy, ad-hoc querying is RDS/Aurora territory.
 <!--ID: 1788139020263-->
+Tags: cantrill::dynamodb-nosql
 END
 ```
 ```dataviewjs

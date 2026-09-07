@@ -71,6 +71,7 @@ Lambda: A data transformation takes 45 minutes. Why can't it be Lambda, and what
 Back: Lambda's hard maximum is a 15-minute timeout. Use Fargate/ECS, AWS Batch, or split the work with Step Functions.
 This limit is the exam's most common disqualifier.
 <!--ID: 1788139021071-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -78,6 +79,7 @@ Basic
 Lambda: A Lambda is CPU-bound and too slow. What's the counterintuitive tuning knob?
 Back: Increase its MEMORY. Lambda allocates CPU proportionally to memory, so more memory = more CPU. It can even get cheaper, since it finishes faster.
 <!--ID: 1788139021075-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -85,6 +87,7 @@ Basic
 Lambda: Users complain about latency on the first request after idle periods. Diagnosis and fix?
 Back: Cold starts. Fix with provisioned concurrency, which keeps initialized execution environments warm.
 <!--ID: 1788139021080-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -92,6 +95,7 @@ Basic
 Serverless: When does the exam want EKS instead of ECS?
 Back: When the question names Kubernetes explicitly, or stresses portability / existing k8s manifests and team skills. Otherwise ECS is the simpler, better-integrated answer.
 <!--ID: 1788139021084-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -99,6 +103,7 @@ Basic
 Containers: What's the difference between an ECS task role and an execution role?
 Back: Task role = permissions for YOUR application code (e.g. read S3). Execution role = permissions for the ECS AGENT to pull the image from ECR and push logs.
 <!--ID: 1788139021088-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -107,6 +112,7 @@ Containers: When is the EC2 launch type better than Fargate?
 Back: Dense, steady, predictable load where RIs/Savings Plans beat per-task pricing — or when you need GPU, host-level agents, or custom kernel settings.
 Fargate wins for bursty, variable, small workloads.
 <!--ID: 1788139021092-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -114,6 +120,7 @@ Basic
 Serverless: "Developers should deploy a Java web app without managing infrastructure, but ops still needs access to the EC2 instances." Which service?
 Back: Elastic Beanstalk — it provisions and manages EC2/ALB/ASG for you while leaving the underlying resources fully accessible.
 <!--ID: 1788139021097-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -121,6 +128,7 @@ Basic
 Step Functions: You see "coordinate multiple Lambdas with retries, branching, and a wait for human approval." Which service, and why not just chain Lambdas?
 Back: Step Functions. Chained Lambdas mean hand-written retry/error logic, no visibility into workflow state, and each hop burns its own 15-min budget.
 <!--ID: 1788139021102-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -128,6 +136,7 @@ Basic
 Lambda: You attach a Lambda to a VPC so it can reach RDS, and its S3 calls start timing out. Why?
 Back: A VPC-attached Lambda loses default internet access. It needs a NAT gateway in a private subnet — or better, a VPC gateway endpoint for S3.
 <!--ID: 1788139021107-->
+Tags: cantrill::advanced-vpc
 END
 ```
 ```dataviewjs

@@ -87,6 +87,7 @@ Basic
 ElastiCache: The requirement mentions a leaderboard with ranked scores. Redis or Memcached — and what's the giveaway?
 Back: Redis — sorted sets. Memcached stores strings only, with no data structures to rank with.
 <!--ID: 1788139020009-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -94,6 +95,7 @@ Basic
 ElastiCache: The cache must survive a node failure without data loss. Which engine?
 Back: Redis — it supports replication, Multi-AZ, and automatic failover, plus persistence. Memcached has none of these.
 <!--ID: 1788139020016-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -102,6 +104,7 @@ ElastiCache: When is Memcached actually the right answer?
 Back: A simple, disposable, pure key-value cache where you want multi-threaded performance and horizontal scale-out, and losing the cache is harmless.
 Rare on the exam — most scenarios name a Redis-only feature.
 <!--ID: 1788139020024-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -109,6 +112,7 @@ Basic
 Caching: Describe lazy loading and its main downside.
 Back: Read the cache; on a miss, query the DB and populate the cache. Downside: every miss costs three trips, and cached data goes stale until its TTL expires.
 <!--ID: 1788139020031-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -116,6 +120,7 @@ Basic
 Caching: When would you choose write-through over lazy loading?
 Back: When stale data is unacceptable — writing to cache and DB together keeps the cache always fresh. Cost: slower writes and caching data nobody may ever read.
 <!--ID: 1788139020037-->
+Tags: cantrill::dynamodb-nosql
 END
 
 START
@@ -123,6 +128,7 @@ Basic
 Caching: Users are logged out when the ASG scales in. What's the architecturally correct fix?
 Back: Move session state into ElastiCache Redis so the app becomes stateless and any instance can serve any request. Sticky sessions only mask the problem.
 <!--ID: 1788139020042-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -130,6 +136,7 @@ Basic
 Caching: The origin is an ALB and global users see slow page loads for mostly-cacheable content. Which layer?
 Back: CloudFront — caches at edge locations near users. ElastiCache would sit next to the origin and not help with the geographic latency.
 <!--ID: 1788139020048-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -137,6 +144,7 @@ Basic
 Caching: Why is DAX preferred over ElastiCache in front of DynamoDB?
 Back: DAX is API-compatible with DynamoDB, so it needs no cache-aside logic in your code, and it delivers microsecond reads. ElastiCache would require you to write and maintain the caching layer.
 <!--ID: 1788139020056-->
+Tags: cantrill::dynamodb-nosql
 END
 ```
 ```dataviewjs

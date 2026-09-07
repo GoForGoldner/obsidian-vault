@@ -81,6 +81,7 @@ S3: The access pattern for a dataset is unpredictable and changes month to month
 Back: S3 Intelligent-Tiering — it moves objects between tiers automatically for a small monitoring fee, with no retrieval charges.
 "Unknown or changing access pattern" is its signature phrase.
 <!--ID: 1788139021010-->
+Tags: cantrill::s3
 END
 
 START
@@ -88,6 +89,7 @@ Basic
 S3: When is One Zone-IA acceptable, and when is it a trap?
 Back: Acceptable only for reproducible data (thumbnails, derived files, secondary copies). It's a trap for anything irreplaceable — it lives in a single AZ and an AZ loss destroys it.
 <!--ID: 1788139021017-->
+Tags: cantrill::s3
 END
 
 START
@@ -95,6 +97,7 @@ Basic
 S3: A compliance rule says records must be retrievable but access can take up to 12 hours, kept 10 years. Which class?
 Back: S3 Glacier Deep Archive — cheapest, ~12-hour retrieval, 180-day minimum. The stated tolerance for hours of delay is the tell.
 <!--ID: 1788139021023-->
+Tags: cantrill::s3
 END
 
 START
@@ -102,6 +105,7 @@ Basic
 S3: You need to give one external user temporary access to a single private object. What do you NOT do?
 Back: Don't make the bucket public and don't create an IAM user. Generate a presigned URL — time-limited, object-scoped, no permission changes.
 <!--ID: 1788139021029-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -109,6 +113,7 @@ Basic
 S3: When is SSE-KMS worth it over SSE-S3?
 Back: When you need control over key rotation/policy, or an audit trail of every decrypt in CloudTrail. Cost: KMS API charges and possible throttling at very high request rates (mitigate with S3 Bucket Keys).
 <!--ID: 1788139021035-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -116,6 +121,7 @@ Basic
 S3: You enable cross-Region replication and the existing 2 TB doesn't appear in the destination. Why?
 Back: Replication only applies to objects written AFTER it's enabled. Use S3 Batch Replication to backfill existing objects.
 <!--ID: 1788139021041-->
+Tags: cantrill::s3
 END
 
 START
@@ -123,6 +129,7 @@ Basic
 S3: What are the two prerequisites for any S3 replication?
 Back: Versioning enabled on BOTH source and destination buckets, plus an IAM role S3 can assume to replicate.
 <!--ID: 1788139021047-->
+Tags: cantrill::s3
 END
 
 START
@@ -130,6 +137,7 @@ Basic
 S3: "Financial records must be immutable and undeletable for 7 years, even by admins." Which feature and mode?
 Back: S3 Object Lock in COMPLIANCE mode — not even the root user can shorten or remove the retention. Governance mode allows privileged override, so it doesn't satisfy a hard regulatory requirement.
 <!--ID: 1788139021052-->
+Tags: cantrill::s3
 END
 
 START
@@ -137,6 +145,7 @@ Basic
 S3: Users in Asia upload large files to a us-east-1 bucket and it's slow. Fix?
 Back: S3 Transfer Acceleration — uploads enter at the nearest edge location and travel the AWS backbone instead of the public internet.
 <!--ID: 1788139021057-->
+Tags: cantrill::s3
 END
 
 START
@@ -144,6 +153,7 @@ Basic
 S3: You want to serve S3 content via CloudFront but keep the bucket private. What connects them?
 Back: Origin Access Control (OAC) — CloudFront gets a bucket-policy grant, and Block Public Access stays on. (OAI is the legacy predecessor.)
 <!--ID: 1788139021061-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -151,6 +161,7 @@ Basic
 S3: Versioning is on and someone deletes an object. What actually happened, and how do you undo it?
 Back: S3 wrote a delete marker as the new current version; the old version is intact. Delete the delete marker to restore it.
 <!--ID: 1788139021066-->
+Tags: cantrill::s3
 END
 ```
 ```dataviewjs

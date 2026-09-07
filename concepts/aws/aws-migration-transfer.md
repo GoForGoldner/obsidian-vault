@@ -71,6 +71,7 @@ Basic
 Migration: A company must migrate a production database with almost no downtime. Which service, and how does it manage that?
 Back: AWS DMS — it does an initial load then keeps replicating changes (CDC) while the source stays live, so you cut over at the end.
 <!--ID: 1788139020678-->
+Tags: cantrill::hybrid-migration
 END
 
 START
@@ -78,6 +79,7 @@ Basic
 Migration: Oracle → Aurora PostgreSQL. Why isn't DMS alone enough?
 Back: It's a heterogeneous migration — schema, data types, and stored procedures differ. Use the Schema Conversion Tool (SCT) first, then DMS for the data.
 <!--ID: 1788139020684-->
+Tags: cantrill::hybrid-migration
 END
 
 START
@@ -85,6 +87,7 @@ Basic
 Migration: 500 TB must reach AWS in one month over a 200 Mbps link. What do you use and why?
 Back: AWS Snow Family (offline). 500 TB at 200 Mbps takes well over a year — when the arithmetic beats the deadline, ship disks.
 <!--ID: 1788139020690-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -92,6 +95,7 @@ Basic
 Migration: The team doesn't know which on-prem servers talk to which. What runs first?
 Back: AWS Application Discovery Service — inventories servers and maps dependencies so you can plan migration waves.
 <!--ID: 1788139020696-->
+Tags: cantrill::hybrid-migration
 END
 
 START
@@ -99,6 +103,7 @@ Basic
 Migration: External partners upload files via SFTP and refuse to change. How do you land those files in S3?
 Back: AWS Transfer Family — managed SFTP/FTPS/FTP endpoints backed by S3 or EFS, with no change to the partners' workflow.
 <!--ID: 1788139020703-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -106,6 +111,7 @@ Basic
 Migration: What does "replatform" mean, and why does the exam favour it?
 Back: Lift-and-shift plus small optimizations — e.g. self-managed MySQL on EC2 → RDS. It captures most of the managed-service benefit for a fraction of a rewrite's cost.
 <!--ID: 1788139020708-->
+Tags: cantrill::hybrid-migration
 END
 
 START
@@ -113,6 +119,7 @@ Basic
 Migration: Which service is the standard answer for lift-and-shift of physical/virtual servers to EC2?
 Back: AWS Application Migration Service (MGN) — continuous block-level replication with a low-downtime cutover.
 <!--ID: 1788139020715-->
+Tags: cantrill::hybrid-migration
 END
 ```
 ```dataviewjs

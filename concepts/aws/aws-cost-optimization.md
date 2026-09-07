@@ -82,6 +82,7 @@ Cost: Which direction of data transfer is free, and which is the usual biggest l
 Back: Inbound to AWS is free. Outbound to the internet is expensive and typically dominates the bill.
 This asymmetry drives most cost-optimization answers.
 <!--ID: 1788139020123-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -89,6 +90,7 @@ Basic
 Cost: EC2 instances in a private subnet pull large objects from S3 through a NAT Gateway. What's the fix?
 Back: Add a Gateway VPC endpoint for S3 — traffic stays on the AWS network, is free, and skips NAT Gateway data-processing charges entirely.
 <!--ID: 1788139020130-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -96,6 +98,7 @@ Basic
 Cost: "Alert us before monthly spend exceeds $10,000." Cost Explorer or Budgets?
 Back: AWS Budgets — it sets thresholds and alerts or acts. Cost Explorer visualizes and forecasts but doesn't alert.
 <!--ID: 1788139020137-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -103,6 +106,7 @@ Basic
 Cost: You need line-item billing detail to charge back to teams. Which two things do you need?
 Back: The Cost and Usage Report (CUR) delivered to S3, plus activated cost allocation tags. Without tags you can't attribute spend to a team.
 <!--ID: 1788139020144-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -110,6 +114,7 @@ Basic
 Cost: A workload runs for 30 seconds, twice a day. Why is EC2 the wrong answer?
 Back: You'd pay for an idle instance ~24 hours a day. Lambda bills per millisecond of execution and costs nothing when idle.
 <!--ID: 1788139020151-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -117,6 +122,7 @@ Basic
 Cost: Two chatty microservices are deployed in different AZs for HA. What's the hidden cost?
 Back: Cross-AZ data transfer, charged in both directions. Traffic between instances in the same AZ over private IPs is free — a real HA-vs-cost tradeoff.
 <!--ID: 1788139020158-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -124,6 +130,7 @@ Basic
 Cost: How does putting CloudFront in front of S3 reduce cost, not just latency?
 Back: CloudFront's per-GB egress is cheaper than S3's direct internet egress, S3→CloudFront transfer is free, and cache hits cut origin requests.
 <!--ID: 1788139020165-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -131,6 +138,7 @@ Basic
 Cost: Which service recommends right-sizing based on actual utilization rather than guesswork?
 Back: AWS Compute Optimizer — it analyzes CloudWatch metrics and recommends instance types/sizes. Trusted Advisor also flags idle resources more broadly.
 <!--ID: 1788139020171-->
+Tags: cantrill::ec2-basics
 END
 ```
 ```dataviewjs

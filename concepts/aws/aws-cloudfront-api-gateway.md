@@ -77,6 +77,7 @@ Basic
 CloudFront: You want CloudFront in front of S3 but the bucket must never be publicly accessible. What connects them?
 Back: Origin Access Control (OAC) — CloudFront gets a bucket-policy grant while Block Public Access stays on. OAI is the legacy version of the same idea.
 <!--ID: 1788139020065-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -84,6 +85,7 @@ Basic
 CloudFront: Only paying subscribers should be able to download a set of videos. What feature?
 Back: Signed cookies (multiple files) or signed URLs (a single file). Both grant time-limited access without making the content public.
 <!--ID: 1788139020071-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -91,6 +93,7 @@ Basic
 CloudFront: What's the Region requirement for its TLS certificate?
 Back: The ACM certificate must live in us-east-1, regardless of where the origin or the rest of the stack is deployed.
 <!--ID: 1788139020079-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -98,6 +101,7 @@ Basic
 CloudFront: You deployed new static assets but users still see the old ones. Two fixes?
 Back: Create an invalidation to purge the cached objects, or (better, and free) use versioned filenames so the URL itself changes.
 <!--ID: 1788139020086-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -105,6 +109,7 @@ Basic
 CloudFront: Does CloudFront help a fully dynamic, uncacheable API?
 Back: Yes — requests still ride the AWS backbone from the edge instead of the public internet, cutting latency. And it's where you attach WAF and Shield.
 <!--ID: 1788139020093-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -112,6 +117,7 @@ Basic
 API Gateway: How do you stop one customer from overwhelming your API?
 Back: Throttling with usage plans and API keys — per-client rate and burst limits, plus account-level throttling.
 <!--ID: 1788139020100-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -119,6 +125,7 @@ Basic
 API Gateway: When is HTTP API the right choice over REST API?
 Back: When you want lower cost and latency and don't need REST API's extras (request/response transformation, API keys/usage plans, WAF integration, private endpoints).
 <!--ID: 1788139020107-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -126,6 +133,7 @@ Basic
 CloudFront: How do you prevent users from bypassing CloudFront and hitting the ALB directly?
 Back: Have CloudFront inject a secret custom header and configure WAF on the ALB to drop requests without it — optionally also restricting the ALB security group to CloudFront's managed prefix list.
 <!--ID: 1788139020114-->
+Tags: cantrill::containers-ecs
 END
 ```
 ```dataviewjs

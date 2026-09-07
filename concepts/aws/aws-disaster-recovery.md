@@ -70,6 +70,7 @@ Basic
 DR: What's the difference between RPO and RTO in one line each?
 Back: RPO = how much DATA you can lose (set by backup/replication frequency). RTO = how long you can be DOWN (set by how much is already running).
 <!--ID: 1788139020179-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -77,6 +78,7 @@ Basic
 DR: A DR site has a replicating database but no running app servers. Which strategy?
 Back: Pilot Light — only the core data layer is live; you must provision and launch the application tier, so RTO is tens of minutes.
 <!--ID: 1788139020186-->
+Tags: cantrill::fundamentals
 END
 
 START
@@ -84,6 +86,7 @@ Basic
 DR: The DR environment is a complete stack running at reduced capacity, able to serve traffic today. Which strategy?
 Back: Warm Standby. The tell is that it's functional right now and just needs scaling up — Pilot Light isn't serving anything.
 <!--ID: 1788139020191-->
+Tags: cantrill::fundamentals
 END
 
 START
@@ -91,6 +94,7 @@ Basic
 DR: The requirement is "lowest possible cost" and downtime of up to 24 hours is acceptable. Which strategy?
 Back: Backup & Restore — nothing runs in the DR Region, you just restore from backups/snapshots. Cheapest, slowest.
 <!--ID: 1788139020197-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -98,6 +102,7 @@ Basic
 DR: Which strategy gives near-zero RTO and RPO, and what's the catch?
 Back: Multi-Site Active/Active — both Regions serve live traffic. The catch is roughly double the infrastructure cost, plus data-consistency complexity across Regions.
 <!--ID: 1788139020202-->
+Tags: cantrill::fundamentals
 END
 
 START
@@ -105,6 +110,7 @@ Basic
 DR: You need RPO measured in seconds and RTO under a minute for a global relational workload. What service?
 Back: Aurora Global Database — sub-second cross-Region replication lag, RTO under a minute. Standard cross-Region read replicas promote far more slowly.
 <!--ID: 1788139020206-->
+Tags: cantrill::fundamentals
 END
 
 START
@@ -112,6 +118,7 @@ Basic
 DR: How do you centrally manage backups across EBS, RDS, DynamoDB, and EFS with cross-Region copies?
 Back: AWS Backup — policy-driven backup plans across services, with cross-Region and cross-account copy, and Vault Lock for immutable retention.
 <!--ID: 1788139020211-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -119,6 +126,7 @@ Basic
 DR: Failover completed but users still hit the dead Region. What was missed?
 Back: DNS TTL. Route 53 records need a low TTL (~60s) or resolvers keep serving the cached old endpoint long after the health check flipped.
 <!--ID: 1788139020215-->
+Tags: cantrill::fundamentals
 END
 ```
 ```dataviewjs

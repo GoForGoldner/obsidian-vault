@@ -98,11 +98,33 @@ Study the subdeck that matches the day's reading, then review `Study::AWS` as a 
 
 Any new AWS note needs its own `TARGET DECK:` line or its cards land in `Default`.
 
+> [!warning] Timeline changed 2026-08-31
+> Tyler bought **Adrian Cantrill's SAA-C03 course** (60h42m, 365 lectures, 25 sections) and pushed the exam out to do it properly. **The 7-day plan below is superseded** by the course-paced plan in the next section — it's kept only as the "if I had one week" fallback.
+
+## Course-paced plan (~6 weeks, 10-12 hrs/week)
+
+Course assets live in `Desktop/aws-saa-prep/cantrill/` (`curriculum.json` has all 365 lectures with IDs; lecture URL = `https://learn.cantrill.io/courses/1820301/lectures/<id>`).
+
+The loop each week: **watch the section → read the matching note → unsuspend that subdeck → review daily.** Cards are spaced reinforcement of what the video taught, not a substitute for watching it.
+
+| Week | Cantrill sections | Hours | Decks to unlock |
+|---|---|---|---|
+| 1 | Intro, Course Fundamentals, AWS Fundamentals, IAM/Orgs | ~9h | `Foundations` |
+| 2 | S3, VPC Basics | ~8h | `Storage`, part of `Networking` |
+| 3 | EC2 Basics, Containers & ECS, Advanced EC2 | ~10h | `Compute` |
+| 4 | Route 53, RDS, Network Storage, HA & Scaling | ~10h | rest of `Networking`, `Databases` |
+| 5 | Serverless & App Services, CloudFront, Advanced VPC | ~9h | `Integration` |
+| 6 | Hybrid & Migration, Security/Deploy/Ops, CloudFormation, DynamoDB, ML 101, Exam | ~14h | `Security`, `Operations`, `Exam Strategy` |
+
+Start full timed practice exams in week 5, not before — earlier than that you're testing material you haven't seen. Keep the `<65% don't sit it / >80% book it` gate.
+
+**Known card gaps vs the course** (to be filled from transcripts): CloudFormation (15 lectures, essentially no cards), Machine Learning 101 (11 lectures), plus depth on EC2 internals, S3 Access Points/Select/Events, CloudFront behaviours and TTLs, Route 53 hosted zones and DNSSEC, and BGP/IPSec fundamentals.
+
 ## The 7-day plan (~4–5 hrs/day, ~31 hrs)
 
 Practice exams live at `Desktop/aws-saa-prep/practice-exam.html` — open in a browser, no install.
 
-### Day 1 — Security foundations (Domain 1, the biggest)
+### Day 1 — *(fallback plan only)*  Security foundations (Domain 1, the biggest)
 - **2.0h** Read [[aws-global-infrastructure]], [[aws-iam]], [[aws-organizations]]. IAM twice.
 - **1.0h** Sync new cards to Anki. Do the full new-card batch for those three notes.
 - **1.0h** Practice Exam A, **Domain 1 only** (untimed). Expect to do badly — that's the point.

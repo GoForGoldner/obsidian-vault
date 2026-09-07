@@ -54,6 +54,7 @@ Basic
 AWS Global Infrastructure: A question says "must survive the loss of a data center." AZ-redundant or Region-redundant?
 Back: Multi-AZ is enough. A data center ≈ an AZ. Reach for multi-Region only when the question names a Region-wide outage or data-residency law — it costs far more.
 <!--ID: 1788139020426-->
+Tags: cantrill::fundamentals
 END
 
 START
@@ -61,6 +62,7 @@ Basic
 AWS Global Infrastructure: Why can RDS Multi-AZ replicate synchronously but cross-Region replication is always asynchronous?
 Back: AZs sit on private fibre within one metro (single-digit ms), so a sync write round-trip is affordable. Regions are continents apart — sync writes would gate every transaction on that latency.
 <!--ID: 1788139020434-->
+Tags: cantrill::fundamentals
 END
 
 START
@@ -69,6 +71,7 @@ AWS Global Infrastructure: Under the shared responsibility model, who patches th
 Back: The service model, not the service. EC2 → you patch the guest OS. RDS → AWS patches it. Lambda → no OS exists to patch.
 The more managed the service, the more of the stack AWS owns.
 <!--ID: 1788139020442-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -77,6 +80,7 @@ AWS Global Infrastructure: Which four things stay YOUR responsibility no matter 
 Back: Your data, who can access it (IAM), whether it's encrypted, and your network rules (security groups).
 AWS never decides those for you.
 <!--ID: 1788139020449-->
+Tags: cantrill::security-ops
 END
 
 START
@@ -85,6 +89,7 @@ AWS Global Infrastructure: Name the services that are GLOBAL, not Regional — a
 Back: IAM, Route 53, CloudFront, Organizations, WAF-for-CloudFront.
 Distractors often ask you to "replicate IAM to another Region" — meaningless, it's already global.
 <!--ID: 1788139020457-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -92,6 +97,7 @@ Basic
 AWS Global Infrastructure: An Edge Location and an Availability Zone — what's the functional difference?
 Back: An AZ runs your compute and storage (EC2, EBS, subnets). An Edge Location only caches and terminates connections (CloudFront, Route 53, Global Accelerator) — no general compute.
 <!--ID: 1788139020465-->
+Tags: cantrill::cdn-optimization
 END
 
 START
@@ -99,6 +105,64 @@ Basic
 AWS Global Infrastructure: Which resources are AZ-scoped, so placing them wrong creates a single point of failure?
 Back: EC2 instances, EBS volumes, and subnets. A subnet lives in exactly one AZ — so "multi-AZ" always means multiple subnets.
 <!--ID: 1788139020472-->
+Tags: cantrill::fundamentals
+END
+START
+Basic
+AWS Global Infrastructure: What makes a service "public" vs "private" in AWS, and what does it NOT mean?
+Back: It's about NETWORK position, not access control. Public services (S3, DynamoDB) sit on the AWS public zone with public endpoints; private services (EC2) sit inside a VPC.
+A public service is not publicly ACCESSIBLE — permissions still gate it.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676679-->
+END
+
+START
+Basic
+AWS Global Infrastructure: An EC2 instance in a private subnet reaches S3 without a NAT gateway. Which zone did the traffic use?
+Back: The AWS public zone, via a gateway VPC endpoint — the traffic never touched the public internet. S3 being a "public service" is exactly what makes this possible.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676684-->
+END
+
+START
+Basic
+AWS Global Infrastructure: Distinguish high availability, fault tolerance, and disaster recovery.
+Back: HA = minimize downtime; a brief outage and failover is acceptable. Fault tolerance = operate THROUGH failure with no interruption. DR = recover after the worst has already happened.
+FT is much more expensive than HA — don't over-buy it.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676688-->
+END
+
+START
+Basic
+AWS Global Infrastructure: A patient life-support system vs a company website — which needs fault tolerance rather than high availability, and why?
+Back: Life support needs fault tolerance — a 60-second failover is not survivable. A website tolerates brief downtime, so HA is the right, far cheaper choice.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676692-->
+END
+
+START
+Basic
+AWS Global Infrastructure: What CIDR does the default VPC always use, and what's automatically created inside it?
+Back: 172.31.0.0/16, with a /20 subnet in each AZ, an internet gateway, a default security group and NACL, and auto-assign public IP switched on.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676697-->
+END
+
+START
+Basic
+AWS Global Infrastructure: Why should production workloads not run in the default VPC?
+Back: Its CIDR is identical in every account and Region, so it collides on peering and hybrid links, and its subnets are public by default. Custom VPCs let you design addressing and tiering deliberately.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676702-->
+END
+
+START
+Basic
+AWS Global Infrastructure: You deleted the default VPC. Can you get it back?
+Back: Yes — AWS can recreate it, but the new one is a fresh default VPC; anything that depended on the old subnet or VPC ids is gone. It's recreatable, not restorable.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676706-->
 END
 ```
 ```dataviewjs

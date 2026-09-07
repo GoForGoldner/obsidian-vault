@@ -76,6 +76,7 @@ Basic
 EC2: A batch image-processing job runs nightly, is stateless, and can restart. Which purchasing option?
 Back: Spot Instances — up to 90% off. Fault-tolerant + interruptible is exactly the Spot profile.
 <!--ID: 1788139020268-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -84,6 +85,7 @@ EC2: When do you choose Savings Plans over Reserved Instances?
 Back: When you want the discount but not the lock-in to a specific instance type/Region. Savings Plans commit to $/hour and even cover Fargate and Lambda.
 RIs are marginally cheaper but rigid.
 <!--ID: 1788139020274-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -91,6 +93,7 @@ Basic
 EC2: The company has Oracle licenses tied to physical sockets. Dedicated Hosts or Dedicated Instances?
 Back: Dedicated Hosts — only Hosts give you visibility into sockets/cores for BYOL compliance. "Per-socket/per-core licensing" is the tell.
 <!--ID: 1788139020279-->
+Tags: cantrill::advanced-ec2
 END
 
 START
@@ -98,6 +101,7 @@ Basic
 EC2: An HPC job needs the lowest possible inter-node network latency. Which placement group, and what's the risk?
 Back: Cluster placement group — same rack, highest throughput. The risk: a single rack failure takes down every instance in it.
 <!--ID: 1788139020286-->
+Tags: cantrill::advanced-ec2
 END
 
 START
@@ -105,6 +109,7 @@ Basic
 EC2: You're running Cassandra and need failures to hit only one replica set. Which placement group?
 Back: Partition — instances are grouped onto separate racks, and Cassandra/HDFS/Kafka are partition-aware, so a rack failure loses only one partition.
 <!--ID: 1788139020292-->
+Tags: cantrill::advanced-ec2
 END
 
 START
@@ -112,6 +117,7 @@ Basic
 EC2: Instances are running but the app has hung; the ASG never replaces them. What's misconfigured?
 Back: The ASG health check type is EC2 (hardware only). Set it to ELB so failing application health checks trigger replacement.
 <!--ID: 1788139020298-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -119,6 +125,7 @@ Basic
 EC2: Traffic reliably spikes every weekday at 9am and the app takes 5 minutes to warm up. Which scaling policy?
 Back: Scheduled scaling — scale out BEFORE the known spike. Reactive target tracking would lag behind the surge.
 <!--ID: 1788139020303-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -126,6 +133,7 @@ Basic
 EC2: Which instance family for an in-memory database like Redis or SAP HANA?
 Back: R or X (memory optimized). C is compute-optimized (CPU-bound), I is storage-optimized (local IOPS).
 <!--ID: 1788139020308-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -134,6 +142,7 @@ EC2: Why is "use Spot Instances" wrong for the database tier even though it's ch
 Back: Spot can be reclaimed with 2 minutes' notice. Stateful, non-interruptible workloads lose data or availability.
 Spot is for stateless/fault-tolerant tiers only.
 <!--ID: 1788139020314-->
+Tags: cantrill::ec2-basics
 END
 
 START
@@ -141,6 +150,7 @@ Basic
 EC2: What does target tracking scaling actually ask you for, and why is it usually the right answer?
 Back: A single metric target (e.g. keep average CPU at 50%) — AWS computes the rest. Simple scaling and step scaling need hand-tuned thresholds and are easier to get wrong.
 <!--ID: 1788139020320-->
+Tags: cantrill::ha-scaling
 END
 ```
 ```dataviewjs

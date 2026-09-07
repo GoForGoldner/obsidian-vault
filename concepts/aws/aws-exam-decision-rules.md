@@ -106,6 +106,7 @@ Basic
 SAA Strategy: What should you read first in a long scenario question, and why?
 Back: The last sentence. It contains the actual ask and the deciding constraint — "most cost-effective," "least operational overhead," "highest availability." The scenario paragraphs are mostly noise.
 <!--ID: 1788139020326-->
+Tags: cantrill::exam
 END
 
 START
@@ -113,6 +114,7 @@ Basic
 SAA Strategy: The phrase "least operational overhead" appears. What does it almost always select for?
 Back: The managed/serverless option — Lambda, Fargate, S3, DynamoDB, SQS, Aurora Serverless — over anything you run and patch yourself on EC2.
 <!--ID: 1788139020332-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -120,6 +122,7 @@ Basic
 SAA Strategy: What does "most cost-effective" actually mean on this exam?
 Back: The cheapest option that STILL MEETS every stated requirement — not the cheapest option overall. Distractors are usually cheaper but violate a requirement.
 <!--ID: 1788139020338-->
+Tags: cantrill::exam
 END
 
 START
@@ -127,6 +130,7 @@ Basic
 SAA Strategy: What's your time budget per question, and what do you do when you exceed it?
 Back: 130 min / 65 questions = 2 minutes each. Past that, pick your best guess, flag it, and move on. Unanswered scores as wrong, so never leave a blank.
 <!--ID: 1788139020343-->
+Tags: cantrill::exam
 END
 
 START
@@ -134,6 +138,7 @@ Basic
 SAA Strategy: Name four hard service limits that let you eliminate an answer instantly.
 Back: Lambda's 15-minute timeout, EFS being Linux/NFS only, ALB not handling UDP, and gateway VPC endpoints existing only for S3 and DynamoDB.
 <!--ID: 1788139020350-->
+Tags: cantrill::serverless-app
 END
 
 START
@@ -141,6 +146,7 @@ Basic
 SAA Strategy: An option involves storing AWS access keys somewhere. What do you do?
 Back: Eliminate it. The correct answer is always an IAM role with temporary credentials — this holds for EC2, Lambda, ECS, and cross-account access.
 <!--ID: 1788139020357-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -148,6 +154,7 @@ Basic
 SAA Strategy: Two options both work and differ only in AZ vs Region scope. How do you choose?
 Back: Choose Multi-AZ unless the question explicitly names a Region-wide outage, a data-residency law, or global user latency. Multi-Region costs far more and is over-engineering otherwise.
 <!--ID: 1788139020362-->
+Tags: cantrill::exam
 END
 ```
 ```dataviewjs

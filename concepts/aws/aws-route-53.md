@@ -68,6 +68,7 @@ Basic
 Route 53: "EU customers' data must be served from an EU Region for GDPR." Latency-based or Geolocation?
 Back: Geolocation — the requirement is legal/where-the-user-is, not speed. Latency-based optimizes response time and could route an EU user to the US.
 <!--ID: 1788139020967-->
+Tags: cantrill::route53
 END
 
 START
@@ -75,6 +76,7 @@ Basic
 Route 53: Why can't you use a CNAME for example.com pointing at an ALB?
 Back: DNS forbids a CNAME at the zone apex. Use an Alias record — AWS-specific, free, and legal at the apex.
 <!--ID: 1788139020974-->
+Tags: cantrill::route53
 END
 
 START
@@ -82,6 +84,7 @@ Basic
 Route 53: You want to send 5% of production traffic to a new stack to validate it. Which policy?
 Back: Weighted routing — assign weights 95/5. This is the canary/blue-green answer.
 <!--ID: 1788139020981-->
+Tags: cantrill::route53
 END
 
 START
@@ -89,6 +92,7 @@ Basic
 Route 53: What makes Failover routing actually work, and what's easy to forget?
 Back: An associated health check on the primary. And a low TTL (~60s) — otherwise resolvers keep serving the cached dead endpoint long after failover.
 <!--ID: 1788139020985-->
+Tags: cantrill::route53
 END
 
 START
@@ -96,6 +100,7 @@ Basic
 Route 53: Is Multivalue answer routing a load balancer?
 Back: No. It returns up to 8 healthy records at random for client-side spreading. It has health checks but none of an ELB's algorithms, connection draining, or TLS termination.
 <!--ID: 1788139020989-->
+Tags: cantrill::route53
 END
 
 START
@@ -103,6 +108,7 @@ Basic
 Route 53: When is Geoproximity the answer over plain Geolocation?
 Back: When you need to deliberately shift traffic volume toward or away from a Region using a bias value — e.g. gradually shifting load during a migration.
 <!--ID: 1788139020995-->
+Tags: cantrill::hybrid-migration
 END
 
 START
@@ -110,6 +116,62 @@ Basic
 Route 53: Two reasons to prefer Alias over CNAME even where both are legal?
 Back: Alias queries to AWS targets are free, and Alias automatically tracks the target's changing IPs. CNAME is billed per query.
 <!--ID: 1788139021002-->
+Tags: cantrill::route53
+END
+START
+Basic
+DNS Records: What's the difference between an A and an AAAA record?
+Back: A maps a name to an IPv4 address; AAAA maps a name to an IPv6 address. Same job, different address family — you often create both for one host.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676926-->
+END
+
+START
+Basic
+DNS Records: What does a CNAME do, and what's the one place it's illegal?
+Back: It maps a name to ANOTHER NAME. It's illegal at the zone apex (example.com) — that's exactly why Route 53 Alias records exist.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676930-->
+END
+
+START
+Basic
+DNS Records: What are MX records for, and what does their priority value mean?
+Back: They identify mail servers for a domain. Lower priority number = more preferred; equal values are load-balanced across.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676935-->
+END
+
+START
+Basic
+DNS Records: What are TXT records used for in practice?
+Back: Arbitrary text on a domain — used to prove domain ownership, and to carry email anti-spoofing records like SPF, DKIM and DMARC.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676938-->
+END
+
+START
+Basic
+DNS Records: What does TTL control, and what's the operational cost of setting it high?
+Back: How long a resolver may cache the answer. High TTL means fewer lookups but stale answers persist after a change — which is why you lower TTL BEFORE a planned migration or failover.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676942-->
+END
+
+START
+Basic
+Route 53: What two distinct jobs does Route 53 perform?
+Back: Domain REGISTRAR (buying and managing domain names) and managed authoritative DNS (hosted zones serving records). They're separate functions of the same service.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676947-->
+END
+
+START
+Basic
+Route 53: What is a hosted zone, and where does it physically live?
+Back: A database of DNS records for one domain, hosted on distributed Route 53 name servers. It's a global service — not tied to any Region.
+Tags: cantrill::fundamentals
+<!--ID: 1788209676951-->
 END
 ```
 ```dataviewjs

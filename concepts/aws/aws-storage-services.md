@@ -78,6 +78,7 @@ Storage: Twenty EC2 instances across three AZs must read and write the same file
 Back: EFS — a shared NFS filesystem mountable by thousands of instances across AZs. EBS attaches to one instance in one AZ.
 "Shared access from many instances" is the EFS signature.
 <!--ID: 1788139021170-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -85,6 +86,7 @@ Basic
 Storage: Why can't you just attach one EBS volume to instances in two AZs?
 Back: EBS is AZ-scoped. To move it you snapshot to S3 and restore in the other AZ. (Multi-Attach exists but is io1/io2, same-AZ only, and needs a cluster-aware filesystem.)
 <!--ID: 1788139021177-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -92,6 +94,7 @@ Basic
 Storage: A Windows application needs an SMB share integrated with Active Directory. Which service?
 Back: FSx for Windows File Server. EFS is NFS/Linux only — a common distractor pairing.
 <!--ID: 1788139021184-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -99,6 +102,7 @@ Basic
 Storage: The workload is HPC / ML training needing sub-millisecond access to data staged from S3. Which filesystem?
 Back: FSx for Lustre — purpose-built for high-performance computing and natively linked to S3.
 <!--ID: 1788139021190-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -106,6 +110,7 @@ Basic
 Storage: 200 TB must reach AWS in two weeks over a saturated 500 Mbps link. DataSync or Snowball?
 Back: Snowball (offline shipping). Do the arithmetic — 200 TB over 500 Mbps takes over a month. When the link can't make the deadline, ship the data.
 <!--ID: 1788139021197-->
+Tags: cantrill::containers-ecs
 END
 
 START
@@ -113,6 +118,7 @@ Basic
 Storage: On-prem apps write to an NFS share and must keep working, but storage should live in S3. What?
 Back: AWS Storage Gateway — File Gateway. The app keeps its NFS/SMB mount; data lands in S3 behind it.
 <!--ID: 1788139021203-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -120,6 +126,7 @@ Basic
 Storage: Why is instance store wrong for a database's data directory?
 Back: It's ephemeral — stopping or terminating the instance destroys it, and it can't be snapshotted. Use EBS for persistence; instance store is for cache/scratch.
 <!--ID: 1788139021209-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -127,6 +134,7 @@ Basic
 Storage: What changed between gp2 and gp3 that matters for cost?
 Back: gp2 tied IOPS to volume size, forcing you to over-provision capacity to get performance. gp3 provisions IOPS and throughput independently — and is ~20% cheaper per GB.
 <!--ID: 1788139021215-->
+Tags: cantrill::network-storage
 END
 
 START
@@ -134,6 +142,7 @@ Basic
 Storage: The company wants to retire its physical tape backup infrastructure without changing its backup software. What?
 Back: Storage Gateway — Tape Gateway. It presents a virtual tape library over iSCSI, so the existing software keeps working while tapes land in S3/Glacier.
 <!--ID: 1788139021221-->
+Tags: cantrill::network-storage
 END
 ```
 ```dataviewjs

@@ -73,6 +73,7 @@ Basic
 ELB: The requirement is "route /api requests to one fleet and /images to another." Which load balancer, and why is it the only option?
 Back: ALB. Content-based routing (path, host, header, query string) requires Layer 7 — NLB operates at Layer 4 and cannot see the HTTP request.
 <!--ID: 1788139020368-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -80,6 +81,7 @@ Basic
 ELB: A client's corporate firewall must allow-list your load balancer's IP. ALB or NLB?
 Back: NLB — it provides a static IP per AZ and supports Elastic IPs. An ALB only gives a DNS name whose IPs change.
 <!--ID: 1788139020373-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -87,6 +89,7 @@ Basic
 ELB: The application uses UDP for IoT telemetry. Which load balancer?
 Back: NLB. It's the only one handling UDP; ALB is HTTP/HTTPS only.
 <!--ID: 1788139020378-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -94,6 +97,7 @@ Basic
 ELB: You need to run a third-party firewall appliance inline for traffic inspection. Which ELB?
 Back: Gateway Load Balancer — it deploys, scales, and health-checks third-party virtual appliances transparently at Layer 3.
 <!--ID: 1788139020383-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -102,6 +106,7 @@ ELB: Users get logged out when Auto Scaling adds instances. What's the quick fix
 Back: Quick: enable ALB sticky sessions. Better: externalize session state to ElastiCache or DynamoDB so the app is stateless.
 The exam usually wants stateless.
 <!--ID: 1788139020390-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -109,6 +114,7 @@ Basic
 ELB: Which ELB has cross-zone load balancing OFF by default, and what does that cost you?
 Back: NLB (ALB has it on and free). With it off, an AZ holding fewer targets sends each of them more traffic; turning it on adds cross-AZ data transfer charges.
 <!--ID: 1788139020397-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -116,6 +122,7 @@ Basic
 ELB: A target fails its health check. Does the load balancer terminate it?
 Back: No — it only stops sending traffic. Terminating and replacing is Auto Scaling's job, and only if the ASG uses ELB health checks rather than EC2 status checks.
 <!--ID: 1788139020404-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -123,6 +130,7 @@ Basic
 ELB: What's the minimum subnet requirement for any ELB, and why?
 Back: At least two subnets in two different AZs. The load balancer itself must be highly available, so it cannot live in a single AZ.
 <!--ID: 1788139020412-->
+Tags: cantrill::ha-scaling
 END
 
 START
@@ -130,6 +138,7 @@ Basic
 ELB: How do you host several HTTPS domains with different certificates behind one ALB listener?
 Back: SNI (Server Name Indication) — attach multiple ACM certificates to the listener and the ALB picks by hostname.
 <!--ID: 1788139020419-->
+Tags: cantrill::security-ops
 END
 ```
 ```dataviewjs
